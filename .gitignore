@@ -1,0 +1,10 @@
+# Bank statements and financial documents
+*.pdf
+data/statements/
+data/docling_output.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

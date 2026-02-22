@@ -17,8 +17,8 @@ One-time purchase, not subscription. No ongoing server costs.
 Revenue target: ~4,500 sales to recover $100K investment in year one. $500K-$1.5M cumulative by end of year two.
 
 ## Team
-- Alex (me): Product, AI/ML, pipeline development. CS student at Tufts.
-- My dad: Financial domain architect, code reviewer. Tech lead at Millennium with 30 years building financial trading systems. Investing $100K.
+- Marcus (me): Product, AI/ML, pipeline development. CS student at Tufts.
+- My dad: Financial domain architect, code reviewer. Tech lead at Hedge Fund with 30 years building financial trading systems. Investing $100K.
 - One contractor: Native app, on-device ML integration.
 - Claude Code: Pair programmer handling ~50% of raw code output.
 
