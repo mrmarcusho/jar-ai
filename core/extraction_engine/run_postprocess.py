@@ -15,6 +15,7 @@ from pathlib import Path
 
 from postprocess import (
     fix_unicode_escapes,
+    fix_missing_co_id,
     merge_spanning_header_columns_md,
     merge_spanning_header_columns_json,
 )
@@ -35,13 +36,14 @@ def main():
             print(f"ERROR: {p} not found. Run run_preprocess.py first.")
             sys.exit(1)
 
-    # Read raw files and apply unicode fix
+    # Read raw files and apply unicode fix + ACH CO ID repair
     md_text = md_path.read_text(encoding="utf-8")
-    raw_json_text = fix_unicode_escapes(json_path.read_text(encoding="utf-8"))
+    raw_json_text = fix_missing_co_id(fix_unicode_escapes(json_path.read_text(encoding="utf-8")))
     raw_doc_dict = json.loads(raw_json_text)
 
     # Post-process markdown
     md_text = fix_unicode_escapes(md_text)
+    md_text = fix_missing_co_id(md_text)
     md_text = merge_spanning_header_columns_md(md_text)
     md_path.write_text(md_text, encoding="utf-8")
     print(f"Post-processed markdown written to {md_path}")

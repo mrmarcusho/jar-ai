@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jar</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">Jar</div>
+        <div class="tabs">
+            <button class="tab active" data-page="import">Import</button>
+            <button class="tab" data-page="transactions">Transactions</button>
+            <button class="tab" data-page="chat">Chat</button>
+        </div>
+        <div class="backend-badge" id="backend-badge">Loading...</div>
+    </nav>
+
+    <main>
+        <!-- ── Import Page ─────────────────────────────────────── -->
+        <div class="page active" id="page-import">
+            <div class="card">
+                <h2>Import Statement</h2>
+                <div class="dropzone" id="dropzone">
+                    <div class="dropzone-icon">&#128196;</div>
+                    <div class="dropzone-text">
+                        <strong>Drop a PDF here</strong> or click to select<br>
+                        Bank of America checking statement
+                    </div>
+                    <input type="file" id="file-input" accept=".pdf">
+                </div>
+                <div class="progress-steps" id="import-progress"></div>
+            </div>
+
+            <div class="card" id="import-summary" style="display:none">
+                <h2>Statement Summary</h2>
+                <div class="summary-grid" id="summary-grid"></div>
+            </div>
+        </div>
+
+        <!-- ── Transactions Page ───────────────────────────────── -->
+        <div class="page" id="page-transactions">
+            <div class="card">
+                <h2>Transactions</h2>
+                <div class="filters">
+                    <input type="text" id="filter-search" placeholder="Search transactions...">
+                    <input type="date" id="filter-start">
+                    <input type="date" id="filter-end">
+                    <select id="filter-type">
+                        <option value="">All types</option>
+                    </select>
+                    <select id="filter-direction">
+                        <option value="">All</option>
+                        <option value="1">Deposits</option>
+                        <option value="0">Withdrawals</option>
+                    </select>
+                </div>
+                <div class="txn-count" id="txn-count"></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-sort="date">Date <span class="sort-arrow"></span></th>
+                                <th>Description</th>
+                                <th data-sort="amount">Amount <span class="sort-arrow"></span></th>
+                                <th data-sort="type">Type <span class="sort-arrow"></span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="txn-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Chat Page ───────────────────────────────────────── -->
+        <div class="page" id="page-chat">
+            <div class="card chat-container">
+                <div class="chat-toolbar">
+                    <label>
+                        <input type="checkbox" id="debug-toggle"> Show debug info
+                    </label>
+                    <button id="chat-reset">Reset conversation</button>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message assistant">
+                        Hi! I'm Jar, your financial assistant. Ask me anything about your bank statements &mdash; transactions, spending, balances, recurring bills.
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Ask about your transactions..." autocomplete="off">
+                    <button id="chat-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

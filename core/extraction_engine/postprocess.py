@@ -18,6 +18,29 @@ def fix_unicode_escapes(text: str) -> str:
     )
 
 
+def fix_missing_co_id(text: str) -> str:
+    """Restore 'CO' prefix before 'ID:' in ACH descriptions where Docling dropped it.
+
+    In BofA ACH format, 'CO ID:' after 'INDN:...' is a Company Originator ID.
+    Docling's table OCR occasionally drops the 'CO' token, producing bare
+    'ID:' after the individual name.  This function detects that pattern and
+    restores 'CO ID:'.
+
+    Only applies when INDN: is present (ACH context) and an ID: follows the
+    individual name without a preceding CO.
+    """
+    def _restore_co(m):
+        if m.group(1).rstrip().endswith("CO"):
+            return m.group(0)  # already has CO, leave alone
+        return m.group(1) + " CO ID:"
+
+    return re.sub(
+        r"(INDN:\S+(?:\s+\S+)*?)\s+ID:",
+        _restore_co,
+        text,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Merge spanning header columns
 # ---------------------------------------------------------------------------
