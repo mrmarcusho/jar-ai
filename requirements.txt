@@ -1,0 +1,6 @@
+docling
+anthropic
+fastapi
+uvicorn
+python-multipart
+openai
