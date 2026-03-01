@@ -311,12 +311,13 @@ _chat_backend = None  # e.g. "claude", "ollama:qwen2.5:7b", "ollama:qwen2.5:3b"
 
 # Model definitions: id -> (backend, model, display_name)
 MODELS = {
+    "ollama:qwen3:8b": ("ollama", "qwen3:8b", "Qwen 3 — 8B"),
     "claude": ("claude", "claude-sonnet-4-20250514", "Claude Sonnet (API)"),
     "ollama:qwen2.5:7b": ("ollama", "qwen2.5:7b", "Qwen 2.5 — 7B"),
     "ollama:qwen2.5:3b": ("ollama", "qwen2.5:3b", "Qwen 2.5 — 3B"),
 }
 
-DEFAULT_LOCAL_MODEL = "ollama:qwen2.5:7b"
+DEFAULT_LOCAL_MODEL = "ollama:qwen3:8b"
 
 
 def _get_chat(model_id: str = None):

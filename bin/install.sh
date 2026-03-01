@@ -127,6 +127,7 @@ pull_model() {
 
 echo "Downloading Qwen models (may take several minutes on first run)..."
 set +e  # Don't abort on model download failures
+pull_model "qwen3:8b"
 pull_model "qwen2.5:3b"
 pull_model "qwen2.5:7b"
 set -e
@@ -160,7 +161,7 @@ echo ""
 echo "  What was installed (all isolated, nothing system-wide):"
 echo "  - pyenv + Python 3.11.9  → ~/.pyenv/"
 echo "  - Jar app + venv         → ~/JAR/"
-echo "  - Ollama + Qwen2.5 3B/7B  → ~/.ollama/"
+echo "  - Ollama + Qwen3 8B / Qwen2.5 3B/7B  → ~/.ollama/"
 echo "  - Desktop launcher       → ~/Desktop/Start-Jar.command"
 echo ""
 echo "  To uninstall completely:"

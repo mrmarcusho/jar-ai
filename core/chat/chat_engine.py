@@ -7,6 +7,7 @@ Supports two backends:
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -60,21 +61,30 @@ TOOLS_ANTHROPIC = [
     {
         "name": "get_transactions",
         "description": (
-            "Search and filter transactions. Use this when the user asks about "
-            "specific transactions, wants to find a payment, or asks 'when did I "
-            "pay X' or 'show me transactions for X'. Supports filtering by date "
-            "range, transaction type, amount range, payee name, and deposit/withdrawal."
+            "Get a list of transactions with optional filters. Use this for questions "
+            "about specific transactions, finding largest/smallest amounts, or listing "
+            "transactions by date or amount."
         ),
         "input_schema": {
             "type": "object",
             "properties": {
-                "start_date": {"type": "string", "description": "Start date YYYY-MM-DD"},
-                "end_date": {"type": "string", "description": "End date YYYY-MM-DD"},
+                "start_date": {
+                    "type": "string",
+                    "description": "Filter transactions on or after this date (YYYY-MM-DD format).",
+                },
+                "end_date": {
+                    "type": "string",
+                    "description": "Filter transactions on or before this date (YYYY-MM-DD format).",
+                },
                 "type": {
                     "type": "string",
                     "description": (
-                        "Transaction type: bill_payment, ach_debit, direct_deposit, "
-                        "ach_credit, zelle_transfer, atm_withdrawal, branch_deposit, other"
+                        "Filter by a SPECIFIC transaction type. ONLY use this when the user "
+                        "explicitly names a type like 'ATM withdrawal', 'wire transfer', "
+                        "'ACH debit', 'check', 'bill payment', or 'Zelle transfer'. Do NOT "
+                        "use this for general questions about withdrawals, spending, or "
+                        "expenses — use is_deposit=false instead. Allowed values: "
+                        "atm_withdrawal, ach_debit, bill_payment, check, zelle_transfer, wire, other."
                     ),
                 },
                 "min_amount": {"type": "number"},
@@ -82,18 +92,46 @@ TOOLS_ANTHROPIC = [
                 "payee": {"type": "string", "description": "Partial match on payee/description"},
                 "is_deposit": {
                     "type": "boolean",
-                    "description": "true for income/deposits, false for spending/withdrawals",
+                    "description": (
+                        "Filter by transaction direction. Set to false for all outgoing "
+                        "transactions (withdrawals, payments, debits, transfers, checks — "
+                        "everything leaving the account). Set to true for all incoming "
+                        "transactions (deposits, credits). For general questions about "
+                        "'withdrawals', 'spending', or 'expenses', always use is_deposit=false."
+                    ),
                 },
-                "limit": {"type": "integer", "description": "Max results, default 50"},
+                "sort_by": {
+                    "type": "string",
+                    "description": (
+                        "Sort results by 'date' (default, most recent first) or 'amount' "
+                        "(largest absolute amount first). Use 'amount' when the user asks "
+                        "for largest, smallest, biggest, or most expensive transactions."
+                    ),
+                },
+                "sort_dir": {
+                    "type": "string",
+                    "description": (
+                        "Sort direction: 'desc' (default, largest/newest first) or "
+                        "'asc' (smallest/oldest first)."
+                    ),
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": (
+                        "Maximum number of results to return. Use with sort_by='amount' to "
+                        "get the top N largest or smallest transactions. Without "
+                        "sort_by='amount', this just returns the N most recent transactions."
+                    ),
+                },
             },
         },
     },
     {
         "name": "get_spending_by_category",
         "description": (
-            "Get spending breakdown by category and type for a date range. Use when "
-            "user asks 'how much did I spend on X', 'where is my money going', "
-            "'spending breakdown', or 'what are my biggest expenses'."
+            "Get total spending grouped by category and transaction type. Use this for "
+            "'how much did I spend' or 'breakdown of spending' questions, NOT for "
+            "finding individual transactions."
         ),
         "input_schema": {
             "type": "object",
@@ -107,9 +145,8 @@ TOOLS_ANTHROPIC = [
     {
         "name": "get_recurring_bills",
         "description": (
-            "Find bills and payments that recur across multiple statements. Use when "
-            "user asks 'what are my recurring bills', 'monthly expenses', "
-            "'subscriptions', or 'what do I pay every month'."
+            "Find recurring payments that appear across multiple statements. Use this "
+            "for 'what are my recurring bills' or 'what do I pay every month' questions."
         ),
         "input_schema": {
             "type": "object",
@@ -119,9 +156,9 @@ TOOLS_ANTHROPIC = [
     {
         "name": "get_balance_summary",
         "description": (
-            "Get account balance overview and cash flow. Use when user asks "
-            "'what's my balance', 'how much do I have', 'cash flow', "
-            "'am I saving money', or 'financial summary'."
+            "Get account balance, total deposits, and total withdrawals for a period. "
+            "Use this for balance checks, cash flow summaries, or 'how much came in "
+            "vs went out' questions."
         ),
         "input_schema": {
             "type": "object",
@@ -134,9 +171,8 @@ TOOLS_ANTHROPIC = [
     {
         "name": "get_spending_comparison",
         "description": (
-            "Compare spending between two time periods. Use when user asks "
-            "'did my spending go up', 'compare January to December', "
-            "'spending trend', or 'am I spending more'."
+            "Compare spending between two time periods. Use this for 'did my spending "
+            "go up' or 'compare January vs December' questions."
         ),
         "input_schema": {
             "type": "object",
@@ -152,13 +188,20 @@ TOOLS_ANTHROPIC = [
     {
         "name": "search_transactions",
         "description": (
-            "Free text search across all transaction descriptions and ACH fields. "
-            "Use when user asks about a specific company, person, or merchant by name."
+            "Search transactions by keyword in the description. Use this when the "
+            "user asks about a specific merchant, payee, or transaction by name."
         ),
         "input_schema": {
             "type": "object",
             "properties": {
-                "keyword": {"type": "string", "description": "Search term"},
+                "keyword": {
+                    "type": "string",
+                    "description": (
+                        "Search term to match against transaction descriptions. Try "
+                        "common variations if the first search returns no results (e.g., "
+                        "'kia' then 'telluride', or 'cooper' for Mr. Cooper mortgage)."
+                    ),
+                },
                 "limit": {"type": "integer", "description": "Max results, default 20"},
             },
             "required": ["keyword"],
@@ -196,7 +239,7 @@ class JarChat:
         if backend == "ollama":
             from openai import OpenAI
             self.client = OpenAI(base_url=ollama_url, api_key="ollama")
-            self.model = model or "qwen2.5:7b"
+            self.model = model or "qwen3:8b"
         elif backend == "claude":
             import anthropic
             self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
@@ -274,8 +317,18 @@ class JarChat:
             msg = response.choices[0].message
 
         final_text = msg.content or ""
+        final_text = self._strip_thinking(final_text)
         self.conversation_history.append({"role": "assistant", "content": final_text})
         return final_text
+
+    @staticmethod
+    def _strip_thinking(text: str) -> str:
+        """Remove Qwen3 <think>...</think> blocks, log them for debugging."""
+        think_pattern = re.compile(r'<think>(.*?)</think>', re.DOTALL)
+        thoughts = think_pattern.findall(text)
+        for thought in thoughts:
+            print(f"  [THINK] {thought.strip()}")
+        return think_pattern.sub('', text).strip()
 
     def _chat_claude(self, user_message: str) -> str:
         """Anthropic function-calling loop for Claude."""

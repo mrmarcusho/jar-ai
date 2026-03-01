@@ -25,6 +25,8 @@ class FinancialAPI:
         max_amount: float = None,
         payee: str = None,
         is_deposit: bool = None,
+        sort_by: str = "date",
+        sort_dir: str = "desc",
         limit: int = 50,
     ) -> dict:
         """Query transactions with optional filters."""
@@ -57,6 +59,11 @@ class FinancialAPI:
 
         where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
 
+        # Validate sort column
+        allowed_sorts = {"date": "t.date", "amount": "ABS(t.amount)"}
+        sort_col = allowed_sorts.get(sort_by, "t.date")
+        sort_direction = "ASC" if sort_dir.lower() == "asc" else "DESC"
+
         # Get total count and sum for the full filtered set
         agg = self._conn.execute(
             f"SELECT COUNT(*) as cnt, COALESCE(SUM(amount), 0) as total "
@@ -69,7 +76,7 @@ class FinancialAPI:
             f"t.is_deposit, t.type, t.category, t.ach_company_name, "
             f"t.ach_description, t.ach_individual_name "
             f"FROM transactions t {where} "
-            f"ORDER BY t.date DESC LIMIT ?",
+            f"ORDER BY {sort_col} {sort_direction} LIMIT ?",
             params + [limit],
         ).fetchall()
 
