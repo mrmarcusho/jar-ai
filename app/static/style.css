@@ -373,6 +373,13 @@ tr:hover td { background: var(--bg); }
     align-items: center;
     padding: 8px 16px;
     font-size: 13px;
+    border-bottom: 1px solid var(--border);
+}
+
+.chat-toolbar-left, .chat-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .chat-toolbar label {
@@ -381,6 +388,21 @@ tr:hover td { background: var(--bg); }
     gap: 6px;
     color: var(--text-muted);
     cursor: pointer;
+}
+
+.chat-toolbar select {
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.chat-toolbar select:focus {
+    outline: none;
+    border-color: var(--blue);
 }
 
 .chat-toolbar button {

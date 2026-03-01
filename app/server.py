@@ -307,20 +307,43 @@ async def get_summary():
 
 # Keep a single chat session alive across requests
 _chat_engine = None
+_chat_backend = None
 
 
-def _get_chat():
-    global _chat_engine
-    if _chat_engine is None:
-        from core.chat.chat_engine import JarChat
+def _get_chat(backend: str = None):
+    global _chat_engine, _chat_backend
+    from core.chat.chat_engine import JarChat
 
+    # Determine which backend to use
+    if backend is None:
         api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if api_key:
-            _chat_engine = JarChat(str(DB_PATH), backend="claude", api_key=api_key)
-        else:
-            _chat_engine = JarChat(str(DB_PATH), backend="ollama")
+        backend = "claude" if api_key else "ollama"
+
+    # Recreate engine if backend changed
+    if _chat_engine is not None and backend != _chat_backend:
+        _chat_engine.close()
+        _chat_engine = None
+
+    if _chat_engine is None:
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        if backend == "claude" and not api_key:
+            raise ValueError("ANTHROPIC_API_KEY not set. Switch to Qwen or set the env var.")
+        _chat_engine = JarChat(str(DB_PATH), backend=backend, api_key=api_key)
         _chat_engine.debug = True
+        _chat_backend = backend
+
     return _chat_engine
+
+
+@app.get("/api/chat/status")
+async def chat_status():
+    """Return the current chat backend and available backends."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    current = _chat_backend or ("claude" if api_key else "ollama")
+    backends = ["ollama"]
+    if api_key:
+        backends.append("claude")
+    return {"current": current, "available": backends}
 
 
 @app.post("/api/chat")
@@ -330,8 +353,10 @@ async def chat(body: dict):
     if not message:
         return JSONResponse({"error": "Empty message"}, status_code=400)
 
+    backend = body.get("backend")
+
     try:
-        engine = _get_chat()
+        engine = _get_chat(backend)
         response = engine.chat(message)
 
         # Capture debug info from conversation history
@@ -347,7 +372,7 @@ async def chat(body: dict):
                                 "params": block.input,
                             })
 
-        return {"response": response, "debug": debug_info}
+        return {"response": response, "debug": debug_info, "backend": _chat_backend}
 
     except Exception as e:
         traceback.print_exc()
@@ -357,11 +382,37 @@ async def chat(body: dict):
 @app.post("/api/chat/reset")
 async def chat_reset():
     """Reset the chat conversation history."""
-    global _chat_engine
+    global _chat_engine, _chat_backend
     if _chat_engine:
         _chat_engine.close()
         _chat_engine = None
+        _chat_backend = None
     return {"status": "ok"}
+
+
+@app.post("/api/chat/backend")
+async def set_backend(body: dict):
+    """Switch the chat backend. Resets conversation."""
+    global _chat_engine, _chat_backend
+    backend = body.get("backend", "").strip()
+    if backend not in ("claude", "ollama"):
+        return JSONResponse({"error": "Backend must be 'claude' or 'ollama'"}, status_code=400)
+
+    if backend == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
+        return JSONResponse({"error": "ANTHROPIC_API_KEY not set"}, status_code=400)
+
+    # Close existing engine
+    if _chat_engine:
+        _chat_engine.close()
+        _chat_engine = None
+        _chat_backend = None
+
+    # Create new engine to verify it works
+    try:
+        _get_chat(backend)
+        return {"status": "ok", "backend": backend}
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
 
 
 # ---------------------------------------------------------------------------

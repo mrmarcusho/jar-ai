@@ -77,10 +77,18 @@
         <div class="page" id="page-chat">
             <div class="card chat-container">
                 <div class="chat-toolbar">
-                    <label>
-                        <input type="checkbox" id="debug-toggle"> Show debug info
-                    </label>
-                    <button id="chat-reset">Reset conversation</button>
+                    <div class="chat-toolbar-left">
+                        <label>
+                            <input type="checkbox" id="debug-toggle"> Show debug info
+                        </label>
+                    </div>
+                    <div class="chat-toolbar-right">
+                        <select id="model-select">
+                            <option value="ollama">Qwen 2.5 3B (local)</option>
+                            <option value="claude">Claude Sonnet (API)</option>
+                        </select>
+                        <button id="chat-reset">Reset</button>
+                    </div>
                 </div>
                 <div class="chat-messages" id="chat-messages">
                     <div class="message assistant">

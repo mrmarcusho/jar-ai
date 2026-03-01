@@ -238,6 +238,48 @@ const chatInput = $('chat-input');
 const chatSend = $('chat-send');
 const chatMessages = $('chat-messages');
 const debugToggle = $('debug-toggle');
+const modelSelect = $('model-select');
+
+// Load current backend on init
+async function loadChatStatus() {
+    try {
+        const res = await fetch('/api/chat/status');
+        const data = await res.json();
+        modelSelect.value = data.current;
+        // Disable unavailable options
+        for (const opt of modelSelect.options) {
+            opt.disabled = !data.available.includes(opt.value);
+            if (opt.disabled && opt.value === 'claude') {
+                opt.textContent = 'Claude Sonnet (no API key)';
+            }
+        }
+    } catch (e) { /* ignore */ }
+}
+loadChatStatus();
+
+// Model switch
+modelSelect.addEventListener('change', async () => {
+    const backend = modelSelect.value;
+    try {
+        const res = await fetch('/api/chat/backend', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ backend }),
+        });
+        const data = await res.json();
+        if (data.error) {
+            chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Cannot switch: ' + esc(data.error) + '</div>';
+            loadChatStatus(); // revert select
+        } else {
+            const name = backend === 'claude' ? 'Claude Sonnet' : 'Qwen 2.5 3B';
+            chatMessages.innerHTML += '<div class="message assistant">Switched to <strong>' + name + '</strong>. Conversation reset.</div>';
+        }
+    } catch (e) {
+        chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Error switching model</div>';
+        loadChatStatus();
+    }
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+});
 
 chatSend.addEventListener('click', sendChat);
 chatInput.addEventListener('keydown', e => {
