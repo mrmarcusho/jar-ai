@@ -179,12 +179,6 @@ class JarChat:
         else:
             raise ValueError(f"Unknown backend: {backend}. Use 'ollama' or 'claude'.")
 
-    # Map of common LLM parameter hallucinations to correct names
-    _PARAM_ALIASES = {
-        "period_start": "start_date",
-        "period_end": "end_date",
-    }
-
     def _execute_tool(self, name: str, params: dict) -> dict:
         """Call the matching FinancialAPI method, tolerating LLM parameter errors."""
         import inspect
@@ -193,23 +187,14 @@ class JarChat:
         if fn is None:
             return {"error": f"Unknown function: {name}"}
 
-        # Fix common parameter name hallucinations
-        fixed = {}
-        for k, v in params.items():
-            fixed[self._PARAM_ALIASES.get(k, k)] = v
-
         # Strip parameters the function doesn't accept
         sig = inspect.signature(fn)
         valid_params = set(sig.parameters.keys())
-        cleaned = {k: v for k, v in fixed.items() if k in valid_params}
+        cleaned = {k: v for k, v in params.items() if k in valid_params}
+        dropped = set(params) - set(cleaned)
 
-        if self.debug and cleaned != params:
-            dropped = set(params) - set(cleaned)
-            renamed = {k: self._PARAM_ALIASES[k] for k in params if k in self._PARAM_ALIASES}
-            if renamed:
-                print(f"  [DEBUG] fixed params: {renamed}")
-            if dropped:
-                print(f"  [DEBUG] dropped unknown params: {dropped}")
+        if self.debug and dropped:
+            print(f"  [DEBUG] dropped unknown params: {dropped}")
 
         return fn(**cleaned)
 
