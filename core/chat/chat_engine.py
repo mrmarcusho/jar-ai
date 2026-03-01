@@ -51,7 +51,14 @@ IMPORTANT — How to answer questions step by step:
 4. Common mistakes to avoid:
    - Do NOT set type="atm_withdrawal" when the user says "withdrawal" — that excludes wires, ACH debits, bill payments, and checks.
    - Do NOT set limit=1 unless you are sure the results are sorted correctly.
-   - Do NOT summarize all transactions when the user asked a specific question. Answer the specific question first.\
+   - Do NOT summarize all transactions when the user asked a specific question. Answer the specific question first.
+
+5. PRESENT all the data you collected.
+   - If you made multiple function calls, use the results from ALL of them in your response, not just the last one.
+   - For summary or overview questions: structure your response with clear sections covering each part of what the user asked for.
+   - For "financial summary" questions: always include cash flow (income vs spending), biggest expenses (top 3-5), and any notable or unusual transactions.
+   - Do NOT throw away useful data. If you retrieved it, the user probably wants to see it.
+   - Use dollar formatting ($1,234.56) and keep it organized but concise.\
 """
 
 SYSTEM_PROMPT_QWEN = SYSTEM_PROMPT + "\n\n" + QWEN_INSTRUCTIONS

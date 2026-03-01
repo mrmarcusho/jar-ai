@@ -139,7 +139,7 @@ class FinancialAPI:
                    MAX(date) as last_paid,
                    GROUP_CONCAT(amount) as amounts_csv
             FROM transactions
-            WHERE ach_company_name IS NOT NULL
+            WHERE ach_company_name IS NOT NULL AND is_deposit = 0
             GROUP BY ach_company_name
             HAVING COUNT(DISTINCT statement_id) > 1
             ORDER BY payee
@@ -154,7 +154,7 @@ class FinancialAPI:
                    MAX(date) as last_paid,
                    GROUP_CONCAT(amount) as amounts_csv
             FROM transactions
-            WHERE type = 'bill_payment'
+            WHERE type = 'bill_payment' AND is_deposit = 0
             GROUP BY LOWER(description_raw)
             HAVING COUNT(DISTINCT statement_id) > 1
             ORDER BY payee
