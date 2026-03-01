@@ -14,6 +14,8 @@ if ! command -v brew &> /dev/null; then
     # Add Homebrew to PATH for Apple Silicon Macs
     if [ -f "/opt/homebrew/bin/brew" ]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
+        echo '' >> ~/.zprofile
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
     fi
 fi
 
@@ -23,7 +25,11 @@ if ! command -v git &> /dev/null; then
     brew install git
 fi
 
-# 3. Install pyenv for isolated Python version control
+# 3. Install system libraries needed to compile Python with full module support
+echo "Installing build dependencies..."
+brew install xz openssl readline sqlite3 zlib 2>/dev/null || true
+
+# 4. Install pyenv for isolated Python version control
 if ! command -v pyenv &> /dev/null; then
     echo "Installing pyenv..."
     brew install pyenv
@@ -40,11 +46,11 @@ if ! command -v pyenv &> /dev/null; then
     eval "$(pyenv init -)"
 fi
 
-# 4. Install Python 3.11.9 in ~/.pyenv/ (does NOT touch system Python)
+# 5. Install Python 3.11.9 in ~/.pyenv/ (does NOT touch system Python)
 echo "Installing Python 3.11.9 (isolated in ~/.pyenv/)..."
 pyenv install -s 3.11.9
 
-# 5. Clone repo (or pull if exists)
+# 6. Clone repo (or pull if exists)
 if [ -d "$HOME/JAR" ]; then
     echo "Updating existing installation..."
     cd "$HOME/JAR"
@@ -55,38 +61,54 @@ else
     cd "$HOME/JAR"
 fi
 
-# 6. Create virtual environment using exact Python version
+# 7. Always create fresh virtual environment with correct Python version
 echo "Setting up Python environment..."
+rm -rf "$HOME/JAR/venv"
 ~/.pyenv/versions/3.11.9/bin/python3 -m venv "$HOME/JAR/venv"
 source "$HOME/JAR/venv/bin/activate"
 pip install --upgrade pip
 pip install -r "$HOME/JAR/requirements.txt"
 
-# 7. Initialize database
+# 8. Initialize database
 echo "Initializing database..."
-cd core/database
-python load_statements.py --init-only
-cd ../..
+mkdir -p "$HOME/JAR/data"
+python -c "
+import sqlite3, os
+db_path = os.path.expanduser('~/JAR/data/jar.db')
+schema_path = os.path.expanduser('~/JAR/core/database/schema.sql')
+if os.path.exists(schema_path):
+    conn = sqlite3.connect(db_path)
+    conn.executescript(open(schema_path).read())
+    conn.close()
+    print('Database initialized at', db_path)
+else:
+    print('Warning: schema.sql not found, skipping DB init')
+"
 
-# 8. Install Ollama for local LLM
+# 9. Install Ollama for local LLM (macOS uses brew cask, not the Linux script)
 if ! command -v ollama &> /dev/null; then
     echo "Installing Ollama..."
-    curl -fsSL https://ollama.com/install.sh | sh
+    brew install --cask ollama
+    
+    # Launch Ollama app once to register the CLI and start the service
+    open -a Ollama
+    echo "Waiting for Ollama to start..."
+    sleep 5
 fi
 
-# 9. Pull the LLM model
+# 10. Pull the LLM model
 echo "Downloading Qwen2.5 3B (first run may take a few minutes)..."
 ollama pull qwen2.5:3b
 
-# 10. Create Desktop launcher
+# 11. Create Desktop launcher
 cat > "$HOME/Desktop/Start-Jar.command" << 'EOF'
 #!/bin/bash
 cd "$HOME/JAR"
 source venv/bin/activate
 
-# Start Ollama in background if not running
+# Start Ollama if not running
 if ! pgrep -x "ollama" > /dev/null; then
-    ollama serve &
+    open -a Ollama
     sleep 3
 fi
 
@@ -112,6 +134,7 @@ echo "  - Desktop launcher       → ~/Desktop/Start-Jar.command"
 echo ""
 echo "  To uninstall completely:"
 echo "  rm -rf ~/JAR ~/.pyenv ~/.ollama ~/Desktop/Start-Jar.command"
+echo "  brew uninstall --cask ollama"
 echo ""
 echo "  No internet required after installation."
 echo "  No API keys needed. Everything runs locally."

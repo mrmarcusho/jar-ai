@@ -547,6 +547,34 @@ def markdown_to_structured_json(
 
     result["withdrawals"] = withdrawals
 
+    # ---- Parse check rows ----
+    check_rows = _parse_table_rows(md_text, "Checks")
+    checks = []
+    for row in check_rows:
+        # Skip summary rows like "Total checks" or "Total # of checks"
+        if row["date_str"].lower().startswith("total"):
+            continue
+        txn_date = _parse_date(row["date_str"], statement_year)
+        # Description column is the check number for checks
+        desc_raw = f"Check #{row['description']}"
+        amount = _parse_amount(row["amount_str"])
+        if amount > 0:
+            amount = -amount  # checks are always withdrawals
+
+        txn = {
+            "id": f"txn_c{len(checks) + 1:02d}",
+            "date": txn_date,
+            "description_raw": desc_raw,
+            "description_normalized": None,
+            "amount": amount,
+            "type": "check",
+            "category": None,
+            "recurring": None,
+        }
+        checks.append(txn)
+
+    result["checks"] = checks
+
     # ---- account_summary (with counts) ----
     result["account_summary"] = {
         "opening_balance": opening_balance,
@@ -575,10 +603,11 @@ def markdown_to_structured_json(
     # ---- validation ----
     computed_deposit_sum = round(sum(d["amount"] for d in deposits), 2)
     computed_withdrawal_sum = round(sum(w["amount"] for w in withdrawals), 2)
+    computed_check_sum = round(sum(c["amount"] for c in checks), 2)
 
     opening_plus_deposits = round(opening_balance + bank_total_deposits, 2)
     minus_withdrawals = round(
-        opening_plus_deposits + bank_total_withdrawals, 2
+        opening_plus_deposits + bank_total_withdrawals + summary_checks + summary_fees, 2
     )
     matches_closing = abs(minus_withdrawals - closing_balance) < 0.01
 
@@ -594,12 +623,13 @@ def markdown_to_structured_json(
     wdr_total_matches = (
         abs(computed_withdrawal_sum - bank_total_withdrawals) < 0.01
     )
+    check_total_matches = abs(computed_check_sum - summary_checks) < 0.01
 
     errors = []
     if not matches_closing:
         errors.append(
             f"Balance mismatch: {opening_balance} + {bank_total_deposits} + "
-            f"{bank_total_withdrawals} = {minus_withdrawals}, "
+            f"{bank_total_withdrawals} + {summary_checks} + {summary_fees} = {minus_withdrawals}, "
             f"expected {closing_balance}"
         )
     if not dep_total_matches:
@@ -612,6 +642,11 @@ def markdown_to_structured_json(
             f"Withdrawal total mismatch: computed {computed_withdrawal_sum}, "
             f"bank stated {bank_total_withdrawals}"
         )
+    if not check_total_matches:
+        errors.append(
+            f"Check total mismatch: computed {computed_check_sum}, "
+            f"bank stated {summary_checks}"
+        )
 
     result["validation"] = {
         "opening_plus_deposits": opening_plus_deposits,
@@ -621,6 +656,7 @@ def markdown_to_structured_json(
         "withdrawal_count_matches": wdr_count_matches,
         "deposit_total_matches": dep_total_matches,
         "withdrawal_total_matches": wdr_total_matches,
+        "check_total_matches": check_total_matches,
         "errors": errors,
     }
 

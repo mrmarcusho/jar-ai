@@ -100,7 +100,8 @@ def load_one(conn: sqlite3.Connection, json_path: Path) -> dict:
     # Insert transactions
     txn_count = 0
     for is_deposit, txn_list in [(True, data.get("deposits", [])),
-                                  (False, data.get("withdrawals", []))]:
+                                  (False, data.get("withdrawals", [])),
+                                  (False, data.get("checks", []))]:
         for txn in txn_list:
             txn_id = f"{statement_id}_{txn['id']}"
             parsed = txn.get("parsed_fields", {}) or {}
