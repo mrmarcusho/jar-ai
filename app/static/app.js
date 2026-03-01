@@ -245,34 +245,39 @@ async function loadChatStatus() {
     try {
         const res = await fetch('/api/chat/status');
         const data = await res.json();
-        modelSelect.value = data.current;
-        // Disable unavailable options
-        for (const opt of modelSelect.options) {
-            opt.disabled = !data.available.includes(opt.value);
-            if (opt.disabled && opt.value === 'claude') {
-                opt.textContent = 'Claude Sonnet (no API key)';
-            }
+
+        // Rebuild dropdown from server's model list
+        modelSelect.innerHTML = '';
+        if (data.models) {
+            data.models.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m.id;
+                opt.textContent = m.name;
+                opt.disabled = !m.available;
+                if (!m.available) opt.textContent += ' (unavailable)';
+                modelSelect.appendChild(opt);
+            });
         }
+        modelSelect.value = data.current;
     } catch (e) { /* ignore */ }
 }
 loadChatStatus();
 
 // Model switch
 modelSelect.addEventListener('change', async () => {
-    const backend = modelSelect.value;
+    const modelId = modelSelect.value;
     try {
         const res = await fetch('/api/chat/backend', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ backend }),
+            body: JSON.stringify({ model: modelId }),
         });
         const data = await res.json();
         if (data.error) {
             chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Cannot switch: ' + esc(data.error) + '</div>';
             loadChatStatus(); // revert select
         } else {
-            const name = backend === 'claude' ? 'Claude Sonnet' : 'Qwen 2.5 3B';
-            chatMessages.innerHTML += '<div class="message assistant">Switched to <strong>' + name + '</strong>. Conversation reset.</div>';
+            chatMessages.innerHTML += '<div class="message assistant">Switched to <strong>' + esc(data.name) + '</strong>. Conversation reset.</div>';
         }
     } catch (e) {
         chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Error switching model</div>';

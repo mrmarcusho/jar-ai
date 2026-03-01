@@ -75,14 +75,16 @@ source "$HOME/JAR/venv/bin/activate"
 pip install --upgrade pip
 pip install -r "$HOME/JAR/requirements.txt"
 
-# 8. Initialize database
+# 8. Initialize database (skip if already exists to preserve data on re-install)
 echo "Initializing database..."
 mkdir -p "$HOME/JAR/data"
 python -c "
 import sqlite3, os
 db_path = os.path.expanduser('~/JAR/data/jar.db')
 schema_path = os.path.expanduser('~/JAR/core/database/schema.sql')
-if os.path.exists(schema_path):
+if os.path.exists(db_path):
+    print('Database already exists, skipping init')
+elif os.path.exists(schema_path):
     conn = sqlite3.connect(db_path)
     conn.executescript(open(schema_path).read())
     conn.close()
@@ -99,12 +101,35 @@ if ! command -v ollama &> /dev/null; then
     # Launch Ollama app once to register the CLI and start the service
     open -a Ollama
     echo "Waiting for Ollama to start..."
-    sleep 5
+    for i in $(seq 1 10); do
+        ollama list &>/dev/null && break
+        sleep 1
+    done
 fi
 
-# 10. Pull the LLM model
-echo "Downloading Qwen2.5 3B (first run may take a few minutes)..."
-ollama pull qwen2.5:3b
+# 10. Pull models with resume-based retry
+# NOTE: Verify that `ollama pull` resumes partial downloads (like Docker).
+# If it does, retries incrementally complete the download rather than restarting.
+pull_model() {
+    local model=$1
+    local attempts=5
+    for i in $(seq 1 $attempts); do
+        echo "Pulling $model (attempt $i/$attempts)..."
+        if ollama pull "$model"; then
+            echo "✅ $model ready"
+            return 0
+        fi
+        echo "Download interrupted, resuming in 5s..."
+        sleep 5
+    done
+    echo "⚠️  $model not fully downloaded — run 'ollama pull $model' to resume"
+}
+
+echo "Downloading Qwen models (may take several minutes on first run)..."
+set +e  # Don't abort on model download failures
+pull_model "qwen2.5:3b"
+pull_model "qwen2.5:7b"
+set -e
 
 # 11. Create Desktop launcher
 cat > "$HOME/Desktop/Start-Jar.command" << 'EOF'
@@ -135,7 +160,7 @@ echo ""
 echo "  What was installed (all isolated, nothing system-wide):"
 echo "  - pyenv + Python 3.11.9  → ~/.pyenv/"
 echo "  - Jar app + venv         → ~/JAR/"
-echo "  - Ollama + Qwen2.5 3B   → ~/.ollama/"
+echo "  - Ollama + Qwen2.5 3B/7B  → ~/.ollama/"
 echo "  - Desktop launcher       → ~/Desktop/Start-Jar.command"
 echo ""
 echo "  To uninstall completely:"

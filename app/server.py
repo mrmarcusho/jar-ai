@@ -307,43 +307,61 @@ async def get_summary():
 
 # Keep a single chat session alive across requests
 _chat_engine = None
-_chat_backend = None
+_chat_backend = None  # e.g. "claude", "ollama:qwen2.5:7b", "ollama:qwen2.5:3b"
+
+# Model definitions: id -> (backend, model, display_name)
+MODELS = {
+    "claude": ("claude", "claude-sonnet-4-20250514", "Claude Sonnet (API)"),
+    "ollama:qwen2.5:7b": ("ollama", "qwen2.5:7b", "Qwen 2.5 — 7B"),
+    "ollama:qwen2.5:3b": ("ollama", "qwen2.5:3b", "Qwen 2.5 — 3B"),
+}
+
+DEFAULT_LOCAL_MODEL = "ollama:qwen2.5:7b"
 
 
-def _get_chat(backend: str = None):
+def _get_chat(model_id: str = None):
     global _chat_engine, _chat_backend
     from core.chat.chat_engine import JarChat
 
-    # Determine which backend to use
-    if backend is None:
+    # Determine which model to use
+    if model_id is None:
         api_key = os.environ.get("ANTHROPIC_API_KEY")
-        backend = "claude" if api_key else "ollama"
+        model_id = "claude" if api_key else DEFAULT_LOCAL_MODEL
 
-    # Recreate engine if backend changed
-    if _chat_engine is not None and backend != _chat_backend:
+    if model_id not in MODELS:
+        raise ValueError(f"Unknown model: {model_id}")
+
+    backend, model_name, display = MODELS[model_id]
+
+    # Recreate engine if model changed
+    if _chat_engine is not None and model_id != _chat_backend:
         _chat_engine.close()
         _chat_engine = None
 
     if _chat_engine is None:
         api_key = os.environ.get("ANTHROPIC_API_KEY")
         if backend == "claude" and not api_key:
-            raise ValueError("ANTHROPIC_API_KEY not set. Switch to Qwen or set the env var.")
-        _chat_engine = JarChat(str(DB_PATH), backend=backend, api_key=api_key)
+            raise ValueError("ANTHROPIC_API_KEY not set. Switch to a local model or set the env var.")
+        _chat_engine = JarChat(str(DB_PATH), backend=backend, model=model_name, api_key=api_key)
         _chat_engine.debug = True
-        _chat_backend = backend
+        _chat_backend = model_id
+        print(f"  Chat engine: {display} ({model_name})")
 
     return _chat_engine
 
 
 @app.get("/api/chat/status")
 async def chat_status():
-    """Return the current chat backend and available backends."""
+    """Return the current model and available models."""
     api_key = os.environ.get("ANTHROPIC_API_KEY")
-    current = _chat_backend or ("claude" if api_key else "ollama")
-    backends = ["ollama"]
-    if api_key:
-        backends.append("claude")
-    return {"current": current, "available": backends}
+    current = _chat_backend or ("claude" if api_key else DEFAULT_LOCAL_MODEL)
+    models = []
+    for mid, (backend, model_name, display) in MODELS.items():
+        available = True
+        if backend == "claude" and not api_key:
+            available = False
+        models.append({"id": mid, "name": display, "available": available})
+    return {"current": current, "models": models}
 
 
 @app.post("/api/chat")
@@ -353,10 +371,8 @@ async def chat(body: dict):
     if not message:
         return JSONResponse({"error": "Empty message"}, status_code=400)
 
-    backend = body.get("backend")
-
     try:
-        engine = _get_chat(backend)
+        engine = _get_chat(_chat_backend)
         response = engine.chat(message)
 
         # Capture debug info from conversation history
@@ -372,11 +388,16 @@ async def chat(body: dict):
                                 "params": block.input,
                             })
 
-        return {"response": response, "debug": debug_info, "backend": _chat_backend}
+        return {"response": response, "debug": debug_info, "model": _chat_backend}
 
     except Exception as e:
+        error_msg = str(e)
+        # Detect Ollama model-not-found errors
+        if "model" in error_msg.lower() and "not found" in error_msg.lower():
+            model_name = MODELS.get(_chat_backend, (None, _chat_backend, None))[1]
+            error_msg = f"Model {model_name} not found. Run `ollama pull {model_name}` to install it."
         traceback.print_exc()
-        return JSONResponse({"error": str(e)}, status_code=500)
+        return JSONResponse({"error": error_msg}, status_code=500)
 
 
 @app.post("/api/chat/reset")
@@ -392,11 +413,14 @@ async def chat_reset():
 
 @app.post("/api/chat/backend")
 async def set_backend(body: dict):
-    """Switch the chat backend. Resets conversation."""
+    """Switch the chat model. Resets conversation."""
     global _chat_engine, _chat_backend
-    backend = body.get("backend", "").strip()
-    if backend not in ("claude", "ollama"):
-        return JSONResponse({"error": "Backend must be 'claude' or 'ollama'"}, status_code=400)
+    model_id = body.get("model", body.get("backend", "")).strip()
+
+    if model_id not in MODELS:
+        return JSONResponse({"error": f"Unknown model: {model_id}. Options: {list(MODELS.keys())}"}, status_code=400)
+
+    backend, model_name, display = MODELS[model_id]
 
     if backend == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
         return JSONResponse({"error": "ANTHROPIC_API_KEY not set"}, status_code=400)
@@ -409,10 +433,13 @@ async def set_backend(body: dict):
 
     # Create new engine to verify it works
     try:
-        _get_chat(backend)
-        return {"status": "ok", "backend": backend}
+        _get_chat(model_id)
+        return {"status": "ok", "model": model_id, "name": display}
     except Exception as e:
-        return JSONResponse({"error": str(e)}, status_code=500)
+        error_msg = str(e)
+        if "model" in error_msg.lower() and "not found" in error_msg.lower():
+            error_msg = f"Model {model_name} not found. Run `ollama pull {model_name}` to install it."
+        return JSONResponse({"error": error_msg}, status_code=500)
 
 
 # ---------------------------------------------------------------------------
@@ -458,5 +485,10 @@ async def get_comparison(
 if __name__ == "__main__":
     print(f"Database: {DB_PATH}")
     print(f"Statements: {STATEMENTS_DIR}")
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    default = "claude" if api_key else DEFAULT_LOCAL_MODEL
+    _, _, display = MODELS[default]
+    print(f"Default model: {display}")
+    print(f"Available models: {', '.join(d for _, _, d in MODELS.values())}")
     print()
     uvicorn.run(app, host="0.0.0.0", port=5000)

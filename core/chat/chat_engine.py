@@ -168,7 +168,7 @@ class JarChat:
         if backend == "ollama":
             from openai import OpenAI
             self.client = OpenAI(base_url=ollama_url, api_key="ollama")
-            self.model = model or "qwen2.5:3b"
+            self.model = model or "qwen2.5:7b"
         elif backend == "claude":
             import anthropic
             self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
