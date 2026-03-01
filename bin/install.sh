@@ -47,8 +47,14 @@ if ! command -v pyenv &> /dev/null; then
 fi
 
 # 5. Install Python 3.11.9 in ~/.pyenv/ (does NOT touch system Python)
-echo "Installing Python 3.11.9 (isolated in ~/.pyenv/)..."
-pyenv install -s 3.11.9
+# Verify existing install has lzma support; rebuild if missing
+if ~/.pyenv/versions/3.11.9/bin/python3 -c "import lzma" 2>/dev/null; then
+    echo "Python 3.11.9 already installed with full module support."
+else
+    echo "Installing Python 3.11.9 (isolated in ~/.pyenv/)..."
+    pyenv uninstall -f 3.11.9 2>/dev/null || true
+    pyenv install 3.11.9
+fi
 
 # 6. Clone repo (or pull if exists)
 if [ -d "$HOME/JAR" ]; then
