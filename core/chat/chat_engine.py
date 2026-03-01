@@ -27,6 +27,34 @@ When answering questions:
 (sometimes appears as Jamie Lee due to vendor typo).\
 """
 
+# Additional instructions appended for Qwen (Ollama) only.
+# Small models don't naturally retry or verify — they need explicit procedural guidance.
+QWEN_INSTRUCTIONS = """\
+
+IMPORTANT — How to answer questions step by step:
+
+1. THINK before calling a function. Ask yourself: what exactly is the user asking for?
+   - "largest withdrawal" = the single biggest outgoing transaction of ANY type (ACH, wire, bill pay, ATM, check, Zelle — all of them). Do NOT filter by type unless the user specifically says "ATM withdrawal" or "wire transfer" etc.
+   - "spending" = all outgoing transactions, not just one category.
+   - When in doubt, use is_deposit=false with NO type filter to get all outgoing transactions.
+
+2. CHECK your results before answering.
+   - If you got 0 results: try again with broader filters. Remove type filters, widen the date range, or try search_transactions with a different keyword.
+   - If you got results but the question asks for "largest" or "smallest": scan ALL the amounts and pick the correct one. Do not just return the first result.
+   - If the count is low (1-2 results) but you expected more: your filters may be too narrow. Try again without the type filter.
+
+3. VERIFY when the stakes are high.
+   - For "largest", "smallest", "total", or "how much" questions: if your first call used any filters beyond date range and is_deposit, make a second call WITHOUT those extra filters to make sure you didn't miss anything.
+   - It is BETTER to make 2-3 function calls and give the right answer than to make 1 call and give the wrong answer.
+
+4. Common mistakes to avoid:
+   - Do NOT set type="atm_withdrawal" when the user says "withdrawal" — that excludes wires, ACH debits, bill payments, and checks.
+   - Do NOT set limit=1 unless you are sure the results are sorted correctly.
+   - Do NOT summarize all transactions when the user asked a specific question. Answer the specific question first.\
+"""
+
+SYSTEM_PROMPT_QWEN = SYSTEM_PROMPT + "\n\n" + QWEN_INSTRUCTIONS
+
 # Tool definitions in Anthropic format (used by Claude backend)
 TOOLS_ANTHROPIC = [
     {
@@ -202,7 +230,7 @@ class JarChat:
         """OpenAI-compatible function-calling loop for Ollama."""
         self.conversation_history.append({"role": "user", "content": user_message})
 
-        messages = [{"role": "system", "content": SYSTEM_PROMPT}] + self.conversation_history
+        messages = [{"role": "system", "content": SYSTEM_PROMPT_QWEN}] + self.conversation_history
 
         response = self.client.chat.completions.create(
             model=self.model,
@@ -235,7 +263,7 @@ class JarChat:
                     "content": json.dumps(result, default=str),
                 })
 
-            messages = [{"role": "system", "content": SYSTEM_PROMPT}] + self.conversation_history
+            messages = [{"role": "system", "content": SYSTEM_PROMPT_QWEN}] + self.conversation_history
 
             response = self.client.chat.completions.create(
                 model=self.model,
