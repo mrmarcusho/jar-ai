@@ -8,14 +8,14 @@ import time
 from pathlib import Path
 from typing import Callable, Optional
 
-from core.scanner.scanner_config import (
+from app.scanner.scanner_config import (
     get_default_scan_paths,
     EXCLUDED_DIRS,
     MAX_SCAN_DEPTH,
     MIN_PDF_SIZE,
     MAX_PDF_SIZE,
 )
-from core.scanner.filename_classifier import classify_pdf
+from app.scanner.filename_classifier import classify_pdf
 
 
 class ScanProgress:

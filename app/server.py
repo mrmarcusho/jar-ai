@@ -26,7 +26,6 @@ import uvicorn
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
-sys.path.insert(0, str(PROJECT_ROOT / "core" / "extraction_engine"))
 
 DB_PATH = PROJECT_ROOT / "data" / "jar.db"
 STATEMENTS_DIR = PROJECT_ROOT / "data" / "statements"
@@ -99,33 +98,17 @@ async def import_pdf(file: UploadFile = File(...)):
 
         steps[-1] = {"step": "extracting", "status": "ok", "message": "Docling extraction complete"}
 
-        # 3. Post-processing
-        from postprocess import (
-            fix_unicode_escapes,
-            fix_missing_co_id,
-            merge_spanning_header_columns_md,
-            merge_spanning_header_columns_json,
-        )
+        # 3. Post-process + structurize (bank-agnostic pipeline)
+        from core.extraction_engine.postprocess.run_postprocess import postprocess_and_structurize
 
-        raw_json_text = fix_missing_co_id(fix_unicode_escapes(json_path.read_text(encoding="utf-8")))
-        raw_doc_dict = json.loads(raw_json_text)
+        structured_path = postprocess_and_structurize(md_path, json_path, EXTRACTION_DIR, stem)
 
-        md_text = fix_unicode_escapes(md_text)
-        md_text = fix_missing_co_id(md_text)
-        md_text = merge_spanning_header_columns_md(md_text)
-        md_path.write_text(md_text, encoding="utf-8")
+        if structured_path is None:
+            steps.append({"step": "postprocess", "status": "error", "message": "Unknown bank format"})
+            return JSONResponse({"status": "error", "steps": steps, "error": "Unknown bank format"}, status_code=400)
 
-        doc_dict = merge_spanning_header_columns_json(raw_doc_dict)
-        json_path.write_text(json.dumps(doc_dict, indent=2, default=str), encoding="utf-8")
-
+        structured = json.loads(structured_path.read_text(encoding="utf-8"))
         steps.append({"step": "postprocess", "status": "ok", "message": "Post-processing complete"})
-
-        # 4. Structurize
-        from structurize import markdown_to_structured_json
-
-        structured = markdown_to_structured_json(md_text, f"{stem}.pdf", docling_doc=raw_doc_dict)
-        structured_path = EXTRACTION_DIR / f"{stem}.structured.json"
-        structured_path.write_text(json.dumps(structured, indent=4), encoding="utf-8")
 
         # Extract summary info
         summary = structured.get("account_summary", {})
@@ -322,7 +305,7 @@ DEFAULT_LOCAL_MODEL = "ollama:qwen3:8b"
 
 def _get_chat(model_id: str = None):
     global _chat_engine, _chat_backend
-    from core.chat.chat_engine import JarChat
+    from app.chat.chat_engine import JarChat
 
     # Determine which model to use
     if model_id is None:

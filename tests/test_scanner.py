@@ -7,8 +7,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from core.scanner.filename_classifier import score_filename, classify_pdf
-from core.scanner.drive_scanner import ScanProgress, scan_directory, format_candidates_for_review
+from app.scanner.filename_classifier import score_filename, classify_pdf
+from app.scanner.drive_scanner import ScanProgress, scan_directory, format_candidates_for_review
 
 TEST_PDFS_DIR = Path(__file__).resolve().parent.parent / "data" / "test_pdfs" / "bank"
 

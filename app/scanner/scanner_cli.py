@@ -2,23 +2,23 @@
 CLI interface for testing the drive scanner.
 
 Usage:
-    python -m core.scanner.scanner_cli                    # scan default paths
-    python -m core.scanner.scanner_cli --path ~/Downloads  # scan specific path
-    python -m core.scanner.scanner_cli --min-score 0.5    # higher threshold
-    python -m core.scanner.scanner_cli --verbose          # show progress
+    python -m app.scanner.scanner_cli                    # scan default paths
+    python -m app.scanner.scanner_cli --path ~/Downloads  # scan specific path
+    python -m app.scanner.scanner_cli --min-score 0.5    # higher threshold
+    python -m app.scanner.scanner_cli --verbose          # show progress
 """
 
 import argparse
 import sys
 from pathlib import Path
 
-from core.scanner.drive_scanner import (
+from app.scanner.drive_scanner import (
     scan_all_default_paths,
     scan_directory,
     format_candidates_for_review,
     ScanProgress,
 )
-from core.scanner.scanner_config import get_default_scan_paths
+from app.scanner.scanner_config import get_default_scan_paths
 
 
 def progress_printer(progress):
