@@ -1,0 +1,312 @@
+{
+    "metadata": {
+        "source_file": "US_Bank_Statement.pdf",
+        "statement_period": {
+            "start": "2024-10-17",
+            "end": "2024-11-15"
+        },
+        "bank_entity": {
+            "name": "U.S. Bank National Association",
+            "correspondence_address": {
+                "line1": "PO Box 1800",
+                "city": "Saint Paul",
+                "state": "Minnesota",
+                "zip": "55101-0800"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "U.S. Bank, EP-MN-WS5D, 60 Livingston Ave.",
+                    "city": "St. Paul",
+                    "state": "MN",
+                    "zip": "55107"
+                },
+                "website": "usbank.com",
+                "phone_number": "1-800-872-2657",
+                "En Espanol": "314-425-2000"
+            }
+        },
+        "account": {
+            "name": "Toun Khattiyalath",
+            "account_number": "1-234-3456-6789",
+            "account_type": "Student Checking",
+            "address": {
+                "line1": "Suite TH2854, Unit 9, Skyport Drive",
+                "city": "West Drayton",
+                "state": "Middx",
+                "zip": "UB7 0LB"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 405.75,
+        "opening_balance_date": "2024-10-17",
+        "closing_balance": 384.5,
+        "closing_balance_date": "2024-10-15",
+        "total_deposits_and_other_additions": 1150.0,
+        "total_withdrawals_and_other_subtractions": -1171.25,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 11,
+        "number_of_withdrawals": 67
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-10-17",
+            "description_raw": "PAYPAL*Perlow Al PMT From ARNO PERLOW PMT ID=PNC013608186",
+            "description_normalized": null,
+            "amount": 99.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-10-18",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC013684985",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-10-19",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC013699296",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-10-19",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC013717143",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-10-22",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC013933305",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2024-10-26",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC013979006",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2024-10-29",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC013933305",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2024-10-30",
+            "description_raw": "Electronic Deposit From VENMO CASHOUT 5264681992 REF=192100184060920NOO",
+            "description_normalized": null,
+            "amount": 1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2024-11-01",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC014193438",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2024-11-10",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC014611386",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2024-11-10",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC014631937",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2024-11-15",
+            "description_raw": "Zelle Instant PMT From ARNO PERLOW PMT ID=PNC014823113",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-10-17",
+            "description_raw": "Visa Direct On 071719 866-712-7753 CA REF # 24692169198100093189880",
+            "description_normalized": null,
+            "amount": -14.43,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-10-18",
+            "description_raw": "Zelle Instant On 071719 RICHMOND HEI MO REF # 24692169199100655200744",
+            "description_normalized": null,
+            "amount": -23.57,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-10-19",
+            "description_raw": "Zelle Instant On 071919 ILK1TERM REF 920023431919",
+            "description_normalized": null,
+            "amount": -3.91,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-10-17",
+            "description_raw": "Debit Purchase - VISA APL* ITUNES.COM/ On 071719 866-712-7753 CA REF # 24692169198100093189880",
+            "description_normalized": null,
+            "amount": -14.43,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-10-18",
+            "description_raw": "Debit Purchase - VISA PANERA BREAD #60 On 071719 RICHMOND HEI MO REF # 24692169199100655200744",
+            "description_normalized": null,
+            "amount": -23.57,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-10-22",
+            "description_raw": "Debit Purchase WALGREENS STORE RICHMOND HEIMO On 071919 ILK1TERM REF 920023431919",
+            "description_normalized": null,
+            "amount": -3.91,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-10-22",
+            "description_raw": "Debit Purchase WALGREENS STORE RICHMOND HEIMO On 072019 ILK1TERM REF 920118044547",
+            "description_normalized": null,
+            "amount": -17.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2024-10-23",
+            "description_raw": "Electronic Withdrawal To CHARTER COMM 95000000000NLINE PMTUSB857933993POS REF=192030151552490NOO",
+            "description_normalized": null,
+            "amount": -109.97,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2024-10-30",
+            "description_raw": "Electronic Withdrawal To VENMO 1100220033PAYMENT 2316211247 REF=192100184058980NOO",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2024-10-30",
+            "description_raw": "Electronic Withdrawal To SPIRE MISSOURI 95000000000NLINE PMTUSB857933993POS REF=192100215509610NOO",
+            "description_normalized": null,
+            "amount": -41.19,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2024-10-31",
+            "description_raw": "Electronic Withdrawal To VENMO 1100220033PAYMENT 2320936068 REF=192110112296100NOO",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2024-11-13",
+            "description_raw": "Electronic Withdrawal To Speedpay 9212021104wuAmerenM09351607185 REF=192240167443450NOO",
+            "description_normalized": null,
+            "amount": -106.34,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 1150.0,
+        "bank_stated_total_withdrawals": -1171.25
+    },
+    "validation": {
+        "opening_plus_deposits": 1555.75,
+        "minus_withdrawals": 384.5,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Transaction counts do not match due to complex statement format with multiple transaction types"
+        ]
+    }
+}

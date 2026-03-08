@@ -1,0 +1,140 @@
+{
+    "metadata": {
+        "source_file": "revolut_statement.pdf",
+        "statement_period": {
+            "start": "2023-11-01",
+            "end": "2023-11-30"
+        },
+        "bank_entity": {
+            "name": "Revolut Ltd",
+            "correspondence_address": {
+                "line1": "7 Westferry Circus, Canary Wharf",
+                "city": "London",
+                "state": "England",
+                "zip": "E14 4HD"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "7 Westferry Circus, Canary Wharf",
+                    "city": "London",
+                    "state": "England",
+                    "zip": "E14 4HD"
+                },
+                "website": "",
+                "phone_number": "+44 20 3322 8352",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Joe Mbogo",
+            "account_number": "75715596",
+            "account_type": "Account (E-Money)",
+            "address": {
+                "line1": "50 Firrhill Park",
+                "city": "Edinburgh",
+                "state": "",
+                "zip": "EH13 9DW"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.0,
+        "opening_balance_date": "2023-11-01",
+        "closing_balance": 9.58,
+        "closing_balance_date": "2023-11-30",
+        "total_deposits_and_other_additions": 301.06,
+        "total_withdrawals_and_other_subtractions": -291.48,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 3,
+        "number_of_withdrawals": 4
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-11-18",
+            "description_raw": "Exchanged to GBP",
+            "description_normalized": null,
+            "amount": 274.06,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2023-11-22",
+            "description_raw": "From Pawel Gadomski\nFrom: PAWEL WLADYSLAW GADOMSKI",
+            "description_normalized": null,
+            "amount": 17.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2023-11-29",
+            "description_raw": "Payment from Arsheed Tantray",
+            "description_normalized": null,
+            "amount": 10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-11-18",
+            "description_raw": "To Matteo Vitale\nTo: MATTEO VITALE",
+            "description_normalized": null,
+            "amount": -274.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2023-11-22",
+            "description_raw": "Playstationnetwork\nTo: Playstationnetwork, London\nCard: 535456******9900",
+            "description_normalized": null,
+            "amount": 0.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2023-11-23",
+            "description_raw": "Playstationnetwork\nTo: Playstationnetwork, London, 7LP\nCard: 535456******9900",
+            "description_normalized": null,
+            "amount": -13.49,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2023-11-30",
+            "description_raw": "Playstationnetwork\nTo: Playstationnetwork, London, 7LP\nCard: 535456******9900",
+            "description_normalized": null,
+            "amount": -3.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 301.06,
+        "bank_stated_total_withdrawals": -291.48
+    },
+    "validation": {
+        "opening_plus_deposits": 301.06,
+        "minus_withdrawals": 9.58,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

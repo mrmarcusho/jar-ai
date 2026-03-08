@@ -1,0 +1,65 @@
+{
+    "metadata": {
+        "source_file": "492909036-KEY-BANK.pdf",
+        "statement_period": {
+            "start": null,
+            "end": null
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.888.7937",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": null,
+            "account_number": "",
+            "account_type": null,
+            "address": null
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.0,
+        "opening_balance_date": null,
+        "closing_balance": 0.0,
+        "closing_balance_date": null,
+        "total_deposits_and_other_additions": 0.0,
+        "total_withdrawals_and_other_subtractions": 0.0,
+        "checks": 0.0,
+        "service_fees": 0.0,
+        "number_of_deposits": 0,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 0.0,
+        "bank_stated_total_withdrawals": 0.0
+    },
+    "validation": {
+        "opening_plus_deposits": 0.0,
+        "minus_withdrawals": 0.0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "check_total_matches": true,
+        "errors": []
+    },
+    "checks": []
+}

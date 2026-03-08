@@ -1,0 +1,150 @@
+{
+    "metadata": {
+        "source_file": "statement.pdf",
+        "statement_period": {
+            "start": null,
+            "end": null
+        },
+        "bank_entity": {
+            "name": "First Citizens Bank",
+            "correspondence_address": {
+                "line1": "231 Valley Farms Street",
+                "city": "Santa Monica",
+                "state": "CA",
+                "zip": "90403"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": null,
+                    "city": null,
+                    "state": null,
+                    "zip": null
+                },
+                "website": "firstcitizensbank@domain.com",
+                "phone_number": null,
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": "John Smith",
+            "account_number": "111-234-567-890",
+            "account_type": "Current Account",
+            "address": {
+                "line1": "2450 Courage St, STE 108",
+                "city": "Brownsville",
+                "state": "TX",
+                "zip": "78521"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 175800.0,
+        "opening_balance_date": null,
+        "closing_balance": 591800.0,
+        "closing_balance_date": null,
+        "total_deposits_and_other_additions": 510000.0,
+        "total_withdrawals_and_other_subtractions": -94000.0,
+        "checks": null,
+        "service_fees": null,
+        "number_of_deposits": 2,
+        "number_of_withdrawals": 6
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": null,
+            "description_raw": "Account Transfer In",
+            "description_normalized": null,
+            "amount": 500000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": null,
+            "description_raw": "Cheque Deposit",
+            "description_normalized": null,
+            "amount": 10000.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": null,
+            "description_raw": "Payment - Credit Card",
+            "description_normalized": null,
+            "amount": -5400.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": null,
+            "description_raw": "Payment - Insurance",
+            "description_normalized": null,
+            "amount": -3000.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": null,
+            "description_raw": "Payment - Electricity",
+            "description_normalized": null,
+            "amount": -1500.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": null,
+            "description_raw": "Payment - Water Utility",
+            "description_normalized": null,
+            "amount": -600.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": null,
+            "description_raw": "Payment - Car Loan",
+            "description_normalized": null,
+            "amount": -3500.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": null,
+            "description_raw": "Account Transfer Out",
+            "description_normalized": null,
+            "amount": -80000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 510000.0,
+        "bank_stated_total_withdrawals": -94000.0
+    },
+    "validation": {
+        "opening_plus_deposits": 685800.0,
+        "minus_withdrawals": 591800.0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

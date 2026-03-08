@@ -1,0 +1,182 @@
+{
+    "metadata": {
+        "source_file": "commonwealth_bank_statement.pdf",
+        "statement_period": {
+            "start": "2018-07-01",
+            "end": "2018-12-30"
+        },
+        "bank_entity": {
+            "name": "Commonwealth Bank of Australia",
+            "correspondence_address": {
+                "line1": "ABN 48 123 123 124 AFSL and Australian credit license 234945",
+                "city": "",
+                "state": "",
+                "zip": ""
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "",
+                "phone_number": "13 2221",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "ROBERT DAIEL GEE",
+            "account_number": "06 3167 10781391",
+            "account_type": "Smart Access",
+            "address": {
+                "line1": "14 STODA ST",
+                "city": "HEATHMONT",
+                "state": "VIC",
+                "zip": "3135"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 1384.89,
+        "opening_balance_date": "2018-07-01",
+        "closing_balance": 401.22,
+        "closing_balance_date": "2018-12-30",
+        "total_deposits_and_other_additions": 43.8,
+        "total_withdrawals_and_other_subtractions": -1027.47,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 1,
+        "number_of_withdrawals": 9
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2018-07-02",
+            "description_raw": "Transfer from MCKAY MJ Mick Mckay - Neck hackles.",
+            "description_normalized": null,
+            "amount": 43.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2018-07-01",
+            "description_raw": "DEBIT INTEREST CHARGED on this account to June 30. 2018 is $0.11",
+            "description_normalized": null,
+            "amount": -0.11,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2018-07-02",
+            "description_raw": "Transfer to another Bank NetBank Rob Ubank Transfer",
+            "description_normalized": null,
+            "amount": -372.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2018-07-02",
+            "description_raw": "Direct Debit 000115 COLONIAL MUTUAL 1200180874627741",
+            "description_normalized": null,
+            "amount": -25.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2018-07-02",
+            "description_raw": "Loan Repayment LN REPAY694259331",
+            "description_normalized": null,
+            "amount": -280.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2018-07-03",
+            "description_raw": "PETSTOCK HEATHMONT P HEATHMONT AUS Card xx4521 Value Date: 01/07/2018",
+            "description_normalized": null,
+            "amount": -32.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2018-07-03",
+            "description_raw": "WOOLWORTHS 3149 EASTLA RINGWOOD AUS Card xx4521 Value Date: 01/07/2018",
+            "description_normalized": null,
+            "amount": -134.26,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2018-07-03",
+            "description_raw": "HEATHMONT IGA HEATHMONT AUS",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2018-07-03",
+            "description_raw": "POST HEATHMONT LPOHE HEATHMONT CA AUS Card xx4521 Value Date: 29/06/2018",
+            "description_normalized": null,
+            "amount": -47.57,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2018-07-03",
+            "description_raw": "FIVE STAR MUSIC PL RINGWOOD VI AUS Card xx4521 Value Date: 28/06/2018",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2018-07-03",
+            "description_raw": "POST HEATHMONT LPOHE HEATHMONT CA AUS Card xx4521 Value Date: 28/06/2018",
+            "description_normalized": null,
+            "amount": -55.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 43.8,
+        "bank_stated_total_withdrawals": -1027.47
+    },
+    "validation": {
+        "opening_plus_deposits": 1428.69,
+        "minus_withdrawals": 401.22,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Withdrawal count mismatch: found 10 transactions but expected different count based on statement summary"
+        ]
+    }
+}

@@ -1,0 +1,399 @@
+{
+    "metadata": {
+        "source_file": "chase_bank_statement.pdf",
+        "statement_period": {
+            "start": "2025-02-01",
+            "end": "2025-02-28"
+        },
+        "bank_entity": {
+            "name": "JPMorgan Chase Bank, N.A.",
+            "correspondence_address": {
+                "line1": "P O Box 182051",
+                "city": "Columbus",
+                "state": "OH",
+                "zip": "43218-2051"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P O Box 182051",
+                    "city": "Columbus",
+                    "state": "OH",
+                    "zip": "43218-2051"
+                },
+                "website": "Chase.com",
+                "phone_number": "1-800-935-9935",
+                "En Espanol": "1-877-312-4273"
+            }
+        },
+        "account": {
+            "name": "SOSSITY ISSA",
+            "account_number": "000000771602060",
+            "account_type": "Chase Personal Checking",
+            "address": {
+                "line1": "1154 MARLYN ROAD",
+                "city": "PHILADELPHIA",
+                "state": "PA",
+                "zip": "19125-2821"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 11175.67,
+        "opening_balance_date": "2025-02-01",
+        "closing_balance": 9050.68,
+        "closing_balance_date": "2025-02-28",
+        "total_deposits_and_other_additions": 8195.87,
+        "total_withdrawals_and_other_subtractions": -10320.86,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 10,
+        "number_of_withdrawals": 31
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-02-01",
+            "description_raw": "Direct Deposit TLC Home Care Services Payroll Confirmation # 2165346832",
+            "description_normalized": null,
+            "amount": 3150.75,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-02-02",
+            "description_raw": "ATM Cash Deposit 02/02 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": 180.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-02-04",
+            "description_raw": "ATM Cash Deposit 02/04 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": 240.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-02-06",
+            "description_raw": "ATM Cash Deposit 02/08 15 S 52nd St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": 320.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-02-10",
+            "description_raw": "ATM Cash Deposit 02/10 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": 185.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2025-02-11",
+            "description_raw": "Deposit 2162958375",
+            "description_normalized": null,
+            "amount": 241.75,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2025-02-14",
+            "description_raw": "Square Inc DES:* Cash App ID:T115720364910 INDN:WayLbLLC",
+            "description_normalized": null,
+            "amount": 302.8,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Square Inc",
+                "ach_description": "* Cash App ID:T115720364910",
+                "ach_individual_name": "WayLbLLC",
+                "ach_entry_class": null,
+                "ach_company_id": null,
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_008",
+            "date": "2025-02-15",
+            "description_raw": "Direct Deposit TLC Home Care Services Payroll Confirmation # 2165346832",
+            "description_normalized": null,
+            "amount": 3150.75,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2025-02-21",
+            "description_raw": "Square Inc DES:* Cash App ID:T115720108490 INDN:WayUpLLC",
+            "description_normalized": null,
+            "amount": 229.48,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Square Inc",
+                "ach_description": "* Cash App ID:T115720108490",
+                "ach_individual_name": "WayUpLLC",
+                "ach_entry_class": null,
+                "ach_company_id": null,
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_010",
+            "date": "2025-02-25",
+            "description_raw": "ATM Cash Deposit 02/25 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": 195.34,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-02-01",
+            "description_raw": "Card Purchase 02/01 Amazon Digit*2G9Z99Q Amzn.Com/Bill CA Card 8558",
+            "description_normalized": null,
+            "amount": -500.12,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-02-02",
+            "description_raw": "ATM Withdraw 02/02 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-02-04",
+            "description_raw": "ATM Withdraw 02/04 15 S 52nd St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -400.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-02-04",
+            "description_raw": "Card Purchase 02/04 AutoZone # 130 Philadelphia PA 888-725-1747 CA",
+            "description_normalized": null,
+            "amount": -80.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-02-05",
+            "description_raw": "Payment Sent 02/05 Cash App*Horrento Pykes 673182616 CA Card 8558",
+            "description_normalized": null,
+            "amount": -280.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-02-07",
+            "description_raw": "Card Purchase With Pin 02/07 Apple Store #234 Morristown PA Card 8558",
+            "description_normalized": null,
+            "amount": -60.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-02-08",
+            "description_raw": "Card Purchase 02/08 Exxon 3100 John F Kennedy Blvd Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -75.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-02-09",
+            "description_raw": "Recurring Card Purchase 02/09 Tidal 844-878-4325 844-8784325 CA Card 8558",
+            "description_normalized": null,
+            "amount": -35.19,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-02-11",
+            "description_raw": "Card Purchase With Pin 02/11 Trader Joes Produce #3849 Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -1420.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-02-12",
+            "description_raw": "Card Purchase 02/12 AutoZone # 130 Philadelphia PA 888-725-1747 CA",
+            "description_normalized": null,
+            "amount": -60.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-02-12",
+            "description_raw": "Payment Sent 02/12 Cash App*Michelle 705682618 CA Card 8558",
+            "description_normalized": null,
+            "amount": -1813.38,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-02-13",
+            "description_raw": "ATM Withdraw 02/13 15 S 52nd St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -620.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-02-16",
+            "description_raw": "Payment Sent 02/16 Cash App*Ghost 1407680142 CA Card 8558",
+            "description_normalized": null,
+            "amount": -80.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-02-16",
+            "description_raw": "Card Purchase With Pin 02/16 A&Y Bar and Grill Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -92.19,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-02-16",
+            "description_raw": "ATM Withdraw 02/16 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -1450.75,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-02-19",
+            "description_raw": "Payment Sent 02/19 Cash App*Lando 1407680142 CA Card 8558",
+            "description_normalized": null,
+            "amount": -75.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2025-02-20",
+            "description_raw": "ATM Withdraw 02/20 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -140.19,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-02-22",
+            "description_raw": "Payment Sent 02/22 Cash App*Issac 1407680142 CA Card 8558",
+            "description_normalized": null,
+            "amount": -345.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2025-02-25",
+            "description_raw": "ATM Withdraw 02/25 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -385.25,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2025-02-26",
+            "description_raw": "Card Purchase 02/26 Doordash*Chipotle www.Doordash CA Card 8558",
+            "description_normalized": null,
+            "amount": -250.29,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2025-02-27",
+            "description_raw": "ATM Withdraw 02/27 4001 Chestnut St Philadelphia PA Card 8558",
+            "description_normalized": null,
+            "amount": -1680.27,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 8195.87,
+        "bank_stated_total_withdrawals": -10320.86
+    },
+    "validation": {
+        "opening_plus_deposits": 19371.54,
+        "minus_withdrawals": 9050.68,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Withdrawal count mismatch: found 21 vs expected 31",
+            "Withdrawal total mismatch: computed -8320.86 vs bank stated -10320.86"
+        ]
+    }
+}

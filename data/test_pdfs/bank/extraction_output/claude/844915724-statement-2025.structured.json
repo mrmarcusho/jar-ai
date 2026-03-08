@@ -1,0 +1,512 @@
+{
+    "metadata": {
+        "source_file": "barclays_statement.pdf",
+        "statement_period": {
+            "start": "2024-11-28",
+            "end": "2025-02-15"
+        },
+        "bank_entity": {
+            "name": "Barclays Bank UK PLC",
+            "correspondence_address": {
+                "line1": "1 Churchill Place",
+                "city": "London",
+                "state": "",
+                "zip": "E14 5HP"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "Barclays, Leicester",
+                    "city": "Leicester",
+                    "state": "",
+                    "zip": "LE87 2BB"
+                },
+                "website": "barclays.co.uk",
+                "phone_number": "0345 7 345 345",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "ALTOLUXOEXPERIENCE LIMITED",
+            "account_number": "54791390",
+            "account_type": "Current account",
+            "address": {
+                "line1": "27 Old Gloucester Street",
+                "city": "London",
+                "state": "",
+                "zip": "WC1N 3AX"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 18444.39,
+        "opening_balance_date": "2024-11-28",
+        "closing_balance": 5630.22,
+        "closing_balance_date": "2025-02-15",
+        "total_deposits_and_other_additions": 11654.01,
+        "total_withdrawals_and_other_subtractions": -24468.18,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 7,
+        "number_of_withdrawals": 44
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-11-29",
+            "description_raw": "Received From Tibco Software Ltd Ref: Payment of salaries for May",
+            "description_normalized": null,
+            "amount": 3826.36,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-12-18",
+            "description_raw": "Received From Tibco Software Ltd Ref: Payment of salaries for June",
+            "description_normalized": null,
+            "amount": 3919.33,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-01-11",
+            "description_raw": "Received From Iyanuloluwa Ajidah Ref: Iyanu",
+            "description_normalized": null,
+            "amount": 20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-01-22",
+            "description_raw": "Received From Tibco Software Ltd Ref: Payment of salaries for July",
+            "description_normalized": null,
+            "amount": 3841.32,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-02-04",
+            "description_raw": "Received From I Okoli Ejike",
+            "description_normalized": null,
+            "amount": 15.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2025-02-08",
+            "description_raw": "Received From Chukwuebuke Azike Ref: Sent From Monzo",
+            "description_normalized": null,
+            "amount": 7.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2025-02-11",
+            "description_raw": "Received From Sadie Booth Ref: Personal",
+            "description_normalized": null,
+            "amount": 25.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-11-29",
+            "description_raw": "Card Payment to First Bus - Mobile On 29Nov",
+            "description_normalized": null,
+            "amount": -3.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-11-30",
+            "description_raw": "Card Payment to First Bus - Mobile On 30 Nov",
+            "description_normalized": null,
+            "amount": -3.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-11-30",
+            "description_raw": "Card Payment to Amazon.Co.UK*No9C5 Luxembourg On 30 Nov",
+            "description_normalized": null,
+            "amount": -1218.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-11-30",
+            "description_raw": "Card Payment to ASDA Superstore On 30 Nov",
+            "description_normalized": null,
+            "amount": -85.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-11-31",
+            "description_raw": "Card Payment to ASDA Superstore On 31 Nov",
+            "description_normalized": null,
+            "amount": -45.67,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-11-31",
+            "description_raw": "Direct Debit to to Miss Richard Pearson Ref: Payment",
+            "description_normalized": null,
+            "amount": -450.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-11-31",
+            "description_raw": "Direct Debit to Bruno Johnston Ref: Payment",
+            "description_normalized": null,
+            "amount": -380.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2024-12-02",
+            "description_raw": "Card Payment to First Bus - Mobile On 02 Dec",
+            "description_normalized": null,
+            "amount": -3.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2024-12-03",
+            "description_raw": "Direct Debit to Anastasia Sosojeva Ref: Myself",
+            "description_normalized": null,
+            "amount": -4500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2024-12-09",
+            "description_raw": "Card Payment to Chopstix Aberdeen On 09 Dec",
+            "description_normalized": null,
+            "amount": -18.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2024-12-09",
+            "description_raw": "Card Payment to Chopstix Aberdeen On 09 Dec",
+            "description_normalized": null,
+            "amount": -21.18,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2024-12-09",
+            "description_raw": "Direct Debit to Bailey Sutton Ref: Payment",
+            "description_normalized": null,
+            "amount": -900.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2024-12-12",
+            "description_raw": "Card Payment to ASDA Superstore On 12 Dec",
+            "description_normalized": null,
+            "amount": -16.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2024-12-12",
+            "description_raw": "Card Payment to ASDA Superstore On 12 Dec",
+            "description_normalized": null,
+            "amount": -23.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2024-12-12",
+            "description_raw": "Direct Debit to Anastasia Sosojeva Ref: Myself",
+            "description_normalized": null,
+            "amount": -4000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2024-12-25",
+            "description_raw": "Card Payment to ASDA Superstore On 25 Dec",
+            "description_normalized": null,
+            "amount": -125.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2024-12-25",
+            "description_raw": "Direct Debit to Finnley Green Ref: Thanks",
+            "description_normalized": null,
+            "amount": -600.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-01-05",
+            "description_raw": "Direct Debit to Anastasia Sosojeva Ref: Myself",
+            "description_normalized": null,
+            "amount": -2500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2025-01-05",
+            "description_raw": "Card Payment to First Bus - Mobile On 05 Jan",
+            "description_normalized": null,
+            "amount": -3.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2025-01-05",
+            "description_raw": "Card Payment to First Bus - Mobile On 05 Jan",
+            "description_normalized": null,
+            "amount": -3.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2025-01-05",
+            "description_raw": "Card Payment to ASDA Superstore On 05 Jan",
+            "description_normalized": null,
+            "amount": -286.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2025-01-05",
+            "description_raw": "Card Payment to McDonalds On 05 Jan",
+            "description_normalized": null,
+            "amount": -11.03,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2025-01-05",
+            "description_raw": "Bill Payment to Miss Sharon Ref: Payment",
+            "description_normalized": null,
+            "amount": -600.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2025-01-16",
+            "description_raw": "Card Payment to First Bus - Mobile On 16 Jan",
+            "description_normalized": null,
+            "amount": -16.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2025-01-16",
+            "description_raw": "Card Payment to ASDA Superstore On 16 Jan",
+            "description_normalized": null,
+            "amount": -367.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2025-02-04",
+            "description_raw": "Card Payment to Chopstix Aberdeen On 04 Feb",
+            "description_normalized": null,
+            "amount": -12.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2025-02-04",
+            "description_raw": "Cash Machine Withdrawal at Notemachine Virgin Money Aberd Timed at 06.55 On 04 Feb",
+            "description_normalized": null,
+            "amount": -2000.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2025-02-04",
+            "description_raw": "Direct Debit to Anastasia Sosojeva Ref: Myself",
+            "description_normalized": null,
+            "amount": -3800.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2025-02-05",
+            "description_raw": "Card Payment to Giffgaff On 11 Feb",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2025-02-08",
+            "description_raw": "Cash Machine Withdrawal at Notemachine Virgin Money Aberd Timed at 00.55 On 17 Feb",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2025-02-08",
+            "description_raw": "Cash Machine Withdrawal at Sainsburys Bank Sainsburys Bank Timed at 10.09 On 177 Feb",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2025-02-08",
+            "description_raw": "Cash Machine Withdrawal at Sainsburys Bank Sainsburys Bank Timed at 10.09 On 17 Feb",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2025-02-08",
+            "description_raw": "Card Payment to ASDA Superstore On 17 Feb",
+            "description_normalized": null,
+            "amount": -7.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2025-02-11",
+            "description_raw": "Card Payment to First Bus - Mobile On 26 Feb",
+            "description_normalized": null,
+            "amount": -3.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2025-02-11",
+            "description_raw": "Card Payment to Amazon Prime*C16JJ Luxembourg On 26 Feb",
+            "description_normalized": null,
+            "amount": -153.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2025-02-11",
+            "description_raw": "Card Payment to Nike Inc On 26 Feb",
+            "description_normalized": null,
+            "amount": -384.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2025-02-11",
+            "description_raw": "Bill Payment to Chloe Watson Ref: Personal",
+            "description_normalized": null,
+            "amount": -400.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 11654.01,
+        "bank_stated_total_withdrawals": -24468.18
+    },
+    "validation": {
+        "opening_plus_deposits": 30098.4,
+        "minus_withdrawals": 5630.22,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Withdrawal count mismatch: found 37 transactions but expected 44"
+        ]
+    }
+}

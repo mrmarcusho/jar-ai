@@ -1,0 +1,222 @@
+{
+    "metadata": {
+        "source_file": "sogexia_statement.pdf",
+        "statement_period": {
+            "start": "2023-11-13",
+            "end": "2023-12-29"
+        },
+        "bank_entity": {
+            "name": "Sogexia",
+            "correspondence_address": {
+                "line1": "10-12 rue Malesherbes",
+                "city": "Lyon",
+                "state": "",
+                "zip": "69006"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "10-12 rue Malesherbes",
+                    "city": "Lyon",
+                    "state": "",
+                    "zip": "69006"
+                },
+                "website": "www.sogexia.com",
+                "phone_number": "+ 33 (0) 9 75 18 40 52",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "ELISE FAURE",
+            "account_number": "GB19 CLJU 0099D 7181 5618 37",
+            "account_type": "Business Account",
+            "address": {
+                "line1": "2 RUE HENRI CARTIER, BRESSSON",
+                "city": "EYSINES",
+                "state": "",
+                "zip": "33320"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.0,
+        "opening_balance_date": "2023-11-13",
+        "closing_balance": 11.57,
+        "closing_balance_date": "2023-12-29",
+        "total_deposits_and_other_additions": 313.49,
+        "total_withdrawals_and_other_subtractions": -301.92,
+        "checks": 0,
+        "service_fees": -14.79,
+        "number_of_deposits": 6,
+        "number_of_withdrawals": 9
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-11-14",
+            "description_raw": "Credit card load 476664xxxxxx4803",
+            "description_normalized": null,
+            "amount": 1.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2023-11-15",
+            "description_raw": "BANK TRANSFER OLEKSANDR ASANOV IBAN: BE64974031509552",
+            "description_normalized": null,
+            "amount": 5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2023-11-15",
+            "description_raw": "INSTANT TRANSFER Maria Dickinson IBAN: GB53CLJU00997181502152",
+            "description_normalized": null,
+            "amount": 116.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2023-11-18",
+            "description_raw": "Credit card load 476664xxxxxx4803",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2023-12-19",
+            "description_raw": "Credit card load 476664xxxxxx4803",
+            "description_normalized": null,
+            "amount": 90.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-11-14",
+            "description_raw": "FEES Load",
+            "description_normalized": null,
+            "amount": -0.04,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2023-11-15",
+            "description_raw": "FEES Load",
+            "description_normalized": null,
+            "amount": -0.1,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2023-11-15",
+            "description_raw": "FEES Card price Order n\u00b02019C1450099630I3K3JQ3F455CA63662",
+            "description_normalized": null,
+            "amount": -9.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2023-11-18",
+            "description_raw": "BANK TRANSFER Asanov Oleksandr my payment IBAN: BE64974031509552",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2023-12-08",
+            "description_raw": "FEES Load",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2023-12-09",
+            "description_raw": "INSTANT TRANSFER Maria Dickinson IBAN: GB53CLJU00997181502152",
+            "description_normalized": null,
+            "amount": -86.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2023-12-18",
+            "description_raw": "INSTANT TRANSFER Maria Dickinson 86 eur IBAN: GB53CLJU00997181502152",
+            "description_normalized": null,
+            "amount": -86.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2023-12-22",
+            "description_raw": "FEES Load",
+            "description_normalized": null,
+            "amount": -2.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2023-12-25",
+            "description_raw": "BANK TRANSFER Earthport plc 3429995727082 IBAN: FI7633010001313816",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2023-12-27",
+            "description_raw": "BANK TRANSFER WorldPay AP Limited NTLEU3177942 IBAN: NL92ABNA0242367372",
+            "description_normalized": null,
+            "amount": -5.13,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 313.49,
+        "bank_stated_total_withdrawals": -301.92
+    },
+    "validation": {
+        "opening_plus_deposits": 313.49,
+        "minus_withdrawals": 11.57,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Withdrawal count mismatch: found 10 transactions but expected 9 based on account summary"
+        ]
+    }
+}

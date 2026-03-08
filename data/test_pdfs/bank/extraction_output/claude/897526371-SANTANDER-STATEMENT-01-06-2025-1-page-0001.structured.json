@@ -1,0 +1,222 @@
+{
+    "metadata": {
+        "source_file": "santander_statement.pdf",
+        "statement_period": {
+            "start": "2025-06-02",
+            "end": "2025-07-01"
+        },
+        "bank_entity": {
+            "name": "Santander",
+            "correspondence_address": {
+                "line1": "41 Powis Street",
+                "city": "Woolwich",
+                "state": "London",
+                "zip": "SE18 6JD"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "9 Nelson Street",
+                    "city": "Bradford",
+                    "state": "West Yorkshire",
+                    "zip": "BD1 5AN"
+                },
+                "website": "www.santander.co.uk",
+                "phone_number": "0800 032 3323",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "RILWAN ODUNAYO SHINABA",
+            "account_number": "95101170",
+            "account_type": "Everyday Current Account",
+            "address": {
+                "line1": "FLAT 4 RIVERSIDE APARTMENTS LOWER SOUTHEND ROAD",
+                "city": "WICKFORD",
+                "state": "ESSEX",
+                "zip": "SE11 8GL"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 9157.55,
+        "opening_balance_date": "2025-06-01",
+        "closing_balance": 9862.22,
+        "closing_balance_date": "2025-07-01",
+        "total_deposits_and_other_additions": 4051.67,
+        "total_withdrawals_and_other_subtractions": -3347.0,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 1,
+        "number_of_withdrawals": 15
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-06-30",
+            "description_raw": "BANK GIRO CREDIT REF PRIDE HEALTH AND SOCIAL CARE",
+            "description_normalized": null,
+            "amount": 4051.67,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-06-05",
+            "description_raw": "FASTER PAYMENT TO DARREN ANDREW",
+            "description_normalized": null,
+            "amount": -1300.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-06-05",
+            "description_raw": "CASH WITHDRAWAL AT BANK OF IRELAND ATM PO CATFORD 0357, LONDON 169, 60.00 GBP",
+            "description_normalized": null,
+            "amount": -60.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-06-07",
+            "description_raw": "CASH WITHDRAWAL AT CO-OPERATIVE BANK PLC ATM COOP CATFORD, LONDON, 30.00 GBP",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-06-10",
+            "description_raw": "CARD PAYMENT TO CURRYS, 35.00 GBP ON 10-03-2025",
+            "description_normalized": null,
+            "amount": -35.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-06-12",
+            "description_raw": "CARD PAYMENT TO 360 TRAVELS, 50.00 GBP ON 12-03-2025",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-06-14",
+            "description_raw": "CASH WITHDRAWAL AT BANK OF IRELAND ATM PO CATFORD 0357, LONDON 169, 90.00 GBP",
+            "description_normalized": null,
+            "amount": -90.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-06-17",
+            "description_raw": "DIRECT DEBIT PAYMENT TO TALK TALK TELECOME REF 1006929570 5496460, MANDATE NO 0001",
+            "description_normalized": null,
+            "amount": -80.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-06-18",
+            "description_raw": "FASTER PAYMENT TO EVIES DECORATION",
+            "description_normalized": null,
+            "amount": -95.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-06-20",
+            "description_raw": "CASH WITHDRAWAL AT CO-OPERATIVE BANK PLC ATM COOP CATFORD, LONDON, 20.00 GBP",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-06-21",
+            "description_raw": "CASH WITHDRAWAL AT BANK OF IRELAND ATM PO CATFORD 0357, LONDON 169, 280.00 GBP",
+            "description_normalized": null,
+            "amount": -280.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-06-22",
+            "description_raw": "CARD PAYMENT TO TESCO STORES 6196, 75.00 GBP ON 22-03-2025",
+            "description_normalized": null,
+            "amount": -75.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-06-23",
+            "description_raw": "CASH WITHDRAWAL AT SANTANDER ATM POWIS ST, WOOLWICH, 50.00 GBP, ON 23-03-2025",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-06-24",
+            "description_raw": "CASH WITHDRAWAL AT CO-OPERATIVE BANK PLC ATM COOP CATFORD, LONDON, 80.00 GBP",
+            "description_normalized": null,
+            "amount": -80.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-06-30",
+            "description_raw": "DIRECT DEBIT PAYMENT TO URBAN REF 1056027688000000, MANDATE NO 0052",
+            "description_normalized": null,
+            "amount": -1100.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 4051.67,
+        "bank_stated_total_withdrawals": -3347.0
+    },
+    "validation": {
+        "opening_plus_deposits": 13209.22,
+        "minus_withdrawals": 9862.22,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Withdrawal count mismatch: found 14 transactions but expected 15"
+        ]
+    }
+}

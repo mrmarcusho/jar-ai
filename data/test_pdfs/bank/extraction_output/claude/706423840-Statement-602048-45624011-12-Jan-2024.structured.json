@@ -1,0 +1,733 @@
+{
+    "metadata": {
+        "source_file": "natwest_statement.pdf",
+        "statement_period": {
+            "start": "2023-12-13",
+            "end": "2024-01-12"
+        },
+        "bank_entity": {
+            "name": "National Westminster Bank Plc",
+            "correspondence_address": {
+                "line1": "250 Bishopsgate",
+                "city": "London",
+                "state": "",
+                "zip": "EC2M 4AA"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "250 Bishopsgate",
+                    "city": "London",
+                    "state": "",
+                    "zip": "EC2M 4AA"
+                },
+                "website": "www.natwest.com",
+                "phone_number": "03457 888 444",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "MR AMER AZIZ",
+            "account_number": "45624011",
+            "account_type": "REWARD ACCOUNT",
+            "address": {
+                "line1": "63 BROOK CRESCENT",
+                "city": "STOURBRIDGE",
+                "state": "WEST MIDLANDS",
+                "zip": "DY9 9BG"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 10250.44,
+        "opening_balance_date": "2023-12-13",
+        "closing_balance": 5848.24,
+        "closing_balance_date": "2024-01-12",
+        "total_deposits_and_other_additions": 1909.02,
+        "total_withdrawals_and_other_subtractions": -6311.22,
+        "checks": 0,
+        "service_fees": -2.0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 89
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-12-15",
+            "description_raw": "Automated Credit F MUSRUR FP 15/12/23 1709 100000001254857796",
+            "description_normalized": null,
+            "amount": 4.49,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2023-12-18",
+            "description_raw": "OnLine Transaction HEATHCOTE SA CURRY VIA MOBILE - PYMT",
+            "description_normalized": null,
+            "amount": 15.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-01-02",
+            "description_raw": "OnLine Transaction From A/C 45697175 ZEB & AZIZ Via Mobile Xfer",
+            "description_normalized": null,
+            "amount": 300.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-01-04",
+            "description_raw": "Automated Credit MAIMUNA DANHASSAN MAIMUNA ORDER BDAY FP 04/01/24 1048 PHJ1TTKSF5XFB6NCHR",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-01-05",
+            "description_raw": "OnLine Transaction Muhammad Yousaf Aziz VIA MOBILE - PYMT FP 04/01/24 10 29200006169307000N",
+            "description_normalized": null,
+            "amount": 2000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2024-01-08",
+            "description_raw": "Automated Credit M AKHTER AKHTER FP 08/01/24 1326 100000001268411366",
+            "description_normalized": null,
+            "amount": 1539.53,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-12-13",
+            "description_raw": "Standing Order SABA HAMID",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2023-12-13",
+            "description_raw": "Direct Debit PAYPAL PAYMENT",
+            "description_normalized": null,
+            "amount": -63.33,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2023-12-14",
+            "description_raw": "Card Transaction 9637 13DEC23 C TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -27.62,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2023-12-14",
+            "description_raw": "Card Transaction 9637 12DEC23 C ALDI 72 772 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -35.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2023-12-18",
+            "description_raw": "OnLine Transaction G FISHER MECHANICA A AZIZ VIA MOBILE - PYMT FP 18/12/23 10 04181526224118000N",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2023-12-18",
+            "description_raw": "Card Transaction 9637 14DEC23 C ALDI 72 772 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -25.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2023-12-18",
+            "description_raw": "Card Transaction 9637 15DEC23 C SAVERS HEALTH & BEAUTY STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -0.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2023-12-18",
+            "description_raw": "Card Transaction 9637 15DEC23 C SHARMA GARAGES STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -25.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2023-12-18",
+            "description_raw": "Card Transaction 9637 15DEC23 C SHARMA GARAGES STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -15.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2023-12-18",
+            "description_raw": "Card Transaction 9637 16DEC23 C ROADHOUSE FAST FOOD WEST MIDLANDS GB",
+            "description_normalized": null,
+            "amount": -21.21,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2023-12-18",
+            "description_raw": "Standing Order ICEC FP 18/12/23 30 44013229466981000N",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2023-12-19",
+            "description_raw": "Card Transaction 9637 18DEC23 TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -39.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2023-12-19",
+            "description_raw": "Card Transaction 9637 18DEC23 C BOOTS,STOURBRIDGE STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -4.66,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2023-12-19",
+            "description_raw": "Card Transaction 9637 18DEC23 C DAY BREAK STOURBRIDGE D GB",
+            "description_normalized": null,
+            "amount": -1.58,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2023-12-20",
+            "description_raw": "Card Transaction 9637 19DEC23 PAYPAL *EBAY UK 35314369001 GB",
+            "description_normalized": null,
+            "amount": -18.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2023-12-21",
+            "description_raw": "Card Transaction 9637 20DEC23 C TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -32.44,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2023-12-22",
+            "description_raw": "Card Transaction 9637 21DEC23 C TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -22.59,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2023-12-22",
+            "description_raw": "Card Transaction 9637 21DEC23 TAPTAP SEND UK LTD LONDON GB",
+            "description_normalized": null,
+            "amount": -300.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2023-12-22",
+            "description_raw": "Card Transaction 9637 21DEC23 C ICELAND STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2023-12-22",
+            "description_raw": "Direct Debit TV LICENCE QBP1",
+            "description_normalized": null,
+            "amount": -41.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2023-12-27",
+            "description_raw": "OnLine Transaction SABA HAMID A AZIZ VIA MOBILE - PYMT",
+            "description_normalized": null,
+            "amount": -150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2023-12-27",
+            "description_raw": "Card Transaction 9637 24DEC23 C DAY BREAK STOURBRIDGE D GB",
+            "description_normalized": null,
+            "amount": -1.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2023-12-27",
+            "description_raw": "Card Transaction 9637 22DEC23 C ALDI 72 772 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -31.44,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2023-12-27",
+            "description_raw": "Card Transaction 9637 24DEC23 TAPTAP SEND UK LTD LONDON GB",
+            "description_normalized": null,
+            "amount": -821.92,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2023-12-27",
+            "description_raw": "Card Transaction 9637 24DEC23 C CAKEBOX STOURBRIDGE STOURBRIDGE D GB",
+            "description_normalized": null,
+            "amount": -31.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2023-12-27",
+            "description_raw": "Standing Order CLOSED ACCOUNT",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2023-12-27",
+            "description_raw": "Direct Debit O2",
+            "description_normalized": null,
+            "amount": -13.1,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2023-12-28",
+            "description_raw": "Card Transaction 9637 28DEC23 TAPTAP SEND UK LTD LONDON GB",
+            "description_normalized": null,
+            "amount": -817.44,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2023-12-28",
+            "description_raw": "Card Transaction 9637 27DEC23 C MERCHANTS STOURBRIDGE STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -13.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2023-12-28",
+            "description_raw": "Card Transaction 9637 27DEC23 C MERCHANTS STOURBRIDGE STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -2.1,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2023-12-28",
+            "description_raw": "Direct Debit NATWEST BNPL VIRTU",
+            "description_normalized": null,
+            "amount": -105.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2023-12-29",
+            "description_raw": "Card Transaction 9637 28DEC23 C TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -38.33,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2023-12-29",
+            "description_raw": "Direct Debit VODAFONE LTD",
+            "description_normalized": null,
+            "amount": -11.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2024-01-02",
+            "description_raw": "Charges 12DEC A/C 45624011",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2024-01-02",
+            "description_raw": "Card Transaction 9637 29DEC23 TAPTAP SEND UK LTD LONDON GB",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2024-01-02",
+            "description_raw": "Direct Debit NDCS",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2024-01-02",
+            "description_raw": "Direct Debit DVLA-EJ61UYE",
+            "description_normalized": null,
+            "amount": -13.12,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2024-01-03",
+            "description_raw": "Card Transaction 9637 02JAN24 ALDI 72 772 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -47.61,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2024-01-03",
+            "description_raw": "Direct Debit OCTOPUS ENERGY",
+            "description_normalized": null,
+            "amount": -276.85,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2024-01-04",
+            "description_raw": "Card Transaction 9637 03JAN24 C ICELAND STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -6.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2024-01-04",
+            "description_raw": "Direct Debit PAYPAL PAYMENT",
+            "description_normalized": null,
+            "amount": -2.99,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2024-01-05",
+            "description_raw": "Card Transaction 9637 04JAN24 C TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -37.26,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2024-01-05",
+            "description_raw": "Card Transaction 9637 04JAN24 C SAVERS HEALTH & BEAUTY STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -0.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w44",
+            "date": "2024-01-05",
+            "description_raw": "Card Transaction 9637 04JAN24 TAPTAP SEND TRANSFER 0808 168 7707 GB",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w45",
+            "date": "2024-01-05",
+            "description_raw": "Standing Order AMER",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w46",
+            "date": "2024-01-05",
+            "description_raw": "Direct Debit NHSBSA PPC",
+            "description_normalized": null,
+            "amount": -11.16,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w47",
+            "date": "2024-01-05",
+            "description_raw": "Direct Debit FIRSTCENTRALSERV",
+            "description_normalized": null,
+            "amount": -74.19,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w48",
+            "date": "2024-01-08",
+            "description_raw": "Card Transaction 9637 06JAN24 C DAY BREAK STOURBRIDGE D GB",
+            "description_normalized": null,
+            "amount": -2.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w49",
+            "date": "2024-01-08",
+            "description_raw": "Card Transaction 9637 06JAN24 C ALDI 72 772 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -21.08,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w50",
+            "date": "2024-01-08",
+            "description_raw": "Card Transaction 9637 05JAN24 C SHARMA GARAGES STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -36.07,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w51",
+            "date": "2024-01-08",
+            "description_raw": "Card Transaction 9637 06JAN24 C HOME BARGAINS STOURBRI STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -2.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w52",
+            "date": "2024-01-08",
+            "description_raw": "Card Transaction 9637 05JAN24 PAYPAL *EBAY UK 35314369001 GB",
+            "description_normalized": null,
+            "amount": -11.16,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w53",
+            "date": "2024-01-08",
+            "description_raw": "Direct Debit POSTOFFICE MONEY",
+            "description_normalized": null,
+            "amount": -193.9,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w54",
+            "date": "2024-01-08",
+            "description_raw": "Direct Debit FIRSTCENTRALSERV",
+            "description_normalized": null,
+            "amount": -65.79,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w55",
+            "date": "2024-01-09",
+            "description_raw": "Direct Debit TALKTALK TELECOM T",
+            "description_normalized": null,
+            "amount": -26.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w56",
+            "date": "2024-01-10",
+            "description_raw": "Card Transaction 9637 09JAN24 C TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -43.84,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w57",
+            "date": "2024-01-10",
+            "description_raw": "Card Transaction 9637 09JAN24 C DAY BREAK STOURBRIDGE D GB",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w58",
+            "date": "2024-01-11",
+            "description_raw": "Standing Order AMER AZIZ",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w59",
+            "date": "2024-01-12",
+            "description_raw": "Card Transaction 9637 11JAN24 C POUNDBAZAAR PLUS STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -2.49,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w60",
+            "date": "2024-01-12",
+            "description_raw": "Card Transaction 9637 11JAN24 C TESCO STORES 4357 STOURBRIDGE GB",
+            "description_normalized": null,
+            "amount": -36.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 1909.02,
+        "bank_stated_total_withdrawals": -6311.22
+    },
+    "validation": {
+        "opening_plus_deposits": 12159.46,
+        "minus_withdrawals": 5848.24,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 6, expected 4",
+            "Withdrawal count mismatch: found 60, expected 89"
+        ]
+    }
+}

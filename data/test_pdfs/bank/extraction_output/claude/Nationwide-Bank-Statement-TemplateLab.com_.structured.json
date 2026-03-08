@@ -1,0 +1,190 @@
+{
+    "metadata": {
+        "source_file": "nationwide_statement.pdf",
+        "statement_period": {
+            "start": "2020-04-01",
+            "end": "2020-05-15"
+        },
+        "bank_entity": {
+            "name": "Nationwide Building Society",
+            "correspondence_address": {
+                "line1": "Nationwide House, Pipers Way",
+                "city": "Swindon",
+                "state": "",
+                "zip": "SN38 1NW"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "Water St Business Centre",
+                    "city": "Talbot",
+                    "state": "",
+                    "zip": "SA12 6LF"
+                },
+                "website": "nationwide.co.uk",
+                "phone_number": "0800 30 20 11",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Miss Alicia J Black",
+            "account_number": "00000000",
+            "account_type": "YourFlexAccount",
+            "address": {
+                "line1": "Water St Business Centre",
+                "city": "Talbot",
+                "state": "",
+                "zip": "SA12 6LF"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0,
+        "opening_balance_date": "2020-04-01",
+        "closing_balance": 0,
+        "closing_balance_date": "2020-05-15",
+        "total_deposits_and_other_additions": 300,
+        "total_withdrawals_and_other_subtractions": -300,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 3,
+        "number_of_withdrawals": 9
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2020-04-19",
+            "description_raw": "Bank Credit 0000000",
+            "description_normalized": null,
+            "amount": 100,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2020-04-20",
+            "description_raw": "Cheque deposit",
+            "description_normalized": null,
+            "amount": 100,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2020-04-21",
+            "description_raw": "Cheque deposit",
+            "description_normalized": null,
+            "amount": 100,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2020-04-01",
+            "description_raw": "Tesco Store",
+            "description_normalized": null,
+            "amount": 0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2020-04-06",
+            "description_raw": "Cash Machine wdl Nationwide",
+            "description_normalized": null,
+            "amount": -100,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2020-04-06",
+            "description_raw": "Apple itunes store-GBP ITUNES.COM",
+            "description_normalized": null,
+            "amount": 0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2020-04-09",
+            "description_raw": "Cash Machine wdl Nationwide",
+            "description_normalized": null,
+            "amount": -100,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2020-04-10",
+            "description_raw": "Apple itunes store- GBP ITUNES.COM",
+            "description_normalized": null,
+            "amount": 0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2020-04-11",
+            "description_raw": "Visa New Look 1793 Stroud",
+            "description_normalized": null,
+            "amount": -100,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2020-04-17",
+            "description_raw": "Costa Cofee Stroud",
+            "description_normalized": null,
+            "amount": 0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2020-04-18",
+            "description_raw": "McDonalds Cirencester",
+            "description_normalized": null,
+            "amount": 0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2020-04-25",
+            "description_raw": "Transfer to 00000000",
+            "description_normalized": null,
+            "amount": 0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 300,
+        "bank_stated_total_withdrawals": -300
+    },
+    "validation": {
+        "opening_plus_deposits": 300,
+        "minus_withdrawals": 0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

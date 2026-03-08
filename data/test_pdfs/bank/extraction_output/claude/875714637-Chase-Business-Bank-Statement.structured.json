@@ -1,0 +1,1542 @@
+{
+    "metadata": {
+        "source_file": "Chase Bank Statement",
+        "statement_period": {
+            "start": "2024-10-01",
+            "end": "2024-10-31"
+        },
+        "bank_entity": {
+            "name": "JPMorgan Chase Bank, N.A.",
+            "correspondence_address": {
+                "line1": "P O Box 182051",
+                "city": "Columbus",
+                "state": "OH",
+                "zip": "43218 - 2051"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P O Box 182051",
+                    "city": "Columbus",
+                    "state": "OH",
+                    "zip": "43218 - 2051"
+                },
+                "website": "www.Chase.com",
+                "phone_number": "1-877-425-8100",
+                "En Espanol": "1-888-622-4273"
+            }
+        },
+        "account": {
+            "name": "LANCE VERMEULEN REAL ESTATE INC",
+            "account_number": "0000007506947799",
+            "account_type": "Chase Platinum Business Checking",
+            "address": {
+                "line1": "283 MAIN STREET",
+                "city": "GREAT BARRINGTON",
+                "state": "MA",
+                "zip": "01230"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 244380.84,
+        "opening_balance_date": "2024-10-01",
+        "closing_balance": 143085.14,
+        "closing_balance_date": "2024-10-31",
+        "total_deposits_and_other_additions": 45939.53,
+        "total_withdrawals_and_other_subtractions": -143282.1,
+        "checks": -3953.13,
+        "service_fees": 0.0,
+        "number_of_deposits": 57,
+        "number_of_withdrawals": 90
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-10-01",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 2403.17,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-10-01",
+            "description_raw": "Sonsio Inc.    Tsn Claims 3366572    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": 20.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-10-01",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 32.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-10-02",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 501.64,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-10-03",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 1769.75,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2024-10-03",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 85.4,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2024-10-06",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 26.3,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2024-10-06",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 874.03,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2024-10-06",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 345.54,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2024-10-06",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 294.03,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2024-10-06",
+            "description_raw": "American Express Settlement 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": 214.93,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2024-10-07",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 1532.95,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "2024-10-07",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 464.67,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "2024-10-08",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 930.54,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "2024-10-08",
+            "description_raw": "Sonsio Inc.    Tsn Claims 3374029    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": 259.95,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "2024-10-09",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 62.11,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "2024-10-10",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 987.64,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "2024-10-10",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 75.96,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_019",
+            "date": "2024-10-13",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 16.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_020",
+            "date": "2024-10-13",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 1435.63,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_021",
+            "date": "2024-10-13",
+            "description_raw": "American Express Settlement 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": 154.79,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_022",
+            "date": "2024-10-13",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 66.76,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_023",
+            "date": "2024-10-14",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 2384.35,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_024",
+            "date": "2024-10-14",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 610.5,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_025",
+            "date": "2024-10-15",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_026",
+            "date": "2024-10-15",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 267.59,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_027",
+            "date": "2024-10-15",
+            "description_raw": "Sonsio Inc.    Tsn Claims 3384979    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": 245.85,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_028",
+            "date": "2024-10-16",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 1267.53,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_029",
+            "date": "2024-10-16",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 311.06,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_030",
+            "date": "2024-10-17",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 1472.21,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_031",
+            "date": "2024-10-17",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 271.83,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_032",
+            "date": "2024-10-20",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 1730.82,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_033",
+            "date": "2024-10-20",
+            "description_raw": "American Express Settlement 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": 578.04,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_034",
+            "date": "2024-10-21",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 2509.12,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_035",
+            "date": "2024-10-21",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 1526.13,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_036",
+            "date": "2024-10-21",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 795.05,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_037",
+            "date": "2024-10-22",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 1071.62,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_038",
+            "date": "2024-10-22",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 217.56,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_039",
+            "date": "2024-10-22",
+            "description_raw": "Sonsio Inc.    Tsn Claims 3393116    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": 20.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_040",
+            "date": "2024-10-23",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 220.76,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_041",
+            "date": "2024-10-24",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 1179.33,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_042",
+            "date": "2024-10-27",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 2518.25,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_043",
+            "date": "2024-10-27",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 285.67,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_044",
+            "date": "2024-10-27",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 2537.32,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_045",
+            "date": "2024-10-27",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 384.82,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_046",
+            "date": "2024-10-27",
+            "description_raw": "American Express Settlement 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": 141.22,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_047",
+            "date": "2024-10-27",
+            "description_raw": "American Express Settlement 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": 26.24,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_048",
+            "date": "2024-10-28",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 480.75,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_049",
+            "date": "2024-10-28",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 3347.58,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_050",
+            "date": "2024-10-28",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 2948.98,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_051",
+            "date": "2024-10-28",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": 356.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_052",
+            "date": "2024-10-28",
+            "description_raw": "American Express Settlement 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": 104.96,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_053",
+            "date": "2024-10-29",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 162.54,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_054",
+            "date": "2024-10-29",
+            "description_raw": "Sonsio Inc.    Tsn Claims 3400580    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": 107.39,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_055",
+            "date": "2024-10-30",
+            "description_raw": "Deposit",
+            "description_normalized": null,
+            "amount": 9.55,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_056",
+            "date": "2024-10-30",
+            "description_raw": "Epx St 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": 2980.16,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_057",
+            "date": "2024-10-30",
+            "description_raw": "American Express Settlement 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": 113.38,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-10-01",
+            "description_raw": "Irs       Usataxpymt 227049266014634 CCD ID: 3387702000",
+            "description_normalized": null,
+            "amount": -5980.31,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-10-01",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -692.24,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-10-01",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -502.11,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-10-01",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -469.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-10-01",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -318.8,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-10-01",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -295.39,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-10-01",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -77.35,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2024-10-01",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -56.31,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2024-10-01",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -38.32,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2024-10-02",
+            "description_raw": "Sonsio Inc.    Rh Sales  3353513    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": -80.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2024-10-02",
+            "description_raw": "Citi Private Lbl Payment   603551075320189 CCD ID: Citifidplac",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2024-10-02",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -9.52,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2024-10-03",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -13.96,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2024-10-03",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -0.38,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2024-10-06",
+            "description_raw": "04/06 Online Payment 9369905573 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -105.3,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2024-10-06",
+            "description_raw": "04/06 Online Payment 9369904179 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -101.09,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2024-10-06",
+            "description_raw": "04/06 Online Payment 9369905752 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -44.14,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2024-10-06",
+            "description_raw": "American Express Axp Discnt 3345375547    CCD ID: 1134992250",
+            "description_normalized": null,
+            "amount": -103.64,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2024-10-06",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2024-10-07",
+            "description_raw": "04/07 Online Payment 9415069875 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -340.16,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2024-10-07",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -31.33,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2024-10-07",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -0.08,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2024-10-08",
+            "description_raw": "Irs       Usataxpymt 227049966014706 CCD ID: 3387702000",
+            "description_normalized": null,
+            "amount": -821.31,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2024-10-08",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -692.26,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2024-10-08",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -502.12,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2024-10-08",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -427.67,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2024-10-08",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -284.18,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2024-10-08",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -275.54,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2024-10-08",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -75.57,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2024-10-08",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -22.11,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2024-10-09",
+            "description_raw": "Sonsio Inc.    Rh Sales  3354434    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": -80.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2024-10-09",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -1.66,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2024-10-10",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -21.99,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2024-10-13",
+            "description_raw": "04/13 Online Payment 9409509293 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -105.3,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2024-10-13",
+            "description_raw": "04/13 Online Payment 9409575052 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -101.09,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2024-10-13",
+            "description_raw": "04/13 Online Payment 9409509382 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -44.14,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2024-10-13",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -2.44,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2024-10-14",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -56.18,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2024-10-14",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -0.04,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2024-10-15",
+            "description_raw": "04/15 Payment To Chase Card Ending IN 7362",
+            "description_normalized": null,
+            "amount": -18140.95,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2024-10-15",
+            "description_raw": "Irs       Usataxpymt 227050566098208 CCD ID: 3387702000",
+            "description_normalized": null,
+            "amount": -813.03,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2024-10-15",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -692.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2024-10-15",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -453.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w44",
+            "date": "2024-10-15",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -254.79,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w45",
+            "date": "2024-10-15",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -250.86,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w46",
+            "date": "2024-10-15",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -79.17,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w47",
+            "date": "2024-10-15",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -4.57,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w48",
+            "date": "2024-10-16",
+            "description_raw": "R I T A      Rita Obg  Rzthrubjub100000 CCD ID: T341089280",
+            "description_normalized": null,
+            "amount": -315.73,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w49",
+            "date": "2024-10-16",
+            "description_raw": "Sonsio Inc.    Rh Sales  3387264    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": -70.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w50",
+            "date": "2024-10-16",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -15.46,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w51",
+            "date": "2024-10-17",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -6.57,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w52",
+            "date": "2024-10-20",
+            "description_raw": "04/20 Online Payment 9441132782 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -105.3,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w53",
+            "date": "2024-10-20",
+            "description_raw": "04/20 Online Payment 9441210678 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -101.09,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w54",
+            "date": "2024-10-20",
+            "description_raw": "04/20 Online Payment 9441132950 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -44.14,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w55",
+            "date": "2024-10-20",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -17.24,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w56",
+            "date": "2024-10-21",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -28.94,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w57",
+            "date": "2024-10-21",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -19.37,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w58",
+            "date": "2024-10-22",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -692.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w59",
+            "date": "2024-10-22",
+            "description_raw": "Irs       Usataxpymt 227051366020322 CCD ID: 3387702000",
+            "description_normalized": null,
+            "amount": -634.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w60",
+            "date": "2024-10-22",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -455.45,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w61",
+            "date": "2024-10-22",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -282.59,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w62",
+            "date": "2024-10-22",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -118.46,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w63",
+            "date": "2024-10-22",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -78.91,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w64",
+            "date": "2024-10-22",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -16.04,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w65",
+            "date": "2024-10-22",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -0.45,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w66",
+            "date": "2024-10-23",
+            "description_raw": "Sonsio Inc.    Rh Sales  3394507    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w67",
+            "date": "2024-10-23",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -4.3,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w68",
+            "date": "2024-10-24",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -5.2,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w69",
+            "date": "2024-10-27",
+            "description_raw": "04/25 Online Transfer To Sav ...6205 Transaction#: 9507498804",
+            "description_normalized": null,
+            "amount": -100000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w70",
+            "date": "2024-10-27",
+            "description_raw": "04/27 Online Payment 9480941658 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -105.3,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w71",
+            "date": "2024-10-27",
+            "description_raw": "04/27 Online Payment 9480936633 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -101.09,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w72",
+            "date": "2024-10-27",
+            "description_raw": "04/27 Online Payment 9480941678 To Ohio Child Support Payment Cntr",
+            "description_normalized": null,
+            "amount": -44.14,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w73",
+            "date": "2024-10-27",
+            "description_raw": "04/27 Online Payment 9446569386 To Bus Rev Crdt 0001",
+            "description_normalized": null,
+            "amount": -1500.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w74",
+            "date": "2024-10-27",
+            "description_raw": "8013Ohio-Taxesuf Cit Sales 0000010767658 CCD ID: 1070060004",
+            "description_normalized": null,
+            "amount": -3758.3,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w75",
+            "date": "2024-10-27",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -58.88,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w76",
+            "date": "2024-10-27",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -3.74,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w77",
+            "date": "2024-10-28",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -80.86,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w78",
+            "date": "2024-10-28",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -80.41,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w79",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Tax    4124704    CCD ID: 1943345425",
+            "description_normalized": null,
+            "amount": -2013.34,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w80",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Tax    4124704    CCD ID: 1943345425",
+            "description_normalized": null,
+            "amount": -1100.37,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w81",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -692.26,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w82",
+            "date": "2024-10-29",
+            "description_raw": "Irs       Usataxpymt 227052066010392 CCD ID: 3387702000",
+            "description_normalized": null,
+            "amount": -591.94,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w83",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -466.05,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w84",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -313.77,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w85",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -296.96,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w86",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -290.9,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w87",
+            "date": "2024-10-29",
+            "description_raw": "Payroll    Payroll  4124704    CCD ID: 4462800242",
+            "description_normalized": null,
+            "amount": -84.53,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w88",
+            "date": "2024-10-29",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -1.03,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w89",
+            "date": "2024-10-30",
+            "description_raw": "Epx Fe 000153458 Merch Setl 000153458    CCD ID: 1141901461",
+            "description_normalized": null,
+            "amount": -73.47,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w90",
+            "date": "2024-10-30",
+            "description_raw": "Sonsio Inc.    Rh Sales  3403792    CCD ID: 9841488589",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 45939.53,
+        "bank_stated_total_withdrawals": -143282.1
+    },
+    "validation": {
+        "opening_plus_deposits": 290320.37,
+        "minus_withdrawals": 147038.27,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated ending balance (147038.27) does not match stated closing balance (143085.14)"
+        ]
+    }
+}

@@ -1,0 +1,404 @@
+{
+    "metadata": {
+        "source_file": "US Bank Business Statement",
+        "statement_period": {
+            "start": "2023-02-17",
+            "end": "2023-03-31"
+        },
+        "bank_entity": {
+            "name": "U.S. Bank National Association",
+            "correspondence_address": {
+                "line1": "PO Box 1800",
+                "city": "Saint Paul",
+                "state": "Minnesota",
+                "zip": "55101-0800"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "PO Box 1800",
+                    "city": "Saint Paul",
+                    "state": "Minnesota",
+                    "zip": "55101-0800"
+                },
+                "website": "usbank.com",
+                "phone_number": "800-673-3555",
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": "BIG BS BBQ",
+            "account_number": "1 047 9846 7080",
+            "account_type": "BUSINESS CHECKING",
+            "address": {
+                "line1": "148 NE JAMES AVE",
+                "city": "LAKE CITY",
+                "state": "FL",
+                "zip": "32055"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 50000,
+        "opening_balance_date": "2023-02-17",
+        "closing_balance": 132474,
+        "closing_balance_date": "2023-03-31",
+        "total_deposits_and_other_additions": 82474.0,
+        "total_withdrawals_and_other_subtractions": -2220.38,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 12,
+        "number_of_withdrawals": 22
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-02-17",
+            "description_raw": "ATM Cash Deposit Campus USA Credit Union 32055",
+            "description_normalized": null,
+            "amount": 9549.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2023-02-18",
+            "description_raw": "Check Deposit 0010 168 Misc. ACH /Deposit IA0009540",
+            "description_normalized": null,
+            "amount": 15460.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2023-02-19",
+            "description_raw": "Check Deposit 0009 Christ Centra Lake City, Fl 32055",
+            "description_normalized": null,
+            "amount": 6200.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2023-02-19",
+            "description_raw": "Electronic Deposit Stripe/Bigbsbbq 479395622313 Stripe.com",
+            "description_normalized": null,
+            "amount": 7850.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2023-02-20",
+            "description_raw": "Stripe.com/Bigbsbbq/ACH Deposit Stripe/Bigbsbbq/ACH Deposit",
+            "description_normalized": null,
+            "amount": 5550.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2023-02-20",
+            "description_raw": "Stripe.com/Bigbsbbq/ACH Deposit Stripe/Bigbsbbq/ACH Deposit",
+            "description_normalized": null,
+            "amount": 1100.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2023-02-21",
+            "description_raw": "Check Deposit 1000 QuickBooks/43663358556 QuickBooks/Bigbsbbq",
+            "description_normalized": null,
+            "amount": 1638.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2023-02-22",
+            "description_raw": "Electronic Deposit Stripe/Bigbsbbq 526468854 Stripe.com",
+            "description_normalized": null,
+            "amount": 3978.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2023-02-23",
+            "description_raw": "Transfer From share 0900 Transfer From Share 0900",
+            "description_normalized": null,
+            "amount": 5468.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2023-02-23",
+            "description_raw": "ACH CREDIT IRS TREAS 02/23 XXTAXEIP2 IRS TREAS-310",
+            "description_normalized": null,
+            "amount": 13990.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2023-02-24",
+            "description_raw": "ACH/Electronic Deposit QuickBooks/47935622313",
+            "description_normalized": null,
+            "amount": 2456.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2023-02-26",
+            "description_raw": "Electronic Deposit 990401/PAYPOINT EPS 191830143 FAC #51639",
+            "description_normalized": null,
+            "amount": 9235.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-02-27",
+            "description_raw": "Debit Purchase - VISA Cheney Brothers Cheney Brothers/Business Solutions/PP",
+            "description_normalized": null,
+            "amount": -550.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2023-02-27",
+            "description_raw": "Debit Purchase - VISA CCP Chase.com/PMT 545468 Chase.com",
+            "description_normalized": null,
+            "amount": -263.57,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2023-02-27",
+            "description_raw": "Debit Purchase-VISA Home Depot.com/Online PMT 415461658 448445",
+            "description_normalized": null,
+            "amount": -354.91,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2023-02-29",
+            "description_raw": "Debit Purchase-VISA Sam's Club Mc Online PMT CKF426104254POS 044547",
+            "description_normalized": null,
+            "amount": -659.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2023-03-10",
+            "description_raw": "Debit Purchase SCHNUCKS CLAYTON FL 711860 On 072319 MAESTERM REF 711860",
+            "description_normalized": null,
+            "amount": -39.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2023-03-08",
+            "description_raw": "Debit Purchase - VISA On 072219 Amzn .com/bil WA 3100596188 AMZN Mktp US*MAO REF # 24692169203100596188416",
+            "description_normalized": null,
+            "amount": -39.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2023-03-15",
+            "description_raw": "Debit Purchase SCHNUCKS CLAYTON FL 730800 On 072319 MAESTERM REF 730800",
+            "description_normalized": null,
+            "amount": -46.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2023-03-15",
+            "description_raw": "Debit Purchase - VISA On 072619 866-712-7753 FL 7100694496 APL* !TUNES.COM/ REF # 24692169207100694496055",
+            "description_normalized": null,
+            "amount": -2.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2023-03-22",
+            "description_raw": "Debit Purchase - VISA On 072519 SAINT LOUIS FL 7000979334 JIMMY JOHNS # 12 REF # 24269799207000979334020",
+            "description_normalized": null,
+            "amount": -8.77,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2023-03-22",
+            "description_raw": "Debit Purchase - VISA On 072519 SAINT LOUIS FL 6968400908 HANKS CHEESECAKE REF # 24327439206968400908493",
+            "description_normalized": null,
+            "amount": -13.92,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2023-03-24",
+            "description_raw": "Debit Purchase OFFICE DEPOT 00 RICHMOND HEIMO 3507261201 051935 On 072619 ILK1TERM REF 920717051935",
+            "description_normalized": null,
+            "amount": -21.84,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2023-03-24",
+            "description_raw": "Debit Purchase - VISA On 072619 LAKE CITY, FL 8083303342 PANERA BREAD #60 REF # 24231689208083303342106",
+            "description_normalized": null,
+            "amount": -16.21,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2023-03-26",
+            "description_raw": "Debit Purchase AMERICAN EAGLE DES PERES FL 042267 On 072819 MAESTERM REF 042267",
+            "description_normalized": null,
+            "amount": -21.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2023-03-26",
+            "description_raw": "Debit Purchase HOME DEPOT WRKSH DES PERES MO 474879 On 072819 MAESTERM REF 474879",
+            "description_normalized": null,
+            "amount": -31.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2023-03-26",
+            "description_raw": "Debit Purchase - VISA On 072819 ONLINE 1018010868 0006 AMC ESQUIRE REF # 24431069211018010868066",
+            "description_normalized": null,
+            "amount": -12.64,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2023-03-26",
+            "description_raw": "Debit Purchase WALGREENS STORE LAKE CITY FL 5807301237 314158 On 073019 ILNKILNK REF 921117314158",
+            "description_normalized": null,
+            "amount": -15.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2023-03-28",
+            "description_raw": "Debit Purchase - VISA On 072819 BIGLOTS LC FL 0003817010 CHARLEYS PHILLY REF # 24013399210003817010763",
+            "description_normalized": null,
+            "amount": -21.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2023-03-30",
+            "description_raw": "Debit Purchase - VISA On 072819 SAINT LOUIS MO 1018012840 0006 AMC ESQUIRE REF # 24431069211018012840949",
+            "description_normalized": null,
+            "amount": -26.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2023-03-31",
+            "description_raw": "Debit Purchase - VISA On 073119 RICHMOND HEI MO 2100616764 PANERA BREAD #60 REF # 24692169212100616764856",
+            "description_normalized": null,
+            "amount": -15.32,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2023-03-31",
+            "description_raw": "Debit Purchase TARGET T- 25 Bre Brentwood MO 817710 On 080119 MAESTERM REF 817710",
+            "description_normalized": null,
+            "amount": -74.76,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2023-03-31",
+            "description_raw": "Debit Purchase - VISA On 080119 RICHMOND HEI MO 4083303633 PANERA BREAD #60 REF # 24231689214083303633118",
+            "description_normalized": null,
+            "amount": -19.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 82474.0,
+        "bank_stated_total_withdrawals": -2220.38
+    },
+    "validation": {
+        "opening_plus_deposits": 132474.0,
+        "minus_withdrawals": 130253.62,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Calculated balance does not match closing balance",
+            "Withdrawal count mismatch: found 21 but expected 22",
+            "Withdrawal total mismatch: calculated -1828.39 but bank stated -2220.38"
+        ]
+    }
+}

@@ -1,0 +1,312 @@
+{
+    "metadata": {
+        "source_file": "BX0174_04052024",
+        "statement_period": {
+            "start": "2024-03-05",
+            "end": "2024-04-30"
+        },
+        "bank_entity": {
+            "name": "First Century Bank",
+            "correspondence_address": {
+                "line1": "1780 North Broad Street",
+                "city": "Tazewell",
+                "state": "TN",
+                "zip": "37879"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "1780 North Broad Street",
+                    "city": "Tazewell",
+                    "state": "TN",
+                    "zip": "37879"
+                },
+                "website": "www.cfsb.com",
+                "phone_number": "423-626-7261",
+                "En Espanol": "+1-800-201-6967"
+            }
+        },
+        "account": {
+            "name": "JULIE SMITH",
+            "account_number": "4013807690363",
+            "account_type": "CHECKING",
+            "address": {
+                "line1": "833 WESTVIEW",
+                "city": "ABILENE",
+                "state": "TX",
+                "zip": "79603"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 5142.49,
+        "opening_balance_date": "2024-03-05",
+        "closing_balance": 4947.29,
+        "closing_balance_date": "2024-04-30",
+        "total_deposits_and_other_additions": 636.6,
+        "total_withdrawals_and_other_subtractions": -831.8,
+        "checks": 0.04,
+        "service_fees": 10.01,
+        "number_of_deposits": 9,
+        "number_of_withdrawals": 15
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-03-10",
+            "description_raw": "Deposit from Bristol Myers Squibb Company",
+            "description_normalized": null,
+            "amount": 250.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-03-12",
+            "description_raw": "Interest Payment",
+            "description_normalized": null,
+            "amount": 0.36,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-04-11",
+            "description_raw": "Interest Payment",
+            "description_normalized": null,
+            "amount": 0.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-04-12",
+            "description_raw": "Customer deposit",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-04-15",
+            "description_raw": "Customer deposit",
+            "description_normalized": null,
+            "amount": 125.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2024-04-16",
+            "description_raw": "Interest Payment",
+            "description_normalized": null,
+            "amount": 0.42,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2024-05-22",
+            "description_raw": "Deposit OR Cashed Check",
+            "description_normalized": null,
+            "amount": 75.03,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2024-07-02",
+            "description_raw": "Customer deposit",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2024-07-20",
+            "description_raw": "Customer deposit",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-03-05",
+            "description_raw": "POS Purcharge - 04/05 Mach ID 210532 Kalser 08092082 Esscinddo CA 6507 00461363816920152 ?McC=8099",
+            "description_normalized": null,
+            "amount": -152.41,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-03-20",
+            "description_raw": "POS purcharge -04/20 Mach ID 21158 Kalser 08095625 Esscindo CA 6507",
+            "description_normalized": null,
+            "amount": -127.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-04-28",
+            "description_raw": "ATM Withdrawal REF.9156991",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-05-09",
+            "description_raw": "Payment via Faster Payment to ALIEXPRESS.COM",
+            "description_normalized": null,
+            "amount": -1.3,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-05-12",
+            "description_raw": "Recurring Payment authorized on 05/12 Comcast 800-Comcast NJ S38727918052376 Card 3327",
+            "description_normalized": null,
+            "amount": -70.01,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-06-03",
+            "description_raw": "Check",
+            "description_normalized": null,
+            "amount": -0.02,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-06-11",
+            "description_raw": "Check",
+            "description_normalized": null,
+            "amount": -0.02,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2024-06-18",
+            "description_raw": "Invoice21TX323389",
+            "description_normalized": null,
+            "amount": -21.02,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2024-06-29",
+            "description_raw": "Pos Purchase Mach ID 1219202110 Walmart",
+            "description_normalized": null,
+            "amount": -0.08,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2024-07-07",
+            "description_raw": "Outsource Content",
+            "description_normalized": null,
+            "amount": -23.89,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2024-07-13",
+            "description_raw": "Outsource Artist",
+            "description_normalized": null,
+            "amount": -98.04,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2024-07-16",
+            "description_raw": "AdvancePaymentAD219015.21TX098721",
+            "description_normalized": null,
+            "amount": -27.06,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2024-07-29",
+            "description_raw": "Amazon Mktplace PM Amnz.com/Bill WA US",
+            "description_normalized": null,
+            "amount": -0.07,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2024-04-25",
+            "description_raw": "Cash Withdrawal Fee",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2024-04-30",
+            "description_raw": "Purchase - Supermartket REF.EF 90661615",
+            "description_normalized": null,
+            "amount": -198.46,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 636.6,
+        "bank_stated_total_withdrawals": -831.8
+    },
+    "validation": {
+        "opening_plus_deposits": 5779.09,
+        "minus_withdrawals": 4947.29,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Transaction counts and totals don't match due to statement spanning multiple months with incomplete transaction listing"
+        ]
+    }
+}

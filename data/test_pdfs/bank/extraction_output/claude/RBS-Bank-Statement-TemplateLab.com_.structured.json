@@ -1,0 +1,243 @@
+{
+    "metadata": {
+        "source_file": "RBS_Statement.pdf",
+        "statement_period": {
+            "start": "2014-10-22",
+            "end": "2014-12-21"
+        },
+        "bank_entity": {
+            "name": "Royal Bank of Scotland Plc",
+            "correspondence_address": {
+                "line1": "The Mound",
+                "city": "Edinburgh",
+                "state": "",
+                "zip": "EH1 1YZ"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "",
+                "phone_number": "",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "MR TEST TESTER",
+            "account_number": "1111111",
+            "account_type": "CURRENT ACCOUNT",
+            "address": {
+                "line1": "1 TEST STREET",
+                "city": "TEST TOWN",
+                "state": "",
+                "zip": "TE5 7ER"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 1803.9,
+        "opening_balance_date": "2014-10-22",
+        "closing_balance": 300.2,
+        "closing_balance_date": "2014-12-21",
+        "total_deposits_and_other_additions": 2180.4,
+        "total_withdrawals_and_other_subtractions": -2684.1,
+        "checks": -1200.0,
+        "service_fees": 0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 14
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2014-10-22",
+            "description_raw": "AUTOMATED PAY IN 650274051211-CHB",
+            "description_normalized": null,
+            "amount": 190.4,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2014-10-25",
+            "description_raw": "Business Loan",
+            "description_normalized": null,
+            "amount": 20000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2014-12-01",
+            "description_raw": "Interest Paid",
+            "description_normalized": null,
+            "amount": 9.33,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2014-12-21",
+            "description_raw": "Various Payment",
+            "description_normalized": null,
+            "amount": 10526.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2014-10-22",
+            "description_raw": "DIGITAL BANKING CALL REF. NO. 3442, FROM A/C 22222222",
+            "description_normalized": null,
+            "amount": -140.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2014-10-24",
+            "description_raw": "Amazon",
+            "description_normalized": null,
+            "amount": -132.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2014-10-24",
+            "description_raw": "Tebay Trading Co.",
+            "description_normalized": null,
+            "amount": -515.22,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2014-10-25",
+            "description_raw": "Morrisons Petrol",
+            "description_normalized": null,
+            "amount": -80.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2014-10-26",
+            "description_raw": "James White Media",
+            "description_normalized": null,
+            "amount": -2461.55,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2014-10-27",
+            "description_raw": "ATM High Street",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2014-11-01",
+            "description_raw": "Acorn Advertising Studies",
+            "description_normalized": null,
+            "amount": -150.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2014-11-01",
+            "description_raw": "Marriott Hotel",
+            "description_normalized": null,
+            "amount": -177.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2014-11-01",
+            "description_raw": "Abellio Scotrail Ltd",
+            "description_normalized": null,
+            "amount": -122.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2014-11-01",
+            "description_raw": "Cheque 0000234",
+            "description_normalized": null,
+            "amount": -1200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2014-12-01",
+            "description_raw": "OVO Energy",
+            "description_normalized": null,
+            "amount": -2470.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2014-12-21",
+            "description_raw": "HMRC",
+            "description_normalized": null,
+            "amount": -1000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2014-12-21",
+            "description_raw": "DVLA",
+            "description_normalized": null,
+            "amount": -280.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 2180.4,
+        "bank_stated_total_withdrawals": -2684.1
+    },
+    "validation": {
+        "opening_plus_deposits": 3984.3,
+        "minus_withdrawals": 1300.2,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated closing balance (1300.20) does not match stated closing balance (300.20)",
+            "Number of withdrawals counted (13) does not match expected (14)"
+        ]
+    }
+}

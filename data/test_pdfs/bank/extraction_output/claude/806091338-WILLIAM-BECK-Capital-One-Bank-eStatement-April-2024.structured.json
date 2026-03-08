@@ -1,0 +1,463 @@
+{
+    "metadata": {
+        "source_file": "capital_one_statement.pdf",
+        "statement_period": {
+            "start": "2024-04-01",
+            "end": "2024-04-30"
+        },
+        "bank_entity": {
+            "name": "Capital One 360",
+            "correspondence_address": {
+                "line1": "P.O. Box 60",
+                "city": "St. Cloud",
+                "state": "NY",
+                "zip": "56302"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 60",
+                    "city": "St. Cloud",
+                    "state": "NY",
+                    "zip": "56302"
+                },
+                "website": "capitalone.com",
+                "phone_number": "1-888-464-0727",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "WILLIAM BECK",
+            "account_number": "36046087099",
+            "account_type": "360 Checking",
+            "address": {
+                "line1": "76 ROGERS AVE",
+                "city": "WEST HAMPTON",
+                "state": "NY",
+                "zip": "11978"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 4501.23,
+        "opening_balance_date": "2024-04-01",
+        "closing_balance": 9566.53,
+        "closing_balance_date": "2024-04-30",
+        "total_deposits_and_other_additions": 6374.92,
+        "total_withdrawals_and_other_subtractions": -1309.62,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 6,
+        "number_of_withdrawals": 44
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-04-04",
+            "description_raw": "Money received from CINDY JOSEPH",
+            "description_normalized": null,
+            "amount": 170.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-04-05",
+            "description_raw": "VALS OF THE CARIBBEAN DIRECT DEP",
+            "description_normalized": null,
+            "amount": 1593.73,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-04-12",
+            "description_raw": "VALS OF THE CARIBBEAN DIRECT DEP",
+            "description_normalized": null,
+            "amount": 1593.73,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-04-14",
+            "description_raw": "Money received from CINDY JOSEPH",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-04-19",
+            "description_raw": "VALS OF THE CARIBBEAN DIRECT DEP",
+            "description_normalized": null,
+            "amount": 1593.73,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2024-04-26",
+            "description_raw": "VALS OF THE CARIBBEAN DIRECT DEP",
+            "description_normalized": null,
+            "amount": 1593.73,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2024-04-31",
+            "description_raw": "Monthly Interest Paid",
+            "description_normalized": null,
+            "amount": 0.02,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-04-01",
+            "description_raw": "Debit Card Purchase - 7-ELEVEN ALBANY, NY",
+            "description_normalized": null,
+            "amount": -25.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-04-01",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 7282 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -10.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-04-01",
+            "description_raw": "Debit Card Purchase - TST JAMBA JUICE 074 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -12.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-04-01",
+            "description_raw": "Debit Card Purchase - CHEGG ORDER 8558681054 NY",
+            "description_normalized": null,
+            "amount": -14.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-04-02",
+            "description_raw": "ATM Withdrawal - CAPITAL ONE A5CB ALBANY, NY",
+            "description_normalized": null,
+            "amount": -800.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-04-02",
+            "description_raw": "Debit Card Purchase - TARGET T- 133 SERRAMON ALBANY, NY",
+            "description_normalized": null,
+            "amount": -31.76,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-04-02",
+            "description_raw": "Debit Card Purchase - GROCERY OUTLET ALBANY, NY",
+            "description_normalized": null,
+            "amount": -43.94,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2024-04-03",
+            "description_raw": "Debit Card Purchase - IN N OUT BURGER 159 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -13.16,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2024-04-03",
+            "description_raw": "Debit Card Purchase - MCDONALD S F8021 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -26.77,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2024-04-04",
+            "description_raw": "Debit Card Purchase - TST JAMBA JUICE 069 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -11.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2024-04-04",
+            "description_raw": "Debit Card Purchase - OTTERBOX LIFEPROOF 9704938446 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -10.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2024-04-07",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 4582 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -279.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2024-04-07",
+            "description_raw": "Digital Card Purchase - WALGREENS 15567 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -2.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2024-04-07",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 7282 NY",
+            "description_normalized": null,
+            "amount": -15.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2024-04-15",
+            "description_raw": "Debit Card Purchase - MAYFAIR GAS ALBANY, NY",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2024-04-16",
+            "description_raw": "Debit Card Purchase - DOORDASH, INC. VISA DIRECT NY",
+            "description_normalized": null,
+            "amount": -20.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2024-04-16",
+            "description_raw": "Debit Card Purchase - TST JAMBA JUICE 074 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -10.38,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2024-04-16",
+            "description_raw": "Digital Card Purchase - WALGREENS 15567 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -18.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2024-04-16",
+            "description_raw": "Debit Card Purchase - PANDA EXPRESS 145 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -8.57,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2024-04-16",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 7282 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2024-04-17",
+            "description_raw": "Debit Card Purchase - BIG FISH LITTLE FISH YONKERS, NY",
+            "description_normalized": null,
+            "amount": -13.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2024-04-18",
+            "description_raw": "Debit Card Purchase - PANDA EXPRESS 145 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -8.57,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2024-04-18",
+            "description_raw": "Debit Card Purchase - POSTMATES A6989 EMERY 8778877815 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -14.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2024-04-18",
+            "description_raw": "Debit Card Purchase - UBER EATS 8005928996 NY",
+            "description_normalized": null,
+            "amount": -84.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2024-04-21",
+            "description_raw": "Debit Card Purchase - SUBWAY 00502815 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -7.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2024-04-22",
+            "description_raw": "Debit Card Purchase - ONLY FANS UK",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2024-04-22",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 7282 ALBANY, NY",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2024-04-23",
+            "description_raw": "Debit Card Purchase - MICROSOFT OFFICE 365 P MSBILL INFO NY",
+            "description_normalized": null,
+            "amount": -6.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2024-04-31",
+            "description_raw": "Debit Card Purchase - WALGREENS STORE 135 PO SALBANY, NY",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2024-04-31",
+            "description_raw": "Debit Card Purchase - POSTMATES A6989 EMERY 8778877815 NY",
+            "description_normalized": null,
+            "amount": -25.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2024-04-31",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 7282 YONKERS, NY",
+            "description_normalized": null,
+            "amount": -14.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2024-04-31",
+            "description_raw": "Debit Card Purchase - ATT PAYMENT 800 288 2024 NY",
+            "description_normalized": null,
+            "amount": -84.25,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 6374.92,
+        "bank_stated_total_withdrawals": -1309.62
+    },
+    "validation": {
+        "opening_plus_deposits": 10876.15,
+        "minus_withdrawals": 9566.53,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 7 deposits but summary shows 6",
+            "Withdrawal count mismatch: found 32 withdrawals but summary shows 44"
+        ]
+    }
+}

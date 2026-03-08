@@ -1,0 +1,497 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2025-05-01",
+            "end": "2025-05-31"
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "20850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.BUSINESS (1.888.287.4637)",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Simply Caribbean Foods LLC",
+            "account_number": "3251 1698 0090",
+            "account_type": "Business Advantage Account",
+            "address": {
+                "line1": "350 Northern Blvd STE 324-1505",
+                "city": "Albany",
+                "state": "NY",
+                "zip": "12204"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 51829.04,
+        "opening_balance_date": "2025-05-01",
+        "closing_balance": 50009.26,
+        "closing_balance_date": "2025-05-31",
+        "total_deposits_and_other_additions": 134928.69,
+        "total_withdrawals_and_other_subtractions": -136573.47,
+        "checks": 0.0,
+        "service_fees": -175.0,
+        "number_of_deposits": 5,
+        "number_of_withdrawals": 31
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-05-01",
+            "description_raw": "Online Banking transfer from SAV 8647 Confirmation# 3176479516",
+            "description_normalized": null,
+            "amount": 2500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-05-08",
+            "description_raw": "Online Banking transfer from SAV 8647 Confirmation# 2435588968",
+            "description_normalized": null,
+            "amount": 2000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-05-10",
+            "description_raw": "WIRE TYPE:WIRE IN DATE: 200510 TIME:0925 ET TRN:2025051000257253 SEQ:2025051000044384/004813 ORIG:MILLENNIUM TRUST COMPANY ID:XXXXXXXXXX68371 SND BK:WELLS FARGO BANK, NA ID:121000248 PMT DET:4 7695 677734753FBD4D5A890B0FBE036356AC",
+            "description_normalized": null,
+            "amount": 92510.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-05-13",
+            "description_raw": "HALYARD SOLUTION DES:DEPOSIT ID:DP55293045 INDN:Simply Caribbean Foods LLC CO ID:BIZEDP CCD PMT INFO:Simply Caribbean Foods LLC INV 982025 992025",
+            "description_normalized": null,
+            "amount": 20420.03,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "HALYARD SOLUTION",
+                "ach_description": "DEPOSIT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "DP55293045",
+                "ach_secondary_co_id": "BIZEDP"
+            }
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-05-28",
+            "description_raw": "HALYARD SOLUTION DES:DEPOSIT ID:DP56155877 INDN:Simply Caribbean Foods LLC CO ID:BIZEDP CCD PMT INFO:Simply Caribbean Foods LLC INV 1012025",
+            "description_normalized": null,
+            "amount": 17498.66,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "HALYARD SOLUTION",
+                "ach_description": "DEPOSIT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "DP56155877",
+                "ach_secondary_co_id": "BIZEDP"
+            }
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-05-01",
+            "description_raw": "IRS DES:USATAXPYMT ID:270952100544270 INDN:Simply Caribbean Foods LLC CO ID:3387702000 CCD",
+            "description_normalized": null,
+            "amount": -5727.78,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "IRS",
+                "ach_description": "USATAXPYMT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "270952100544270",
+                "ach_secondary_co_id": "3387702000"
+            }
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-05-01",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#797215 INDN:Simply Caribbean Foods LLC CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "Trans#797215",
+                "ach_secondary_co_id": "GXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-05-01",
+            "description_raw": "FLA DEPT REVENUE DES:CUT ID:77615296 INDN:Simply Caribbean Foods LLC CO ID:CXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -204.69,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "FLA DEPT REVENUE",
+                "ach_description": "CUT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "77615296",
+                "ach_secondary_co_id": "CXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-05-03",
+            "description_raw": "PayPal DES:DEBIT ID:R20050204530478 INDN:Simply Caribbean Foods LLC CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0G3b000020Z2zXEAS",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "R20050204530478",
+                "ach_secondary_co_id": "EXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-05-08",
+            "description_raw": "TRANSFER Simply Caribbean Foods LLC IN:Ashish Parmar Confirmation# 0335622063",
+            "description_normalized": null,
+            "amount": -1500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-05-08",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#803378 INDN:Simply Caribbean Foods LLC CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "Trans#803378",
+                "ach_secondary_co_id": "GXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-05-10",
+            "description_raw": "WIRE TYPE:WIRE OUT DATE:240510 TIME:1309 ET TRN:2025051000349410 SERVICE REF:009766 BNF:ASHISH PARMAR ID:3630159836 BNF BK:CITIZENS BA NK, NATIONAL ID:241070417 PMT DET:263202512",
+            "description_normalized": null,
+            "amount": -35000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-05-10",
+            "description_raw": "PayPal DES:DEBIT ID:R20050904572983 INDN:Simply Caribbean Foods LLC CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0G3b000020ZEnYEAW",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "R20050904572983",
+                "ach_secondary_co_id": "EXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-05-13",
+            "description_raw": "WIRE TYPE:WIRE OUT DATE:240513 TIME:1420 ET TRN:2025051300395869 SERVICE REF:010139 BNF:ASHISH PARMAR ID:3630159836 BNF BK:CITIZENS BA NK, NATIONAL ID:241070417 PMT DET:263359354",
+            "description_normalized": null,
+            "amount": -20000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-05-13",
+            "description_raw": "FIGURE LENDING L DES:FIGUREPAYM ID:200510210000003 INDN:Ashish Parmar CO ID:9663451002 WEB",
+            "description_normalized": null,
+            "amount": -3000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "FIGURE LENDING L",
+                "ach_description": "FIGUREPAYM",
+                "ach_individual_name": "Ashish Parmar",
+                "ach_entry_class": "WEB",
+                "ach_company_id": "200510210000003",
+                "ach_secondary_co_id": "9663451002"
+            }
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-05-13",
+            "description_raw": "KABBAGE DES:PAYMENT ID:182056 INDN:1871646514 CO ID:3264438761 CCD",
+            "description_normalized": null,
+            "amount": -2500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "KABBAGE",
+                "ach_description": "PAYMENT",
+                "ach_individual_name": "1871646514",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "182056",
+                "ach_secondary_co_id": "3264438761"
+            }
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-05-15",
+            "description_raw": "TRANSFER Simply Caribbean Foods LLC IN:Ashish Parmar Confirmation# 1495921535",
+            "description_normalized": null,
+            "amount": -15000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-05-15",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#809539 INDN:Simply Caribbean Foods LLC CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "Trans#809539",
+                "ach_secondary_co_id": "GXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-05-16",
+            "description_raw": "KABBAGE DES:PAYMENT ID:182056 INDN:1880246896 CO ID:3264438761 CCD",
+            "description_normalized": null,
+            "amount": -10000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "KABBAGE",
+                "ach_description": "PAYMENT",
+                "ach_individual_name": "1880246896",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "182056",
+                "ach_secondary_co_id": "3264438761"
+            }
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-05-17",
+            "description_raw": "WIRE TYPE:WIRE OUT DATE:240517 TIME:1149 ET TRN:2025051700314947 SERVICE REF:007949 BNF:ASHISH PARMAR ID:3630159836 BNF BK:CITIZENS BA NK, NATIONAL ID:241070417 PMT DET:263803966",
+            "description_normalized": null,
+            "amount": -12000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-05-17",
+            "description_raw": "PayPal DES:DEBIT ID:R20051604614836 INDN:Simply Caribbean Foods LLC CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0G3b000020ZQFxEAO",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "R20051604614836",
+                "ach_secondary_co_id": "EXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w17",
+            "date": "2025-05-22",
+            "description_raw": "WIRE TYPE:WIRE OUT DATE:240522 TIME:0517 ET TRN:2025052200100005 SERVICE REF:002627 BNF:ASHISH PARMAR ID:3630159836 BNF BK:CITIZENS BA NK, NATIONAL ID:241070417 PMT DET:264113864",
+            "description_normalized": null,
+            "amount": -3500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-05-22",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#816701 INDN:Simply Caribbean Foods LLC CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "Trans#816701",
+                "ach_secondary_co_id": "GXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w19",
+            "date": "2025-05-25",
+            "description_raw": "PayPal DES:DEBIT ID:R20052304653860 INDN:Simply Caribbean Foods LLC CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0G3b000020ZazlEAC",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "R20052304653860",
+                "ach_secondary_co_id": "EXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w20",
+            "date": "2025-05-28",
+            "description_raw": "WIRE TYPE:WIRE OUT DATE:240528 TIME:0546 ET TRN:2025052800113229 SERVICE REF:005393 BNF:ASHISH PARMAR ID:3630159836 BNF BK:CITIZENS BA NK, NATIONAL ID:241070417 PMT DET:264472434",
+            "description_normalized": null,
+            "amount": -13000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2025-05-29",
+            "description_raw": "FIGURE LENDING L DES:FIGUREPAYM ID:200529120000001 INDN:Ashish Parmar CO ID:9663451002 WEB",
+            "description_normalized": null,
+            "amount": -2500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "FIGURE LENDING L",
+                "ach_description": "FIGUREPAYM",
+                "ach_individual_name": "Ashish Parmar",
+                "ach_entry_class": "WEB",
+                "ach_company_id": "200529120000001",
+                "ach_secondary_co_id": "9663451002"
+            }
+        },
+        {
+            "id": "txn_w22",
+            "date": "2025-05-29",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#822021 INDN:Simply Caribbean Foods LLC CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "Trans#822021",
+                "ach_secondary_co_id": "GXXXXXXXXX"
+            }
+        },
+        {
+            "id": "txn_w23",
+            "date": "2025-05-31",
+            "description_raw": "PayPal DES:DEBIT ID:R20053004696135 INDN:Simply Caribbean Foods LLC CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0G3b000020ZmOlEAK",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT",
+                "ach_individual_name": "Simply Caribbean Foods LLC",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "R20053004696135",
+                "ach_secondary_co_id": "EXXXXXXXXX"
+            }
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 134928.69,
+        "bank_stated_total_withdrawals": -136573.47
+    },
+    "validation": {
+        "opening_plus_deposits": 186757.73,
+        "minus_withdrawals": 50184.26,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Closing balance calculation does not match: expected 50009.26, got 50184.26",
+            "Withdrawal count mismatch: expected 31, got 23"
+        ]
+    }
+}

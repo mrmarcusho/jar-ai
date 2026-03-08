@@ -1,0 +1,773 @@
+{
+    "metadata": {
+        "source_file": "wells_fargo_statement.pdf",
+        "statement_period": {
+            "start": "2024-12-28",
+            "end": "2025-02-24"
+        },
+        "bank_entity": {
+            "name": "Wells Fargo Bank, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 6995",
+                "city": "Portland",
+                "state": "OR",
+                "zip": "97228-6995"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 6995",
+                    "city": "Portland",
+                    "state": "OR",
+                    "zip": "97228-6995"
+                },
+                "website": "wellsfargo.com",
+                "phone_number": "1-800-TO-WELLS (1-800-869-3557)",
+                "En Espanol": "1-877-727-2932"
+            }
+        },
+        "account": {
+            "name": "SUSIE OVERHOLT",
+            "account_number": "2969173547",
+            "account_type": "Wells Fargo Everyday Checking",
+            "address": {
+                "line1": "4884 ANTELOPE CV",
+                "city": "ATLANTA",
+                "state": "GA",
+                "zip": "30349"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 792.02,
+        "opening_balance_date": "2025-02-06",
+        "closing_balance": 22.84,
+        "closing_balance_date": "2025-02-24",
+        "total_deposits_and_other_additions": 3301.57,
+        "total_withdrawals_and_other_subtractions": -4070.75,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 82
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-01-16",
+            "description_raw": "Purchase Return authorized on 01/13 Amazon.Com Amzn.CO Amzn.Com/Bill WA S611045476338277 Card 7092",
+            "description_normalized": null,
+            "amount": 35.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-01-16",
+            "description_raw": "Online Transfer From Thomas V Way2Save Savings xxxxxx8036 Ref #Ib09Trwxvl on 01/15/25",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-01-19",
+            "description_raw": "Purchase Return authorized on 01/18 Paypal *Ebay 402-935-7733 CA S621050238686621 Card 7092",
+            "description_normalized": null,
+            "amount": 51.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-01-22",
+            "description_raw": "Mobile Deposit : Ref Number :810200776059",
+            "description_normalized": null,
+            "amount": 2000.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-01-23",
+            "description_raw": "Purchase Return authorized on 01/22 Amazon.Com Amzn.Com/Bill WA S621054473997624 Card 7092",
+            "description_normalized": null,
+            "amount": 44.93,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2025-02-02",
+            "description_raw": "Transfer From Long Diane on 03/02 Ref # Pp09Xvqy3Z Thank You",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2025-02-03",
+            "description_raw": "Bank of America Fndtrnsfr 210301 Thomas,Vestal,B Thomas,Vestal,B",
+            "description_normalized": null,
+            "amount": 618.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-12-28",
+            "description_raw": "Purchase authorized on 12/26 Staples 0011 Clinton MD S581037519015695 Card 7092",
+            "description_normalized": null,
+            "amount": -22.79,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-12-31",
+            "description_raw": "Purchase authorized on 12/29 National Golf Club Fort Washingt MD S461038584483852 Card 7092",
+            "description_normalized": null,
+            "amount": -90.1,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-01-08",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-01-09",
+            "description_raw": "Purchase authorized on 01/08 Realcheck Paystub WWW.Realcheck FL S301040116965558 Card 7092",
+            "description_normalized": null,
+            "amount": -26.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-01-09",
+            "description_raw": "Purchase authorized on 01/08 Ebay O*26-06549-62 408-3766151 CA S381040160631399 Card 7092",
+            "description_normalized": null,
+            "amount": -44.52,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-02-09",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-01-10",
+            "description_raw": "Purchase authorized on 02/09 Paypal *Openeffort 831-970-2824 CA S461040554463206 Card 7092",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-01-10",
+            "description_raw": "Purchase authorized on 01/09 Sunnybrook Tavern Fort Washingt MD S461041066946225 Card 7092",
+            "description_normalized": null,
+            "amount": -58.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-01-10",
+            "description_raw": "Purchase authorized on 01/09 Cash App*Carett 877-417-4551 MD S381041184971094 Card 7092",
+            "description_normalized": null,
+            "amount": -250.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-01-10",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-01-11",
+            "description_raw": "Purchase authorized on 01/09 Paypal *Specialnee 402-935-7733 CA S461041141052640 Card 7092",
+            "description_normalized": null,
+            "amount": -35.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-01-11",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-01-16",
+            "description_raw": "Purchase authorized on 01/12 Ebay O*03-06571-00 408-3766151 CA S461043629537885 Card 7092",
+            "description_normalized": null,
+            "amount": -56.13,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-01-16",
+            "description_raw": "Purchase authorized on 01/12 Paypal *Ebay 402-935-7733 CA S381044135239861 Card 7092",
+            "description_normalized": null,
+            "amount": -51.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-01-16",
+            "description_raw": "Purchase authorized on 01/13 Paypal *Ediblearra 402-935-7733 CT S381044595149659 Card 7092",
+            "description_normalized": null,
+            "amount": -78.58,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-01-16",
+            "description_raw": "Purchase authorized on 01/13 Safeway 1882 Fort Washingt MD S381044778088029 Card 7092",
+            "description_normalized": null,
+            "amount": -58.14,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2025-01-16",
+            "description_raw": "Recurring Payment authorized on 01/15 Nav Tech 855-226-8 WWW.Nav.Com UT S581046646636342 Card 7092",
+            "description_normalized": null,
+            "amount": -39.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-01-16",
+            "description_raw": "Zelle to Thomas Vestal on 01/16 Ref #Rp09Txjj6M",
+            "description_normalized": null,
+            "amount": -120.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2025-01-16",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -4.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2025-01-17",
+            "description_raw": "Purchase authorized on 01/16 Realcheck Paystub WWW.Realcheck FL S461047769870328 Card 7092",
+            "description_normalized": null,
+            "amount": -8.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2025-01-17",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2025-01-18",
+            "description_raw": "Purchase authorized on 01/17 Wu *6165668740 877-989-3268 CO S381048633054351 Card 7092",
+            "description_normalized": null,
+            "amount": -108.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2025-01-18",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2025-01-19",
+            "description_raw": "Purchase authorized on 01/17 7-Eleven 23732 Fort Washingt MD S301048702876314 Card 7092",
+            "description_normalized": null,
+            "amount": -4.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2025-01-19",
+            "description_raw": "Purchase authorized on 01/18 Paypal *Freeprints 402-935-7733 CA S301049614166038 Card 7092",
+            "description_normalized": null,
+            "amount": -2.14,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2025-01-19",
+            "description_raw": "Purchase authorized on 01/18 Paypal *Freeprints 402-935-7733 CA S581049615799741 Card 7092",
+            "description_normalized": null,
+            "amount": -4.27,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2025-01-19",
+            "description_raw": "Purchase authorized on 01/18 Paypal *Freeprints 402-935-7733 CA S461049621839452 Card 7092",
+            "description_normalized": null,
+            "amount": -4.27,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2025-01-19",
+            "description_raw": "Purchase authorized on 01/18 Paypal *Freeprints 402-935-7733 CA S461049804511946 Card 7092",
+            "description_normalized": null,
+            "amount": -10.11,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2025-01-19",
+            "description_raw": "Purchase authorized on 02/18 Paypal *Freeprints 402-935-7733 CA S381049811859573 Card 7092",
+            "description_normalized": null,
+            "amount": -5.71,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2025-01-19",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -6.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2025-01-22",
+            "description_raw": "Purchase authorized on 01/19 Taste Budds Inc Capitol Heigh MD S381050749373990 Card 7092",
+            "description_normalized": null,
+            "amount": -25.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2025-01-22",
+            "description_raw": "Purchase authorized on 01/19 Taste Budds Inc Capitol Heigh MD S461050761401041 Card 7092",
+            "description_normalized": null,
+            "amount": -8.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2025-01-22",
+            "description_raw": "Purchase authorized on 01/19 Bed Bath & Beyond Waldorf MD S461051016294273 Card 7092",
+            "description_normalized": null,
+            "amount": -16.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2025-01-22",
+            "description_raw": "Purchase authorized on 02/20 USPS PO 2333200744 Fort Washingt MD S301051605495442 Card 7092",
+            "description_normalized": null,
+            "amount": -5.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2025-01-22",
+            "description_raw": "Purchase authorized on 01/20 Safeway 1882 Fort Washingt MD S301051838194146 Card 7092",
+            "description_normalized": null,
+            "amount": -5.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2025-01-22",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2025-01-23",
+            "description_raw": "Online Transfer to Thomas V Way2Save Savings xxxxxx8036 Ref #Ib09W9Wfqm on 01/23/25",
+            "description_normalized": null,
+            "amount": -1451.87,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2025-01-24",
+            "description_raw": "Purchase authorized on 01/22 Exxonmobil 4785 Accokeek MD S461054048008142 Card 7092",
+            "description_normalized": null,
+            "amount": -34.36,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2025-01-24",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2025-01-25",
+            "description_raw": "Purchase authorized on 01/24 Sunnybrook Tavern Fort Washingt MD S581056046993577 Card 7092",
+            "description_normalized": null,
+            "amount": -69.72,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2025-01-25",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2025-02-01",
+            "description_raw": "Purchase authorized on 02/26 Taste Budds Inc Clover.Com MD S381057817474507 Card 7092",
+            "description_normalized": null,
+            "amount": -35.67,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2025-02-01",
+            "description_raw": "Purchase authorized on 02/26 Weis Markets 276 Accokeek MD S381058019213486 Card 7092",
+            "description_normalized": null,
+            "amount": -15.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w44",
+            "date": "2025-02-01",
+            "description_raw": "Purchase authorized on 02/1 Offerup* ID#150497 8443568729 WA S581058186079572 Card 7092",
+            "description_normalized": null,
+            "amount": -80.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w45",
+            "date": "2025-02-01",
+            "description_raw": "Purchase authorized on 02/1 Old Branch Ave Das Clinton MD S581058805557890 Card 7092",
+            "description_normalized": null,
+            "amount": -44.23,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w46",
+            "date": "2025-02-01",
+            "description_raw": "Purchase authorized on 02/1 Paypal *Uber Eats 402-935-7733 CA S461059036459924 Card 7092",
+            "description_normalized": null,
+            "amount": -29.41,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w47",
+            "date": "2025-02-01",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w48",
+            "date": "2025-02-02",
+            "description_raw": "Purchase authorized on 02/28 Hong Kong Ft Washington MD S461060100171141 Card 7092",
+            "description_normalized": null,
+            "amount": -49.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w49",
+            "date": "2025-02-02",
+            "description_raw": "Purchase authorized on 02/28 Hong Kong Ft Washington MD S581060100623563 Card 7092",
+            "description_normalized": null,
+            "amount": -3.71,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w50",
+            "date": "2025-02-02",
+            "description_raw": "Purchase authorized on 03/01 Weis Markets 276 Accokeek MD S581060794538402 Card 7092",
+            "description_normalized": null,
+            "amount": -27.93,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w51",
+            "date": "2025-02-02",
+            "description_raw": "Purchase authorized on 03/01 Paypal *Freeprints 402-935-7733 CA S461060814882824 Card 7092",
+            "description_normalized": null,
+            "amount": -4.27,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w52",
+            "date": "2025-02-02",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -4.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w53",
+            "date": "2025-02-03",
+            "description_raw": "Purchase authorized on 03/02 USPS PO 2333200744 Fort Washingt MD S381061746934917 Card 7092",
+            "description_normalized": null,
+            "amount": -8.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w54",
+            "date": "2025-02-03",
+            "description_raw": "Purchase authorized on 03/02 Popeyes 2735 Alexandria VA S301061805461953 Card 7092",
+            "description_normalized": null,
+            "amount": -21.71,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w55",
+            "date": "2025-02-03",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w56",
+            "date": "2025-02-05",
+            "description_raw": "Purchase authorized on 02/05 Amazon.Com*Pe8Uk9Q Amzn.Com/Bill WA S581062139795132 Card 7092",
+            "description_normalized": null,
+            "amount": -52.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w57",
+            "date": "2025-02-17",
+            "description_raw": "Purchase authorized on 02/17 Staples 0010 Waldorf MD S581062632494255 Card 7092",
+            "description_normalized": null,
+            "amount": -8.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w58",
+            "date": "2025-02-18",
+            "description_raw": "Purchase authorized on 02/18 Silver Diner Waldo Waldorf MD S381062659696496 Card 7092",
+            "description_normalized": null,
+            "amount": -55.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w59",
+            "date": "2025-02-19",
+            "description_raw": "Purchase authorized on 02/19 Aldi 71175 Clinton MD S581062759049184 Card 7092",
+            "description_normalized": null,
+            "amount": -10.08,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w60",
+            "date": "2025-02-20",
+            "description_raw": "Purchase authorized on 02/20 Paypal *Storchfami 4029357733 CA S461063624538846 Card 7092",
+            "description_normalized": null,
+            "amount": -595.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w61",
+            "date": "2025-02-23",
+            "description_raw": "Purchase authorized on 02/23 ti* Wisp Tix Httpswww.Wisp CA S381063671539924 Card 7092",
+            "description_normalized": null,
+            "amount": -182.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w62",
+            "date": "2025-02-23",
+            "description_raw": "Purchase authorized on 03/04 Lti* Wisp Tix Httpswww.Wisp CA S301063675422965 Card 7092",
+            "description_normalized": null,
+            "amount": -89.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w63",
+            "date": "2025-02-24",
+            "description_raw": "Save As You Go Transfer Debit to Xxxxxxxxxxx8036",
+            "description_normalized": null,
+            "amount": -7.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 3301.57,
+        "bank_stated_total_withdrawals": -4070.75
+    },
+    "validation": {
+        "opening_plus_deposits": 4093.59,
+        "minus_withdrawals": 22.84,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 7 deposits but statement summary shows 4",
+            "Withdrawal count mismatch: found 63 withdrawals but statement summary shows 82"
+        ]
+    }
+}

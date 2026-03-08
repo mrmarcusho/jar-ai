@@ -1,0 +1,70 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2016-12-20",
+            "end": "2017-01-19"
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.800.432.1000",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": "WILLIAM SMITH",
+            "account_number": "4570 3064 5567",
+            "account_type": "BofA Core Checking",
+            "address": {
+                "line1": "3314 E KELTON LN UNIT 105",
+                "city": "PHOENIX",
+                "state": "AZ",
+                "zip": "85032-2762"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 356.41,
+        "opening_balance_date": "2016-12-20",
+        "closing_balance": 578.46,
+        "closing_balance_date": "2017-01-19",
+        "total_deposits_and_other_additions": 3921.69,
+        "total_withdrawals_and_other_subtractions": -3605.64,
+        "checks": -85.0,
+        "service_fees": -12.0,
+        "number_of_deposits": 0,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 3921.69,
+        "bank_stated_total_withdrawals": -3605.64
+    },
+    "validation": {
+        "opening_plus_deposits": 4278.1,
+        "minus_withdrawals": 672.46,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated ending balance (672.46) does not match statement ending balance (578.46)"
+        ]
+    }
+}

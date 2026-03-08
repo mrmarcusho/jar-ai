@@ -1,0 +1,68 @@
+{
+    "metadata": {
+        "source_file": "lloyds_bank_statement.pdf",
+        "statement_period": {
+            "start": "2014-12-06",
+            "end": "2015-01-06"
+        },
+        "bank_entity": {
+            "name": "Lloyds Bank",
+            "correspondence_address": {
+                "line1": "Box 3, BX11LT",
+                "city": "",
+                "state": "",
+                "zip": ""
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "www.lloydsbank.com",
+                "phone_number": "08453000000",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "",
+            "account_number": "8975874587",
+            "account_type": "Silver Account",
+            "address": {
+                "line1": "",
+                "city": "",
+                "state": "",
+                "zip": ""
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 1265.34,
+        "opening_balance_date": "2014-12-06",
+        "closing_balance": 1163.1,
+        "closing_balance_date": "2015-01-06",
+        "total_deposits_and_other_additions": 2938.23,
+        "total_withdrawals_and_other_subtractions": -3040.47,
+        "checks": 0,
+        "service_fees": -24.64,
+        "number_of_deposits": 0,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 2938.23,
+        "bank_stated_total_withdrawals": -3040.47
+    },
+    "validation": {
+        "opening_plus_deposits": 4203.57,
+        "minus_withdrawals": 1163.1,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

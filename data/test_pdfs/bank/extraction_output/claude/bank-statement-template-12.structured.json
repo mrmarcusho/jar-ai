@@ -1,0 +1,142 @@
+{
+    "metadata": {
+        "source_file": "sample_account_statement.pdf",
+        "statement_period": {
+            "start": "2000-01-01",
+            "end": "2000-02-01"
+        },
+        "bank_entity": {
+            "name": "THIS FIRST BANK",
+            "correspondence_address": {
+                "line1": "4444 THIS STREET",
+                "city": "ANYTOWN",
+                "state": "STATE",
+                "zip": "00000-0000"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "",
+                "phone_number": "888-000-0000",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "JOHN Q. CUSTOMER",
+            "account_number": "12345-678910",
+            "account_type": "FIRSTCHOICE ACCOUNT",
+            "address": {
+                "line1": "1234 MAIN STREET",
+                "city": "ANYTOWN",
+                "state": "STATE",
+                "zip": "00000-0000"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 500.0,
+        "opening_balance_date": "2000-01-01",
+        "closing_balance": 794.57,
+        "closing_balance_date": "2000-02-01",
+        "total_deposits_and_other_additions": 538.68,
+        "total_withdrawals_and_other_subtractions": -629.73,
+        "checks": -741.16,
+        "service_fees": -6.0,
+        "number_of_deposits": 2,
+        "number_of_withdrawals": 5
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2000-01-05",
+            "description_raw": "DEPOSIT",
+            "description_normalized": null,
+            "amount": 230.66,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2000-01-15",
+            "description_raw": "DEPOSIT",
+            "description_normalized": null,
+            "amount": 765.5,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2000-01-16",
+            "description_raw": "632.75",
+            "description_normalized": null,
+            "amount": -632.75,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2000-01-24",
+            "description_raw": "35.98",
+            "description_normalized": null,
+            "amount": -35.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2000-01-26",
+            "description_raw": "72.43",
+            "description_normalized": null,
+            "amount": -72.43,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2000-01-21",
+            "description_raw": "ATM WITHDRAWAL",
+            "description_normalized": null,
+            "amount": -40.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2000-01-22",
+            "description_raw": "ATM WITHDRAWAL",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 538.68,
+        "bank_stated_total_withdrawals": -629.73
+    },
+    "validation": {
+        "opening_plus_deposits": 1038.68,
+        "minus_withdrawals": 408.95,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated balance (408.95) does not match closing balance (794.57). Service fees of -6.00 may need to be accounted for separately."
+        ]
+    }
+}

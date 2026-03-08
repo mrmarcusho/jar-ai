@@ -1,0 +1,193 @@
+{
+    "metadata": {
+        "source_file": "revolut_statement.pdf",
+        "statement_period": {
+            "start": "2023-08-01",
+            "end": "2024-03-20"
+        },
+        "bank_entity": {
+            "name": "Revolut Ltd",
+            "correspondence_address": {
+                "line1": "7 Westferry Circus, Canary Wharf",
+                "city": "London",
+                "state": "England",
+                "zip": "E14 4HD"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "7 Westferry Circus, Canary Wharf",
+                    "city": "London",
+                    "state": "England",
+                    "zip": "E14 4HD"
+                },
+                "website": "Revolut App",
+                "phone_number": "+44 20 3322 8352",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Fabiana Cordeiro",
+            "account_number": "78462193",
+            "account_type": "Account (E-Money)",
+            "address": {
+                "line1": "14 Two Mile Drive",
+                "city": "Slough",
+                "state": "",
+                "zip": "SL1 5UH"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.01,
+        "opening_balance_date": "2023-08-01",
+        "closing_balance": 1139.66,
+        "closing_balance_date": "2024-03-20",
+        "total_deposits_and_other_additions": 3059.97,
+        "total_withdrawals_and_other_subtractions": -1920.32,
+        "checks": 0,
+        "service_fees": -8.0,
+        "number_of_deposits": 6,
+        "number_of_withdrawals": 8
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-02-20",
+            "description_raw": "Apple Pay Top-Up by *8596",
+            "description_normalized": null,
+            "amount": 9.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-02-22",
+            "description_raw": "Payment from Fabiana De Souza Cordeiro",
+            "description_normalized": null,
+            "amount": 1000.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-02-27",
+            "description_raw": "Payment from Fabiana De Souza Cordeiro",
+            "description_normalized": null,
+            "amount": 1000.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-03-05",
+            "description_raw": "Payment from Fabiana De Souza Cordeiro",
+            "description_normalized": null,
+            "amount": 1000.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-03-20",
+            "description_raw": "Payment from Reis Pereira P S",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-02-20",
+            "description_raw": "Extra Revolut Card",
+            "description_normalized": null,
+            "amount": -4.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-02-20",
+            "description_raw": "Card Delivery Fee",
+            "description_normalized": null,
+            "amount": -4.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-02-26",
+            "description_raw": "To Assembleia De Deus - Ministerio Do Belem Ltd.",
+            "description_normalized": null,
+            "amount": -300.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-03-04",
+            "description_raw": "To FABIANA Cordeiro",
+            "description_normalized": null,
+            "amount": -1000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-03-05",
+            "description_raw": "Cash at Natwest Bank",
+            "description_normalized": null,
+            "amount": -302.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-03-07",
+            "description_raw": "Cash at Natwest Bank",
+            "description_normalized": null,
+            "amount": -306.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-03-19",
+            "description_raw": "Casco Supermarket",
+            "description_normalized": null,
+            "amount": -2.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 3059.97,
+        "bank_stated_total_withdrawals": -1920.32
+    },
+    "validation": {
+        "opening_plus_deposits": 3059.98,
+        "minus_withdrawals": 1139.66,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 5, expected 6",
+            "Withdrawal count mismatch: found 7, expected 8"
+        ]
+    }
+}

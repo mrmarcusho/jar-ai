@@ -1,0 +1,193 @@
+{
+    "metadata": {
+        "source_file": "citibank_statement.pdf",
+        "statement_period": {
+            "start": "2025-12-03",
+            "end": "2026-01-04"
+        },
+        "bank_entity": {
+            "name": "CITIBANK, N.A.",
+            "correspondence_address": {
+                "line1": "PO Box 6201",
+                "city": "Sioux Falls",
+                "state": "SD",
+                "zip": "57117-6201"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "100 Citibank Drive",
+                    "city": "San Antonio",
+                    "state": "TX",
+                    "zip": "78245-9966"
+                },
+                "website": "www.citi.com/offersforyou",
+                "phone_number": "888-248-4226",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "YANA KHACHATRYAN",
+            "account_number": "42047031663",
+            "account_type": "Regular Checking",
+            "address": {
+                "line1": "1637 N Kingsley Dr",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip": "90027-5011"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 1.42,
+        "opening_balance_date": "2025-12-03",
+        "closing_balance": 16.33,
+        "closing_balance_date": "2026-01-04",
+        "total_deposits_and_other_additions": 942.69,
+        "total_withdrawals_and_other_subtractions": -927.78,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 8
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-12-11",
+            "description_raw": "Zelle Credit PAY ID:BACko2cuwydd ORG ID:BAC NAME:HARUTYUN ALE",
+            "description_normalized": null,
+            "amount": 80.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-12-22",
+            "description_raw": "DEBIT CARD TRANSFER CREDIT CASH APP*YANA KHACHATRYOakland CAUS06248",
+            "description_normalized": null,
+            "amount": 6.66,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-12-12",
+            "description_raw": "Returned Insufficient Funds - ACH Txn",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-12-24",
+            "description_raw": "Returned Insufficient Funds - ACH Txn",
+            "description_normalized": null,
+            "amount": 641.81,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-12-29",
+            "description_raw": "Mobile Deposit",
+            "description_normalized": null,
+            "amount": 14.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-12-11",
+            "description_raw": "ACH Electronic Debit CAPITAL ONE ONLINE PMT CA0D6424C3D9465",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-12-15",
+            "description_raw": "Debit Card Purchase 12/11 10:06a #6977 WWW.SIMPLEPAYNOW.COM FAIRFAX VA 25346 Phones, Cable & Utilities",
+            "description_normalized": null,
+            "amount": -22.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-12-15",
+            "description_raw": "Debit Card Purchase 12/11 05:08a #6977 WWW.SIMPLEPAYNOW.COM FAIRFAX VA 25346 Phones, Cable & Utilities",
+            "description_normalized": null,
+            "amount": -22.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-12-15",
+            "description_raw": "Debit Card Purchase 12/11 05:25a #6977 CAPITAL ONE CARD PYMT RICHMOND VA 25346 Specialty Retail stores",
+            "description_normalized": null,
+            "amount": -25.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-12-23",
+            "description_raw": "Citibank Global Transfer 12/23 01:20a 0005262228403488717 251223CITIBANK MOBILE Padurariu Manuel",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-12-23",
+            "description_raw": "Debit Card Purchase 12/20 08:44a #6977 WWW.SIMPLEPAYNOW.COM FAIRFAX VA 25355 Phones, Cable & Utilities",
+            "description_normalized": null,
+            "amount": -12.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-12-23",
+            "description_raw": "ACH Electronic Debit CAPITAL ONE MOBILE PMT CA04C214B1E26E7",
+            "description_normalized": null,
+            "amount": -641.81,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 942.69,
+        "bank_stated_total_withdrawals": -927.78
+    },
+    "validation": {
+        "opening_plus_deposits": 944.11,
+        "minus_withdrawals": 16.33,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 5, expected 4",
+            "Withdrawal count mismatch: found 7, expected 8"
+        ]
+    }
+}

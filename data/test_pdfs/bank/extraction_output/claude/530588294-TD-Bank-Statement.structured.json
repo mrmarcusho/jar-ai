@@ -1,0 +1,283 @@
+{
+    "metadata": {
+        "source_file": "TD Bank Statement",
+        "statement_period": {
+            "start": "2021-07-01",
+            "end": "2021-07-31"
+        },
+        "bank_entity": {
+            "name": "TD Bank, N.A.",
+            "correspondence_address": {
+                "line1": "",
+                "city": "",
+                "state": "",
+                "zip": ""
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "www.tdbank.com",
+                "phone_number": "1-800-937-2000",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "JANE HESS",
+            "account_number": "008-182338743",
+            "account_type": "TD Personal Checking",
+            "address": {
+                "line1": "14 DUCOMMUN ST",
+                "city": "LOS ANGELES",
+                "state": "CA",
+                "zip": "90012"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 13679.61,
+        "opening_balance_date": "2021-07-01",
+        "closing_balance": 51176.35,
+        "closing_balance_date": "2021-07-31",
+        "total_deposits_and_other_additions": 47507.41,
+        "total_withdrawals_and_other_subtractions": -60525.54,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 8,
+        "number_of_withdrawals": 13
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2021-07-02",
+            "description_raw": "CHECK D, 59 CONTRACTORS",
+            "description_normalized": null,
+            "amount": 3750.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2021-07-05",
+            "description_raw": "CHECK ISION MEDIA INC",
+            "description_normalized": null,
+            "amount": 4500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2021-07-12",
+            "description_raw": "CHECK DE659 A D REAL ESTATE INVESTORS",
+            "description_normalized": null,
+            "amount": 4245.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2021-07-16",
+            "description_raw": "CHECK DEP25 JHACS ELECTRICAL",
+            "description_normalized": null,
+            "amount": 3800.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2021-07-20",
+            "description_raw": "CHECK DEPOSIT, 25208 VIDALES AND SONS",
+            "description_normalized": null,
+            "amount": 3758.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2021-07-23",
+            "description_raw": "DEPOSIT, COUNTER",
+            "description_normalized": null,
+            "amount": 3100.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2021-07-30",
+            "description_raw": "DEPOSIT, ATM",
+            "description_normalized": null,
+            "amount": 4022.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2021-07-31",
+            "description_raw": "DEPOSIT, ATM",
+            "description_normalized": null,
+            "amount": 2678.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2021-07-02",
+            "description_raw": "CCD DEPO 958216955889",
+            "description_normalized": null,
+            "amount": -3116.72,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2021-07-04",
+            "description_raw": "CCD DEPOSIT, TO MT 958216955889",
+            "description_normalized": null,
+            "amount": -2262.14,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2021-07-04",
+            "description_raw": "ACH DEPOSIT, QUICKBOO 479395622313",
+            "description_normalized": null,
+            "amount": -3408.35,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2021-07-06",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": -3393.51,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2021-07-07",
+            "description_raw": "ACH DEPOSIT, QUICKBOSIT 479395622313",
+            "description_normalized": null,
+            "amount": -1925.22,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2021-07-10",
+            "description_raw": "CCD DEPOSIT, TO MET SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": -3063.97,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2021-07-13",
+            "description_raw": "ACH DEPOSIT, QUICKBOOKS DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": -2650.05,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2021-07-15",
+            "description_raw": "ACH DEPOSIT, S DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": -1746.83,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2021-07-16",
+            "description_raw": "CCD DEPOSIT, VS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": -2318.74,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2021-07-20",
+            "description_raw": "ACH DEPOSIOKS DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": -3562.6,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2021-07-21",
+            "description_raw": "CCD DEPOSIT, TO MNT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": -3228.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2021-07-21",
+            "description_raw": "CCD DEPOSIT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": -3745.48,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2021-07-26",
+            "description_raw": "CCD DEPOSI SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": -3692.33,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 29853.39,
+        "bank_stated_total_withdrawals": -38109.2
+    },
+    "validation": {
+        "opening_plus_deposits": 43533.0,
+        "minus_withdrawals": 5423.8,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Closing balance calculation does not match",
+            "Total withdrawals calculation does not match bank statement"
+        ]
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "metadata": {
+        "source_file": "Wells Fargo Combined Statement of Accounts",
+        "statement_period": {
+            "start": "2020-03-01",
+            "end": "2020-03-31"
+        },
+        "bank_entity": {
+            "name": "Wells Fargo Bank, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 6995",
+                "city": "Portland",
+                "state": "OR",
+                "zip": "97228-6995"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 6995",
+                    "city": "Portland",
+                    "state": "OR",
+                    "zip": "97228-6995"
+                },
+                "website": "wellsfargo.com/biz",
+                "phone_number": "1-800-225-5935",
+                "En Espanol": "1-877-337-7454"
+            }
+        },
+        "account": {
+            "name": "MASON RYLANDER",
+            "account_number": "22115752221893484",
+            "account_type": "Wells Fargo Business Choice Checking",
+            "address": {
+                "line1": "17935 BANDERA RIDGE LN CYPRESS",
+                "city": "HOUSTON",
+                "state": "TX",
+                "zip": "77433-0004"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 3041.01,
+        "opening_balance_date": "2020-03-01",
+        "closing_balance": 5218.54,
+        "closing_balance_date": "2020-03-31",
+        "total_deposits_and_other_additions": 2177.53,
+        "total_withdrawals_and_other_subtractions": 0,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 0,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 2177.53,
+        "bank_stated_total_withdrawals": 0
+    },
+    "validation": {
+        "opening_plus_deposits": 5218.54,
+        "minus_withdrawals": 5218.54,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

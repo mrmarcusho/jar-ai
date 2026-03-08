@@ -1,0 +1,403 @@
+{
+    "metadata": {
+        "source_file": "truist_statement.pdf",
+        "statement_period": {
+            "start": "2022-07-06",
+            "end": "2022-08-04"
+        },
+        "bank_entity": {
+            "name": "Truist",
+            "correspondence_address": {
+                "line1": "",
+                "city": "",
+                "state": "",
+                "zip": ""
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "Truist.com",
+                "phone_number": "(844) 4TRUIST or (844) 487-8478",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "JAMES BARTLETT PARSONS",
+            "account_number": "139002224691",
+            "account_type": "BACK TO BASICS",
+            "address": {
+                "line1": "22436 PIN TAIL DR",
+                "city": "CANYON LAKE",
+                "state": "CA",
+                "zip": "92587-7582"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": -860.88,
+        "opening_balance_date": "2022-07-06",
+        "closing_balance": 503.34,
+        "closing_balance_date": "2022-08-04",
+        "total_deposits_and_other_additions": 12786.02,
+        "total_withdrawals_and_other_subtractions": -12620.07,
+        "checks": 0.0,
+        "service_fees": 0.0,
+        "number_of_deposits": 8,
+        "number_of_withdrawals": 29
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2022-07-07",
+            "description_raw": "PAYROLL  ONLY GOOD THINGS, LLC 9170 Parsons, James Bartlett",
+            "description_normalized": null,
+            "amount": 781.02,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2022-07-14",
+            "description_raw": "WD TIP JAR Earnin 5404 James Parsons",
+            "description_normalized": null,
+            "amount": 20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2022-07-14",
+            "description_raw": "PAYROLL  ONLY GOOD THINGS, LLC 9170 Parsons, James Bartlett",
+            "description_normalized": null,
+            "amount": 402.6,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2022-07-21",
+            "description_raw": "PAYROLL  ONLY GOOD THINGS, LLC 9170 Parsons, James Bartlett",
+            "description_normalized": null,
+            "amount": 783.12,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2022-07-26",
+            "description_raw": "DoorDash, DoorDash, Inc. JAMES PARSONS CUSTOMER ID STK-K2H9JTH9G8J0",
+            "description_normalized": null,
+            "amount": 20.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2022-07-28",
+            "description_raw": "PAYROLL  ONLY GOOD THINGS, LLC 9170 Parsons, James Bartlett",
+            "description_normalized": null,
+            "amount": 750.78,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2022-08-01",
+            "description_raw": "VISA MONEY TRANSFER CREDIT  07-29-22 LOS ANGELES CA 1678  DAVE INC",
+            "description_normalized": null,
+            "amount": 9500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2022-08-04",
+            "description_raw": "PAYROLL  ONLY GOOD THINGS, LLC  9170 Parsons, James Bartlett",
+            "description_normalized": null,
+            "amount": 527.77,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2022-07-07",
+            "description_raw": "INTERNET PAYMENT  TO TIP JAR Earnin 394902150",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2022-07-07",
+            "description_raw": "INTERNET PAYMENT  DEBIT    Dave, Inc",
+            "description_normalized": null,
+            "amount": -57.24,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2022-07-08",
+            "description_raw": "7018992101Q AutoPayPlus 4754 James Parsons",
+            "description_normalized": null,
+            "amount": -339.08,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2022-07-08",
+            "description_raw": "OVERDRAFT ITEM FEE($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -360.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2022-07-14",
+            "description_raw": "INTERNET PAYMENT  TO TIP JAR Earnin 394902150",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2022-07-14",
+            "description_raw": "OVERDRAFT ITEMFEE ($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -360.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2022-07-15",
+            "description_raw": "DEBIT CARD MISC DEBIT CASH APP*JAMES 07- 18 7885184428",
+            "description_normalized": null,
+            "amount": -558.17,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2022-07-15",
+            "description_raw": "OVERDRAFT ITEM FEE ($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -360.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2022-07-21",
+            "description_raw": "TRUIST APP TRANSFER TRANSFER TO  MONEY ACCOUNT 48736 31964380754  07-21-22",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2022-07-21",
+            "description_raw": "INTERNET PAYMENT  TO TIP JAR Earnin 394902150",
+            "description_normalized": null,
+            "amount": -1110.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2022-07-21",
+            "description_raw": "TRUIST APP TRANSFER TRANSFER TO  MONEY ACCOUNT 48736 31964380754 07 -21 -22",
+            "description_normalized": null,
+            "amount": -1998.31,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2022-07-22",
+            "description_raw": "7018992101Q  Auto PayPlus 4083 James Parsons",
+            "description_normalized": null,
+            "amount": -339.08,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2022-07-22",
+            "description_raw": "OVERDRAFT ITEM FEE ($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -360.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2022-07-25",
+            "description_raw": "DEBIT CARD PURCHASE HOME DEPOT 036314390S  07-25 CANYON LAKE, CA 92587",
+            "description_normalized": null,
+            "amount": -1705.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2022-07-25",
+            "description_raw": "OVERDRAFT ITEM FEE ($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -360.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2022-08-01",
+            "description_raw": "DEBIT CARD MISC DEBIT CASH APP*DHL 07-29  877417455T     CA  1678",
+            "description_normalized": null,
+            "amount": -220.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2022-08-01",
+            "description_raw": "DEBIT CARD NON-TRUIST ATM FEE 07-30=22 CANYON LAKE, CA 92587  1678 PNC BANK",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2022-08-01",
+            "description_raw": "ATM  NETWORK CASH WITHDRAWAL  07-30-22 CANYON LAKE, CA 92587  1678 PNC BANK",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2022-08-01",
+            "description_raw": "OVERDRAFT ITEM FEE ($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -360.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2022-08-01",
+            "description_raw": "DEBIT CARD PURCHASE KATHY'S TIRES 07-30  CANYON LAKE, CA 92587  1678",
+            "description_normalized": null,
+            "amount": -442.27,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2022-08-01",
+            "description_raw": "OVERDRAFT ITEM FEE ($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -36.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2022-08-01",
+            "description_raw": "DEBIT CARD PURCHASE CITI STAR 07-31 CANYON LAKE, CA 92587  1678",
+            "description_normalized": null,
+            "amount": -661.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2022-08-01",
+            "description_raw": "OVERDRAFT ITEM FEE ($360/ITEM)  360",
+            "description_normalized": null,
+            "amount": -36.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2022-08-04",
+            "description_raw": "DEBIT CARD PURCHASE 08-04-22  LOS ANGELES  CA 1678 DAVE INC",
+            "description_normalized": null,
+            "amount": -883.74,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2022-08-04",
+            "description_raw": "TRUIST APP TRANFER  TRANSFER TO MONEYACCOUNT  43933166825793777 08-04-22",
+            "description_normalized": null,
+            "amount": -1500.47,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 12786.02,
+        "bank_stated_total_withdrawals": -12620.07
+    },
+    "validation": {
+        "opening_plus_deposits": 11925.14,
+        "minus_withdrawals": -695.93,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated balance (-695.93) does not match closing balance (503.34)",
+            "Withdrawal count mismatch: found 25 transactions but statement shows 29"
+        ]
+    }
+}

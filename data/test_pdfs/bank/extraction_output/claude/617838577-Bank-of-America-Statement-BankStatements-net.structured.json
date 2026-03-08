@@ -1,0 +1,543 @@
+{
+    "metadata": {
+        "source_file": "Bank_of_America_Statement_December_13_2022.pdf",
+        "statement_period": {
+            "start": "2022-11-14",
+            "end": "2022-12-13"
+        },
+        "bank_entity": {
+            "name": "Bank Of America, N. A.",
+            "correspondence_address": {
+                "line1": "101 South Tryon Street",
+                "city": "Charlotte",
+                "state": "North Carolina",
+                "zip": "28255"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "Bank of America, P.O. Box 8488",
+                    "city": "Gray",
+                    "state": "Tennessee",
+                    "zip": "37615-8488"
+                },
+                "website": "www.bankofamerica.com/prepaidprivacynotice",
+                "phone_number": "833-896-7979",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "ALEX SIMPSON II",
+            "account_number": "**** **** **** 3997",
+            "account_type": "Bank of America Consumer Refunds and Payments",
+            "address": {
+                "line1": "1405 W MICHIGAN ST",
+                "city": "ORLANDO",
+                "state": "FL",
+                "zip": "32805-6123"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 5.53,
+        "opening_balance_date": "2022-11-14",
+        "closing_balance": -1.7,
+        "closing_balance_date": "2022-12-13",
+        "total_deposits_and_other_additions": 730.0,
+        "total_withdrawals_and_other_subtractions": -737.23,
+        "checks": 0,
+        "service_fees": 15.0,
+        "number_of_deposits": 8,
+        "number_of_withdrawals": 40
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2022-12-09",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2022-12-06",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2022-12-05",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2022-11-30",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2022-11-28",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2022-11-28",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2022-11-25",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 120.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2022-11-21",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2022-11-18",
+            "description_raw": "BIU - Orlando - 097 2364 W. Oak Ridge Rd Orlando, Florida 32809 United States Manual Card Reload",
+            "description_normalized": null,
+            "amount": 150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2022-12-11",
+            "description_raw": "GOODWILL S.OBT #1 ORLANDO, Florida 32809 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -10.77,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2022-12-11",
+            "description_raw": "CANTEEN VENDING ALTAMONTE SPR, Florida 32701 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -2.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2022-12-11",
+            "description_raw": "CANTEEN VENDING ALTAMONTE SPR, Florida 32701 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -2.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2022-12-10",
+            "description_raw": "WAWA 5138 WAWA 5138 ORLANDO, Florida 32809 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -1.13,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2022-12-09",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal Fee - Domestic",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2022-12-09",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -82.99,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2022-12-06",
+            "description_raw": "MURPHY7669ATWAL MURPHY7669ATWAL ORLANDO, Florida 32839 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -3.61,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2022-12-06",
+            "description_raw": "TD BANK TD BANK KISSIMMEE, Florida 34744 United States ATM Cash Withdrawal Fee - Domestic",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2022-12-06",
+            "description_raw": "TD BANK TD BANK KISSIMMEE, Florida 34744 United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -93.5,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2022-12-05",
+            "description_raw": "WAWA 5138 WAWA 5138 ORLANDO, Florida 32809 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -0.32,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2022-12-05",
+            "description_raw": "SHELL SERVICE S SHELL SERVICE S ORLANDO, Florida 32809 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -1.59,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2022-12-05",
+            "description_raw": "7-ELEVEN 7-ELEVEN WINTER PARK, Florida 32792-0000 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -3.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2022-12-05",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal Fee - Domestic",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2022-12-05",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -42.99,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2022-12-01",
+            "description_raw": "255PEPSIVEN9147678600 ORLANDO, Florida 32809 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -0.75,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2022-12-01",
+            "description_raw": "LYNX-MOBILE ORLANDO, Florida 32801 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -2.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2022-11-30",
+            "description_raw": "7-ELEVEN 7-ELEVEN ORLANDO, Florida 32839-0000 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -1.05,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2022-11-30",
+            "description_raw": "7-ELEVEN 7-ELEVEN ORLANDO, Florida 32809-0000 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -5.52,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2022-11-30",
+            "description_raw": "APPLE.COM/BILL 866-712-7753, California 95014 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -4.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2022-11-28",
+            "description_raw": "PNC BANK 8574 S ORNGE BLSM ORLANDO, Florida United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2022-11-28",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal Fee - Domestic",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2022-11-28",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -42.99,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2022-11-27",
+            "description_raw": "LYNX-MOBILE ORLANDO, Florida 32801 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2022-11-26",
+            "description_raw": "LYNX-MOBILE ORLANDO, Florida 32801 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -2.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2022-11-26",
+            "description_raw": "CANTEEN VENDING ALTAMONTE SPR, Florida 32701 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -2.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2022-11-26",
+            "description_raw": "WAWA 5105 WAWA 5105 ORLANDO, Florida 32809 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -2.11,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2022-11-25",
+            "description_raw": "CHEVRON 0301140 ORLANDO, Florida 32809 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -9.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2022-11-25",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal Fee - Domestic",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2022-11-25",
+            "description_raw": "ISPA/PIMDS PAI ISO ORLANDO, Florida 000000000 United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -102.99,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2022-11-21",
+            "description_raw": "PNC BANK 7030 S ORNGE BL TR ORLANDO, Florida United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2022-11-21",
+            "description_raw": "APPLE.COM/BILL 866-712-7753, California 95014 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -9.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2022-11-20",
+            "description_raw": "SERVICE FEE2*SCI-SCGOV EGOV.COM, South Carolina 29201 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -1.17,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2022-11-20",
+            "description_raw": "SCGOV 866-340-7105 DMV EGOV.COM, South Carolina 29016 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2022-11-19",
+            "description_raw": "APPLE.COM/BILL 866-712-7753, California 95014 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -19.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2022-11-18",
+            "description_raw": "7ELEVEN-FCTI 7309 S ORANGE BLOSS ORLANDO, Florida 32809-0000 United States ATM Cash Withdrawal Fee - Domestic",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2022-11-18",
+            "description_raw": "7ELEVEN-FCTI 7309 S ORANGE BLOSS ORLANDO, Florida 32809-0000 United States ATM Cash Withdrawal",
+            "description_normalized": null,
+            "amount": -103.5,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2022-11-14",
+            "description_raw": "APPLE.COM/BILL 866-712-7753, California 95014 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -1.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2022-11-14",
+            "description_raw": "APPLE.COM/BILL 866-712-7753, California 95014 United States Purchase of Goods or Services",
+            "description_normalized": null,
+            "amount": -2.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 730.0,
+        "bank_stated_total_withdrawals": -737.23
+    },
+    "validation": {
+        "opening_plus_deposits": 735.53,
+        "minus_withdrawals": -1.7,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 9 deposits, expected 8",
+            "Withdrawal count mismatch: found 38 withdrawals, expected 40"
+        ]
+    }
+}

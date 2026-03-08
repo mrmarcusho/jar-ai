@@ -1,0 +1,250 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2019-08-01",
+            "end": "2019-08-31"
+        },
+        "bank_entity": {
+            "name": "BancaMarch Public Company Limited",
+            "correspondence_address": {
+                "line1": "Avda. Alexandre Rossell\u00f3",
+                "city": "Palma de Mallorca",
+                "state": "Spain",
+                "zip": "07002"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "8 07002 Palma de Mallorca",
+                    "city": "Palma de Mallorca",
+                    "state": "Spain",
+                    "zip": "07002"
+                },
+                "website": "www.bancamarch.es",
+                "phone_number": "+34 901 111 000",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "PEINADO OLLERO",
+            "account_number": "49572 02738",
+            "account_type": "Regular Checking",
+            "address": {
+                "line1": "C/ Andaluc\u00eda 49",
+                "city": "Dal\u00edas, Almer\u00eda",
+                "state": "SP",
+                "zip": "04750"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 2637.0,
+        "opening_balance_date": "2019-08-01",
+        "closing_balance": 5204.66,
+        "closing_balance_date": "2019-08-31",
+        "total_deposits_and_other_additions": 7700.0,
+        "total_withdrawals_and_other_subtractions": -5132.34,
+        "checks": 0,
+        "service_fees": -5.0,
+        "number_of_deposits": 3,
+        "number_of_withdrawals": 15
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2019-08-11",
+            "description_raw": "Transfer from Mobile Banking app xanh mscollins",
+            "description_normalized": null,
+            "amount": 3400.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2019-08-20",
+            "description_raw": "Transfer from xx3602 Mobile Banking app",
+            "description_normalized": null,
+            "amount": 2000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2019-08-31",
+            "description_raw": "Transfer from xx4892 Mobile Banking app",
+            "description_normalized": null,
+            "amount": 2300.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2019-08-01",
+            "description_raw": "Direct Debit 157640 INSURANCE MOT584342370180212",
+            "description_normalized": null,
+            "amount": -263.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2019-08-03",
+            "description_raw": "app TFR to 0449866909 protein",
+            "description_normalized": null,
+            "amount": -79.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2019-08-04",
+            "description_raw": "Account Fee",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2019-08-06",
+            "description_raw": "Mr Yeung Card xx3695 Card xx3695 Value Date: 10/06/2018",
+            "description_normalized": null,
+            "amount": -152.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2019-08-06",
+            "description_raw": "WU TAO MONEY TFR MANCHESTER",
+            "description_normalized": null,
+            "amount": -562.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2019-08-09",
+            "description_raw": "Transfer to xx0328 Mobile Banking app",
+            "description_normalized": null,
+            "amount": -1200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2019-08-08",
+            "description_raw": "MYKI CHANG Tap and Pay xx3695 Value Date: 10/10/2018",
+            "description_normalized": null,
+            "amount": -258.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2019-08-11",
+            "description_raw": "7-ELEVEN Garden 48568 Tap and Pay xx3695 Value Date: 10/11/2018",
+            "description_normalized": null,
+            "amount": -12.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2019-08-15",
+            "description_raw": "7-ELEVEN Garden 48568 Tap and Pay xx3695 Value Date: 10/15/2018",
+            "description_normalized": null,
+            "amount": -25.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2019-08-15",
+            "description_raw": "COLES 0671 MATAHAN Tap and Pay xx3695 Value Date: 10/15/2018",
+            "description_normalized": null,
+            "amount": -145.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2019-08-20",
+            "description_raw": "WH SMITH MELB T4 Tap and Pay xx3695 Value Date: 10/20/2018",
+            "description_normalized": null,
+            "amount": -741.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2019-08-21",
+            "description_raw": "SUSHI CHICHIC BBQ Tap and Pay xx3695 Value Date: 10/21/2018",
+            "description_normalized": null,
+            "amount": -320.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2019-08-25",
+            "description_raw": "WOOLWORTHS 3906 Tap and Pay xx3695 Value Date: 10/25/2018",
+            "description_normalized": null,
+            "amount": -368.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2019-08-28",
+            "description_raw": "Transfer to xx0328 Mobile Banking app",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2019-08-29",
+            "description_raw": "Transfer to xx0328 Mobile Banking app",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 7700.0,
+        "bank_stated_total_withdrawals": -5132.34
+    },
+    "validation": {
+        "opening_plus_deposits": 10337.0,
+        "minus_withdrawals": 5204.66,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

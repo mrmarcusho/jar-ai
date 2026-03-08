@@ -1,0 +1,895 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2022-11-02",
+            "end": "2022-12-03"
+        },
+        "bank_entity": {
+            "name": "Bank of America",
+            "correspondence_address": {
+                "line1": "P.O. Box 49295",
+                "city": "New York",
+                "state": "NY",
+                "zip": "49295"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 49295",
+                    "city": "New York",
+                    "state": "NY",
+                    "zip": "10036"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.BUSINESS (1.800.432.1000)",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "MR ANTOINE ZUCCHET",
+            "account_number": "1 4264 7667",
+            "account_type": "Business Fundamentals Checking",
+            "address": {
+                "line1": "114 INDIA STREET #4ST",
+                "city": "NEW YORK",
+                "state": "NY",
+                "zip": "11222-5965"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 39.65,
+        "opening_balance_date": "2022-11-02",
+        "closing_balance": 814.14,
+        "closing_balance_date": "2021-02-28",
+        "total_deposits_and_other_additions": 24983.78,
+        "total_withdrawals_and_other_subtractions": -24139.29,
+        "checks": 0.0,
+        "service_fees": -70.0,
+        "number_of_deposits": 28,
+        "number_of_withdrawals": 43
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2021-02-01",
+            "description_raw": "Zelle Transfer Conf# 580341df4; WILLIAMS, MYKEL",
+            "description_normalized": null,
+            "amount": 300.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2021-02-01",
+            "description_raw": "Zelle Transfer Conf# 13fb912cc; WILLIAMS, MYKEL",
+            "description_normalized": null,
+            "amount": 150.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2021-02-01",
+            "description_raw": "1 01/31 #000284935 PMNT RCVD Cash App*Cash Out San Francisco CA",
+            "description_normalized": null,
+            "amount": 127.06,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2021-02-01",
+            "description_raw": "Zelle Transfer Conf# 59edc634e; WILLIAMS, MYKEL",
+            "description_normalized": null,
+            "amount": 120.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2021-02-01",
+            "description_raw": "1 02/01 #000315426 PMNT RCVD Cash App*Cash Out San Francisco CA",
+            "description_normalized": null,
+            "amount": 98.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2021-02-01",
+            "description_raw": "Zelle Transfer Conf# 2961317bc; WILLIAMS, MYKEL",
+            "description_normalized": null,
+            "amount": 40.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2021-02-01",
+            "description_raw": "1 02/01 #000389821 PMNT RCVD Cash App*Cash Out San Francisco CA",
+            "description_normalized": null,
+            "amount": 19.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2021-02-04",
+            "description_raw": "BKOFAMERICA ATM 02/04 #000003175 DEPOSIT EASTLAND INDEPENDENCE MO",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2021-02-05",
+            "description_raw": "BKOFAMERICA ATM 02/05 #000003384 DEPOSIT EASTLAND INDEPENDENCE MO",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2021-02-08",
+            "description_raw": "BKOFAMERICA ATM 02/05 #000007054 DEPOSIT WATKINS CROSSING KANSAS CITY MO",
+            "description_normalized": null,
+            "amount": 2000.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2021-02-08",
+            "description_raw": "Zelle Transfer Conf# 0ccd96946; WILLIAMS, MYKEL",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2021-02-09",
+            "description_raw": "BKOFAMERICA ATM 02/09 #000002722 DEPOSIT EASTLAND INDEPENDENCE MO",
+            "description_normalized": null,
+            "amount": 4950.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "2021-02-10",
+            "description_raw": "RETURN OF POSTED CHECK / ITEM (RECEIVED ON 02-09)",
+            "description_normalized": null,
+            "amount": 5000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "2021-02-10",
+            "description_raw": "BKOFAMERICA ATM 02/10 #000008144 DEPOSIT CLAIRBORNE OLATHE KS",
+            "description_normalized": null,
+            "amount": 2640.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "2021-02-12",
+            "description_raw": "Counter Credit",
+            "description_normalized": null,
+            "amount": 900.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "2021-02-12",
+            "description_raw": "BKOFAMERICA ATM 02/12 #000003561 DEPOSIT RAYTOWN SOUTH RAYTOWN MO",
+            "description_normalized": null,
+            "amount": 405.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "2021-02-18",
+            "description_raw": "BKOFAMERICA ATM 02/18 #000004623 DEPOSIT EASTLAND INDEPENDENCE MO",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "2021-02-22",
+            "description_raw": "BKOFAMERICA ATM 02/22 #000002502 DEPOSIT COLLEGE OVERLAND PARK KS",
+            "description_normalized": null,
+            "amount": 240.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_019",
+            "date": "2021-02-23",
+            "description_raw": "BKOFAMERICA ATM 02/23 #000006235 DEPOSIT EASTLAND INDEPENDENCE MO",
+            "description_normalized": null,
+            "amount": 3110.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_020",
+            "date": "2021-02-25",
+            "description_raw": "Counter Credit",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_021",
+            "date": "2021-02-25",
+            "description_raw": "1 02/25 #000380007 PMNT RCVD Cash App*Cash Out San Francisco CA",
+            "description_normalized": null,
+            "amount": 162.52,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_022",
+            "date": "2021-02-26",
+            "description_raw": "Counter Credit",
+            "description_normalized": null,
+            "amount": 2000.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_023",
+            "date": "2021-02-26",
+            "description_raw": "Zelle Transfer Conf# T09WYHB9G; ASHLEY SANCHEZ",
+            "description_normalized": null,
+            "amount": 499.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_024",
+            "date": "2021-02-26",
+            "description_raw": "MERCH BNKCD NSD DES:DEPOSIT ID:526219256884 INDN:KC UNLOCKING COMPANY ID:BXXXXXXXXX CCD CO",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "MERCH BNKCD NSD",
+                "ach_description": "DEPOSIT",
+                "ach_individual_name": "KC UNLOCKING COMPANY",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "526219256884",
+                "ach_secondary_co_id": ""
+            }
+        },
+        {
+            "id": "txn_025",
+            "date": "2021-02-26",
+            "description_raw": "1 02/26 #000321709 PMNT RCVD Cash App*Cash Out San Francisco CA",
+            "description_normalized": null,
+            "amount": 20.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_026",
+            "date": "2021-02-26",
+            "description_raw": "Zelle Transfer Conf# T09WYGVRV; ASHLEY SANCHEZ",
+            "description_normalized": null,
+            "amount": 1.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_027",
+            "date": "2021-02-26",
+            "description_raw": "TD AMERITRADE DES:ACH MICRO ID:aZ9PTQCFVS INDN:WILLIAMS MYKEL CO ID:4470533629 PPD",
+            "description_normalized": null,
+            "amount": 0.22,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "TD AMERITRADE",
+                "ach_description": "ACH MICRO",
+                "ach_individual_name": "WILLIAMS MYKEL",
+                "ach_entry_class": "PPD",
+                "ach_company_id": "aZ9PTQCFVS",
+                "ach_secondary_co_id": "4470533629"
+            }
+        },
+        {
+            "id": "txn_028",
+            "date": "2021-02-26",
+            "description_raw": "TD AMERITRADE DES:ACH MICRO ID:aZ9PTQCFVS INDN:WILLIAMS MYKEL CO ID:4470533629 PPD",
+            "description_normalized": null,
+            "amount": 0.1,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "TD AMERITRADE",
+                "ach_description": "ACH MICRO",
+                "ach_individual_name": "WILLIAMS MYKEL",
+                "ach_entry_class": "PPD",
+                "ach_company_id": "aZ9PTQCFVS",
+                "ach_secondary_co_id": "4470533629"
+            }
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2021-02-08",
+            "description_raw": "ROBINHOOD WEB DES:Funds ID:XXXXXXXXX INDN:Mykel Williams CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -2000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD WEB",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w02",
+            "date": "2021-02-08",
+            "description_raw": "ROBINHOOD WEB DES:Funds ID:XXXXXXXXX INDN:Mykel Williams CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD WEB",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w03",
+            "date": "2021-02-08",
+            "description_raw": "APPLECARD GSBANK DES:PAYMENT ID:8838921 INDN:Mykel Williams ID:9999999999 WEB CO",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "APPLECARD GSBANK",
+                "ach_description": "PAYMENT",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "WEB",
+                "ach_company_id": "8838921",
+                "ach_secondary_co_id": ""
+            }
+        },
+        {
+            "id": "txn_w04",
+            "date": "2021-02-09",
+            "description_raw": "ROBINHOOD WEB DES:Funds ID:XXXXXXXXX INDN:Mykel Williams CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -5000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD WEB",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w05",
+            "date": "2021-02-11",
+            "description_raw": "ROBINHOOD WEB DES:Funds ID:XXXXXXXXX INDN:Mykel Williams CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -2500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD WEB",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w06",
+            "date": "2021-02-12",
+            "description_raw": "ROBINHOOD WEB DES:Funds ID:XXXXXXXXX INDN:Mykel Williams CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -5000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD WEB",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w07",
+            "date": "2021-02-12",
+            "description_raw": "Direct Capital DES:EDI PYMNTS ID:DCC-1647719 INDN:KC Unlocking Company CO",
+            "description_normalized": null,
+            "amount": -866.76,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Direct Capital",
+                "ach_description": "EDI PYMNTS",
+                "ach_individual_name": "KC Unlocking Company",
+                "ach_entry_class": "",
+                "ach_company_id": "DCC-1647719",
+                "ach_secondary_co_id": ""
+            }
+        },
+        {
+            "id": "txn_w08",
+            "date": "2021-02-24",
+            "description_raw": "ROBINHOOD DES:Funds ID:XXXXXXXXX INDN:Mykel Williams WEB CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -3000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "WEB",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w09",
+            "date": "2021-02-25",
+            "description_raw": "Direct Capital DES:EDI PYMNTS ID:DCC-1649470 INDN:KC Unlocking Company CO ID:1020468001 CCD",
+            "description_normalized": null,
+            "amount": -573.06,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Direct Capital",
+                "ach_description": "EDI PYMNTS",
+                "ach_individual_name": "KC Unlocking Company",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "DCC-1649470",
+                "ach_secondary_co_id": "1020468001"
+            }
+        },
+        {
+            "id": "txn_w10",
+            "date": "2021-02-26",
+            "description_raw": "ROBINHOOD WEB DES:Funds ID:XXXXXXXXX INDN:Mykel Williams CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -1000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD WEB",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w11",
+            "date": "2021-02-26",
+            "description_raw": "ROBINHOOD WEB DES:Funds ID:XXXXXXXXX INDN:Mykel Williams CO ID:1464364776",
+            "description_normalized": null,
+            "amount": -1000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "ROBINHOOD WEB",
+                "ach_description": "Funds",
+                "ach_individual_name": "Mykel Williams",
+                "ach_entry_class": "",
+                "ach_company_id": "XXXXXXXXX",
+                "ach_secondary_co_id": "1464364776"
+            }
+        },
+        {
+            "id": "txn_w12",
+            "date": "2021-02-01",
+            "description_raw": "PMNT SENT 0130 CASH APP*Y KEL*AD 4153753176 CA 55429501030855986880545 CKCD 4829 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -120.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2021-02-01",
+            "description_raw": "CHECKCARD 0131 AUTOCODE NY. 718-404-9691 NY 55432861031200546957677 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -35.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2021-02-01",
+            "description_raw": "CHECKCARD 0201 AUTOCODE NY. 718-404-9691 NY 55432861032200776862794 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -48.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2021-02-02",
+            "description_raw": "CHECKCARD 0202 SUMMIT MEDIA SOLU 8166285492 MO 55546501033206750400174 CKCD 7311 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -320.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2021-02-02",
+            "description_raw": "CHECKCARD 0201 UHS HARDWARE INC HOLLYWOOD FL 85101591032980010232363 CKCD 5072 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -337.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2021-02-03",
+            "description_raw": "CHECKCARD 0203 AUTOCODE NY. 718-404-9691 NY 55432861034200344993392 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -27.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2021-02-04",
+            "description_raw": "CHECKCARD 0204 FACEBK 6WLR23B2S2 Menlo Park CA 15270211035000109967342 RECURRING CKCD 7311 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -232.66,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2021-02-04",
+            "description_raw": "CHECKCARD 0204 QT 208 OUTSIDE LEE'S SUMMIT MO CKCD 5542 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -30.91,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2021-02-05",
+            "description_raw": "CHECKCARD 0204 DISCOUNT KEY CODE LAS VEGAS NV 85506471035980000588942 CKCD 7399 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -45.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2021-02-08",
+            "description_raw": "CHECKCARD 0206 STRAIGHTTALK*SERV 877-430-2355 FL 55432861037200213303571 RECURRING CKCD 4814 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -38.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2021-02-08",
+            "description_raw": "PMNT SENT 0205 CASH APP* 4153753176 CA 55429501036855973703563 CKCD 4829 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -180.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2021-02-08",
+            "description_raw": "CHECKCARD 0207 THEPARKINGSPOT-EC 3124531700 MO 55309591038083734443155 CKCD 7523 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -45.73,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2021-02-16",
+            "description_raw": "PMNT SENT 0212 CASH APP*Y KEL*AD 4153753176 CA 55429501043855979992708 CKCD 4829 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2021-02-16",
+            "description_raw": "CHECKCARD 0213 SYNCB PAYMENT 8005419049 GA 55548071044898431523769 CKCD 6012 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -111.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2021-02-16",
+            "description_raw": "CHECKCARD 0213 TACOS EL GUERO LL KANSAS CITY KS 75306371045036800082900 CKCD 5812 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -8.08,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2021-02-16",
+            "description_raw": "CHECKCARD 0214 AUTOCODE NY. 718-404-9691 NY 55432861045200236543021 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -35.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2021-02-16",
+            "description_raw": "CHECKCARD 0214 BLUE RIDGE BANK INDEPENDENCE MO 85140541045900010341421 CKCD 6012 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -152.21,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2021-02-17",
+            "description_raw": "CHECKCARD 0216 DISCOUNT KEY CODE LAS VEGAS NV 85506471047980000588989 CKCD 7399 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -45.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2021-02-17",
+            "description_raw": "CHECKCARD 0217 AUTOCODE NY. 718-404-9691 NY 55432861048200960918347 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -35.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2021-02-19",
+            "description_raw": "CHECKCARD 0219 AUTOCODE NY. 718-404-9691 NY 55432861050200463159576 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -48.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2021-02-19",
+            "description_raw": "CHECKCARD 0219 AUTOCODE NY. 718-404-9691 NY 55432861050200463159618 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -48.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2021-02-22",
+            "description_raw": "CHECKCARD 0220 TIME PAYMENT CORP 7819944800 MA 55488721051206754701420 CKCD 7394 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -224.49,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2021-02-22",
+            "description_raw": "CHECKCARD 0222 QT 224 OUTSIDE KANSAS CITY MO CKCD 5542 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -31.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2021-02-22",
+            "description_raw": "PRICE CHOPPER 02/22 #000540110 PURCHASE 937 NE WOODS CHAP LEE'S SUMMIT MO",
+            "description_normalized": null,
+            "amount": -6.88,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2021-02-23",
+            "description_raw": "CHECKCARD 0223 AUTOCODE NY. 718-404-9691 NY 55432861054200468962889 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -48.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2021-02-23",
+            "description_raw": "CHECKCARD 0222 UHS HARDWARE INC HOLLYWOOD FL 85101591053980010232334 CKCD 5072 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -185.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2021-02-23",
+            "description_raw": "CHECKCARD 0222 BHM CAR WASH LLC LEES SUMMIT MO 85456671053900012343484 CKCD 7542 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -5.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2021-02-24",
+            "description_raw": "CHECKCARD 0223 UHS HARDWARE INC HOLLYWOOD FL 85101591054980010232382 CKCD 5072 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -117.81,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2021-02-24",
+            "description_raw": "CHECKCARD 0223 UHS HARDWARE INC HOLLYWOOD FL 85101591054980010232382 CKCD 5072 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -39.49,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2021-02-25",
+            "description_raw": "CHECKCARD 0225 AUTOCODE NY. 718-404-9691 NY 55432861056200004165961 CKCD 8999 XXXXXXXXXXXX6916 XXXX XXXX XXXX 6916",
+            "description_normalized": null,
+            "amount": -18.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2021-02-08",
+            "description_raw": "OVERDRAFT ITEM FEE FOR ACTIVITY OF 02-08",
+            "description_normalized": null,
+            "amount": -35.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2021-02-09",
+            "description_raw": "NSF: RETURNED ITEM FEE FOR ACTIVITY OF 02-09",
+            "description_normalized": null,
+            "amount": -35.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 24983.78,
+        "bank_stated_total_withdrawals": -24139.29
+    },
+    "validation": {
+        "opening_plus_deposits": 25023.43,
+        "minus_withdrawals": 884.14,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Closing balance date appears incorrect (2021-02-28 vs expected 2022-12-03)",
+            "Final balance calculation does not match closing balance"
+        ]
+    }
+}

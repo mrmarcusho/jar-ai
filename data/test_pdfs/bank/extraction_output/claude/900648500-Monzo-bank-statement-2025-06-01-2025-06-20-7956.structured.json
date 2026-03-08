@@ -1,0 +1,672 @@
+{
+    "metadata": {
+        "source_file": "monzo_statement.pdf",
+        "statement_period": {
+            "start": "2025-06-01",
+            "end": "2025-06-20"
+        },
+        "bank_entity": {
+            "name": "Monzo Bank Limited",
+            "correspondence_address": {
+                "line1": "Broadwalk House, 5 Appold Street",
+                "city": "London",
+                "state": "",
+                "zip": "EC2A 2AG"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "Broadwalk House, 5 Appold Street",
+                    "city": "London",
+                    "state": "",
+                    "zip": "EC2A 2AG"
+                },
+                "website": "https://monzo.com",
+                "phone_number": "",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Mohamed Abdi Abdullahi",
+            "account_number": "68187156",
+            "account_type": "Personal Account",
+            "address": {
+                "line1": "35 Midhurst Gardens",
+                "city": "Uxbridge",
+                "state": "",
+                "zip": "UB10 9DL"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 2219.01,
+        "opening_balance_date": "2025-06-01",
+        "closing_balance": 1540.93,
+        "closing_balance_date": "2025-06-20",
+        "total_deposits_and_other_additions": 704.5,
+        "total_withdrawals_and_other_subtractions": -1402.58,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 56
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-06-12",
+            "description_raw": "ALI HASSAN (Faster Payments) Reference: karar",
+            "description_normalized": null,
+            "amount": 450.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-06-09",
+            "description_raw": "ALI HASSAN (Faster Payments) Reference: karar",
+            "description_normalized": null,
+            "amount": 80.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-06-01",
+            "description_raw": "ABSHIR MOHAMED AHMED (Faster Payments) Reference: karar",
+            "description_normalized": null,
+            "amount": 80.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-06-01",
+            "description_raw": "ALI HASSAN (Faster Payments) Reference: karar",
+            "description_normalized": null,
+            "amount": 80.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-06-19",
+            "description_raw": "AMAZON.CO.UK LONDON GBR",
+            "description_normalized": null,
+            "amount": -64.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-06-19",
+            "description_raw": "SMART RETAIL SHOP AND LONDON GBR",
+            "description_normalized": null,
+            "amount": -0.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-06-19",
+            "description_raw": "Sahar Food Centre London GBR",
+            "description_normalized": null,
+            "amount": -4.13,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-06-19",
+            "description_raw": "WINSTAAR FOOD & WINE WEMBLEY GBR",
+            "description_normalized": null,
+            "amount": -2.44,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-06-18",
+            "description_raw": "NORTH HILLINGDON POST UXBRIDGE GBR",
+            "description_normalized": null,
+            "amount": -0.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-06-18",
+            "description_raw": "NORTH HILLINGDON POST UXBRIDGE GBR",
+            "description_normalized": null,
+            "amount": -1.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-06-17",
+            "description_raw": "TESCO STORES 5646 HARLESDEN GBR",
+            "description_normalized": null,
+            "amount": -3.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-06-17",
+            "description_raw": "FURNESS STORES LONDON GBR",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-06-16",
+            "description_raw": "PPOINT_*PREMIER CON ST WEMBLEY GBR",
+            "description_normalized": null,
+            "amount": -5.43,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-06-16",
+            "description_raw": "LUL TICKET MACHINE GBR",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-06-15",
+            "description_raw": "Sahar Food Centre London GBR",
+            "description_normalized": null,
+            "amount": -0.79,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-06-15",
+            "description_raw": "Fruitz Bar Wembley GBR",
+            "description_normalized": null,
+            "amount": -5.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-06-14",
+            "description_raw": "HARLESDEN CONVENIENCE LONDON GBR",
+            "description_normalized": null,
+            "amount": -1.85,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-06-13",
+            "description_raw": "Chicken corner Uxbridge GBR",
+            "description_normalized": null,
+            "amount": -4.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-06-13",
+            "description_raw": "H3G (Direct Debit) Reference: 113233649200100004",
+            "description_normalized": null,
+            "amount": -28.99,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-06-12",
+            "description_raw": "HARLESDEN 5 HARLESDEN GBR",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2025-06-12",
+            "description_raw": "HARLESDEN 5 HARLESDEN GBR",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-06-12",
+            "description_raw": "FURQAAN MINI MARKET LONDON GBR",
+            "description_normalized": null,
+            "amount": -1.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2025-06-12",
+            "description_raw": "ZAITOON SUPERMARKET London GBR",
+            "description_normalized": null,
+            "amount": -2.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2025-06-12",
+            "description_raw": "SUPER SAVE LONDON GBR",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2025-06-12",
+            "description_raw": "SAFARI RESTAURANT LONDON GBR",
+            "description_normalized": null,
+            "amount": -4.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2025-06-12",
+            "description_raw": "LUL TICKET MACHINE GBR",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2025-06-12",
+            "description_raw": "LUL TICKET MACHINE GBR",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2025-06-12",
+            "description_raw": "NORTH HILLINGDON POST UXBRIDGE GBR",
+            "description_normalized": null,
+            "amount": -3.28,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2025-06-10",
+            "description_raw": "Furqan Sweets London GBR",
+            "description_normalized": null,
+            "amount": -22.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2025-06-10",
+            "description_raw": "Mohamed M Moallim (Faster Payments) Reference: Mohamed M Moallim",
+            "description_normalized": null,
+            "amount": -81.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2025-06-10",
+            "description_raw": "NUT BOX LONDON GBR",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2025-06-10",
+            "description_raw": "NORTH HILLINGDON POST UXBRIDGE GBR",
+            "description_normalized": null,
+            "amount": -1.75,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2025-06-09",
+            "description_raw": "SANKA CAFETERIA LONDON GBR",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2025-06-09",
+            "description_raw": "Mohamed M Moallim (Faster Payments) Reference: Mohamed M Moallim",
+            "description_normalized": null,
+            "amount": -80.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2025-06-09",
+            "description_raw": "TK MAXX LONDON GBR",
+            "description_normalized": null,
+            "amount": -34.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2025-06-09",
+            "description_raw": "NORTH HILLINGDON POST UXBRIDGE GBR",
+            "description_normalized": null,
+            "amount": -1.75,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2025-06-08",
+            "description_raw": "LUL TICKET MACHINE WEM BLEYPRK GBR",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2025-06-08",
+            "description_raw": "NUT BOX LONDON GBR",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2025-06-06",
+            "description_raw": "Adnan Miakhail (Faster Payments) Reference: Adnan Miakhail",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2025-06-05",
+            "description_raw": "LUL TICKET MACHINE WEM BLEYPRK GBR",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2025-06-05",
+            "description_raw": "Fruitz Bar Wembley GBR",
+            "description_normalized": null,
+            "amount": -5.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2025-06-04",
+            "description_raw": "Osman Mohamed (Faster Payments) Reference: Osman Mohamed",
+            "description_normalized": null,
+            "amount": -22.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2025-06-04",
+            "description_raw": "NUT BOX LONDON GBR",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2025-06-04",
+            "description_raw": "Sahar Food Centre London GBR",
+            "description_normalized": null,
+            "amount": -3.93,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2025-06-04",
+            "description_raw": "VODAFONE LTD (Direct Debit) Reference: 7085802508-1001",
+            "description_normalized": null,
+            "amount": -68.33,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2025-06-03",
+            "description_raw": "Fruitz Bar Wembley GBR",
+            "description_normalized": null,
+            "amount": -11.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2025-06-03",
+            "description_raw": "Price Busters London GBR",
+            "description_normalized": null,
+            "amount": -4.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w44",
+            "date": "2025-06-03",
+            "description_raw": "eBay O*11-13155-83579 San Jose USA Amount: USD -73.96. Conversion rate: 1.344972.",
+            "description_normalized": null,
+            "amount": -54.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w45",
+            "date": "2025-06-03",
+            "description_raw": "eBay O*18-13146-83721 LONDON GBR",
+            "description_normalized": null,
+            "amount": -8.46,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w46",
+            "date": "2025-06-03",
+            "description_raw": "COSTA COFFEE HILLINGDO HILLINGDON GBR",
+            "description_normalized": null,
+            "amount": -4.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w47",
+            "date": "2025-06-03",
+            "description_raw": "COSTA COFFEE HILLINGDO HILLINGDON GBR",
+            "description_normalized": null,
+            "amount": -4.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w48",
+            "date": "2025-06-03",
+            "description_raw": "Mohamed M Moallim (Faster Payments)",
+            "description_normalized": null,
+            "amount": -58.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w49",
+            "date": "2025-06-02",
+            "description_raw": "REAL REMIT LIMITED Milton Keynes GBR",
+            "description_normalized": null,
+            "amount": -19.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w50",
+            "date": "2025-06-02",
+            "description_raw": "Mohamed Hassan (Bank Transfer) Reference: Mohamed Hassan",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w51",
+            "date": "2025-06-02",
+            "description_raw": "Fruitz Bar Wembley GBR",
+            "description_normalized": null,
+            "amount": -11.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w52",
+            "date": "2025-06-02",
+            "description_raw": "FRESH TRIM BARBERS LONDON GBR",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w53",
+            "date": "2025-06-01",
+            "description_raw": "THE INDIAN SPICE RUISLIP GBR",
+            "description_normalized": null,
+            "amount": -3.84,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w54",
+            "date": "2025-06-01",
+            "description_raw": "Mohamed ABDI ABDULLAHI (Faster Payments) Reference: Mohamed ABDI ABDUL",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w55",
+            "date": "2025-06-01",
+            "description_raw": "Mohamed Hassan (Bank Transfer) Reference: Mohamed Hassan",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w56",
+            "date": "2025-06-01",
+            "description_raw": "Ayan Shirwac (Faster Payments)",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 704.5,
+        "bank_stated_total_withdrawals": -1402.58
+    },
+    "validation": {
+        "opening_plus_deposits": 2923.51,
+        "minus_withdrawals": 1520.93,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated closing balance (1520.93) does not match stated closing balance (1540.93)"
+        ]
+    }
+}

@@ -1,0 +1,110 @@
+{
+    "metadata": {
+        "source_file": "chase_bank_statement.pdf",
+        "statement_period": {
+            "start": "2016-03-01",
+            "end": "2016-05-30"
+        },
+        "bank_entity": {
+            "name": "JPMorgan Chase Bank, N.A.",
+            "correspondence_address": {
+                "line1": "PO Box 659754",
+                "city": "San Antonio",
+                "state": "TX",
+                "zip": "78265-9754"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "PO Box 659754",
+                    "city": "San Antonio",
+                    "state": "TX",
+                    "zip": "78265-9754"
+                },
+                "website": "chase.com",
+                "phone_number": "1-800-242-7338",
+                "En Espanol": "1-888-622-4273"
+            }
+        },
+        "account": {
+            "name": "HUSTLIN 4 A LIVIN ENT, INC.",
+            "account_number": "000000593037148",
+            "account_type": "Chase Business Select Checking",
+            "address": {
+                "line1": "2124 N. CARROLL AVE SUITE 9",
+                "city": "DALLAS",
+                "state": "TX",
+                "zip": "75204"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 15050.8,
+        "opening_balance_date": "2016-03-01",
+        "closing_balance": 14824.76,
+        "closing_balance_date": "2016-05-30",
+        "total_deposits_and_other_additions": 130.0,
+        "total_withdrawals_and_other_subtractions": -356.04,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 2,
+        "number_of_withdrawals": 2
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2016-09-15",
+            "description_raw": "ATM Check Deposit",
+            "description_normalized": null,
+            "amount": 125.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2016-09-15",
+            "description_raw": "ATM Cash Deposit",
+            "description_normalized": null,
+            "amount": 5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2016-09-30",
+            "description_raw": "Qwest 8002441111 Telephone 2063864199818 CCID ID : 9Qc0273801",
+            "description_normalized": null,
+            "amount": -249.96,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2016-09-30",
+            "description_raw": "Qwest 8002441111 Telephone 2063654528111 CCID ID : 9Qc0273801",
+            "description_normalized": null,
+            "amount": -106.08,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 130.0,
+        "bank_stated_total_withdrawals": -356.04
+    },
+    "validation": {
+        "opening_plus_deposits": 15180.8,
+        "minus_withdrawals": 14824.76,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

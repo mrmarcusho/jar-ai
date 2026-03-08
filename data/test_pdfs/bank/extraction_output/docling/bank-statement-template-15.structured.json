@@ -1,0 +1,110 @@
+{
+    "metadata": {
+        "source_file": "bank-statement-template-15.pdf",
+        "statement_period": {
+            "start": null,
+            "end": null
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.888.7937",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": null,
+            "account_number": null,
+            "account_type": null,
+            "address": null
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.0,
+        "opening_balance_date": null,
+        "closing_balance": 0.0,
+        "closing_balance_date": null,
+        "total_deposits_and_other_additions": 0.0,
+        "total_withdrawals_and_other_subtractions": 0.0,
+        "checks": 0.0,
+        "service_fees": 0.0,
+        "number_of_deposits": 2,
+        "number_of_withdrawals": 2
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "",
+            "description_raw": "7/31 Z70-666580-1 Trans. from account 222-222222",
+            "description_normalized": null,
+            "amount": 39508.64,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "7/31",
+            "description_raw": "ENSTAR GROUP LIMITED COM STK USD 1.00 Z70-666580-1 ESGR Trans. from account 222-222222 100.000 $102.960",
+            "description_normalized": null,
+            "amount": 10296.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "",
+            "description_raw": "7/31 ENSTAR GROUP LIMITED COM STK USD 1.00 ESGR Trans. to account 222-222222",
+            "description_normalized": null,
+            "amount": -5000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "",
+            "description_raw": "Total Securities Transferred Out",
+            "description_normalized": null,
+            "amount": -5000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 0.0,
+        "bank_stated_total_withdrawals": 0.0
+    },
+    "validation": {
+        "opening_plus_deposits": 0.0,
+        "minus_withdrawals": 0.0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": false,
+        "check_total_matches": true,
+        "errors": [
+            "Deposit total mismatch: computed 49804.64, bank stated 0.0",
+            "Withdrawal total mismatch: computed -10000.0, bank stated 0.0"
+        ]
+    },
+    "checks": []
+}

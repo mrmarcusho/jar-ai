@@ -1,0 +1,263 @@
+{
+    "metadata": {
+        "source_file": "barclays_statement.pdf",
+        "statement_period": {
+            "start": "2024-12-15",
+            "end": "2024-12-16"
+        },
+        "bank_entity": {
+            "name": "Barclays Bank PLC",
+            "correspondence_address": {
+                "line1": "Leicester",
+                "city": "Leicester",
+                "state": "",
+                "zip": "LE87 2BB"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "Leicester",
+                    "city": "Leicester",
+                    "state": "",
+                    "zip": "LE87 2BB"
+                },
+                "website": "barclays.co.uk/premier banking",
+                "phone_number": "0800 111 777",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "KASEDEEN MOHAMED SIRAJ",
+            "account_number": "113425413",
+            "account_type": "Premier Bank Account",
+            "address": {
+                "line1": "132 ABBOTSBURY ROAD",
+                "city": "MORDEN",
+                "state": "",
+                "zip": "SM4 5JX"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 5339.6,
+        "opening_balance_date": "2024-12-15",
+        "closing_balance": 4853.72,
+        "closing_balance_date": "2024-12-16",
+        "total_deposits_and_other_additions": 9986.88,
+        "total_withdrawals_and_other_subtractions": -9472.76,
+        "checks": 0,
+        "service_fees": -36.0,
+        "number_of_deposits": 7,
+        "number_of_withdrawals": 11
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-12-15",
+            "description_raw": "Received From 773002 74836560 Ref. E.S. Jayantha",
+            "description_normalized": null,
+            "amount": 1150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-12-15",
+            "description_raw": "Account Credit: Deposit at Barclays Sutton 47",
+            "description_normalized": null,
+            "amount": 3000.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-12-15",
+            "description_raw": "Account Credit: Deposit at Barclays 46 Sutton Survey",
+            "description_normalized": null,
+            "amount": 300.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-12-15",
+            "description_raw": "Receipt: 420kehampton",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-12-15",
+            "description_raw": "Received: Pip & Int Refund REF: BBP Tate Camden Advice",
+            "description_normalized": null,
+            "amount": 2084.88,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2024-12-16",
+            "description_raw": "Account Credit: Deposit at Barclays Sutton 47",
+            "description_normalized": null,
+            "amount": 350.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2024-12-16",
+            "description_raw": "STO Received From MO SE S T/As SW Ref. Wages",
+            "description_normalized": null,
+            "amount": 1500.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-12-15",
+            "description_raw": "Payment to S Balasingham Ref: Soori",
+            "description_normalized": null,
+            "amount": -5000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-12-15",
+            "description_raw": "Direct Debit to H3G Ref: 952432527201160218",
+            "description_normalized": null,
+            "amount": -34.26,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-12-15",
+            "description_raw": "Direct Debit to NatWest Mage Paytm Ref. 0018153984",
+            "description_normalized": null,
+            "amount": -866.16,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-12-15",
+            "description_raw": "Travel Pack Fee Service Charge 1 Item(s) at \u00a310.50",
+            "description_normalized": null,
+            "amount": -10.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-12-15",
+            "description_raw": "Travel Pack Fee Service Charge 1 Item(s) at \u00a310.50",
+            "description_normalized": null,
+            "amount": -12.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-12-15",
+            "description_raw": "Feature Store Multiple Discount",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-12-15",
+            "description_raw": "Blue Rewards Fee",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2024-12-16",
+            "description_raw": "Direct Debit to LBs Number 2 Ac Ref: 0047503500",
+            "description_normalized": null,
+            "amount": -62.24,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2024-12-16",
+            "description_raw": "Payment to S Balasingham Ref. E.S. Jayantha",
+            "description_normalized": null,
+            "amount": -3000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2024-12-16",
+            "description_raw": "Direct Debit to Barclays Insurance Ref: Mph80427283111E001",
+            "description_normalized": null,
+            "amount": -12.17,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2024-12-16",
+            "description_raw": "Direct Debit to Aviva Life Ref: 4035365EN",
+            "description_normalized": null,
+            "amount": -12.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2024-12-16",
+            "description_raw": "Direct Debit to Barclays UK Mages Ref: 9622485521",
+            "description_normalized": null,
+            "amount": -459.93,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 9986.88,
+        "bank_stated_total_withdrawals": -9472.76
+    },
+    "validation": {
+        "opening_plus_deposits": 15326.48,
+        "minus_withdrawals": 5853.72,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated balance (5853.72) does not match closing balance (4853.72)",
+            "Withdrawal count mismatch: found 12 transactions but expected 11"
+        ]
+    }
+}

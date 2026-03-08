@@ -1,0 +1,443 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2020-12-02",
+            "end": "2020-01-02"
+        },
+        "bank_entity": {
+            "name": "Citizens Bank Limited",
+            "correspondence_address": {
+                "line1": "1 Quantum Street",
+                "city": "Stellenbosch",
+                "state": "",
+                "zip": "7600"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "",
+                "phone_number": "",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "LINDA BARBER",
+            "account_number": "4022984928",
+            "account_type": "Savings Account",
+            "address": {
+                "line1": "19 SOUTH STREET APT 3",
+                "city": "BELLOWS FALL",
+                "state": "VERMONT",
+                "zip": ""
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 17.74,
+        "opening_balance_date": "2020-12-02",
+        "closing_balance": 453.61,
+        "closing_balance_date": "2020-01-02",
+        "total_deposits_and_other_additions": 5251.49,
+        "total_withdrawals_and_other_subtractions": -4815.62,
+        "checks": 0,
+        "service_fees": -50.47,
+        "number_of_deposits": 12,
+        "number_of_withdrawals": 25
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2020-02-31",
+            "description_raw": "Banking App Payment Received A Pieterse",
+            "description_normalized": null,
+            "amount": 1000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2020-02-31",
+            "description_raw": "Interest Received",
+            "description_normalized": null,
+            "amount": 1.49,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2020-09-01",
+            "description_raw": "Banking App Payment Received A Pieterse",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2020-09-01",
+            "description_raw": "Banking App Payment Received A Pieterse",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2020-09-01",
+            "description_raw": "Banking App Payment Received A Pieterse",
+            "description_normalized": null,
+            "amount": 1000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2020-09-01",
+            "description_raw": "Banking App Payment Received A Pieterse",
+            "description_normalized": null,
+            "amount": 400.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2020-09-01",
+            "description_raw": "Banking App Payment Received A Pieterse",
+            "description_normalized": null,
+            "amount": 100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2020-09-02",
+            "description_raw": "Banking App Payment Received A Pieterse",
+            "description_normalized": null,
+            "amount": 1600.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2020-09-04",
+            "description_raw": "Banking App Payment Received J Bronn",
+            "description_normalized": null,
+            "amount": 150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2020-09-05",
+            "description_raw": "Payment Received: Absa Bank Deon Transfer 1319444263",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2020-02-19",
+            "description_raw": "Correction: Cash Withdrawal Cpc",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2020-02-19",
+            "description_raw": "Correction: ATM Cash Withdrawal Fee",
+            "description_normalized": null,
+            "amount": -6.56,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2020-02-31",
+            "description_raw": "Banking App Payment Luno",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2020-02-31",
+            "description_raw": "Banking App Payment Fee",
+            "description_normalized": null,
+            "amount": -1.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2020-02-31",
+            "description_raw": "ATM Balance Enquiry Fee",
+            "description_normalized": null,
+            "amount": -5.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2020-02-31",
+            "description_raw": "ATM Cash Withdrawal Spar Panorama (Card 1551)",
+            "description_normalized": null,
+            "amount": -1000.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2020-02-31",
+            "description_raw": "Cash Withdrawal Fee (ATM)",
+            "description_normalized": null,
+            "amount": -8.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2020-02-31",
+            "description_raw": "SMS Notification Fee",
+            "description_normalized": null,
+            "amount": -0.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2020-02-31",
+            "description_raw": "Monthly Account Admin Fee",
+            "description_normalized": null,
+            "amount": -5.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2020-09-01",
+            "description_raw": "ATM Cash Withdrawal Spar Panorama (Card 1551)",
+            "description_normalized": null,
+            "amount": -190.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2020-09-01",
+            "description_raw": "Cash Withdrawal Fee (ATM)",
+            "description_normalized": null,
+            "amount": -8.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2020-09-01",
+            "description_raw": "Purchase & Cash: Model Melkwinkel N16227 Brits (Card 1551)",
+            "description_normalized": null,
+            "amount": -1031.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2020-09-01",
+            "description_raw": "Till Cash Withdrawal Fee",
+            "description_normalized": null,
+            "amount": -1.61,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2020-09-01",
+            "description_raw": "ATM Balance Enquiry Fee",
+            "description_normalized": null,
+            "amount": -5.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2020-09-01",
+            "description_raw": "ATM Cash Withdrawal Spar Panorama (Card 1551)",
+            "description_normalized": null,
+            "amount": -600.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2020-09-01",
+            "description_raw": "Cash Withdrawal Fee (ATM)",
+            "description_normalized": null,
+            "amount": -8.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2020-09-01",
+            "description_raw": "SMS Notification Fee",
+            "description_normalized": null,
+            "amount": -2.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2020-09-02",
+            "description_raw": "ATM Balance Enquiry Fee",
+            "description_normalized": null,
+            "amount": -5.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2020-09-02",
+            "description_raw": "ATM Cash Withdrawal Absa Magalies Centre (Card 1551)",
+            "description_normalized": null,
+            "amount": -1350.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2020-09-02",
+            "description_raw": "Cash Withdrawal Fee (ATM)",
+            "description_normalized": null,
+            "amount": -8.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2020-09-02",
+            "description_raw": "SMS Notification Fee",
+            "description_normalized": null,
+            "amount": -1.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2020-09-01",
+            "description_raw": "Lulu's Liquors Brits (Card 1551)",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2020-09-04",
+            "description_raw": "ATM Cash Withdrawal Absa Panorama Centre (Card 1551)",
+            "description_normalized": null,
+            "amount": -140.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2020-09-04",
+            "description_raw": "Cash Withdrawal Fee (ATM)",
+            "description_normalized": null,
+            "amount": -8.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2020-09-04",
+            "description_raw": "SMS Notification Fee",
+            "description_normalized": null,
+            "amount": -0.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2020-09-02",
+            "description_raw": "Oklahoma Supermar Brits (Card 1551)",
+            "description_normalized": null,
+            "amount": -230.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2020-09-05",
+            "description_raw": "Banking App Prepaid Purchase MTN",
+            "description_normalized": null,
+            "amount": -70.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 5251.49,
+        "bank_stated_total_withdrawals": -4815.62
+    },
+    "validation": {
+        "opening_plus_deposits": 5269.23,
+        "minus_withdrawals": 453.61,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Transaction count mismatch - actual deposits: 10, stated: 12",
+            "Transaction count mismatch - actual withdrawals: 27, stated: 25"
+        ]
+    }
+}

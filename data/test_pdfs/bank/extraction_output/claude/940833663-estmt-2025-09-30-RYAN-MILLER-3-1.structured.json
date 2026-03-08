@@ -1,0 +1,420 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2025-09-01",
+            "end": "2025-09-30"
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 25118",
+                "city": "Tampa",
+                "state": "FL",
+                "zip": "33622-5118"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 15284",
+                    "city": "Wilmington",
+                    "state": "DE",
+                    "zip": "20850"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.800.432.1000",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": "RYAN MILLER",
+            "account_number": "3940 1167 4982",
+            "account_type": "Your Daily Checking Account",
+            "address": {
+                "line1": "1132 SALINA ST",
+                "city": "AUSTIN",
+                "state": "TX",
+                "zip": "78702"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 125341.99,
+        "opening_balance_date": "2025-09-01",
+        "closing_balance": 131708.38,
+        "closing_balance_date": "2025-09-30",
+        "total_deposits_and_other_additions": 29273.64,
+        "total_withdrawals_and_other_subtractions": -22862.25,
+        "checks": 0.0,
+        "service_fees": -45.0,
+        "number_of_deposits": 5,
+        "number_of_withdrawals": 18
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-09-02",
+            "description_raw": "EARLY WARNING SERVICES DES:DEPOSIT ID:DP51544505 INDN:Ryan Miller CO ID:BIZEDP CCD PMT INFO:Ryan Miller INV 922025 932025",
+            "description_normalized": null,
+            "amount": 6187.59,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "EARLY WARNING SERVICES",
+                "ach_description": "DEPOSIT ID:DP51544505",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "BIZEDP",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-09-16",
+            "description_raw": "EARLY WARNING SERVICES DES:DEPOSIT ID:DP52505099 INDN:Ryan Miller CO ID:BIZEDP CCD PMT INFO:Ryan Miller INV 942025",
+            "description_normalized": null,
+            "amount": 6187.59,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "EARLY WARNING SERVICES",
+                "ach_description": "DEPOSIT ID:DP52505099",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "BIZEDP",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-09-19",
+            "description_raw": "First Choice Logistics DES:DEPOSIT ID:DP56155877 INDN:Ryan Miller CO ID:BIZEDP CCD PMT INFO:Ryan Miller INV 1012025",
+            "description_normalized": null,
+            "amount": 5990.21,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "First Choice Logistics",
+                "ach_description": "DEPOSIT ID:DP56155877",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "BIZEDP",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-09-23",
+            "description_raw": "Opulent Elite Transportation DES:DEPOSIT ID:DP56155877 INDN:Ryan Miller CO ID:BIZEDP CCD PMT INFO:Ryan Miller INV 1012025",
+            "description_normalized": null,
+            "amount": 4720.66,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Opulent Elite Transportation",
+                "ach_description": "DEPOSIT ID:DP56155877",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "BIZEDP",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-09-30",
+            "description_raw": "EARLY WARNING SERVICES DES:DEPOSIT ID:DP52505099 INDN:Ryan Miller CO ID:BIZEDP CCD PMT INFO:Ryan Miller INV 942025",
+            "description_normalized": null,
+            "amount": 6187.59,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "EARLY WARNING SERVICES",
+                "ach_description": "DEPOSIT ID:DP52505099",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "BIZEDP",
+                "ach_secondary_co_id": null
+            }
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-09-01",
+            "description_raw": "PayPal DES:DEBIT ID:R20022804172717 INDN:Ryan Miller CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0GC0000017ux9kMAA",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT ID:R20022804172717",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "EXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-09-07",
+            "description_raw": "TRANSFER Ryan Miller IN:Ashish Parmar Confirmation# 0698725049",
+            "description_normalized": null,
+            "amount": -2200.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-09-09",
+            "description_raw": "Itria Ventures 7 DES:KALIDAD ID:Trans#745497 INDN:Ryan Miller CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ventures 7",
+                "ach_description": "KALIDAD ID:Trans#745497",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "GXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-09-09",
+            "description_raw": "PayPal DES:DEBIT ID:R20030704211333 INDN:Ryan Miller CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0GC0000017v98NMAQ",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT ID:R20030704211333",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "EXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-09-11",
+            "description_raw": "KABBAGE DES:PAYMENT ID:182056 INDN:1760820050 CO ID:3264438761 CCD",
+            "description_normalized": null,
+            "amount": -1387.5,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "KABBAGE",
+                "ach_description": "PAYMENT ID:182056",
+                "ach_individual_name": "1760820050",
+                "ach_entry_class": "CCD",
+                "ach_company_id": null,
+                "ach_secondary_co_id": "3264438761"
+            }
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-09-12",
+            "description_raw": "TRANSFER Ryan Miller IN:Ashish Parmar Confirmation# 2538858347",
+            "description_normalized": null,
+            "amount": -1200.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-09-13",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#752821 INDN:Ryan Miller CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD ID:Trans#752821",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "GXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-09-14",
+            "description_raw": "TRANSFER Ryan Miller IN:Ashish Parmar Confirmation# 1759803331",
+            "description_normalized": null,
+            "amount": -2000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-09-15",
+            "description_raw": "PayPal DES:DEBIT ID:R20031404251504 INDN:Ryan Miller CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0GC0000017vLeUMAU",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT ID:R20031404251504",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "EXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-09-18",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#759022 INDN:Ryan Miller CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD ID:Trans#759022",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "GXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-09-22",
+            "description_raw": "PayPal DES:DEBIT ID:R20032104286207 INDN:Ryan Miller CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0G3b000018zcVzEAI",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT ID:R20032104286207",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "EXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-09-27",
+            "description_raw": "Itria Ven 7 DES:KALIDAD ID:Trans#765227 INDN:Ryan Miller CO ID:GXXXXXXXXX CCD",
+            "description_normalized": null,
+            "amount": -1076.25,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Itria Ven 7",
+                "ach_description": "KALIDAD ID:Trans#765227",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "GXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-09-29",
+            "description_raw": "WIRE TYPE:WIRE OUT DATE:2403629 TIME:1555 ET TRN:2025032900646535 SERVICE REF:037805 BNF:ASHISH PARMAR ID:3630159836 BNF BK:CITIZENS BA NK, NATIONAL ID:241070417 PMT DET:259209380",
+            "description_normalized": null,
+            "amount": -4500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-09-29",
+            "description_raw": "PayPal DES:DEBIT ID:R20032804330201 INDN:Ryan Miller CO ID:EXXXXXXXXX CCD PMT INFO:FRFa0G3b000018zpweEAA",
+            "description_normalized": null,
+            "amount": -1453.95,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PayPal",
+                "ach_description": "DEBIT ID:R20032804330201",
+                "ach_individual_name": "Ryan Miller",
+                "ach_entry_class": "CCD",
+                "ach_company_id": "EXXXXXXXXX",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-09-09",
+            "description_raw": "External transfer fee - Next Day - 09/07/2025",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-09-13",
+            "description_raw": "External transfer fee - Next Day - 09/12/2025",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2025-09-15",
+            "description_raw": "External transfer fee - Next Day - 09/14/2025",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-09-29",
+            "description_raw": "Wire Transfer Fee",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 29273.64,
+        "bank_stated_total_withdrawals": -22907.25
+    },
+    "validation": {
+        "opening_plus_deposits": 154615.63,
+        "minus_withdrawals": 131708.38,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

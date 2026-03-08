@@ -1,0 +1,663 @@
+{
+    "metadata": {
+        "source_file": "wells_fargo_statement.pdf",
+        "statement_period": {
+            "start": "2022-01-01",
+            "end": "2022-01-31"
+        },
+        "bank_entity": {
+            "name": "Wells Fargo Bank, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 6995",
+                "city": "Portland",
+                "state": "OR",
+                "zip": "97228-6995"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 6995",
+                    "city": "Portland",
+                    "state": "OR",
+                    "zip": "97228-6995"
+                },
+                "website": "wellsfargo.com/biz",
+                "phone_number": "1-800-225-5935",
+                "En Espanol": "1-877-337-7454"
+            }
+        },
+        "account": {
+            "name": "JAMES WONG DBA MAXA DESIGN INC",
+            "account_number": "3099301017",
+            "account_type": "Platinum Business Checking",
+            "address": {
+                "line1": "310 14TH ST",
+                "city": "HUNTINGTON BEACH",
+                "state": "CA",
+                "zip": "92648-4218"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 149421.2,
+        "opening_balance_date": "2022-01-01",
+        "closing_balance": 149686.17,
+        "closing_balance_date": "2022-01-31",
+        "total_deposits_and_other_additions": 21979.88,
+        "total_withdrawals_and_other_subtractions": -21714.91,
+        "checks": 0,
+        "service_fees": 5.4,
+        "number_of_deposits": 35,
+        "number_of_withdrawals": 35
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2022-01-01",
+            "description_raw": "ATM Cash Deposit on 01/01 1233 N. LA Brea W. Hollywood CA 0005745 ATM ID 7943M Card 9207",
+            "description_normalized": null,
+            "amount": 480.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2022-01-01",
+            "description_raw": "ATM Cash Deposit on 01/01 1233 N. LA Brea W. Hollywood CA 0005746 ATM ID 7943M Card 9207",
+            "description_normalized": null,
+            "amount": 20.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2022-01-09",
+            "description_raw": "ATM Cash Deposit on 01/09 18400 Sherman Way Reseda CA 0009585 ATM ID 6580x Card 9207",
+            "description_normalized": null,
+            "amount": 3000.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2022-01-09",
+            "description_raw": "ATM Cash Deposit on 01/09 18400 Sherman Way Reseda CA 0009586 ATM ID 6580x Card 9207",
+            "description_normalized": null,
+            "amount": 2000.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2022-01-14",
+            "description_raw": "ATM Cash Deposit on 01/14 7950 W. Sunset Blvd S-101 Los Angeles CA 0007182 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 580.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2022-01-14",
+            "description_raw": "ATM Cash Deposit on 01/14 7950 W. Sunset Blvd S-101 Los Angeles CA 0007183 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 580.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2022-01-14",
+            "description_raw": "ATM Cash Deposit on 01/14 7950 W. Sunset Blvd S-101 Los Angeles CA 0007184 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2022-01-14",
+            "description_raw": "ATM Cash Deposit on 01/14 7950 W. Sunset Blvd S-101 Los Angeles CA 0007185 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 220.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2022-01-14",
+            "description_raw": "ATM Cash Deposit on 01/14 7950 W. Sunset Blvd S-101 Los Angeles CA 0007186 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 20.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2022-01-15",
+            "description_raw": "ATM Cash Deposit on 01/15 7950 W. Sunset Blvd S-101 Los Angeles CA 0006444 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2022-01-15",
+            "description_raw": "ATM Cash Deposit on 01/15 7950 W. Sunset Blvd S-101 Los Angeles CA 0006445 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2022-01-15",
+            "description_raw": "ATM Cash Deposit on 01/15 7950 W. Sunset Blvd S-101 Los Angeles CA 0006446 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "2022-01-15",
+            "description_raw": "ATM Cash Deposit on 01/15 7950 W. Sunset Blvd S-101 Los Angeles CA 0006447 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "2022-01-20",
+            "description_raw": "ATM Cash Deposit on 01/20 7950 W. Sunset Blvd S-101 Los Angeles CA 0007815 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 560.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "2022-01-20",
+            "description_raw": "ATM Cash Deposit on 01/20 7950 W. Sunset Blvd S-101 Los Angeles CA 0007816 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "2022-01-20",
+            "description_raw": "ATM Cash Deposit on 01/20 7950 W. Sunset Blvd S-101 Los Angeles CA 0007817 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 580.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "2022-01-20",
+            "description_raw": "ATM Cash Deposit on 01/20 7950 W. Sunset Blvd S-101 Los Angeles CA 0007818 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 260.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "2022-01-22",
+            "description_raw": "ATM Cash Deposit on 01/22 7950 W. Sunset Blvd S-101 Los Angeles CA 0007972 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_019",
+            "date": "2022-01-22",
+            "description_raw": "ATM Cash Deposit on 01/22 7950 W. Sunset Blvd S-101 Los Angeles CA 0007973 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_020",
+            "date": "2022-01-22",
+            "description_raw": "ATM Cash Deposit on 01/22 7950 W. Sunset Blvd S-101 Los Angeles CA 0007974 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_021",
+            "date": "2022-01-22",
+            "description_raw": "ATM Cash Deposit on 01/22 7950 W. Sunset Blvd S-101 Los Angeles CA 0007975 ATM ID 9900E Card 9207",
+            "description_normalized": null,
+            "amount": 180.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_022",
+            "date": "2022-01-24",
+            "description_raw": "Edeposit IN Branch/Store 01/24/22 09:34:09 Am 7950 W Sunset Blvd Los Angeles CA 9207",
+            "description_normalized": null,
+            "amount": 5500.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_023",
+            "date": "2022-01-27",
+            "description_raw": "ATM Cash Deposit on 01/27 7950 W. Sunset Blvd S-101 Los Angeles CA 0007185 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_024",
+            "date": "2022-01-27",
+            "description_raw": "ATM Cash Deposit on 01/27 7950 W. Sunset Blvd S-101 Los Angeles CA 0007186 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_025",
+            "date": "2022-01-27",
+            "description_raw": "ATM Cash Deposit on 01/27 7950 W. Sunset Blvd S-101 Los Angeles CA 0007187 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 600.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_026",
+            "date": "2022-01-27",
+            "description_raw": "ATM Cash Deposit on 01/27 7950 W. Sunset Blvd S-101 Los Angeles CA 0007188 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 40.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_027",
+            "date": "2022-01-28",
+            "description_raw": "ATM Cash Deposit on 01/28 7950 W. Sunset Blvd S-101 Los Angeles CA 0007450 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 560.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_028",
+            "date": "2022-01-28",
+            "description_raw": "ATM Cash Deposit on 01/28 7950 W. Sunset Blvd S-101 Los Angeles CA 0007451 ATM ID 9915F Card 9207",
+            "description_normalized": null,
+            "amount": 580.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_029",
+            "date": "2022-01-30",
+            "description_raw": "Interest Payment",
+            "description_normalized": null,
+            "amount": 119.87,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2022-01-06",
+            "description_raw": "Purchase authorized on 01/05 Prime Video*1006S8 888-802-3080 WA S300097010652187 Card 9207",
+            "description_normalized": null,
+            "amount": -2.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2022-01-10",
+            "description_raw": "Wire Trans Svc Charge - Sequence: 200410010726 Srf# Ow00000747069417 Trn#200410010726 Rfb# Ow00000747069417",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2022-01-10",
+            "description_raw": "WT Fed#01119 Prosperity Bank /Ftr/Bnf=Julie Irwin Srf# Ow00000747069417 Trn#200410010726 Rfb# Ow00000747069417",
+            "description_normalized": null,
+            "amount": -5000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2022-01-13",
+            "description_raw": "Purchase authorized on 01/12 Amazon.Com*8U5Pi6x Amzn.Com/Bill WA S460101216466835 Card 9207",
+            "description_normalized": null,
+            "amount": -18.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2022-01-13",
+            "description_raw": "Purchase authorized on 01/12 Prime Video*Cu3Og3 888-802-3080 WA S460104068463966 Card 9207",
+            "description_normalized": null,
+            "amount": -10.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2022-01-14",
+            "description_raw": "Business to Business ACH Debit - Capital One Mobile Pmt 200413 010439800931418 LeeHoward",
+            "description_normalized": null,
+            "amount": -97.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2022-01-15",
+            "description_raw": "Geovera Ins CO Webpay 200414 000001180974704 Howard Lee",
+            "description_normalized": null,
+            "amount": -140.08,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2022-01-16",
+            "description_raw": "Wire Trans Svc Charge - Sequence: 200416017859 Srf# Ow00000753381947 Trn#200416017859 Rfb# Ow00000753381947",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2022-01-16",
+            "description_raw": "WT Fed#02140 Prosperity Bank /Ftr/Bnf=Julie Irwin Srf# Ow00000753381947 Trn#200416017859 Rfb# Ow00000753381947",
+            "description_normalized": null,
+            "amount": -2875.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2022-01-17",
+            "description_raw": "Recurring Payment authorized on 01/16 The Joint Sunset G 323-3785310 CA S460107404458678 Card 9207",
+            "description_normalized": null,
+            "amount": -69.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2022-01-20",
+            "description_raw": "Recurring Payment authorized on Bestbuy Renewa0001 800-4335778 MN S300108068237568 Card 9207",
+            "description_normalized": null,
+            "amount": -199.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2022-01-20",
+            "description_raw": "American Express ACH Pmt 200420 M3020 Howard Lee",
+            "description_normalized": null,
+            "amount": -754.18,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2022-01-21",
+            "description_raw": "Business to Business ACH Debit - Capital One Mobile Pmt 200420 011139801175415 LeeHoward",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2022-01-21",
+            "description_raw": "American Express ACH Pmt 200421 M2340 Howard Lee",
+            "description_normalized": null,
+            "amount": -1692.56,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2022-01-22",
+            "description_raw": "American Express ACH Pmt 200422 M3034 Howard Lee",
+            "description_normalized": null,
+            "amount": -2000.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2022-01-24",
+            "description_raw": "American Express ACH Pmt 200424 M4018 Howard Lee",
+            "description_normalized": null,
+            "amount": -5500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2022-01-27",
+            "description_raw": "Purchase authorized on 01/26 Domino's 8000 626-281-5200 CA S460116178932626 Card 9207",
+            "description_normalized": null,
+            "amount": -67.02,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2022-01-27",
+            "description_raw": "Purchase authorized on 01/26 Amzn Mktp US*Gj0Ql Amzn.Com/Bill WA S380116620205626 Card 9207",
+            "description_normalized": null,
+            "amount": -65.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2022-01-27",
+            "description_raw": "Purchase authorized on 01/26 Amzn Mktp US*MD3Vv Amzn.Com/Bill WA S380116752183672 Card 9207",
+            "description_normalized": null,
+            "amount": -29.51,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2022-01-27",
+            "description_raw": "Purchase authorized on 01/26 Amzn Mktp US*E73GA Amzn.Com/Bill WA S58017103125907 Card 9207",
+            "description_normalized": null,
+            "amount": -19.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2022-01-27",
+            "description_raw": "Safeco Ins. CO. Tel Paymnt 71354738944 Howard Lee",
+            "description_normalized": null,
+            "amount": -159.5,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2022-01-28",
+            "description_raw": "Purchase authorized on 01/27 Amzn Mktp US*7R54E Amzn.Com/Bill WA S580116621827431 Card 9207",
+            "description_normalized": null,
+            "amount": -42.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2022-01-28",
+            "description_raw": "Purchase authorized on 01/27 Geico *Auto Macon DC S380118571391368 Card 9207",
+            "description_normalized": null,
+            "amount": -721.05,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2022-01-28",
+            "description_raw": "Td Auto Finance Web Pay 200425 0001102527582 Phillip F Scheibe",
+            "description_normalized": null,
+            "amount": -859.95,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2022-01-29",
+            "description_raw": "Purchase authorized on 01/28 Amzn Mktp US*I92R0 Amzn.Com/Bill WA S580116747488389 Card 9207",
+            "description_normalized": null,
+            "amount": -29.51,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2022-01-29",
+            "description_raw": "Purchase authorized on 01/28 Amzn Mktp US*0379K Amzn.Com/Bill WA S460117103239282 Card 9207",
+            "description_normalized": null,
+            "amount": -306.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2022-01-29",
+            "description_raw": "Purchase authorized on 01/27 Amzn Mktp US*D344U Amzn.Com/Bill WA S460118494727294 Card 9207",
+            "description_normalized": null,
+            "amount": -15.87,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2022-01-29",
+            "description_raw": "Purchase authorized on 01/28 Amzn Mktp US*1N4Y5 Amzn.Com/Bill WA S380119467173908 Card 9207",
+            "description_normalized": null,
+            "amount": -19.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2022-01-30",
+            "description_raw": "Purchase authorized on 01/29 Progressive *Insur 800-776-4737 OH S380120631602586 Card 9207",
+            "description_normalized": null,
+            "amount": -301.49,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2022-01-30",
+            "description_raw": "Purchase authorized on 01/29 Instacart Httpsinstacar CA S460121034453958 Card 9207",
+            "description_normalized": null,
+            "amount": -115.81,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 21979.88,
+        "bank_stated_total_withdrawals": -21714.91
+    },
+    "validation": {
+        "opening_plus_deposits": 171401.08,
+        "minus_withdrawals": 149686.17,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 29 deposits, expected 35",
+            "Withdrawal count mismatch: found 30 withdrawals, expected 35"
+        ]
+    }
+}

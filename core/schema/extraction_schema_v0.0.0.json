@@ -1,0 +1,368 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JAR Extraction Schema",
+  "version": "0",
+  "description": "Standardized output format for JAR bank statement extraction pipeline. Supports checking, savings, credit card, and business accounts across all banks and financial institutions.",
+  "type": "object",
+  "required": ["schema_version", "source_file", "extraction_metadata", "institution", "account", "statement_period", "balances", "transactions"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.0.0",
+      "description": "Schema version identifier"
+    },
+    "source_file": {
+      "type": "string",
+      "description": "Original PDF filename"
+    },
+    "extraction_metadata": {
+      "type": "object",
+      "description": "Information about the extraction process itself",
+      "required": ["engine", "extracted_at"],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "enum": ["docling", "claude"],
+          "description": "Which extraction engine produced this output"
+        },
+        "engine_version": {
+          "type": ["string", "null"],
+          "description": "Version of the extraction engine"
+        },
+        "extracted_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of when extraction was performed"
+        },
+        "processing_time_seconds": {
+          "type": ["number", "null"],
+          "description": "Time taken to extract in seconds"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Self-assessed extraction confidence"
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Any warnings or issues encountered during extraction"
+        },
+        "page_count": {
+          "type": ["integer", "null"],
+          "description": "Number of pages in the source PDF"
+        }
+      }
+    },
+    "institution": {
+      "type": "object",
+      "description": "Financial institution details",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Normalized institution name (e.g., 'Bank of America', 'Chase', 'Wells Fargo')"
+        },
+        "branch": {
+          "type": ["string", "null"],
+          "description": "Branch name or identifier if present"
+        },
+        "country": {
+          "type": ["string", "null"],
+          "description": "ISO 3166-1 alpha-2 country code (e.g., 'US', 'GB')"
+        },
+        "currency": {
+          "type": "string",
+          "default": "USD",
+          "description": "ISO 4217 currency code"
+        }
+      }
+    },
+    "account": {
+      "type": "object",
+      "description": "Account details — PII-stripped. No full account numbers, no names.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "personal_checking",
+            "personal_savings",
+            "business_checking",
+            "business_savings",
+            "credit_card",
+            "money_market",
+            "brokerage",
+            "loan",
+            "line_of_credit",
+            "other"
+          ],
+          "description": "Account type"
+        },
+        "account_last_four": {
+          "type": ["string", "null"],
+          "description": "Last 4 digits of account number only — never store full account number"
+        },
+        "account_holder_type": {
+          "type": ["string", "null"],
+          "enum": ["individual", "joint", "business", "trust", null],
+          "description": "Type of account holder"
+        }
+      }
+    },
+    "statement_period": {
+      "type": "object",
+      "description": "Statement date range",
+      "required": ["start_date", "end_date"],
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Statement period start date (YYYY-MM-DD)"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Statement period end date (YYYY-MM-DD)"
+        }
+      }
+    },
+    "balances": {
+      "type": "object",
+      "description": "Balance information. Fields vary by account type.",
+      "properties": {
+        "opening_balance": {
+          "type": ["number", "null"],
+          "description": "Balance at start of statement period"
+        },
+        "closing_balance": {
+          "type": ["number", "null"],
+          "description": "Balance at end of statement period"
+        },
+        "average_daily_balance": {
+          "type": ["number", "null"],
+          "description": "Average daily balance if stated"
+        },
+        "total_credits": {
+          "type": ["number", "null"],
+          "description": "Sum of all deposits/credits in the period"
+        },
+        "total_debits": {
+          "type": ["number", "null"],
+          "description": "Sum of all withdrawals/debits in the period"
+        },
+        "total_fees": {
+          "type": ["number", "null"],
+          "description": "Sum of all fees charged in the period"
+        },
+        "total_interest_earned": {
+          "type": ["number", "null"],
+          "description": "Interest earned in the period (checking/savings)"
+        },
+        "balance_reconciles": {
+          "type": ["boolean", "null"],
+          "description": "Does opening + credits - debits = closing? Self-validation check."
+        },
+
+        "credit_card": {
+          "type": ["object", "null"],
+          "description": "Credit card-specific balance fields. Only present for credit card statements.",
+          "properties": {
+            "previous_balance": {
+              "type": ["number", "null"],
+              "description": "Previous statement balance"
+            },
+            "payments_and_credits": {
+              "type": ["number", "null"],
+              "description": "Total payments and credits applied"
+            },
+            "new_charges": {
+              "type": ["number", "null"],
+              "description": "Total new purchases and charges"
+            },
+            "new_balance": {
+              "type": ["number", "null"],
+              "description": "Current statement balance (amount owed)"
+            },
+            "minimum_payment": {
+              "type": ["number", "null"],
+              "description": "Minimum payment due"
+            },
+            "payment_due_date": {
+              "type": ["string", "null"],
+              "format": "date",
+              "description": "Payment due date (YYYY-MM-DD)"
+            },
+            "credit_limit": {
+              "type": ["number", "null"],
+              "description": "Total credit limit"
+            },
+            "available_credit": {
+              "type": ["number", "null"],
+              "description": "Available credit remaining"
+            },
+            "cash_advance_limit": {
+              "type": ["number", "null"],
+              "description": "Cash advance limit"
+            },
+            "interest_charged": {
+              "type": ["number", "null"],
+              "description": "Total interest charged this period"
+            },
+            "annual_percentage_rate": {
+              "type": ["number", "null"],
+              "description": "Current APR as a percentage (e.g., 24.99)"
+            },
+            "rewards_earned": {
+              "type": ["number", "null"],
+              "description": "Rewards points or cashback earned this period"
+            },
+            "rewards_balance": {
+              "type": ["number", "null"],
+              "description": "Total accumulated rewards balance"
+            }
+          }
+        }
+      }
+    },
+    "transactions": {
+      "type": "array",
+      "description": "All transactions in the statement period, in chronological order",
+      "items": {
+        "type": "object",
+        "required": ["date", "description", "amount", "direction"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Transaction date (YYYY-MM-DD)"
+          },
+          "posting_date": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "Posting/settlement date if different from transaction date (YYYY-MM-DD)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Raw transaction description as it appears on the statement"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Transaction amount as a positive number. Direction is indicated by the 'direction' field."
+          },
+          "direction": {
+            "type": "string",
+            "enum": ["credit", "debit"],
+            "description": "credit = money in (deposits, payments received, refunds). debit = money out (withdrawals, purchases, fees)."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ach",
+              "wire",
+              "check",
+              "bill_payment",
+              "atm",
+              "zelle",
+              "transfer",
+              "fee",
+              "interest",
+              "purchase",
+              "payment",
+              "refund",
+              "direct_deposit",
+              "cash_advance",
+              "balance_transfer",
+              "reward_redemption",
+              "dividend",
+              "tax",
+              "insurance",
+              "adjustment",
+              "other"
+            ],
+            "description": "Transaction type classification"
+          },
+          "check_number": {
+            "type": ["string", "null"],
+            "description": "Check number if this is a check transaction"
+          },
+          "reference_number": {
+            "type": ["string", "null"],
+            "description": "Bank reference or confirmation number"
+          },
+          "running_balance": {
+            "type": ["number", "null"],
+            "description": "Running balance after this transaction, if shown on statement"
+          },
+          "category": {
+            "type": ["string", "null"],
+            "description": "Assigned category (populated by normalization pipeline, not extraction)"
+          },
+          "merchant_normalized": {
+            "type": ["string", "null"],
+            "description": "Normalized merchant name (populated by normalization pipeline, not extraction)"
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Self-validation checks performed by the extraction engine",
+      "properties": {
+        "transaction_count": {
+          "type": "integer",
+          "description": "Total number of transactions extracted"
+        },
+        "credit_count": {
+          "type": "integer",
+          "description": "Number of credit transactions"
+        },
+        "debit_count": {
+          "type": "integer",
+          "description": "Number of debit transactions"
+        },
+        "computed_total_credits": {
+          "type": ["number", "null"],
+          "description": "Sum of all credit transaction amounts"
+        },
+        "computed_total_debits": {
+          "type": ["number", "null"],
+          "description": "Sum of all debit transaction amounts"
+        },
+        "stated_total_credits": {
+          "type": ["number", "null"],
+          "description": "Total credits as stated on the statement"
+        },
+        "stated_total_debits": {
+          "type": ["number", "null"],
+          "description": "Total debits as stated on the statement"
+        },
+        "credit_total_matches": {
+          "type": ["boolean", "null"],
+          "description": "Do computed credits match stated credits?"
+        },
+        "debit_total_matches": {
+          "type": ["boolean", "null"],
+          "description": "Do computed debits match stated debits?"
+        },
+        "balance_reconciles": {
+          "type": ["boolean", "null"],
+          "description": "Does opening + credits - debits = closing?"
+        },
+        "truncation_suspected": {
+          "type": "boolean",
+          "default": false,
+          "description": "True if extraction may have been cut short (e.g., token limit). Critical safety flag."
+        },
+        "stated_transaction_count": {
+          "type": ["integer", "null"],
+          "description": "Transaction count as stated on the statement, if available"
+        },
+        "transaction_count_matches": {
+          "type": ["boolean", "null"],
+          "description": "Does extracted count match stated count?"
+        }
+      }
+    }
+  }
+}

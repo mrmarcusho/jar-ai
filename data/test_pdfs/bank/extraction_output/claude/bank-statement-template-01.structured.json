@@ -1,0 +1,81 @@
+{
+    "metadata": {
+        "source_file": "account_statement_template.pdf",
+        "statement_period": {
+            "start": null,
+            "end": null
+        },
+        "bank_entity": {
+            "name": "[Company Name]",
+            "correspondence_address": {
+                "line1": "[Street Address, City, ST ZIP Code]",
+                "city": null,
+                "state": null,
+                "zip": null
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": null,
+                    "city": null,
+                    "state": null,
+                    "zip": null
+                },
+                "website": null,
+                "phone_number": "[phone]",
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": null,
+            "account_number": null,
+            "account_type": null,
+            "address": {
+                "line1": null,
+                "city": null,
+                "state": null,
+                "zip": null
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 9999,
+        "opening_balance_date": null,
+        "closing_balance": 9999,
+        "closing_balance_date": null,
+        "total_deposits_and_other_additions": 0,
+        "total_withdrawals_and_other_subtractions": 0,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 0,
+        "number_of_withdrawals": 1
+    },
+    "deposits": [],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": null,
+            "description_raw": "Finance charge on overdue balance at 1.5%",
+            "description_normalized": null,
+            "amount": 0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 0,
+        "bank_stated_total_withdrawals": 0
+    },
+    "validation": {
+        "opening_plus_deposits": 9999,
+        "minus_withdrawals": 9999,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "This appears to be a blank template document with placeholder values rather than an actual bank statement"
+        ]
+    }
+}

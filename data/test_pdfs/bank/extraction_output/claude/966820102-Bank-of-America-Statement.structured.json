@@ -1,0 +1,330 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2023-11-05",
+            "end": "2023-12-05"
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "21850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25018",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5018"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.800.432.1000",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": "BRIDGET MCWOODSON",
+            "account_number": "4124 5600 9174",
+            "account_type": "Adv Plus Banking",
+            "address": {
+                "line1": "7111 S MICHIGAN AVE",
+                "city": "CHICAGO",
+                "state": "IL",
+                "zip": "60619-1013"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 6656.76,
+        "opening_balance_date": "2023-11-05",
+        "closing_balance": 15879.47,
+        "closing_balance_date": "2023-12-05",
+        "total_deposits_and_other_additions": 11661.28,
+        "total_withdrawals_and_other_subtractions": -1938.57,
+        "checks": 0.0,
+        "service_fees": 0.0,
+        "number_of_deposits": 2,
+        "number_of_withdrawals": 32
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-11-05",
+            "description_raw": "ATTN DEPOSIT PAYROLL FROM JW TRUCKING LLC ID:1430813703 PPD",
+            "description_normalized": null,
+            "amount": 5700.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2023-11-27",
+            "description_raw": "ATTN DEPOSIT PAYROLL FROM JW TRUCKING LLC ID:1430813703 PPD",
+            "description_normalized": null,
+            "amount": 5700.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-11-05",
+            "description_raw": "WAL-MART #0010 11/02 #000965200 PURCHASE",
+            "description_normalized": null,
+            "amount": -105.05,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2023-11-05",
+            "description_raw": "CHECKCARD 0010 WM SUPERCENTER",
+            "description_normalized": null,
+            "amount": -22.63,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2023-11-06",
+            "description_raw": "CHECKCARD 0011 ELITE CUISINE MCC 55444369325091325000820",
+            "description_normalized": null,
+            "amount": -2.09,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2023-11-07",
+            "description_raw": "WAL-MART #0010 11/07 #000470100",
+            "description_normalized": null,
+            "amount": -14.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2023-11-07",
+            "description_raw": "DOLLAR TREE 11/07 #000017581 PURCHASE",
+            "description_normalized": null,
+            "amount": -7.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2023-11-10",
+            "description_raw": "CHECKCARD 0015 WM SUPERCENTER",
+            "description_normalized": null,
+            "amount": -9.28,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2023-11-11",
+            "description_raw": "CHECKCARD 0015 ELITE CUISINE MCC 55444369329091329000707",
+            "description_normalized": null,
+            "amount": -2.09,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2023-11-11",
+            "description_raw": "CHECKCARD 0015 SUBWAY 15410219330255234728536",
+            "description_normalized": null,
+            "amount": -4.85,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2023-11-11",
+            "description_raw": "CHECKCARD 0019 WAL Wal-Mart S",
+            "description_normalized": null,
+            "amount": -14.36,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2023-11-12",
+            "description_raw": "CHECKCARD 0130 SUBWAY 15410219334255000026749",
+            "description_normalized": null,
+            "amount": -6.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2023-11-12",
+            "description_raw": "CHECKCARD 0101 WAL-MART",
+            "description_normalized": null,
+            "amount": -47.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2023-11-14",
+            "description_raw": "CHECKCARD 0102 SHELL SERVICE",
+            "description_normalized": null,
+            "amount": -21.94,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2023-11-17",
+            "description_raw": "CHECKCARD 0102 GLOBAL PRODUCE 75428179336756800047227",
+            "description_normalized": null,
+            "amount": -7.24,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2023-11-20",
+            "description_raw": "CHECKCARD 0102 CRISTINA`S PRODUC 85219179336980001508615",
+            "description_normalized": null,
+            "amount": -6.24,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2023-11-20",
+            "description_raw": "CHECKCARD 0103 HABASHI HOUSE",
+            "description_normalized": null,
+            "amount": -1.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2023-11-21",
+            "description_raw": "Croton Park Wes DES: Payment ID:XXXXXXXXX INDN:BRIDGET ESTIME IL ID:1841393599",
+            "description_normalized": null,
+            "amount": -1400.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "Croton Park Wes",
+                "ach_description": "Payment",
+                "ach_individual_name": "BRIDGET ESTIME",
+                "ach_entry_class": null,
+                "ach_company_id": "1841393599",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w17",
+            "date": "2023-11-21",
+            "description_raw": "PYR-PayYourRent DES:Payment ID:XXXXXXXXX INDN:BRIDGET ESTIME IL ID:1841393599",
+            "description_normalized": null,
+            "amount": -2.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null,
+            "parsed_fields": {
+                "ach_company_name": "PYR-PayYourRent",
+                "ach_description": "Payment",
+                "ach_individual_name": "BRIDGET ESTIME",
+                "ach_entry_class": null,
+                "ach_company_id": "1841393599",
+                "ach_secondary_co_id": null
+            }
+        },
+        {
+            "id": "txn_w18",
+            "date": "2023-11-24",
+            "description_raw": "CHECKCARD 0309 SHELL SERVICE",
+            "description_normalized": null,
+            "amount": -20.51,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2023-11-26",
+            "description_raw": "WAL Wal-Mart S 11/26 #000077697 PURCHASE",
+            "description_normalized": null,
+            "amount": -109.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2023-11-30",
+            "description_raw": "CHECKCARD 0303 HABASHI HOUSE",
+            "description_normalized": null,
+            "amount": -23.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2023-12-04",
+            "description_raw": "DRAFTKING BOSTON MA",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2023-12-05",
+            "description_raw": "WM SUPERCENTER 12/05 #000292293 PURCHASE Wal-Mart Store",
+            "description_normalized": null,
+            "amount": -104.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 11400.0,
+        "bank_stated_total_withdrawals": -1938.57
+    },
+    "validation": {
+        "opening_plus_deposits": 18056.76,
+        "minus_withdrawals": 16118.19,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Computed balance (16118.19) does not match closing balance (15879.47)",
+            "Bank stated total deposits (11400.00) does not match computed total (11400.00)",
+            "Withdrawal count mismatch: found 22 transactions, expected 32"
+        ]
+    }
+}

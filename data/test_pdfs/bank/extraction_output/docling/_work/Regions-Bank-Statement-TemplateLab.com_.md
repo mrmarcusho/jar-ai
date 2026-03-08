@@ -1,0 +1,58 @@
+<!-- image -->
+
+RALPH MCCANN 38RAPP ROAD ALBANY NY 12203
+
+## Checking Account
+
+## STATEMENT OF ACCOUNT
+
+Page:
+
+1 of 3
+
+Statement Period:         Apr 10 2019 - May 10 2019
+
+Routing Number:
+
+11900785
+
+Primary Account #:
+
+0215724956 687
+
+Account #: 0215724956 687
+
+| ACCOUNT SUMMARY |
+|---------------|
+| Beginning Balance 887.39 Average Collected Balance 1,126.48 |
+| Electronic Deposits 1,663.00 Annual Percentage Yield Earned 0.00% |
+| Other credits 0.00 Days in Period 30 |
+| Electronic Payments 1,456.89 |
+| Service Charges 1.00 |
+| Ending Balance 1,092.50 |
+| DAILY ACCOUNT ACTIVITY |
+| Electronic Deposits |
+| POSTING DATE DESCRIPTION AMOUNT |
+| 04/10 ACH DEPOSIT,N.J. DEPARTMENT RENTAL AST *****36772 1,663.00 |
+| Subtotal: 1,663.00 |
+| Other Credits |
+| POSTING DATE DESCRIPTION AMOUNT |
+| 04/10 ZERO DOLLAR CR, N.J. DEPARTMENT RENTAL AST ****36772 0.00 |
+| Subtotal: 0.00 |
+| Electronic Payments |
+| POSTING DATE DESCRIPTION AMOUNT |
+| 04/11 ACHE DEBIT, TERMINIS CHECKS**** 100000001 127.33 |
+| 04/23 DEBIT CARD PURCHASE, *****45113612572, AUT 112716 VISA DDR PUR 82.17 |
+| 04/24 ELECTRONIC PMT-WEB,AMERICAN-WATER UTIL-PMNT 0533284 69.77 |
+| 04/28 ACH DEBIT, LOAN SERVICING MTG PMT *****51501 558.09 |
+| 05/01 TD ATM DEBIT,*****45113612572, AUT 120316 DDA WITHDRAW 100.00 |
+| 05/02 ELECTRONIC PMT- WEB, SIMPLE XFERS DR N*****0000021K6F 185.00 |
+| 05/04 DEBIT POS, *****45113612572 , AUT 120716 DDA PURCHASE 7.06 |
+| 05/05 DEBIT CARD PURCHASE, *****45113612572, AUT 120816 VISA DDR PUR 27.47 |
+| Subtotal: 1,456.89 |
+| Service Charges |
+| POSTING DATE DESCRIPTION AMOUNT |
+| 05/10 PAPER STATEMENT FEE 1.00 |
+| Subtotal: 1.00 |
+
+<!-- image -->

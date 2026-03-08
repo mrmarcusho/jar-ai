@@ -1,0 +1,268 @@
+{
+    "metadata": {
+        "source_file": "806091338-WILLIAM-BECK-Capital-One-Bank-eStatement-April-2024.pdf",
+        "statement_period": {
+            "start": null,
+            "end": null
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.888.7937",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": null,
+            "account_number": null,
+            "account_type": null,
+            "address": null
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.0,
+        "opening_balance_date": null,
+        "closing_balance": 0.0,
+        "closing_balance_date": null,
+        "total_deposits_and_other_additions": 0.0,
+        "total_withdrawals_and_other_subtractions": 0.0,
+        "checks": 0.0,
+        "service_fees": 0.0,
+        "number_of_deposits": 20,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "",
+            "description_raw": "Apr 1 Opening Balance",
+            "description_normalized": null,
+            "amount": 4501.23,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "Apr 1",
+            "description_raw": "Debit Card Purchase - 7-ELEVEN ALBANY, NY Debit - $25.50",
+            "description_normalized": null,
+            "amount": 4475.73,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "Apr 1",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 7282 YONKERS, NY Debit - $10.35",
+            "description_normalized": null,
+            "amount": 4465.38,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "Apr 1",
+            "description_raw": "Debit Card Purchase - TST JAMBA JUICE 074 ALBANY, NY Debit - $12.98",
+            "description_normalized": null,
+            "amount": 4452.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "Apr 1",
+            "description_raw": "Debit Card Purchase - CHEGG ORDER 8558681054 NY Debit - $14.95",
+            "description_normalized": null,
+            "amount": 4437.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "Apr 2",
+            "description_raw": "ATM Withdrawal - CAPITAL ONE A5CB ALBANY, NY Debit - $800.00",
+            "description_normalized": null,
+            "amount": 3637.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "Apr 2",
+            "description_raw": "Debit Card Purchase - TARGET T- 133 SERRAMON ALBANY, NY Debit - $31.76",
+            "description_normalized": null,
+            "amount": 3605.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "Apr 2",
+            "description_raw": "Debit Card Purchase - GROCERY OUTLET ALBANY, NY Debit - $43.94",
+            "description_normalized": null,
+            "amount": 3561.75,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "Apr 3",
+            "description_raw": "Debit Card Purchase - IN N OUT BURGER 159 ALBANY, NY Debit - $13.16",
+            "description_normalized": null,
+            "amount": 3548.59,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "Apr 3",
+            "description_raw": "Debit Card Purchase - MCDONALD S F8021 ALBANY, NY Debit - $26.77",
+            "description_normalized": null,
+            "amount": 3521.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "Apr 4",
+            "description_raw": "Money received from CINDY JOSEPH Credit + $170.00",
+            "description_normalized": null,
+            "amount": 3691.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "Apr 4",
+            "description_raw": "Debit Card Purchase - TST JAMBA JUICE 069 ALBANY, NY Debit - $11.34",
+            "description_normalized": null,
+            "amount": 3680.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "Apr 4",
+            "description_raw": "Debit Card Purchase - OTTERBOX LIFEPROOF 9704938446 ALBANY, NY Debit - $10.80",
+            "description_normalized": null,
+            "amount": 3669.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "Apr 5",
+            "description_raw": "VALS OF THE CARIBBEAN DIRECT DEP Credit + $1,593.73",
+            "description_normalized": null,
+            "amount": 5263.41,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "Apr 7",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 4582 ALBANY, NY Debit - $279.90",
+            "description_normalized": null,
+            "amount": 4983.51,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "Apr 7",
+            "description_raw": "Digital Card Purchase - WALGREENS 15567 ALBANY, NY Debit - $2.35",
+            "description_normalized": null,
+            "amount": 4981.16,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "Apr 7",
+            "description_raw": "Debit Card Purchase - STARBUCKS 800 782 7282 NY Debit - $15.00",
+            "description_normalized": null,
+            "amount": 4966.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "Apr 12",
+            "description_raw": "VALS OF THE CARIBBEAN DIRECT DEP Credit + $1,593.73",
+            "description_normalized": null,
+            "amount": 6559.89,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_019",
+            "date": "Apr 14",
+            "description_raw": "Money received from CINDY JOSEPH Credit + $200.00",
+            "description_normalized": null,
+            "amount": 6759.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_020",
+            "date": "Apr 15",
+            "description_raw": "Debit Card Purchase - MAYFAIR GAS ALBANY, NY Debit - $20.00",
+            "description_normalized": null,
+            "amount": 6739.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 0.0,
+        "bank_stated_total_withdrawals": 0.0
+    },
+    "validation": {
+        "opening_plus_deposits": 0.0,
+        "minus_withdrawals": 0.0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": true,
+        "check_total_matches": true,
+        "errors": [
+            "Deposit total mismatch: computed 91503.82, bank stated 0.0"
+        ]
+    },
+    "checks": []
+}

@@ -1,0 +1,69 @@
+{
+    "metadata": {
+        "source_file": "Bank-of-America-Bank-Statement-TemplateLab.com_.pdf",
+        "statement_period": {
+            "start": "2016-12-20",
+            "end": "2017-01-19"
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.888.7937",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": null,
+            "account_number": null,
+            "account_type": null,
+            "address": null
+        }
+    },
+    "account_summary": {
+        "opening_balance": 356.41,
+        "opening_balance_date": "2016-12-20",
+        "closing_balance": 0.0,
+        "closing_balance_date": "January 19, 2017       | $578.46   |",
+        "total_deposits_and_other_additions": 3921.69,
+        "total_withdrawals_and_other_subtractions": 0.0,
+        "checks": -85.0,
+        "service_fees": -12.0,
+        "number_of_deposits": 0,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 3921.69,
+        "bank_stated_total_withdrawals": 0.0
+    },
+    "validation": {
+        "opening_plus_deposits": 4278.1,
+        "minus_withdrawals": 4181.1,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": true,
+        "check_total_matches": false,
+        "errors": [
+            "Balance mismatch: 356.41 + 3921.69 + 0.0 + -85.0 + -12.0 = 4181.1, expected 0.0",
+            "Deposit total mismatch: computed 0, bank stated 3921.69",
+            "Check total mismatch: computed 0, bank stated -85.0"
+        ]
+    },
+    "checks": []
+}

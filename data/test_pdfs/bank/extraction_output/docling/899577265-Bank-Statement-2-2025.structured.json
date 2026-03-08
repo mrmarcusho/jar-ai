@@ -1,0 +1,431 @@
+{
+    "metadata": {
+        "source_file": "899577265-Bank-Statement-2-2025.pdf",
+        "statement_period": {
+            "start": null,
+            "end": null
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.888.7937",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": null,
+            "account_number": null,
+            "account_type": null,
+            "address": null
+        }
+    },
+    "account_summary": {
+        "opening_balance": 2.28,
+        "opening_balance_date": "2025-02-01",
+        "closing_balance": 0.0,
+        "closing_balance_date": "February 28, 2025     | $289.39     |",
+        "total_deposits_and_other_additions": 0.0,
+        "total_withdrawals_and_other_subtractions": 0.0,
+        "checks": 0.0,
+        "service_fees": 0.0,
+        "number_of_deposits": 20,
+        "number_of_withdrawals": 16
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-02-08",
+            "description_raw": "TALLULAH WATER- ONLIN, 3185743162 , LA , USA - $93.77",
+            "description_normalized": null,
+            "amount": 654.41,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-02-08",
+            "description_raw": "LOVE'S #0635 INSIDE, ALMA, AR , USA - $10.08",
+            "description_normalized": null,
+            "amount": 644.33,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-02-08",
+            "description_raw": "LOVE'S #0635 INSIDE, ALMA, AR , USA - $6.11",
+            "description_normalized": null,
+            "amount": 638.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-02-09",
+            "description_raw": "LOVE'S #0277 INSIDE, PRESCOTT, AR , USA - $1.53",
+            "description_normalized": null,
+            "amount": 636.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-02-09",
+            "description_raw": "LOVE'S #0661 INSIDE, PINE BLUFF, AR , USA - $3.23",
+            "description_normalized": null,
+            "amount": 633.46,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2025-02-09",
+            "description_raw": "P473853, TALLULAH, LA , USA - $102.50",
+            "description_normalized": null,
+            "amount": 530.96,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2025-02-09",
+            "description_raw": "LK637877, TALLULAH, LA , USA - $204.95",
+            "description_normalized": null,
+            "amount": 326.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2025-02-09",
+            "description_raw": "LK637877, TALLULAH, LA , USA - $204.95",
+            "description_normalized": null,
+            "amount": 121.06,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2025-02-09",
+            "description_raw": "LK637877, TALLULAH, LA , USA - $24.95",
+            "description_normalized": null,
+            "amount": 96.11,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2025-02-10",
+            "description_raw": "BIG RED EXPRESS, WHITE HALL, AR , USA - $52.28",
+            "description_normalized": null,
+            "amount": 43.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2025-02-10",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113 - $43.83",
+            "description_normalized": null,
+            "amount": 0.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2025-02-12",
+            "description_raw": "RBT BIG RED EXPRESS, EasySavings, NY, USA + $0.52",
+            "description_normalized": null,
+            "amount": 0.52,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "2025-02-14",
+            "description_raw": "INSIGHT LOGISTIC - PAYROLL SJENKINS + $922.61",
+            "description_normalized": null,
+            "amount": 923.13,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "2025-02-14",
+            "description_raw": "Return for AtlasFinancial - Payment 11ktz0t943s5q16 + $8.99",
+            "description_normalized": null,
+            "amount": 932.12,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "2025-02-14",
+            "description_raw": "NCOURT*ARJEFFERSON, PINE BLUFF, AR , USA - $210.00",
+            "description_normalized": null,
+            "amount": 722.12,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "2025-02-14",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113 - $225.00",
+            "description_normalized": null,
+            "amount": 497.12,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "2025-02-14",
+            "description_raw": "S &AFOODSTOREINC,TALLULAH , LA , USA - $8.96",
+            "description_normalized": null,
+            "amount": 488.16,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "2025-02-14",
+            "description_raw": "WENDYS#21900, TALLULAH, LA , USA - $8.18",
+            "description_normalized": null,
+            "amount": 479.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_019",
+            "date": "2025-02-14",
+            "description_raw": "AtlasFinancial - Payment 11ktz0t943s5q16 - $8.99",
+            "description_normalized": null,
+            "amount": 470.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_020",
+            "date": "2025-02-15",
+            "description_raw": "VZWRLSS*BILL PAY VE, FOLSOM, CA, USA - $127.23",
+            "description_normalized": null,
+            "amount": 343.76,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-02-27",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113 - $120.00",
+            "description_normalized": null,
+            "amount": -57.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-02-27",
+            "description_raw": "PAYPAL *JENKINS SOLOMO, 4029357733 , CA, USA - $10.00",
+            "description_normalized": null,
+            "amount": -67.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-02-27",
+            "description_raw": "PAYPAL *JENKINS SOLOMO, 4029357733 , CA, USA - $10.00",
+            "description_normalized": null,
+            "amount": -77.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-02-27",
+            "description_raw": "APPLE.COM/BILL, 866-712-7753, CA, USA - $6.65",
+            "description_normalized": null,
+            "amount": -83.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-02-27",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113 - $21.00",
+            "description_normalized": null,
+            "amount": -104.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-02-27",
+            "description_raw": "Earnin - REPAYMENT 915068655 - $51.00",
+            "description_normalized": null,
+            "amount": -155.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-02-28",
+            "description_raw": "INSIGHT LOGISTIC - PAYROLL SJENKINS + $886.39",
+            "description_normalized": null,
+            "amount": 730.74,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-02-28",
+            "description_raw": "SPORTMANSUPERSTOP, TALLULAH , LA , USA - $19.65",
+            "description_normalized": null,
+            "amount": 711.09,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-02-28",
+            "description_raw": "PETSMART # 1879,MONROE,LA,USA - $77.42",
+            "description_normalized": null,
+            "amount": 633.67,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-02-28",
+            "description_raw": "SONIC DRIVE IN #1188,MONROE,LA,USA - $3.53",
+            "description_normalized": null,
+            "amount": 630.14,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-02-28",
+            "description_raw": "WMSUPERCENTER#Wal-Mart,WESTMONROE,LA,USA - $111.97",
+            "description_normalized": null,
+            "amount": 518.17,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-02-28",
+            "description_raw": "MURPHY7937,WESTMONROE,LA,USA - $42.34",
+            "description_normalized": null,
+            "amount": 475.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-02-28",
+            "description_raw": "SONIC DRIVE IN #4616,MONROE,LA,USA - $7.01",
+            "description_normalized": null,
+            "amount": 468.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-02-28",
+            "description_raw": "PETSMART # 1879,MONROE,LA,USA - $34.00",
+            "description_normalized": null,
+            "amount": 434.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-02-28",
+            "description_raw": "FAMILY DOLLAR 300 NCHEST, TALLULAH, LA, USA - $43.43",
+            "description_normalized": null,
+            "amount": 391.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-02-28",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113 - $102.00",
+            "description_normalized": null,
+            "amount": 289.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 0.0,
+        "bank_stated_total_withdrawals": 0.0
+    },
+    "validation": {
+        "opening_plus_deposits": 2.28,
+        "minus_withdrawals": 2.28,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": false,
+        "check_total_matches": true,
+        "errors": [
+            "Balance mismatch: 2.28 + 0.0 + 0.0 + 0.0 + 0.0 = 2.28, expected 0.0",
+            "Deposit total mismatch: computed 9182.98, bank stated 0.0",
+            "Withdrawal total mismatch: computed 4739.11, bank stated 0.0"
+        ]
+    },
+    "checks": []
+}

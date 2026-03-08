@@ -1,0 +1,852 @@
+{
+    "metadata": {
+        "source_file": "barclays_bank_statement.pdf",
+        "statement_period": {
+            "start": "2025-01-05",
+            "end": "2025-03-29"
+        },
+        "bank_entity": {
+            "name": "Barclays Bank UK PLC",
+            "correspondence_address": {
+                "line1": "1 Churchill Place",
+                "city": "London",
+                "state": "",
+                "zip": "E14 5HP"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "Barclays, Leicester",
+                    "city": "Leicester",
+                    "state": "",
+                    "zip": "LE87 2BB"
+                },
+                "website": "barclays.co.uk",
+                "phone_number": "0345 7 345 345",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Kynatbek Adamkulov",
+            "account_number": "83605981",
+            "account_type": "Current account",
+            "address": {
+                "line1": "Initial Business Centre, Wilson Business Park",
+                "city": "Manchester",
+                "state": "",
+                "zip": "M40 8WN"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 4650.33,
+        "opening_balance_date": "2025-01-05",
+        "closing_balance": 4378.1,
+        "closing_balance_date": "2025-03-29",
+        "total_deposits_and_other_additions": 2332.21,
+        "total_withdrawals_and_other_subtractions": -2604.44,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 12,
+        "number_of_withdrawals": 89
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-01-05",
+            "description_raw": "Received From Decora Blinds Ref: Decora Blinds",
+            "description_normalized": null,
+            "amount": 394.24,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-01-08",
+            "description_raw": "Received From Irfan Ali R Ref: Sainsbury",
+            "description_normalized": null,
+            "amount": 10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-01-08",
+            "description_raw": "Received From Irfan Ali R Ref: Khadim",
+            "description_normalized": null,
+            "amount": 10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-01-08",
+            "description_raw": "Received From Irfan Ali R Ref: Sainsbury",
+            "description_normalized": null,
+            "amount": 15.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-02-12",
+            "description_raw": "Received From Decora Blinds Ref: Decora Blinds",
+            "description_normalized": null,
+            "amount": 398.92,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2025-02-15",
+            "description_raw": "Received From Irfan Ali R Ref: Evri",
+            "description_normalized": null,
+            "amount": 7.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2025-03-17",
+            "description_raw": "Refund From Trainline On 17 Mar",
+            "description_normalized": null,
+            "amount": 145.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2025-03-19",
+            "description_raw": "Received From Decora Blinds Ref: Decora Blinds",
+            "description_normalized": null,
+            "amount": 398.92,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2025-04-22",
+            "description_raw": "Received From Irfan Ali R Ref: Vinted",
+            "description_normalized": null,
+            "amount": 8.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2025-04-22",
+            "description_raw": "Received From Irfan Ali R Ref: Vinted",
+            "description_normalized": null,
+            "amount": 6.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2025-04-22",
+            "description_raw": "Received From Decora Blinds Ref: Decora Blinds",
+            "description_normalized": null,
+            "amount": 538.92,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2025-05-24",
+            "description_raw": "Received From Decora Blinds Ref: Decora Blinds",
+            "description_normalized": null,
+            "amount": 398.72,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-01-05",
+            "description_raw": "Card Payment to Sumup *Madni Jamia On 05 Jan",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-01-06",
+            "description_raw": "Card Payment to RSPCA Halifax, Hud On 06 Jan",
+            "description_normalized": null,
+            "amount": -7.1,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-01-05",
+            "description_raw": "Card Payment to Khadim General STO On 05 Jan",
+            "description_normalized": null,
+            "amount": -7.79,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-01-06",
+            "description_raw": "Card Payment to Olde England Fishe On 06 Jan",
+            "description_normalized": null,
+            "amount": -11.2,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-01-05",
+            "description_raw": "Card Payment to Christian African On 05 Jan",
+            "description_normalized": null,
+            "amount": -12.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-01-07",
+            "description_raw": "Card Payment to Khadim General STO On 07 Jan",
+            "description_normalized": null,
+            "amount": -12.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-01-06",
+            "description_raw": "Card Payment to Home Bargains Hudd On 06 Jan",
+            "description_normalized": null,
+            "amount": -15.13,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-01-08",
+            "description_raw": "Bill Payment to Anisa Aslam Ref: Mobiles",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-01-10",
+            "description_raw": "Bill Payment to Martyna Skrzynkows Ref: Mobiles",
+            "description_normalized": null,
+            "amount": -60.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-01-11",
+            "description_raw": "Card Payment to Oxfam F0799 On 10 Jan",
+            "description_normalized": null,
+            "amount": -7.96,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-02-12",
+            "description_raw": "Bill Payment to N Mohammed Ref: Lesson",
+            "description_normalized": null,
+            "amount": -70.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to Hermes Parcelnet L On 15 Feb",
+            "description_normalized": null,
+            "amount": -7.36,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to Rontec Lockwood On 15 Feb",
+            "description_normalized": null,
+            "amount": -0.59,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to Turners Huddersfie On 15 Feb",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to Christian African On 15 Feb",
+            "description_normalized": null,
+            "amount": -3.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to Sumup *Madni Jamia On 15 Feb",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to RSPCA Halifax, Hud On 15 Feb",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to Kirkwood Hospice H On 15 Feb",
+            "description_normalized": null,
+            "amount": -7.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2025-02-15",
+            "description_raw": "Card Payment to Home Bargains Hudd On 15 Feb",
+            "description_normalized": null,
+            "amount": -7.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2025-03-01",
+            "description_raw": "Card Payment to Mgp*Vinted 8231055 On 1 Mar",
+            "description_normalized": null,
+            "amount": -45.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2025-03-01",
+            "description_raw": "Card Payment to Trainline On 1 Mar",
+            "description_normalized": null,
+            "amount": -145.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2025-03-17",
+            "description_raw": "Card Payment to Worldremit Ltd. On 17 Mar",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2025-03-17",
+            "description_raw": "Bill Payment to Rukhsana Irfan Ali Ref: Just",
+            "description_normalized": null,
+            "amount": -800.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2025-03-17",
+            "description_raw": "Direct Debit to Vodafone Ltd Ref: 7073153538-1001",
+            "description_normalized": null,
+            "amount": -67.49,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2025-04-19",
+            "description_raw": "Card Payment to Mgp*Vinted 8250616 On 12 Apr",
+            "description_normalized": null,
+            "amount": -6.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2025-04-19",
+            "description_raw": "Card Payment to Worldremit Ltd. On 19 Apr",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2025-04-19",
+            "description_raw": "Card Payment to Rontec Lockwood On 19 Apr",
+            "description_normalized": null,
+            "amount": -1.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2025-03-19",
+            "description_raw": "Bill Payment to N Mohammed Ref: Lesson",
+            "description_normalized": null,
+            "amount": -52.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2025-04-22",
+            "description_raw": "Card Payment to First Bus - Mobile On 22 Apr",
+            "description_normalized": null,
+            "amount": -4.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2025-04-22",
+            "description_raw": "Card Payment to Mgp*Vinted 8284102 On 22 Apr",
+            "description_normalized": null,
+            "amount": -6.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2025-04-22",
+            "description_raw": "Card Payment to Mgp*Vinted 8284099 On 22 Apr",
+            "description_normalized": null,
+            "amount": -7.92,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2025-04-22",
+            "description_raw": "Card Payment to Mgp*Vinted 8283929 On 22 Apr",
+            "description_normalized": null,
+            "amount": -11.59,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2025-04-22",
+            "description_raw": "Card Payment to Omio *Omio On 22 Apr",
+            "description_normalized": null,
+            "amount": -33.71,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2025-04-21",
+            "description_raw": "Card Payment to Worldremit Ltd. On 21 Apr",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2025-04-20",
+            "description_raw": "Card Payment to British Heart Foun On 20 Apr",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2025-04-19",
+            "description_raw": "Card Payment to Medicare Chemists On 19 Apr",
+            "description_normalized": null,
+            "amount": -5.85,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2025-04-19",
+            "description_raw": "Card Payment to Medicare Chemists On 19 Apr",
+            "description_normalized": null,
+            "amount": -9.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2025-04-23",
+            "description_raw": "Bill Payment to Susan Hikdred Ref: Buying Ipad",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2025-04-23",
+            "description_raw": "Card Payment to Mgp*Vinted 8284088 On 23 Apr",
+            "description_normalized": null,
+            "amount": -5.79,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2025-04-24",
+            "description_raw": "Card Payment to Omio *Omio On 24 Apr",
+            "description_normalized": null,
+            "amount": -32.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2025-04-24",
+            "description_raw": "Card Payment to Cmt UK Ltd Taxi FA On 24 Apr",
+            "description_normalized": null,
+            "amount": -10.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2025-04-24",
+            "description_raw": "Card Payment to Tfl Travel CH On 24 Apr",
+            "description_normalized": null,
+            "amount": -25.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2025-04-24",
+            "description_raw": "Card Payment to Tfl Travel CH On 24 Apr",
+            "description_normalized": null,
+            "amount": -30.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w44",
+            "date": "2025-04-25",
+            "description_raw": "Card Payment to City Foods On 25 Apr",
+            "description_normalized": null,
+            "amount": -1.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w45",
+            "date": "2025-04-25",
+            "description_raw": "Card Payment to Tfl Travel CH On 25 Apr",
+            "description_normalized": null,
+            "amount": -2.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w46",
+            "date": "2025-04-26",
+            "description_raw": "Card Payment to Peckham Organics On 26 Apr",
+            "description_normalized": null,
+            "amount": -4.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w47",
+            "date": "2025-04-26",
+            "description_raw": "Card Payment to Tfl Travel CH On 26 Apr",
+            "description_normalized": null,
+            "amount": -5.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w48",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Omio *Omio On 29 Apr",
+            "description_normalized": null,
+            "amount": -40.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w49",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Omio *Omio On 29 Apr",
+            "description_normalized": null,
+            "amount": -46.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w50",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Ubr* Pending.Uber. On 29 Apr",
+            "description_normalized": null,
+            "amount": -50.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w51",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Ppoint_*Julian Sup On 29 Apr",
+            "description_normalized": null,
+            "amount": -1.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w52",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Tfl Travel CH On 29 Apr",
+            "description_normalized": null,
+            "amount": -1.75,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w53",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Rontec Lockwood On 29 Apr",
+            "description_normalized": null,
+            "amount": -2.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w54",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Ppoint_*Lockwood C On 29 Apr",
+            "description_normalized": null,
+            "amount": -3.38,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w55",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to University of Gree On 29 Apr",
+            "description_normalized": null,
+            "amount": -3.42,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w56",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Tfl Travel CH On 29 Apr",
+            "description_normalized": null,
+            "amount": -4.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w57",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Poundland Ltd - 13 On 29 Apr",
+            "description_normalized": null,
+            "amount": -4.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w58",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Khadim General STO On 29 Apr",
+            "description_normalized": null,
+            "amount": -5.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w59",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Tfl Travel CH On 29 Apr",
+            "description_normalized": null,
+            "amount": -9.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w60",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to University of Gree On 29 Apr",
+            "description_normalized": null,
+            "amount": -10.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w61",
+            "date": "2025-04-29",
+            "description_raw": "Card Payment to Next Retail Ltd On 29 Apr",
+            "description_normalized": null,
+            "amount": -38.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w62",
+            "date": "2025-04-30",
+            "description_raw": "Bill Payment to M Shabir Ref: Cuttings",
+            "description_normalized": null,
+            "amount": -15.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w63",
+            "date": "2025-04-30",
+            "description_raw": "Card Payment to Trainline On 30 Apr",
+            "description_normalized": null,
+            "amount": -11.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w64",
+            "date": "2025-04-30",
+            "description_raw": "Card Payment to Omio *Omio On 30 Apr",
+            "description_normalized": null,
+            "amount": -12.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w65",
+            "date": "2025-04-30",
+            "description_raw": "Card Payment to Omio *Omio On 30 Apr",
+            "description_normalized": null,
+            "amount": -25.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w66",
+            "date": "2025-05-01",
+            "description_raw": "Card Payment to Aliexpress.Com On 1 May",
+            "description_normalized": null,
+            "amount": -1.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 2332.21,
+        "bank_stated_total_withdrawals": -2604.44
+    },
+    "validation": {
+        "opening_plus_deposits": 6982.54,
+        "minus_withdrawals": 4378.1,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Withdrawal count mismatch: found 66 transactions but statement shows 89"
+        ]
+    }
+}

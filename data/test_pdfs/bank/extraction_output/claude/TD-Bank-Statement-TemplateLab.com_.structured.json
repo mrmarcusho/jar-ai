@@ -1,0 +1,283 @@
+{
+    "metadata": {
+        "source_file": "TD Bank Statement",
+        "statement_period": {
+            "start": "2018-07-01",
+            "end": "2018-07-31"
+        },
+        "bank_entity": {
+            "name": "TD Bank, N.A.",
+            "correspondence_address": {
+                "line1": "",
+                "city": "",
+                "state": "",
+                "zip": ""
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "www.tdbank.com",
+                "phone_number": "1-800-937-2000",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "KE 2 CONTRACT LLC",
+            "account_number": "435-4366572",
+            "account_type": "TD Business Premier Checking",
+            "address": {
+                "line1": "3418 NORTHERN BLVD STE 412",
+                "city": "LONG ISLAND CITY",
+                "state": "NY",
+                "zip": "11101"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 13679.61,
+        "opening_balance_date": "2018-07-01",
+        "closing_balance": 51176.35,
+        "closing_balance_date": "2018-07-31",
+        "total_deposits_and_other_additions": 247506.41,
+        "total_withdrawals_and_other_subtractions": -210525.54,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 20,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2018-07-02",
+            "description_raw": "CHECK DEPOSIT, 59317 LARSON CONTRACTORS",
+            "description_normalized": null,
+            "amount": 3750.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2018-07-05",
+            "description_raw": "CHECK DEPOSIT, 29484 VISION MEDIA INC",
+            "description_normalized": null,
+            "amount": 4500.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2018-07-12",
+            "description_raw": "CHECK DEPOSIT, 3659 A D REAL ESTATE INVESTORS",
+            "description_normalized": null,
+            "amount": 4245.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2018-07-16",
+            "description_raw": "CHECK DEPOSIT, 41825 JHACS ELECTRICAL",
+            "description_normalized": null,
+            "amount": 3800.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2018-07-20",
+            "description_raw": "CHECK DEPOSIT, 25208 VIDALES AND SONS",
+            "description_normalized": null,
+            "amount": 3758.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2018-07-23",
+            "description_raw": "DEPOSIT, COUNTER",
+            "description_normalized": null,
+            "amount": 3100.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2018-07-30",
+            "description_raw": "DEPOSIT, ATM",
+            "description_normalized": null,
+            "amount": 4022.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2018-07-31",
+            "description_raw": "DEPOSIT, ATM",
+            "description_normalized": null,
+            "amount": 2678.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2018-07-02",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 3116.72,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2018-07-02",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 2262.14,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2018-07-02",
+            "description_raw": "ACH DEPOSIT, QUICKBOOKS DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": 3408.35,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2018-07-03",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 3393.51,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "2018-07-03",
+            "description_raw": "ACH DEPOSIT, QUICKBOOKS DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": 1925.22,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "2018-07-03",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 3063.97,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "2018-07-04",
+            "description_raw": "ACH DEPOSIT, QUICKBOOKS DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": 2650.05,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "2018-07-04",
+            "description_raw": "ACH DEPOSIT, QUICKBOOKS DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": 1746.83,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "2018-07-04",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 2318.74,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "2018-07-05",
+            "description_raw": "ACH DEPOSIT, QUICKBOOKS DEPOSIT 479395622313",
+            "description_normalized": null,
+            "amount": 3562.6,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_019",
+            "date": "2018-07-05",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 3228.25,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_020",
+            "date": "2018-07-05",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 3745.48,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_021",
+            "date": "2018-07-06",
+            "description_raw": "CCD DEPOSIT, TO MERCHANT SVS DEPOSIT 958216955889",
+            "description_normalized": null,
+            "amount": 3692.33,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 247506.41,
+        "bank_stated_total_withdrawals": -210525.54
+    },
+    "validation": {
+        "opening_plus_deposits": 261186.02,
+        "minus_withdrawals": 50660.48,
+        "matches_closing_balance": false,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Closing balance mismatch: calculated 50660.48 vs stated 51176.35",
+            "Deposit count mismatch: found 21 vs expected 20",
+            "Deposit total mismatch: calculated 67371.67 vs stated 247506.41"
+        ]
+    }
+}

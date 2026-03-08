@@ -1,0 +1,173 @@
+{
+    "metadata": {
+        "source_file": "PayPal_Statement.pdf",
+        "statement_period": {
+            "start": "2020-02-01",
+            "end": "2020-02-29"
+        },
+        "bank_entity": {
+            "name": "PayPal",
+            "correspondence_address": {
+                "line1": "P.O. Box 45950",
+                "city": "Omaha",
+                "state": "NE",
+                "zip": "68145-0950"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 45950",
+                    "city": "Omaha",
+                    "state": "NE",
+                    "zip": "68145-0950"
+                },
+                "website": "",
+                "phone_number": "402-938-3614",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Mr John Doe",
+            "account_number": "john@gmail.com",
+            "account_type": "PayPal Account",
+            "address": {
+                "line1": "",
+                "city": "",
+                "state": "",
+                "zip": ""
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0,
+        "opening_balance_date": "2020-02-01",
+        "closing_balance": 2353.55,
+        "closing_balance_date": "2020-02-29",
+        "total_deposits_and_other_additions": 3329.42,
+        "total_withdrawals_and_other_subtractions": -975.87,
+        "checks": 0,
+        "service_fees": 20.13,
+        "number_of_deposits": 5,
+        "number_of_withdrawals": 5
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2020-02-01",
+            "description_raw": "Deposit in Paypal ID(839439283)",
+            "description_normalized": null,
+            "amount": 432.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2020-02-04",
+            "description_raw": "Deposit in Paypal ID(839439283)",
+            "description_normalized": null,
+            "amount": 633.46,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2020-02-14",
+            "description_raw": "Deposit in Paypal ID(736284753)",
+            "description_normalized": null,
+            "amount": 845.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2020-02-27",
+            "description_raw": "Deposit in Paypal ID(736269464)",
+            "description_normalized": null,
+            "amount": 785.46,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2020-02-28",
+            "description_raw": "Deposit in Paypal ID(736286436)",
+            "description_normalized": null,
+            "amount": 632.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2020-02-07",
+            "description_raw": "Transfer to solu12323 ID(839538294)",
+            "description_normalized": null,
+            "amount": -235.15,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2020-02-09",
+            "description_raw": "Transfer to solu12323 ID(765437485)",
+            "description_normalized": null,
+            "amount": -132.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2020-02-19",
+            "description_raw": "Transfer to solu12323 ID(765437485)",
+            "description_normalized": null,
+            "amount": -353.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2020-02-24",
+            "description_raw": "Transfer to Sima45734 ID(765437763)",
+            "description_normalized": null,
+            "amount": -143.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2020-02-25",
+            "description_raw": "Transfer to karrye83492 ID(765437456)",
+            "description_normalized": null,
+            "amount": -123.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 3329.42,
+        "bank_stated_total_withdrawals": -988.68
+    },
+    "validation": {
+        "opening_plus_deposits": 3329.42,
+        "minus_withdrawals": 2340.74,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Closing balance does not match calculated balance",
+            "Withdrawal total does not match bank stated total"
+        ]
+    }
+}

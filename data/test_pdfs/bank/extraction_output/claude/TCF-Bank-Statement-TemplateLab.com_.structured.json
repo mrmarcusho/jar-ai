@@ -1,0 +1,312 @@
+{
+    "metadata": {
+        "source_file": "TCF_Bank_Statement.pdf",
+        "statement_period": {
+            "start": "2017-07-27",
+            "end": "2017-08-24"
+        },
+        "bank_entity": {
+            "name": "TCF NATIONAL BANK",
+            "correspondence_address": {
+                "line1": "1405 XENIUM LN N",
+                "city": "PLYMOUTH",
+                "state": "MN",
+                "zip": "55441"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "1405 XENIUM LN N",
+                    "city": "PLYMOUTH",
+                    "state": "MN",
+                    "zip": "55441"
+                },
+                "website": "tcfbank.com",
+                "phone_number": "612-823-2265 (TWIN CITIES), 1-800-823-2265 (TOLL FREE), OR 1-800-343-6145 (HEARING IMPAIRED)",
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": "CELINE ASARE BEDIAKO",
+            "account_number": "6852867839",
+            "account_type": "TCF AFFINITY CHECKING",
+            "address": {
+                "line1": "9171 YATES BAY CT",
+                "city": "BROOKLYN PARK",
+                "state": "MN",
+                "zip": "55443-1629"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 1.73,
+        "opening_balance_date": "2017-07-26",
+        "closing_balance": 48.46,
+        "closing_balance_date": "2017-08-24",
+        "total_deposits_and_other_additions": 1029.04,
+        "total_withdrawals_and_other_subtractions": -982.31,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 0,
+        "number_of_withdrawals": 36
+    },
+    "deposits": [],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2017-07-31",
+            "description_raw": "PAYPAL *MERCARI ME 402-935-7733 CA US",
+            "description_normalized": null,
+            "amount": -22.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2017-07-31",
+            "description_raw": "POS T-MOBILE #2313 07106953 BROOKLYN PARMN",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2017-08-01",
+            "description_raw": "AUTOMATED WITHDRAWAL PAYPAL ECHECK",
+            "description_normalized": null,
+            "amount": -3.89,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2017-08-01",
+            "description_raw": "POS CUB FOODS #30224 07313201 BROOKLYN PARMN",
+            "description_normalized": null,
+            "amount": -11.67,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2017-08-02",
+            "description_raw": "POS PACSUN #0145 01450002",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2017-08-03",
+            "description_raw": "AMAZON MKTPLACE PM AMZN.COM/BIL WA US",
+            "description_normalized": null,
+            "amount": -23.47,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2017-08-04",
+            "description_raw": "POS 0473 FOREVER 21 06340326 MAPLE GROVE MN",
+            "description_normalized": null,
+            "amount": -9.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2017-08-04",
+            "description_raw": "POS AMERICAN EAGLE 08219036",
+            "description_normalized": null,
+            "amount": -49.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2017-08-04",
+            "description_raw": "POS FRANCESCA'S# 32 12121 0001 MAPLE GROVE MN",
+            "description_normalized": null,
+            "amount": -19.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2017-08-07",
+            "description_raw": "PAYPAL *MERCARI ME 402-935-7733 CA US",
+            "description_normalized": null,
+            "amount": -31.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2017-08-07",
+            "description_raw": "FINISH LINE 1058 EDINA MN US",
+            "description_normalized": null,
+            "amount": -9.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2017-08-07",
+            "description_raw": "AMAZON MKTPLACE PM AMZN.COM/BIL WA US",
+            "description_normalized": null,
+            "amount": -20.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2017-08-07",
+            "description_raw": "CHEESECAKE EDINA EDINA MN US",
+            "description_normalized": null,
+            "amount": -31.52,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2017-08-07",
+            "description_raw": "POS DOLLAR TR 8030 BROOKLY 84072001 BROOKLYN PARMN",
+            "description_normalized": null,
+            "amount": -6.44,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2017-08-07",
+            "description_raw": "Spotify USA 646-8375380 NY US",
+            "description_normalized": null,
+            "amount": -5.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2017-08-07",
+            "description_raw": "AUTOMATED WITHDRAWA PAYPAL INST XFER",
+            "description_normalized": null,
+            "amount": -19.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2017-08-08",
+            "description_raw": "POS PARK SALON LLC 00004095 BROOKLYN PARMN",
+            "description_normalized": null,
+            "amount": -75.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2017-08-09",
+            "description_raw": "PEARLE VISION MAPLE GROVE MN US",
+            "description_normalized": null,
+            "amount": -49.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2017-08-09",
+            "description_raw": "POS HY VEE 1040 BH2ASAEH BROOKLYN PARMN",
+            "description_normalized": null,
+            "amount": -21.61,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2017-08-10",
+            "description_raw": "POS SEVEN MILE FASHION II 39650009 MINNEAPOLIS MN",
+            "description_normalized": null,
+            "amount": -4.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2017-08-11",
+            "description_raw": "WITHDRAWAL",
+            "description_normalized": null,
+            "amount": -120.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2017-08-11",
+            "description_raw": "WEB TRANSFER WITHDRAWAL",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2017-08-11",
+            "description_raw": "POS AMERICAN EAGLE 08219037 MAPLE GROVE MN",
+            "description_normalized": null,
+            "amount": -59.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2017-08-11",
+            "description_raw": "POS WALGREENS STORE 13611 GR 99999999 MAPLE GROVE MN",
+            "description_normalized": null,
+            "amount": -4.26,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 1029.04,
+        "bank_stated_total_withdrawals": -982.31
+    },
+    "validation": {
+        "opening_plus_deposits": 1030.77,
+        "minus_withdrawals": 48.46,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Withdrawal count mismatch: found 24 transactions but expected 36",
+            "Withdrawal total mismatch: computed -698.75 but bank stated -982.31"
+        ]
+    }
+}

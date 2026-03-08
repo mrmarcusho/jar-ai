@@ -1,0 +1,90 @@
+{
+    "metadata": {
+        "source_file": "GBP_statement.pdf",
+        "statement_period": {
+            "start": "2023-06-12",
+            "end": "2023-07-11"
+        },
+        "bank_entity": {
+            "name": "Wise Payments Limited",
+            "correspondence_address": {
+                "line1": "6th Floor, The Tea Building, 56 Shoreditch High Street",
+                "city": "London",
+                "state": "",
+                "zip": "E1 6JJ"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "6th Floor, The Tea Building, 56 Shoreditch High Street",
+                    "city": "London",
+                    "state": "",
+                    "zip": "E1 6JJ"
+                },
+                "website": "https://www.wise.com",
+                "phone_number": "+44 (0) 203 6950 999",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "THE JACKET PACK LIMITED",
+            "account_number": "59888661",
+            "account_type": "GBP Account",
+            "address": {
+                "line1": "Office 7715, 182-184 High Street, North East Ham",
+                "city": "London",
+                "state": "",
+                "zip": "E6 2JA"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.0,
+        "opening_balance_date": "2023-06-12",
+        "closing_balance": 0.0,
+        "closing_balance_date": "2023-07-11",
+        "total_deposits_and_other_additions": 45.0,
+        "total_withdrawals_and_other_subtractions": -45.0,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 1,
+        "number_of_withdrawals": 1
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-06-26",
+            "description_raw": "Transaction: TRANSFER-725238517",
+            "description_normalized": null,
+            "amount": 45.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-06-26",
+            "description_raw": "Transaction: BANK_DETAILS_ORDER_CHECKOUT-invoice-6907895",
+            "description_normalized": null,
+            "amount": -45.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 45.0,
+        "bank_stated_total_withdrawals": -45.0
+    },
+    "validation": {
+        "opening_plus_deposits": 45.0,
+        "minus_withdrawals": 0.0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

@@ -1,0 +1,168 @@
+{
+    "metadata": {
+        "source_file": "900648500-Monzo-bank-statement-2025-06-01-2025-06-20-7956.pdf",
+        "statement_period": {
+            "start": null,
+            "end": null
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.888.7937",
+                "En Espanol": "1.800.688.6086"
+            }
+        },
+        "account": {
+            "name": null,
+            "account_number": "68187156",
+            "account_type": null,
+            "address": null
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.0,
+        "opening_balance_date": null,
+        "closing_balance": 0.0,
+        "closing_balance_date": null,
+        "total_deposits_and_other_additions": 0.0,
+        "total_withdrawals_and_other_subtractions": 0.0,
+        "checks": 0.0,
+        "service_fees": 0.0,
+        "number_of_deposits": 10,
+        "number_of_withdrawals": 0
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2020-19-06",
+            "description_raw": "AMAZON.CO.UK LONDON GBR -64.97",
+            "description_normalized": null,
+            "amount": 1540.93,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2020-19-06",
+            "description_raw": "SMART RETAIL SHOP AND LONDON GBR -0.80",
+            "description_normalized": null,
+            "amount": 1605.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2020-19-06",
+            "description_raw": "Sahar Food Centre London GBR -4.13",
+            "description_normalized": null,
+            "amount": 1606.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2020-19-06",
+            "description_raw": "WINSTAAR FOOD & WINE WEMBLEY GBR -2.44",
+            "description_normalized": null,
+            "amount": 1610.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2020-18-06",
+            "description_raw": "NORTH HILLINGDON POST UXBRIDGE GBR -0.90",
+            "description_normalized": null,
+            "amount": 1613.27,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2020-18-06",
+            "description_raw": "NORTH HILLINGDON POST UXBRIDGE GBR -1.39",
+            "description_normalized": null,
+            "amount": 1614.17,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2020-17-06",
+            "description_raw": "TESCO STORES 5646 HARLESDEN GBR -3.90",
+            "description_normalized": null,
+            "amount": 1615.56,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2020-17-06",
+            "description_raw": "FURNESS STORES LONDON GBR -5.00",
+            "description_normalized": null,
+            "amount": 1619.46,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2020-16-06",
+            "description_raw": "PPOINT_*PREMIER CON ST WEMBLEY GBR -5.43",
+            "description_normalized": null,
+            "amount": 1624.46,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2020-16-06",
+            "description_raw": "LUL TICKET MACHINE GBR -10.00",
+            "description_normalized": null,
+            "amount": 1629.89,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [],
+    "totals": {
+        "bank_stated_total_deposits": 0.0,
+        "bank_stated_total_withdrawals": 0.0
+    },
+    "validation": {
+        "opening_plus_deposits": 0.0,
+        "minus_withdrawals": 0.0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": true,
+        "check_total_matches": true,
+        "errors": [
+            "Deposit total mismatch: computed 16081.17, bank stated 0.0"
+        ]
+    },
+    "checks": []
+}

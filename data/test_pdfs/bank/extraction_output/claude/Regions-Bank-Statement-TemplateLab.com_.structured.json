@@ -1,0 +1,160 @@
+{
+    "metadata": {
+        "source_file": "regions_bank_statement.pdf",
+        "statement_period": {
+            "start": "2019-04-10",
+            "end": "2019-05-10"
+        },
+        "bank_entity": {
+            "name": "Regions Bank",
+            "correspondence_address": {
+                "line1": "",
+                "city": "",
+                "state": "",
+                "zip": ""
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "www.regions.com",
+                "phone_number": "1-800-253-2265",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "RALPH MCCANN",
+            "account_number": "0215724956 687",
+            "account_type": "Checking Account",
+            "address": {
+                "line1": "38RAPP ROAD",
+                "city": "ALBANY",
+                "state": "NY",
+                "zip": "12203"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 887.39,
+        "opening_balance_date": "2019-04-10",
+        "closing_balance": 1092.5,
+        "closing_balance_date": "2019-05-10",
+        "total_deposits_and_other_additions": 1663.0,
+        "total_withdrawals_and_other_subtractions": -1457.89,
+        "checks": 0,
+        "service_fees": 1.0,
+        "number_of_deposits": 1,
+        "number_of_withdrawals": 8
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2019-04-10",
+            "description_raw": "ACH DEPOSIT,N.J. DEPARTMENT RENTAL AST *****36772",
+            "description_normalized": null,
+            "amount": 1663.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2019-04-11",
+            "description_raw": "ACHE DEBIT, TERMINIS CHECKS**** 100000001",
+            "description_normalized": null,
+            "amount": -127.33,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2019-04-23",
+            "description_raw": "DEBIT CARD PURCHASE, *****45113612572, AUT 112716 VISA DDR PUR",
+            "description_normalized": null,
+            "amount": -82.17,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2019-04-24",
+            "description_raw": "ELECTRONIC PMT-WEB,AMERICAN-WATER UTIL-PMNT 0533284",
+            "description_normalized": null,
+            "amount": -69.77,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2019-04-28",
+            "description_raw": "ACH DEBIT, LOAN SERVICING MTG PMT *****51501",
+            "description_normalized": null,
+            "amount": -558.09,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2019-05-01",
+            "description_raw": "TD ATM DEBIT,*****45113612572, AUT 120316 DDA WITHDRAW",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2019-05-02",
+            "description_raw": "ELECTRONIC PMT- WEB, SIMPLE XFERS DR N*****0000021K6F",
+            "description_normalized": null,
+            "amount": -185.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2019-05-04",
+            "description_raw": "DEBIT POS, *****45113612572 , AUT 120716 DDA PURCHASE",
+            "description_normalized": null,
+            "amount": -7.06,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2019-05-05",
+            "description_raw": "DEBIT CARD PURCHASE, *****45113612572, AUT 120816 VISA DDR PUR",
+            "description_normalized": null,
+            "amount": -27.47,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 1663.0,
+        "bank_stated_total_withdrawals": -1457.89
+    },
+    "validation": {
+        "opening_plus_deposits": 2550.39,
+        "minus_withdrawals": 1092.5,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

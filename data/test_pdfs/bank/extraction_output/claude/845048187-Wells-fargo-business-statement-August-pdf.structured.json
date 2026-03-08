@@ -1,0 +1,263 @@
+{
+    "metadata": {
+        "source_file": "wells_fargo_statement.pdf",
+        "statement_period": {
+            "start": "2025-02-01",
+            "end": "2025-02-28"
+        },
+        "bank_entity": {
+            "name": "Wells Fargo Bank, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 6995",
+                "city": "Portland",
+                "state": "OR",
+                "zip": "97228-6995"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 6995",
+                    "city": "Portland",
+                    "state": "OR",
+                    "zip": "97228-6995"
+                },
+                "website": "wellsfargo.com",
+                "phone_number": "1-800-TO-WELLS (1-800-869-3557)",
+                "En Espanol": "1-877-727-2932"
+            }
+        },
+        "account": {
+            "name": "VIETAN TECHNOLOGY",
+            "account_number": "7688428890",
+            "account_type": "Wells Fargo Business Checking",
+            "address": {
+                "line1": "749 EMERSON ST",
+                "city": "SHERIDAN",
+                "state": "WY",
+                "zip": "82801"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 12722.21,
+        "opening_balance_date": "2025-02-01",
+        "closing_balance": 11878.89,
+        "closing_balance_date": "2025-02-28",
+        "total_deposits_and_other_additions": 21678.0,
+        "total_withdrawals_and_other_subtractions": -13463.97,
+        "checks": 0,
+        "service_fees": 91.0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 16
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-02-03",
+            "description_raw": "Deposit Made In A Branch/Store Ref #00021155 NC",
+            "description_normalized": null,
+            "amount": 4500.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-02-04",
+            "description_raw": "Deposit Made In A Branch/Store Ref #0028662 Owings Restaurant M Creek NC",
+            "description_normalized": null,
+            "amount": 5250.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-02-19",
+            "description_raw": "E-Deposit Posted 02/19 Business Checking xxxxxxx8890 Owings Restaurant NC",
+            "description_normalized": null,
+            "amount": 4990.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-02-22",
+            "description_raw": "Check Ref #0010527887 Owings Restaurant xxxxxxx8890 Millers Creek NC",
+            "description_normalized": null,
+            "amount": 950.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-02-04",
+            "description_raw": "Check Ref #00010107 xxxxxx8890 Owings Restaurant M Creek NC",
+            "description_normalized": null,
+            "amount": -850.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-02-04",
+            "description_raw": "Check Ref #001011777 xxxxxxx8890 Owings Restaurant Creek NC",
+            "description_normalized": null,
+            "amount": -950.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-02-04",
+            "description_raw": "Monthly Service Fee",
+            "description_normalized": null,
+            "amount": -91.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-02-10",
+            "description_raw": "Debit Posted Labor Pay on 02/10 Business Checking xxxxxxxx8890 Owings Restaurant NC",
+            "description_normalized": null,
+            "amount": -4500.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-02-10",
+            "description_raw": "Check Business Checking xxxxxxxxx8890 Millers Creek NC",
+            "description_normalized": null,
+            "amount": -800.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-02-10",
+            "description_raw": "Save As You Go Transfer Debit to xxxxxxxx8890",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-02-13",
+            "description_raw": "Debit Posted Labor Pay on 02/13 Business Checking xxxxxxxx8890 Owings Restaurant M Creek NC",
+            "description_normalized": null,
+            "amount": -3800.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-02-13",
+            "description_raw": "Debit Business Checking xxxxxxx8890 Owings Restaurant Creek NC",
+            "description_normalized": null,
+            "amount": -800.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-02-15",
+            "description_raw": "ACH Payment Posted 02/15 Business Checking xxxxxxxx8890 Owings Restaurant Creek NC",
+            "description_normalized": null,
+            "amount": -5988.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-02-15",
+            "description_raw": "Save As You Go Transfer Debit to xxxxxxxx8890",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-02-20",
+            "description_raw": "Debit Business Checking xxxxxxx8890 NC",
+            "description_normalized": null,
+            "amount": -800.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-02-20",
+            "description_raw": "Save As You Go Transfer Debit to xxxxxxxx8890",
+            "description_normalized": null,
+            "amount": -1.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-02-22",
+            "description_raw": "Debit 02/22 Util/bill Restaurant Business Checking xxxxxxxx8890",
+            "description_normalized": null,
+            "amount": -788.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-02-27",
+            "description_raw": "Debit Owings Restaurant xxxxxxx8890 Millers Creek NC",
+            "description_normalized": null,
+            "amount": -23.97,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-02-27",
+            "description_raw": "Save As You Go Transfer Debit to xxxxxxxx8890",
+            "description_normalized": null,
+            "amount": -5.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 21678.0,
+        "bank_stated_total_withdrawals": -13463.97
+    },
+    "validation": {
+        "opening_plus_deposits": 34400.21,
+        "minus_withdrawals": 20936.24,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated ending balance (20936.24) does not match statement ending balance (11878.89)",
+            "Withdrawal count mismatch: found 15 transactions but expected 16"
+        ]
+    }
+}

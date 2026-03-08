@@ -1,0 +1,492 @@
+{
+    "metadata": {
+        "source_file": "sofi_statement.pdf",
+        "statement_period": {
+            "start": "2024-08-01",
+            "end": "2024-10-29"
+        },
+        "bank_entity": {
+            "name": "SoFi Securities, LLC",
+            "correspondence_address": {
+                "line1": "234 1st Street",
+                "city": "San Francisco",
+                "state": "CA",
+                "zip": "94105"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "234 1st Street",
+                    "city": "San Francisco",
+                    "state": "CA",
+                    "zip": "94105"
+                },
+                "website": "www.sofi.com",
+                "phone_number": "(855) 456-SOFI(7634)",
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": "Luxe Organic Nails and Spa LLC",
+            "account_number": "411028425564",
+            "account_type": "SoFi Checking",
+            "address": {
+                "line1": "31441 SANTA MARGARITA PKWY STE K",
+                "city": "RANCHO SANTA MARGARITA",
+                "state": "CA",
+                "zip": "92688"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 20403.0,
+        "opening_balance_date": "2024-08-01",
+        "closing_balance": 20620.28,
+        "closing_balance_date": "2024-10-29",
+        "total_deposits_and_other_additions": null,
+        "total_withdrawals_and_other_subtractions": null,
+        "checks": null,
+        "service_fees": null,
+        "number_of_deposits": null,
+        "number_of_withdrawals": null
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2024-08-06",
+            "description_raw": "GTBLANKS LLC.",
+            "description_normalized": null,
+            "amount": 1346.28,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2024-08-10",
+            "description_raw": "AVR/PT PAYMENTS",
+            "description_normalized": null,
+            "amount": 2341.18,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2024-08-11",
+            "description_raw": "TrasF*ALEXIS",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2024-08-21",
+            "description_raw": "TRSF* VIVIAN CO.",
+            "description_normalized": null,
+            "amount": 950.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2024-08-29",
+            "description_raw": "@EJK90/890003",
+            "description_normalized": null,
+            "amount": 230.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2024-09-05",
+            "description_raw": "MasterCard ***2793",
+            "description_normalized": null,
+            "amount": 200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2024-09-09",
+            "description_raw": "RnhHOOD PMYT",
+            "description_normalized": null,
+            "amount": 2300.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2024-09-12",
+            "description_raw": "Refund of ATM fee",
+            "description_normalized": null,
+            "amount": 3.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2024-09-16",
+            "description_raw": "Envri-SPA",
+            "description_normalized": null,
+            "amount": 2203.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2024-09-22",
+            "description_raw": "VIP/SPA@DIVINE",
+            "description_normalized": null,
+            "amount": 12500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2024-09-29",
+            "description_raw": "FAIRest/PAYMT09663",
+            "description_normalized": null,
+            "amount": 1800.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2024-10-08",
+            "description_raw": "TRYH-OIP/2024.08",
+            "description_normalized": null,
+            "amount": 13500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "2024-10-13",
+            "description_raw": "HM.COM",
+            "description_normalized": null,
+            "amount": 1164.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "2024-10-20",
+            "description_raw": "TRPT-EIOSPRINT",
+            "description_normalized": null,
+            "amount": 7500.8,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "2024-10-22",
+            "description_raw": "USA*SNACK EVENT",
+            "description_normalized": null,
+            "amount": 105.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "2024-10-22",
+            "description_raw": "GALLERYTP.0935",
+            "description_normalized": null,
+            "amount": 13000.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "2024-10-24",
+            "description_raw": "Stprie",
+            "description_normalized": null,
+            "amount": 122.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "2024-10-26",
+            "description_raw": "H&M0150",
+            "description_normalized": null,
+            "amount": 1330.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2024-08-02",
+            "description_raw": "UTIL/8904-902333",
+            "description_normalized": null,
+            "amount": -93.75,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2024-08-05",
+            "description_raw": "Cash App*Cash Out",
+            "description_normalized": null,
+            "amount": -4.71,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2024-08-05",
+            "description_raw": "SoFi Rewards Redemption",
+            "description_normalized": null,
+            "amount": -0.54,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2024-08-12",
+            "description_raw": "TMP*MAKUP",
+            "description_normalized": null,
+            "amount": -122.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2024-08-14",
+            "description_raw": "AMZN Mktp US",
+            "description_normalized": null,
+            "amount": -44.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2024-08-29",
+            "description_raw": "OPTIMUM 7836 CABLE PMNT",
+            "description_normalized": null,
+            "amount": -104.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2024-08-29",
+            "description_raw": "Futu Inc.",
+            "description_normalized": null,
+            "amount": -2800.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2024-09-02",
+            "description_raw": "AFTERPAY",
+            "description_normalized": null,
+            "amount": -22.73,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2024-09-02",
+            "description_raw": "SalonREEL",
+            "description_normalized": null,
+            "amount": -800.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2024-09-06",
+            "description_raw": "RIKS/HET",
+            "description_normalized": null,
+            "amount": -330.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2024-09-24",
+            "description_raw": "VictrCPT BTTI3T1",
+            "description_normalized": null,
+            "amount": -7650.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2024-09-29",
+            "description_raw": "PHR/ITM-980.3762/CSA",
+            "description_normalized": null,
+            "amount": -19000.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2024-10-09",
+            "description_raw": "Cardtronics CCT1",
+            "description_normalized": null,
+            "amount": -203.5,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2024-10-11",
+            "description_raw": "TMP*POSS;AD",
+            "description_normalized": null,
+            "amount": -122.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2024-10-11",
+            "description_raw": "TMP*POSS;AD",
+            "description_normalized": null,
+            "amount": -122.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2024-10-12",
+            "description_raw": "MCDONALD'S F36312",
+            "description_normalized": null,
+            "amount": -11.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2024-10-13",
+            "description_raw": "Service Charge",
+            "description_normalized": null,
+            "amount": -3.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2024-10-13",
+            "description_raw": "tpt9830-flpt",
+            "description_normalized": null,
+            "amount": -203.5,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2024-10-17",
+            "description_raw": "AFTERPAY",
+            "description_normalized": null,
+            "amount": -77.27,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2024-10-18",
+            "description_raw": "SWIFT@Ard",
+            "description_normalized": null,
+            "amount": -76.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2024-10-18",
+            "description_raw": "BULLION@POS",
+            "description_normalized": null,
+            "amount": -36.87,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2024-10-20",
+            "description_raw": "JFK CAMDEN 6351162",
+            "description_normalized": null,
+            "amount": -11204.62,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2024-10-23",
+            "description_raw": "BESTBUY.COM",
+            "description_normalized": null,
+            "amount": -12390.51,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2024-10-24",
+            "description_raw": "SCENT.PA",
+            "description_normalized": null,
+            "amount": -5600.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": null,
+        "bank_stated_total_withdrawals": null
+    },
+    "validation": {
+        "opening_plus_deposits": null,
+        "minus_withdrawals": null,
+        "matches_closing_balance": null,
+        "deposit_count_matches": null,
+        "withdrawal_count_matches": null,
+        "deposit_total_matches": null,
+        "withdrawal_total_matches": null,
+        "errors": [
+            "No bank stated totals found in statement"
+        ]
+    }
+}

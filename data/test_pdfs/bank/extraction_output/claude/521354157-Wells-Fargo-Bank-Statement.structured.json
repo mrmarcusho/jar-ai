@@ -1,0 +1,123 @@
+{
+    "metadata": {
+        "source_file": "wells_fargo_statement.pdf",
+        "statement_period": {
+            "start": "2020-02-01",
+            "end": "2020-02-31"
+        },
+        "bank_entity": {
+            "name": "Wells Fargo Bank",
+            "correspondence_address": {
+                "line1": "420 Montgomery Street",
+                "city": "San Francisco",
+                "state": "CA",
+                "zip": "94104"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "420 Montgomery Street",
+                    "city": "San Francisco",
+                    "state": "CA",
+                    "zip": "94104"
+                },
+                "website": "wellsfargo.com",
+                "phone_number": "1-800-225-5935",
+                "En Espanol": "1-877-337-7454"
+            }
+        },
+        "account": {
+            "name": "SCOTT P BURNS",
+            "account_number": "9790629037",
+            "account_type": "Complete Advantage Checking",
+            "address": {
+                "line1": "355 FERRY RD",
+                "city": "FREDERICKSBURG",
+                "state": "VA",
+                "zip": "22405"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 2937.03,
+        "opening_balance_date": "2020-02-01",
+        "closing_balance": 3631.03,
+        "closing_balance_date": "2020-02-31",
+        "total_deposits_and_other_additions": 2200.0,
+        "total_withdrawals_and_other_subtractions": -1500.0,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 1
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2020-02-01",
+            "description_raw": "Recurring Transfer Ref #Brune23 From Business Checking xxxxxx821",
+            "description_normalized": null,
+            "amount": 1050.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2020-02-09",
+            "description_raw": "Deposits Made in A Branch/Store",
+            "description_normalized": null,
+            "amount": 250.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2020-02-15",
+            "description_raw": "Deposits Made in A Branch/Store",
+            "description_normalized": null,
+            "amount": 500.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2020-02-24",
+            "description_raw": "Deposits Made in A Branch/Store",
+            "description_normalized": null,
+            "amount": 400.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2020-02-02",
+            "description_raw": "Overdraft Protection to 3395605821",
+            "description_normalized": null,
+            "amount": -1500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 2200.0,
+        "bank_stated_total_withdrawals": -1500.0
+    },
+    "validation": {
+        "opening_plus_deposits": 5137.03,
+        "minus_withdrawals": 3637.03,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Calculated ending balance (3637.03) does not match stated closing balance (3631.03)",
+            "Statement shows invalid date February 31, 2020"
+        ]
+    }
+}

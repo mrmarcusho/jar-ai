@@ -1,0 +1,1114 @@
+{
+    "metadata": {
+        "source_file": "bank_statement.pdf",
+        "statement_period": {
+            "start": "2020-05-18",
+            "end": "2020-06-17"
+        },
+        "bank_entity": {
+            "name": "BB&T",
+            "correspondence_address": {
+                "line1": "P.O. Box 1014",
+                "city": "Charlotte",
+                "state": "NC",
+                "zip": "28201"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 1014",
+                    "city": "Charlotte",
+                    "state": "NC",
+                    "zip": "28201"
+                },
+                "website": "BBT.com",
+                "phone_number": "(800) BANK-BBT or (800) 226-5228",
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": "RICARDO D BROUGHTON",
+            "account_number": "1090001004290",
+            "account_type": "BRIGHT BANKING",
+            "address": {
+                "line1": "926 SPRING RD NW",
+                "city": "WASHINGTON",
+                "state": "DC",
+                "zip": "20010-1539"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 2074.21,
+        "opening_balance_date": "2020-05-18",
+        "closing_balance": 964.8,
+        "closing_balance_date": "2020-06-17",
+        "total_deposits_and_other_additions": 5834.32,
+        "total_withdrawals_and_other_subtractions": -6948.73,
+        "checks": -701.39,
+        "service_fees": 0,
+        "number_of_deposits": 6,
+        "number_of_withdrawals": 95
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2020-05-29",
+            "description_raw": "PAYROLL MJ VALET. LLC 39-0 RICARDO BROUGHTON",
+            "description_normalized": null,
+            "amount": 1651.82,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2020-06-01",
+            "description_raw": "8662580165 VBS BetterDay 61cd Ricardo Broughton",
+            "description_normalized": null,
+            "amount": 1150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2020-06-12",
+            "description_raw": "BB&T M-APP TRANSFER TRANSFER FROM SAVINGS 4090000615637 06-12-20",
+            "description_normalized": null,
+            "amount": 160.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2020-06-12",
+            "description_raw": "PAYROLL MJ VALET, LLC 39-0 RICARDO BROUGHTON",
+            "description_normalized": null,
+            "amount": 1651.82,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2020-06-15",
+            "description_raw": "VISA MONEY TRANSFER CREDIT 06-15-20 VISA DIRECT CA 6901 CASH APP*CASH OUT",
+            "description_normalized": null,
+            "amount": 20.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2020-06-15",
+            "description_raw": "8662580165 VBS BetterDay 80cd Ricardo Broughton",
+            "description_normalized": null,
+            "amount": 1200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2020-05-26",
+            "description_raw": "1401",
+            "description_normalized": null,
+            "amount": -450.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2020-06-05",
+            "description_raw": "*965025",
+            "description_normalized": null,
+            "amount": -101.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2020-06-09",
+            "description_raw": "985026",
+            "description_normalized": null,
+            "amount": -150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2020-05-19",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT CREDIT CARD CKF768752662POS",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2020-05-19",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT FIRST PROGRESS CKF768752662POS",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2020-05-19",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT MERRICK BANK CKF768752662POS",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2020-05-19",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT CREDIT ONE BANK CKF768752662POS",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2020-05-19",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-18-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -27.21,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2020-05-19",
+            "description_raw": "CC PMT LEADBANKSELFLEND 6438 RICARDO BROUGHTON",
+            "description_normalized": null,
+            "amount": -62.62,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2020-05-20",
+            "description_raw": "INTERNET PAYMENT PAYMENT FSB BLAZE 518213010852770",
+            "description_normalized": null,
+            "amount": -75.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2020-05-21",
+            "description_raw": "DEBIT CARD PURCHASE SHELL OIL 10000581 05-19 WASHINGTON DC 6901",
+            "description_normalized": null,
+            "amount": -1.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2020-05-21",
+            "description_raw": "INTERNET PAYMENT PAYMENT FIRST SAVINGS 543360180270219",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2020-05-22",
+            "description_raw": "DEBIT CARD PURCHASE SHELL OIL 57525762 05-20 BALTIMORE MD 6901",
+            "description_normalized": null,
+            "amount": -28.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2020-05-22",
+            "description_raw": "DEBIT CARD PURCHASE PREMIER Bankcard 05-21 605-3573440 SD 6901",
+            "description_normalized": null,
+            "amount": -335.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2020-05-22",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-22-20 BALTIMORE MD 6901 ROYAL FARMS 138",
+            "description_normalized": null,
+            "amount": -16.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2020-05-26",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-22-20 BALTIMORE MD 6901 RUSSELL STREET C",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2020-05-26",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-25-20 CLINTON MD 6901 CVS/PHARMACY #01 01491--8",
+            "description_normalized": null,
+            "amount": -26.67,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2020-05-26",
+            "description_raw": "PAYMENT LEGACY VISA PYMT 5169 BROUGHTON.RICARDO D",
+            "description_normalized": null,
+            "amount": -56.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2020-05-26",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-28-20 BALTIMORE MD 6901 RUSSELL STREET C",
+            "description_normalized": null,
+            "amount": -24.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE Q & Q CLEANERS 05-29 WASHINGTON DC 6901",
+            "description_normalized": null,
+            "amount": -47.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-29-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -27.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD RECURRING PYMT METROPCS AUTO PAY 05-30 888-863-8768 WA 6901",
+            "description_normalized": null,
+            "amount": -60.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-30-20 WASHINGTON DC 6901 1601 NEW YORK AVE",
+            "description_normalized": null,
+            "amount": -11.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE FORESTVILLE EXXON 05-30 FORESTVILLE MD 6901",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE COLDSTONE CREAMERY 05-30 WALDORF MD 6901",
+            "description_normalized": null,
+            "amount": -28.93,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-30-20 WALDORF MD 6901 SAFEWAY 0105",
+            "description_normalized": null,
+            "amount": -15.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 05-30-20 FORESTVILLE MD 6901 SHOPPERS FOOD/PHARM 2669",
+            "description_normalized": null,
+            "amount": -69.43,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE RENTSPREE LLC 05-31 323-515-7757 CA 6901",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE SHOPPERS FOOD / PH 05-31 FORESTVILLE MD 6901",
+            "description_normalized": null,
+            "amount": -8.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2020-06-01",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-01-20 FORESTVILLE MD 6901 7-ELEVEN",
+            "description_normalized": null,
+            "amount": -4.23,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2020-06-01",
+            "description_raw": "CC PMT LEADBANKSELFLEND 5387 RICARDO BROUGHTON",
+            "description_normalized": null,
+            "amount": -64.87,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2020-06-01",
+            "description_raw": "INTERNET PAYMENT PAYMENT FSB BLAZE 51 821 301 0852770",
+            "description_normalized": null,
+            "amount": -102.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2020-06-02",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT MERRICK BANK CKF768752662POS",
+            "description_normalized": null,
+            "amount": -92.83,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2020-06-02",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT CREDIT ONE BANK CKF768752662POS",
+            "description_normalized": null,
+            "amount": -150.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2020-06-02",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT FIRST PROGRESS CKF768752662POS",
+            "description_normalized": null,
+            "amount": -150.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2020-06-02",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-01-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -24.31,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2020-06-02",
+            "description_raw": "BB&T 24 CASH WITHDRAWAL 06-02-20 6901 DC-KENYON SQUARE WASHINGTON DC",
+            "description_normalized": null,
+            "amount": -160.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2020-06-02",
+            "description_raw": "TELEPHONE PAYMENT PAYBYPHONE CREDITCARD PYMNT 1361403418",
+            "description_normalized": null,
+            "amount": -138.72,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2020-06-03",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-02-20 BALTIMORE MD 6901 ROYAL FARMS 138",
+            "description_normalized": null,
+            "amount": -32.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2020-06-03",
+            "description_raw": "PAYMENTS LEADBANKSELFLEND 1496 RICARDO BROUGHTON",
+            "description_normalized": null,
+            "amount": -25.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2020-06-03",
+            "description_raw": "INTERNET PAYMENT ePay Fortiva MC PMT FORTIVA MC PMT",
+            "description_normalized": null,
+            "amount": -98.09,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2020-06-03",
+            "description_raw": "INTERNET PAYMENT Payment Credit One Bank 42144109",
+            "description_normalized": null,
+            "amount": -109.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2020-06-04",
+            "description_raw": "DEBIT CARD PURCHASE PRICE BUSTERS FURN 06-02 BROOKLYN PARK MD 6901",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w44",
+            "date": "2020-06-04",
+            "description_raw": "DEBIT CARD PURCHASE AMZN Mktp US'MY9MU 06-03 Amzn.corn/bill WA 6901",
+            "description_normalized": null,
+            "amount": -57.18,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w45",
+            "date": "2020-06-04",
+            "description_raw": "BB&T ONLINE BILL PAYMENT ONLINE PMT FIRST PROGRESS CKF768752662POS",
+            "description_normalized": null,
+            "amount": -104.94,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w46",
+            "date": "2020-06-04",
+            "description_raw": "DEBIT CARD PURCHASE DOUBLE GOOD POPCOR 06-03 630-568-5544 IL 6901",
+            "description_normalized": null,
+            "amount": -51.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w47",
+            "date": "2020-06-04",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-03-20 BALTIMORE MD 6901 ROYAL FARMS 138",
+            "description_normalized": null,
+            "amount": -12.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w48",
+            "date": "2020-06-04",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-03-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -32.87,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w49",
+            "date": "2020-06-05",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-04-20 BALTIMORE MD 6901 RUSSELL STREET C",
+            "description_normalized": null,
+            "amount": -25.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w50",
+            "date": "2020-06-05",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-04-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w51",
+            "date": "2020-06-05",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-05-20 WASHINGTON DC 6901 SMM CORPORATION",
+            "description_normalized": null,
+            "amount": -4.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w52",
+            "date": "2020-06-05",
+            "description_raw": "RECURRING INTERNET PAYMENT DIRECTPAY CAPITAL ONE AUTO 006206270989798",
+            "description_normalized": null,
+            "amount": -403.88,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w53",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE Etsy.com 06-05 718-8557955 NY 6901",
+            "description_normalized": null,
+            "amount": -46.4,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w54",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE DASH IN #1501 - HA 06-05 BALTIMORE MD 6901",
+            "description_normalized": null,
+            "amount": -8.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w55",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-05-20 BALTIMORE MD 6901 ROYAL FARMS 138",
+            "description_normalized": null,
+            "amount": -12.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w56",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-05-20 CLINTON MD 6901 WAL-MART #2799",
+            "description_normalized": null,
+            "amount": -78.33,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w57",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE RENTLY.COM 06-05 888-340-6340 CA 6901",
+            "description_normalized": null,
+            "amount": -0.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w58",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE WENDYS #6535 06-06 WASHINGTON DC 6901",
+            "description_normalized": null,
+            "amount": -17.13,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w59",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE ROYAL FARMS #287 06-06 DISTRICT HEIG MD 6901",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w60",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE FAMILY DOLLAR #413 06-06 TEMPLE HILLS MD 6901",
+            "description_normalized": null,
+            "amount": -5.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w61",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE GOLDEN SKILLET 06-06 FORESTVILLE ME 6901",
+            "description_normalized": null,
+            "amount": -11.33,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w62",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE SAVE-A-LOT #533 06-06 FORESTVILLE MD 6901",
+            "description_normalized": null,
+            "amount": -24.63,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w63",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE NY CHICKEN AND GRI 06-07 DISTRICT HEIG MD 6901",
+            "description_normalized": null,
+            "amount": -22.77,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w64",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-07-20 DISTRICT HEIG MD 6901 ROYAL FARMS #287",
+            "description_normalized": null,
+            "amount": -4.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w65",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-07-20 DISTRICT HEIG MD 6901 ROYAL FARMS #287",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w66",
+            "date": "2020-06-08",
+            "description_raw": "DEBIT CARD PURCHASE PAYPAL*LATAPA2019 06-07 402-935-7733 CA 6901",
+            "description_normalized": null,
+            "amount": -36.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w67",
+            "date": "2020-06-08",
+            "description_raw": "INTERNET PAYMENT PAYMENT FIRST SAVINGS 543360180270219",
+            "description_normalized": null,
+            "amount": -0.9,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w68",
+            "date": "2020-06-09",
+            "description_raw": "INTERNET PAYMENT June Subsc Current kZJFJ6uPk56ybWC",
+            "description_normalized": null,
+            "amount": -4.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w69",
+            "date": "2020-06-10",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-09-20 BALTIMORE MD 6901 ROYAL FARMS 138",
+            "description_normalized": null,
+            "amount": -20.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w70",
+            "date": "2020-06-10",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-09-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -6.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w71",
+            "date": "2020-06-11",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-10-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -5.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w72",
+            "date": "2020-06-12",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-12-20 BALTIMORE MD 6901 SHELL SERVICE STATION",
+            "description_normalized": null,
+            "amount": -32.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w73",
+            "date": "2020-06-12",
+            "description_raw": "8662580165 VBS BetterDay 43in Ricardo Broughton",
+            "description_normalized": null,
+            "amount": -203.05,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w74",
+            "date": "2020-06-12",
+            "description_raw": "8662580165 VBS BetterDay 44pd Ricardo Broughton",
+            "description_normalized": null,
+            "amount": -1149.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w75",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE SHELL OIL 57525762 06-11 BALTIMORE MD 6901",
+            "description_normalized": null,
+            "amount": -7.79,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w76",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE SUBWAY 0448 06-11 WASHINGTON DC 6901",
+            "description_normalized": null,
+            "amount": -7.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w77",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-12-20 BALTIMORE MD 6901 SHELL SERVICE STATION",
+            "description_normalized": null,
+            "amount": -16.47,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w78",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-12-20 BALTIMORE MD 6901 7-ELEVEN",
+            "description_normalized": null,
+            "amount": -7.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w79",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE OCEAN BEAUTY 06-12 TEMPLE HILLS MD 6901",
+            "description_normalized": null,
+            "amount": -6.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w80",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE SUBWAY 0448 06-12 WASHINGTON DC 6901",
+            "description_normalized": null,
+            "amount": -10.6,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w81",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE Q & Q CLEANERS 06-13 WASHINGTON DC 6901",
+            "description_normalized": null,
+            "amount": -13.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w82",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-13-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -21.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w83",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-13-20 DISTRICT HEIG MD 6901 ROYAL FARMS #287",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w84",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE CHECKERS #5936 06-13 CAMP SPRINGS MD 6901",
+            "description_normalized": null,
+            "amount": -19.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w85",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-13-20 SUITLAND MD 6901 AUTOZONE 6539 4803 ALLEN",
+            "description_normalized": null,
+            "amount": -19.06,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w86",
+            "date": "2020-06-15",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-14-20 DISTRICT HEIG MD 6901 ROYAL FARMS #269",
+            "description_normalized": null,
+            "amount": -22.36,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w87",
+            "date": "2020-06-16",
+            "description_raw": "DEBIT CARD PURCHASE METRO PCS 5600 06-14 201-538-1876 MD 6901",
+            "description_normalized": null,
+            "amount": -114.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w88",
+            "date": "2020-06-16",
+            "description_raw": "DEBIT CARD PURCHASE AMZN Mktp US'MS6JM 06-15 Amzn.com/bill WA 6901",
+            "description_normalized": null,
+            "amount": -9.53,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w89",
+            "date": "2020-06-16",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-15-20 WASHINGTON DC 6901 SAFEWAY 2808",
+            "description_normalized": null,
+            "amount": -44.42,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w90",
+            "date": "2020-06-16",
+            "description_raw": "USCAP PYMT U.S. CAPITAL 9308 RICARDO BROUGHTON",
+            "description_normalized": null,
+            "amount": -3.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w91",
+            "date": "2020-06-16",
+            "description_raw": "INTERNET PAYMENT ePay Fortiva MC PMT FORTIVA MC PMT",
+            "description_normalized": null,
+            "amount": -150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w92",
+            "date": "2020-06-16",
+            "description_raw": "USCAP PYMT U.S. CAPITAL 9308 RICARDO BROUGHTON",
+            "description_normalized": null,
+            "amount": -193.22,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w93",
+            "date": "2020-06-17",
+            "description_raw": "DEBIT CARD PURCHASE AMZN Mktp US'MYOTK 06-16 Amzn.com/bill WA 6901",
+            "description_normalized": null,
+            "amount": -169.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w94",
+            "date": "2020-06-17",
+            "description_raw": "DEBIT CARD PURCHASE SHAKE SHACK 1136 06-15 646-747-7200 MD 6901",
+            "description_normalized": null,
+            "amount": -22.43,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w95",
+            "date": "2020-06-17",
+            "description_raw": "DEBIT CARD PURCHASE-PIN 06-16-20 BALTIMORE MD 6901 RUSSELL STREET C",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w96",
+            "date": "2020-05-26",
+            "description_raw": "BB&T 24 CASH WITHDRAWAL 05-25-20 6901 CLINTON-MAIN CLINTON MD",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w97",
+            "date": "2020-05-29",
+            "description_raw": "BB&T 24 CASH WITHDRAWAL 05-29-20 6901 CLINTON-MAIN CLINTON MD",
+            "description_normalized": null,
+            "amount": -260.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w98",
+            "date": "2020-06-12",
+            "description_raw": "BB&T M-APP TRANSFER TRANSFER TO CHECKING 1090001004290 06-12-20",
+            "description_normalized": null,
+            "amount": -160.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 5834.32,
+        "bank_stated_total_withdrawals": -6948.73
+    },
+    "validation": {
+        "opening_plus_deposits": 7908.53,
+        "minus_withdrawals": 959.8,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Closing balance mismatch: computed 959.80 vs stated 964.80",
+            "Withdrawal count mismatch: found 98 vs expected 95",
+            "Total withdrawals mismatch: computed -6948.73 vs stated -6948.73"
+        ]
+    }
+}

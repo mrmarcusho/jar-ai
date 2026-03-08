@@ -1,0 +1,16 @@
+ValueError: could not convert string to float: '650.00-'
+
+Traceback (most recent call last):
+  File "/Users/alexho/JAR/core/extraction_engine/test_driver.py", line 98, in run_docling
+    structured_path_out = postprocess_and_structurize(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/core/extraction_engine/run_postprocess.py", line 59, in postprocess_and_structurize
+    structured = markdown_to_structured_json(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/core/extraction_engine/structurize.py", line 498, in markdown_to_structured_json
+    amount = _parse_amount(row["amount_str"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/core/extraction_engine/structurize.py", line 20, in _parse_amount
+    val = float(s)
+          ^^^^^^^^
+ValueError: could not convert string to float: '650.00-'

@@ -1,0 +1,132 @@
+{
+    "metadata": {
+        "source_file": "wise_statement.pdf",
+        "statement_period": {
+            "start": "2023-06-01",
+            "end": "2023-06-31"
+        },
+        "bank_entity": {
+            "name": "TransferWise Ltd.",
+            "correspondence_address": {
+                "line1": "56 Shoreditch High Street",
+                "city": "London",
+                "state": "E1 6JJ",
+                "zip": "United Kingdom"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "56 Shoreditch High Street",
+                    "city": "London",
+                    "state": "E1 6JJ",
+                    "zip": "United Kingdom"
+                },
+                "website": "https://www.wise.com",
+                "phone_number": "+44 (0) 203 6950 999",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "KOLAPO CONSULTANT",
+            "account_number": "35566951",
+            "account_type": "GBP Account",
+            "address": {
+                "line1": "Kimberly Beaconsfield",
+                "city": "Northen Cape",
+                "state": "8302",
+                "zip": "South Africa"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 0.01,
+        "opening_balance_date": "2023-06-01",
+        "closing_balance": 0.0,
+        "closing_balance_date": "2023-06-31",
+        "total_deposits_and_other_additions": 500.87,
+        "total_withdrawals_and_other_subtractions": -500.87,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 3,
+        "number_of_withdrawals": 3
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-06-08",
+            "description_raw": "Received money from PAYPAL CODE 1229 with reference PAYPAL CODE 1229",
+            "description_normalized": null,
+            "amount": 0.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2023-06-10",
+            "description_raw": "Received money from PAYPAL with reference PPWDL4W222224ZTFF",
+            "description_normalized": null,
+            "amount": 395.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2023-06-11",
+            "description_raw": "Received money from WORLDPAY AP LTD GB with reference TRN ID 3701025314-",
+            "description_normalized": null,
+            "amount": 105.86,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-06-10",
+            "description_raw": "Sent money to Jo\u00e3o Manuel Ribeiro Maia Gon\u00e7alves",
+            "description_normalized": null,
+            "amount": -340.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2023-06-10",
+            "description_raw": "Sent money to MD AMIRUL ISLAM",
+            "description_normalized": null,
+            "amount": -55.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2023-06-15",
+            "description_raw": "Sent money to MD AMIRUL ISLAM",
+            "description_normalized": null,
+            "amount": -105.86,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 500.87,
+        "bank_stated_total_withdrawals": -500.87
+    },
+    "validation": {
+        "opening_plus_deposits": 500.88,
+        "minus_withdrawals": 0.01,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Closing balance calculation does not match: expected 0.01 but statement shows 0.00"
+        ]
+    }
+}

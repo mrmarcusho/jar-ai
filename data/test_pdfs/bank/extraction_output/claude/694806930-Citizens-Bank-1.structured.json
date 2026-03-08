@@ -1,0 +1,505 @@
+{
+    "metadata": {
+        "source_file": "citizens_bank_statement.pdf",
+        "statement_period": {
+            "start": "2023-11-01",
+            "end": "2023-11-30"
+        },
+        "bank_entity": {
+            "name": "Citizens Bank",
+            "correspondence_address": {
+                "line1": "1501 Michigan Avenue",
+                "city": "Detroit",
+                "state": "MI",
+                "zip": "48216"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "1501 Michigan Avenue",
+                    "city": "Detroit",
+                    "state": "MI",
+                    "zip": "48216"
+                },
+                "website": "citizensbank.com",
+                "phone_number": "1-800-922-9999",
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": "KEYONTAE JORDAN",
+            "account_number": "XXXX-079-2",
+            "account_type": "One Deposit Checking",
+            "address": {
+                "line1": "922 N 3RD ST",
+                "city": "NILES",
+                "state": "MI",
+                "zip": "49120"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 10549.13,
+        "opening_balance_date": "2023-11-01",
+        "closing_balance": 23180.18,
+        "closing_balance_date": "2023-11-30",
+        "total_deposits_and_other_additions": 20673.65,
+        "total_withdrawals_and_other_subtractions": -6552.6,
+        "checks": -1490.0,
+        "service_fees": 0,
+        "number_of_deposits": 8,
+        "number_of_withdrawals": 35
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2023-11-01",
+            "description_raw": "POS APPLE CASH ST PAUL, MN 96917800028991X",
+            "description_normalized": null,
+            "amount": 3800.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2023-11-03",
+            "description_raw": "PAYPAL DEPOSIT REF 042522",
+            "description_normalized": null,
+            "amount": 5043.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2023-11-06",
+            "description_raw": "PAYMENTECH BANK DEPOSIT CCID: 2108I7312128721 ****000190551",
+            "description_normalized": null,
+            "amount": 2816.08,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2023-11-08",
+            "description_raw": "MN TAX DIVISION RIREFUND 220426",
+            "description_normalized": null,
+            "amount": 1167.21,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2023-11-15",
+            "description_raw": "DEPOSIT",
+            "description_normalized": null,
+            "amount": 1500.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2023-11-19",
+            "description_raw": "OPTI CREDIT FOR FEE ON 11/28/22 FORCREDIT MONITORING",
+            "description_normalized": null,
+            "amount": 37.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2023-11-21",
+            "description_raw": "CITIZENS ATM DEPOSIT, CCID: 00076012342345 St Paul, MN 21012**** 000190650",
+            "description_normalized": null,
+            "amount": 2816.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2023-11-30",
+            "description_raw": "CITIZENS ATM DEPOSIT, CCID: 00076012342345 St Paul, MN 21012**** 000208900008267",
+            "description_normalized": null,
+            "amount": 3816.0,
+            "type": "branch_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2023-11-12",
+            "description_raw": "Check #193",
+            "description_normalized": null,
+            "amount": -1490.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2023-11-01",
+            "description_raw": "3016 DBT PURCHASE - 035524 SCORPION BAR GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -147.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2023-11-01",
+            "description_raw": "3016 ATM CASH - RI1248 CITIZENS TAUNTON AVENUE 3, ST PAUL",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2023-11-02",
+            "description_raw": "3016 POS DEBIT - 291003 VERIZON*RECURRIN 800-VERIZON MI",
+            "description_normalized": null,
+            "amount": -39.98,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2023-11-02",
+            "description_raw": "3016 DBT PURCHASE - 058883 GRAND NAILS AND HAS GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -198.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2023-11-02",
+            "description_raw": "3016 POS DEBIT - 094526 MARKET BASKET7 S ATTLEBORO MI",
+            "description_normalized": null,
+            "amount": -71.91,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2023-11-02",
+            "description_raw": "3016 POS DEBIT - 633763 SHELL SERVICE STATE GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -13.81,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2023-11-03",
+            "description_raw": "3016 DBT PURCHASE \u2013 756574 GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -53.48,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2023-11-03",
+            "description_raw": "3016 POS DEBIT - 300212 CVS/PHARMACY #",
+            "description_normalized": null,
+            "amount": -10.26,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2023-11-03",
+            "description_raw": "3016 POS DEBIT - 001 STOP & SHOP",
+            "description_normalized": null,
+            "amount": -72.82,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2023-11-03",
+            "description_raw": "3016 POS DEBIT - 218400 WAL-MART #2184 GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -67.87,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2023-11-04",
+            "description_raw": "3016 DBT PURCHASE - 035444 CHRIS GASBARROS GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -28.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2023-11-04",
+            "description_raw": "3016 DBT PURCHASE - 752967 Subway 26596 Seekonk MA",
+            "description_normalized": null,
+            "amount": -19.44,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2023-11-05",
+            "description_raw": "3016 DBT PURCHASE - 000112 THE G SALON & SPA GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -25.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2023-11-07",
+            "description_raw": "3016 POS DEBIT - 001 STOP & SHOP 2701 GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -219.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2023-11-09",
+            "description_raw": "3016 POS DEBIT - 001 STOP & SHOP 2701 GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -215.74,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2023-11-09",
+            "description_raw": "3016 POS DEBIT - 633763 SHELL SERVICE STATE GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -13.81,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2023-11-09",
+            "description_raw": "3016 POS DEBIT - 001",
+            "description_normalized": null,
+            "amount": -5.71,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2023-11-10",
+            "description_raw": "3016 DBT PURCHASE - 756574 REHOBOTH HOUSE OF REHOBOTH MN",
+            "description_normalized": null,
+            "amount": -47.06,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2023-11-10",
+            "description_raw": "3016 POS DEBIT - 001 STOP & SHOP 0712 NILES MI",
+            "description_normalized": null,
+            "amount": -48.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2023-11-11",
+            "description_raw": "3016 POS DEBIT - 656298 MARKET BASKET GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -7.57,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2023-11-14",
+            "description_raw": "3016 POS DEBIT - 281007 CITY OF ST PAUL 401-435-7500 MN",
+            "description_normalized": null,
+            "amount": -170.09,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2023-11-14",
+            "description_raw": "3016 POS DEBIT - 633763 SHELL SERVICE STATE GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -21.12,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2023-11-16",
+            "description_raw": "3016 DBT PURCHASE - 752967 Subway 26596 Seekonk MN",
+            "description_normalized": null,
+            "amount": -27.14,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2023-11-17",
+            "description_raw": "3016 DBT PURCHASE - 230160 Boston House of Pi GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -48.63,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2023-11-17",
+            "description_raw": "3016 DBT PURCHASE - UMSRXA BRAINLY* RENEWAL 0HTTPSBRAIN LY.N",
+            "description_normalized": null,
+            "amount": -324.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2023-11-17",
+            "description_raw": "3016 DBT PURCHASE - APGEHD DOORDASH DASHPASS WWW.DOORDASH.COM",
+            "description_normalized": null,
+            "amount": -59.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2023-11-17",
+            "description_raw": "3016 DBT PURCHASE - 000023 KFC E685067 GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -35.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2023-11-18",
+            "description_raw": "3016 DBT PURCHASE - 214749 CHELOS GRAND RAPIDS MI",
+            "description_normalized": null,
+            "amount": -47.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2023-11-21",
+            "description_raw": "COMENITY PAY BH WEB PYMT 042022 P22110889694356",
+            "description_normalized": null,
+            "amount": -371.69,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2023-11-02",
+            "description_raw": "NGRID49 NGRID49WEB 042122 0498254041",
+            "description_normalized": null,
+            "amount": -289.44,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2023-11-02",
+            "description_raw": "ONLINE TRANSFER TO CHECKING 1338228770",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2023-11-05",
+            "description_raw": "CHASE CREDIT CRD EPAY 220423 5914789342",
+            "description_normalized": null,
+            "amount": -300.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2023-11-06",
+            "description_raw": "SCHEDULED TRANSFER 1336411470",
+            "description_normalized": null,
+            "amount": -1030.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2023-11-19",
+            "description_raw": "SCHEDULED TRANSFER 1336411470",
+            "description_normalized": null,
+            "amount": -1030.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 20673.65,
+        "bank_stated_total_withdrawals": -6552.6
+    },
+    "validation": {
+        "opening_plus_deposits": 31222.78,
+        "minus_withdrawals": 24670.18,
+        "matches_closing_balance": false,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Computed closing balance (24670.18) does not match stated closing balance (23180.18)",
+            "Computed deposit total (20995.29) does not match bank stated total (20673.65)",
+            "Computed withdrawal total (-8042.60) does not match bank stated total (-6552.60)",
+            "Transaction count mismatch: found 35 withdrawals, expected fewer based on summary"
+        ]
+    }
+}

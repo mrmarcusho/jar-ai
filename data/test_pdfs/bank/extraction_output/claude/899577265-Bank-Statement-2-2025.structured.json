@@ -1,0 +1,903 @@
+{
+    "metadata": {
+        "source_file": "February 2025 Account Statement",
+        "statement_period": {
+            "start": "2025-02-01",
+            "end": "2025-02-28"
+        },
+        "bank_entity": {
+            "name": "Found (Piermont Bank, Member FDIC)",
+            "correspondence_address": {
+                "line1": null,
+                "city": null,
+                "state": null,
+                "zip": null
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": null,
+                    "city": null,
+                    "state": null,
+                    "zip": null
+                },
+                "website": null,
+                "phone_number": null,
+                "En Espanol": null
+            }
+        },
+        "account": {
+            "name": "SOLOMON JENKINS JR LLC",
+            "account_number": "7030 0816 6501",
+            "account_type": "Business Checking",
+            "address": {
+                "line1": "1307 Mississippi St",
+                "city": "Tallulah",
+                "state": "LA",
+                "zip": "71282"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 2.28,
+        "opening_balance_date": "2025-02-01",
+        "closing_balance": 289.39,
+        "closing_balance_date": "2025-02-28",
+        "total_deposits_and_other_additions": 3795.77,
+        "total_withdrawals_and_other_subtractions": -3508.66,
+        "checks": 0,
+        "service_fees": 10.6,
+        "number_of_deposits": 12,
+        "number_of_withdrawals": 95
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-02-07",
+            "description_raw": "INSIGHT LOGISTIC - PAYROLL SJENKINS",
+            "description_normalized": null,
+            "amount": 974.75,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-02-12",
+            "description_raw": "RBT BIG RED EXPRESS, EasySavings, NY , USA",
+            "description_normalized": null,
+            "amount": 0.52,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-02-14",
+            "description_raw": "INSIGHT LOGISTIC - PAYROLL SJENKINS",
+            "description_normalized": null,
+            "amount": 922.61,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-02-14",
+            "description_raw": "Return for AtlasFinancial - Payment 11ktz0t943s5q16",
+            "description_normalized": null,
+            "amount": 8.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-02-21",
+            "description_raw": "INSIGHT LOGISTIC - PAYROLL SJENKINS",
+            "description_normalized": null,
+            "amount": 859.75,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2025-02-24",
+            "description_raw": "Earnin CAJC, Mountain View, CA, USA",
+            "description_normalized": null,
+            "amount": 0.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2025-02-24",
+            "description_raw": "Earnin CGDCB_B, Mountain View, CA, USA",
+            "description_normalized": null,
+            "amount": 50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2025-02-26",
+            "description_raw": "PAYPAL*JENKINS SOLOM, San Jose, CA , USA",
+            "description_normalized": null,
+            "amount": 9.56,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2025-02-26",
+            "description_raw": "PAYPAL*JENKINS SOLOM, San Jose, CA , USA",
+            "description_normalized": null,
+            "amount": 20.19,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2025-02-27",
+            "description_raw": "ZIP* APP PAY LATER, NEW YORK, NY , USA",
+            "description_normalized": null,
+            "amount": 63.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2025-02-28",
+            "description_raw": "INSIGHT LOGISTIC - PAYROLL SJENKINS",
+            "description_normalized": null,
+            "amount": 886.39,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-02-06",
+            "description_raw": "Amazon Prime*Z75VJ06I0, Amzn.com/bill, WA , USA",
+            "description_normalized": null,
+            "amount": -7.76,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-02-07",
+            "description_raw": "AMAZON MKTPL*Z72KX8VU1, Amzn.com/bill, WA , USA",
+            "description_normalized": null,
+            "amount": -33.29,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-02-07",
+            "description_raw": "CHEVRON 0354059, BOLTON, MS , USA",
+            "description_normalized": null,
+            "amount": -10.53,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-02-07",
+            "description_raw": "LOVE'S #0661 INSIDE, PINE BLUFF, AR , USA",
+            "description_normalized": null,
+            "amount": -4.27,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-02-07",
+            "description_raw": "ATMOS ENERGY, 888-286-6700, TX , USA",
+            "description_normalized": null,
+            "amount": -55.0,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-02-08",
+            "description_raw": "LA CASH COW (LA FAST A, 800-9228803, LA , USA",
+            "description_normalized": null,
+            "amount": -118.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-02-08",
+            "description_raw": "TALLULAH WATER - ONLIN, 3185743162 , LA , USA",
+            "description_normalized": null,
+            "amount": -93.77,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-02-08",
+            "description_raw": "LOVE'S #0635 INSIDE, ALMA, AR , USA",
+            "description_normalized": null,
+            "amount": -10.08,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-02-08",
+            "description_raw": "LOVE'S #0635 INSIDE, ALMA, AR , USA",
+            "description_normalized": null,
+            "amount": -6.11,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2025-02-09",
+            "description_raw": "LOVE'S #0277 INSIDE, PRESCOTT, AR , USA",
+            "description_normalized": null,
+            "amount": -1.53,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2025-02-09",
+            "description_raw": "LOVE'S #0661 INSIDE, PINE BLUFF, AR , USA",
+            "description_normalized": null,
+            "amount": -3.23,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2025-02-09",
+            "description_raw": "P473853, TALLULAH, LA , USA",
+            "description_normalized": null,
+            "amount": -102.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2025-02-09",
+            "description_raw": "LK637877, TALLULAH, LA , USA",
+            "description_normalized": null,
+            "amount": -204.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2025-02-09",
+            "description_raw": "LK637877, TALLULAH, LA , USA",
+            "description_normalized": null,
+            "amount": -204.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2025-02-09",
+            "description_raw": "LK637877, TALLULAH, LA , USA",
+            "description_normalized": null,
+            "amount": -24.95,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2025-02-10",
+            "description_raw": "BIG RED EXPRESS, WHITE HALL, AR , USA",
+            "description_normalized": null,
+            "amount": -52.28,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2025-02-10",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -43.83,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2025-02-14",
+            "description_raw": "NCOURT *ARJEFFERSON, PINE BLUFF, AR , USA",
+            "description_normalized": null,
+            "amount": -210.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2025-02-14",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -225.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2025-02-14",
+            "description_raw": "S & A FOOD STORE INC, TALLULAH , LA , USA",
+            "description_normalized": null,
+            "amount": -8.96,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2025-02-14",
+            "description_raw": "WENDYS #21900, TALLULAH, LA , USA",
+            "description_normalized": null,
+            "amount": -8.18,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2025-02-14",
+            "description_raw": "AtlasFinancial - Payment 11ktz0t943s5q16",
+            "description_normalized": null,
+            "amount": -8.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2025-02-15",
+            "description_raw": "VZWRLSS*BILL PAY VE, FOLSOM, CA , USA",
+            "description_normalized": null,
+            "amount": -127.23,
+            "type": "bill_payment",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2025-02-15",
+            "description_raw": "SQ *DONUTS COFFEE AND , Tallulah, LA , USA",
+            "description_normalized": null,
+            "amount": -16.69,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2025-02-15",
+            "description_raw": "P193524, SAINT JOSEPH, LA , USA",
+            "description_normalized": null,
+            "amount": -43.5,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2025-02-15",
+            "description_raw": "SONIC DRIVE IN #4616 , MONROE , LA , USA",
+            "description_normalized": null,
+            "amount": -19.93,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w27",
+            "date": "2025-02-16",
+            "description_raw": "MARATHON PETRO31237, TALLULAH, LA , USA",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w28",
+            "date": "2025-02-16",
+            "description_raw": "TENSAS ONE STOP, SAINT JOSEPH, LA , USA",
+            "description_normalized": null,
+            "amount": -20.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w29",
+            "date": "2025-02-16",
+            "description_raw": "AMOCO DOWNTOWN , TALLULAH , LA , USA",
+            "description_normalized": null,
+            "amount": -9.07,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w30",
+            "date": "2025-02-17",
+            "description_raw": "SPORTMAN SUPERSTOP, TALLULAH , LA , USA",
+            "description_normalized": null,
+            "amount": -4.68,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w31",
+            "date": "2025-02-17",
+            "description_raw": "SONIC DRIVE IN #1157 , LAKE PROVIDEN, LA , USA",
+            "description_normalized": null,
+            "amount": -6.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w32",
+            "date": "2025-02-17",
+            "description_raw": "BURGER KING #4055 Q07, CONWAY , AR , USA",
+            "description_normalized": null,
+            "amount": -4.31,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w33",
+            "date": "2025-02-18",
+            "description_raw": "Wal-Mart Super Center, MONROE, LA, USA",
+            "description_normalized": null,
+            "amount": -38.77,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w34",
+            "date": "2025-02-18",
+            "description_raw": "CIRCLE K # 03450, TALLULAH, LA, USA",
+            "description_normalized": null,
+            "amount": -42.85,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w35",
+            "date": "2025-02-18",
+            "description_raw": "WAL-MART #2575, CONWAY, AR, USA",
+            "description_normalized": null,
+            "amount": -53.56,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w36",
+            "date": "2025-02-18",
+            "description_raw": "WAL-MART #2575, CONWAY, AR, USA",
+            "description_normalized": null,
+            "amount": -5.49,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w37",
+            "date": "2025-02-19",
+            "description_raw": "FARM BUREAU - EFT DRAFT 881101862",
+            "description_normalized": null,
+            "amount": -41.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w38",
+            "date": "2025-02-20",
+            "description_raw": "INDEPENDENT MUTUAL FIR, HUNT VALLEY , MD , USA",
+            "description_normalized": null,
+            "amount": -32.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w39",
+            "date": "2025-02-20",
+            "description_raw": "ZIP* APP PAY LATER, NEW YORK, NY , USA",
+            "description_normalized": null,
+            "amount": -63.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w40",
+            "date": "2025-02-20",
+            "description_raw": "CARRINGTON - MORTGAGE 4001068674",
+            "description_normalized": null,
+            "amount": -546.96,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w41",
+            "date": "2025-02-21",
+            "description_raw": "Love's #0814 Inside, HAMILTON, AL, USA",
+            "description_normalized": null,
+            "amount": -14.64,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w42",
+            "date": "2025-02-23",
+            "description_raw": "LOVE'S #0236 INSIDE, N LITTLE ROCK, AR , USA",
+            "description_normalized": null,
+            "amount": -5.29,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w43",
+            "date": "2025-02-23",
+            "description_raw": "SONIC DRIVE IN #1157 , LAKE PROVIDEN, LA , USA",
+            "description_normalized": null,
+            "amount": -7.31,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w44",
+            "date": "2025-02-23",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -14.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w45",
+            "date": "2025-02-23",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -19.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w46",
+            "date": "2025-02-23",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -49.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w47",
+            "date": "2025-02-23",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -49.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w48",
+            "date": "2025-02-23",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -19.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w49",
+            "date": "2025-02-23",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -19.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w50",
+            "date": "2025-02-24",
+            "description_raw": "WAL-MART #0289, MCGEHEE, AR, USA",
+            "description_normalized": null,
+            "amount": -18.3,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w51",
+            "date": "2025-02-24",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -3.7,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w52",
+            "date": "2025-02-24",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -24.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w53",
+            "date": "2025-02-25",
+            "description_raw": "HOME HARDWARE - 1005, TALLULAH, LA, USA",
+            "description_normalized": null,
+            "amount": -9.37,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w54",
+            "date": "2025-02-25",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -4.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w55",
+            "date": "2025-02-25",
+            "description_raw": "BABAGLOBAL, Encinitas, CA , USA",
+            "description_normalized": null,
+            "amount": -9.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w56",
+            "date": "2025-02-26",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -10.23,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w57",
+            "date": "2025-02-26",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -20.19,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w58",
+            "date": "2025-02-27",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -120.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w59",
+            "date": "2025-02-27",
+            "description_raw": "PAYPAL *JENKINS SOLOMO, 4029357733 , CA , USA",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w60",
+            "date": "2025-02-27",
+            "description_raw": "PAYPAL *JENKINS SOLOMO, 4029357733 , CA , USA",
+            "description_normalized": null,
+            "amount": -10.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w61",
+            "date": "2025-02-27",
+            "description_raw": "APPLE.COM/BILL, 866-712-7753, CA , USA",
+            "description_normalized": null,
+            "amount": -6.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w62",
+            "date": "2025-02-27",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -21.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w63",
+            "date": "2025-02-27",
+            "description_raw": "Earnin - REPAYMENT 915068655",
+            "description_normalized": null,
+            "amount": -51.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w64",
+            "date": "2025-02-28",
+            "description_raw": "SPORTMAN SUPERSTOP, TALLULAH , LA , USA",
+            "description_normalized": null,
+            "amount": -19.65,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w65",
+            "date": "2025-02-28",
+            "description_raw": "PETSMART # 1879 , MONROE , LA , USA",
+            "description_normalized": null,
+            "amount": -77.42,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w66",
+            "date": "2025-02-28",
+            "description_raw": "SONIC DRIVE IN #1188 , MONROE , LA , USA",
+            "description_normalized": null,
+            "amount": -3.53,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w67",
+            "date": "2025-02-28",
+            "description_raw": "WM SUPERCENTER # Wal-Mart, WEST MONROE, LA, USA",
+            "description_normalized": null,
+            "amount": -111.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w68",
+            "date": "2025-02-28",
+            "description_raw": "MURPHY 7937 , WEST MONROE , LA , USA",
+            "description_normalized": null,
+            "amount": -42.34,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w69",
+            "date": "2025-02-28",
+            "description_raw": "SONIC DRIVE IN #4616 , MONROE , LA , USA",
+            "description_normalized": null,
+            "amount": -7.01,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w70",
+            "date": "2025-02-28",
+            "description_raw": "PETSMART # 1879 , MONROE , LA , USA",
+            "description_normalized": null,
+            "amount": -34.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w71",
+            "date": "2025-02-28",
+            "description_raw": "FAMILY DOLLAR 300 N CHEST, TALLULAH, LA, USA",
+            "description_normalized": null,
+            "amount": -43.43,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w72",
+            "date": "2025-02-28",
+            "description_raw": "Instant transfer to Mastercard debit \u00b7 1113",
+            "description_normalized": null,
+            "amount": -102.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 3795.77,
+        "bank_stated_total_withdrawals": -3508.66
+    },
+    "validation": {
+        "opening_plus_deposits": 3798.05,
+        "minus_withdrawals": 289.39,
+        "matches_closing_balance": true,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Deposit count mismatch: found 11 deposits, expected 12",
+            "Withdrawal count mismatch: found 72 withdrawals, expected 95"
+        ]
+    }
+}

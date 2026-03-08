@@ -1,0 +1,250 @@
+{
+    "metadata": {
+        "source_file": "Bank of America statements",
+        "statement_period": {
+            "start": "2025-02-01",
+            "end": "2025-07-13"
+        },
+        "bank_entity": {
+            "name": "Bank of America, N.A.",
+            "correspondence_address": {
+                "line1": "P.O. Box 15284",
+                "city": "Wilmington",
+                "state": "DE",
+                "zip": "19850"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 25118",
+                    "city": "Tampa",
+                    "state": "FL",
+                    "zip": "33622-5118"
+                },
+                "website": "bankofamerica.com",
+                "phone_number": "1.888.BUSINESS (1.888.287.4637)",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "A1 QUALITY COMMERCIAL CLEANING SERVICES",
+            "account_number": "3340 6553 2194",
+            "account_type": "Business Advantage Fundamentals Banking",
+            "address": {
+                "line1": "2501 EUREKA CANYON RD",
+                "city": "WATSONVILLE",
+                "state": "CA",
+                "zip": "95076"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 7028.47,
+        "opening_balance_date": "2025-02-01",
+        "closing_balance": 3058.54,
+        "closing_balance_date": "2025-07-13",
+        "total_deposits_and_other_additions": 48878.07,
+        "total_withdrawals_and_other_subtractions": -52848.0,
+        "checks": 0.0,
+        "service_fees": -64.0,
+        "number_of_deposits": 9,
+        "number_of_withdrawals": 9
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2025-03-09",
+            "description_raw": "Zelle Transfer Conf# lahvblbgk; SOLI INVESTMENTS LLC",
+            "description_normalized": null,
+            "amount": 800.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2025-06-01",
+            "description_raw": "Zelle Transfer Conf# huehvmlpi; DAAR SERVICES LLC",
+            "description_normalized": null,
+            "amount": 11000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2025-06-01",
+            "description_raw": "Zelle Transfer Conf# kp9tbg9bn; SOLI INVESTMENTS LLC, SOLI INVESTMENTS L",
+            "description_normalized": null,
+            "amount": 10000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2025-06-02",
+            "description_raw": "Zelle Transfer Conf# hli0wma0a; SOLI INVESTMENTS LLC, SOLI INVESTMENTS L",
+            "description_normalized": null,
+            "amount": 4245.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2025-06-16",
+            "description_raw": "Zelle Transfer Conf# h72b0xuhi; SOLI INVESTMENTS LLC, SOLI INVESTMENTS L",
+            "description_normalized": null,
+            "amount": 6988.07,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2025-06-30",
+            "description_raw": "Zelle Transfer Conf# kd8o5fcfq; SOLI INVESTMENTS LLC, SOLI INVESTMENTS L",
+            "description_normalized": null,
+            "amount": 10000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2025-06-30",
+            "description_raw": "Zelle Transfer Conf# m335jig07; SOLI INVESTMENTS LLC, SOLI INVESTMENTS L",
+            "description_normalized": null,
+            "amount": 4245.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2025-07-01",
+            "description_raw": "Zelle Transfer Conf# irpfvrnob; SOLI INVESTMENTS LLC, SOLI INVESTMENTS L",
+            "description_normalized": null,
+            "amount": 800.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2025-07-01",
+            "description_raw": "Zelle Transfer Conf# lwg03c4au; SOLI INVESTMENTS LLC, SOLI INVESTMENTS L",
+            "description_normalized": null,
+            "amount": 800.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2025-04-07",
+            "description_raw": "Zelle Transfer Conf# o5f5fvjsp; Contreras, Ronald",
+            "description_normalized": null,
+            "amount": -5000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2025-04-19",
+            "description_raw": "Zelle Transfer Conf# leufnvwdn; Contreras, Ronald",
+            "description_normalized": null,
+            "amount": -1000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2025-06-01",
+            "description_raw": "Zelle Transfer Conf# huehvmlpi; CONTRERAS, RONALD",
+            "description_normalized": null,
+            "amount": -11000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2025-06-02",
+            "description_raw": "Zelle Transfer Conf# jjb9ehboe; Contreras, Ronald",
+            "description_normalized": null,
+            "amount": -12000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2025-06-16",
+            "description_raw": "Zelle Transfer Conf# j0siyy7nq; Contreras, Ronald",
+            "description_normalized": null,
+            "amount": -7000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2025-06-30",
+            "description_raw": "Zelle Transfer Conf# m6tekryz8; Contreras, Ronald",
+            "description_normalized": null,
+            "amount": -15000.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2025-07-12",
+            "description_raw": "Zelle Transfer Conf# h4jvnleor; Contreras, Ronald",
+            "description_normalized": null,
+            "amount": -1800.0,
+            "type": "zelle_transfer",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2025-05-02",
+            "description_raw": "Monthly Fee Business Adv Fundamentals",
+            "description_normalized": null,
+            "amount": -16.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2025-06-01",
+            "description_raw": "Monthly Fee Business Adv Fundamentals",
+            "description_normalized": null,
+            "amount": -32.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 48878.07,
+        "bank_stated_total_withdrawals": -52848.0
+    },
+    "validation": {
+        "opening_plus_deposits": 55906.54,
+        "minus_withdrawals": 3058.54,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": true,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": []
+    }
+}

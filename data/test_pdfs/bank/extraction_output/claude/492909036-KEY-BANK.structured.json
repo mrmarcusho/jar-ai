@@ -1,0 +1,292 @@
+{
+    "metadata": {
+        "source_file": "KeyBank_Statement_May_13_2020.pdf",
+        "statement_period": {
+            "start": "2020-04-13",
+            "end": "2020-05-13"
+        },
+        "bank_entity": {
+            "name": "KeyBank",
+            "correspondence_address": {
+                "line1": "P.O. Box 93885",
+                "city": "Cleveland",
+                "state": "OH",
+                "zip": "44101-5885"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 94825",
+                    "city": "Cleveland",
+                    "state": "OH",
+                    "zip": "44101"
+                },
+                "website": "",
+                "phone_number": "1-800-KEY2YOU (1-800-539-2968)",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "MARAIO A HALL",
+            "account_number": "350247022204",
+            "account_type": "KeyBank Hassle-Free Account",
+            "address": {
+                "line1": "2997 MIDWAY CT",
+                "city": "AKRON",
+                "state": "OH",
+                "zip": "44319-3802"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 1.79,
+        "opening_balance_date": "2020-04-13",
+        "closing_balance": 711.0,
+        "closing_balance_date": "2020-05-13",
+        "total_deposits_and_other_additions": 1700.0,
+        "total_withdrawals_and_other_subtractions": -990.79,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 1,
+        "number_of_withdrawals": 25
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2020-04-30",
+            "description_raw": "Irs Treas 310 Tax Ref",
+            "description_normalized": null,
+            "amount": 1700.0,
+            "type": "direct_deposit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2020-04-30",
+            "description_raw": "POS Exa Sears Hho Inc Parma OH",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2020-04-30",
+            "description_raw": "POS Exa Sears Hho Inc Parma OH",
+            "description_normalized": null,
+            "amount": -120.63,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2020-05-04",
+            "description_raw": "Cash App*Janild 4153753176 CA USA",
+            "description_normalized": null,
+            "amount": -40.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2020-05-04",
+            "description_raw": "Clkbank*Com_D5L 800-390-6035 ID USA",
+            "description_normalized": null,
+            "amount": -62.93,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2020-05-04",
+            "description_raw": "X28 Fitness Atlanta GA USA",
+            "description_normalized": null,
+            "amount": -19.97,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2020-05-05",
+            "description_raw": "POS Mac Acme Fres 3875 Uniontown OH",
+            "description_normalized": null,
+            "amount": -21.31,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2020-05-05",
+            "description_raw": "POS Mac Acme Fres 3875 Uniontown OH",
+            "description_normalized": null,
+            "amount": -21.31,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2020-05-05",
+            "description_raw": "POS Mac Sheetz 0296 Stow OH",
+            "description_normalized": null,
+            "amount": -20.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2020-05-05",
+            "description_raw": "POS Mac Acme No. 2905 Canton OH",
+            "description_normalized": null,
+            "amount": -106.58,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2020-05-05",
+            "description_raw": "POS Mac Acme No. 2905 Canton OH",
+            "description_normalized": null,
+            "amount": -21.26,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2020-05-06",
+            "description_raw": "Chick-Fil-A #02 Cuyahoga Fls OH USA",
+            "description_normalized": null,
+            "amount": -51.29,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2020-05-06",
+            "description_raw": "POS Mac Sheetz 0465 Parma OH",
+            "description_normalized": null,
+            "amount": -23.58,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2020-05-06",
+            "description_raw": "POS Mac Sheetz 0465 Parma OH",
+            "description_normalized": null,
+            "amount": -10.78,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2020-05-06",
+            "description_raw": "Donatos Pizzeri Hudson OH USA",
+            "description_normalized": null,
+            "amount": -34.66,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2020-05-07",
+            "description_raw": "Bed Bath & Beyo 8004623966 NJ USA",
+            "description_normalized": null,
+            "amount": -75.57,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2020-05-07",
+            "description_raw": "Sheetz 0296 0 Stow OH USA",
+            "description_normalized": null,
+            "amount": -9.36,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2020-05-07",
+            "description_raw": "Sheetz 0296 0 Stow OH USA",
+            "description_normalized": null,
+            "amount": -4.19,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2020-05-12",
+            "description_raw": "Subway 0 Akron OH USA",
+            "description_normalized": null,
+            "amount": -12.38,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2020-05-12",
+            "description_raw": "Bath & Body Wor 8007565005 OH USA",
+            "description_normalized": null,
+            "amount": -63.39,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2020-05-12",
+            "description_raw": "Nike.Com 800-806-6453 OR USA",
+            "description_normalized": null,
+            "amount": -21.35,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2020-05-13",
+            "description_raw": "ATM Key 6730 Rockside Rd Independen OH",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 1700.0,
+        "bank_stated_total_withdrawals": -990.79
+    },
+    "validation": {
+        "opening_plus_deposits": 1701.79,
+        "minus_withdrawals": 711.0,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Withdrawal count mismatch: found 21 transactions but expected 25 based on statement"
+        ]
+    }
+}

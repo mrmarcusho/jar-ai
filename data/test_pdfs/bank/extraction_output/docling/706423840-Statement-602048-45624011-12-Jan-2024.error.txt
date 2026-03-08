@@ -1,0 +1,21 @@
+ConversionError: Conversion failed for: 706423840-Statement-602048-45624011-12-Jan-2024.pdf with status: ConversionStatus.FAILURE. Errors: Page 1: basic_string; Page 2: basic_string; Page 3: basic_string; Page 4: basic_string
+
+Traceback (most recent call last):
+  File "/Users/alexho/JAR/core/extraction_engine/test_driver.py", line 95, in run_docling
+    md_path, json_path = preprocess_pdf(pdf_path, work_dir)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/core/extraction_engine/run_preprocess.py", line 36, in preprocess_pdf
+    result = converter.convert(str(pdf_path))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/venv/lib/python3.11/site-packages/pydantic/_internal/_validate_call.py", line 39, in wrapper_function
+    return wrapper(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/venv/lib/python3.11/site-packages/pydantic/_internal/_validate_call.py", line 136, in __call__
+    res = self.__pydantic_validator__.validate_python(pydantic_core.ArgsKwargs(args, kwargs))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/venv/lib/python3.11/site-packages/docling/document_converter.py", line 336, in convert
+    return next(all_res)
+           ^^^^^^^^^^^^^
+  File "/Users/alexho/JAR/venv/lib/python3.11/site-packages/docling/document_converter.py", line 389, in convert_all
+    raise ConversionError(
+docling.exceptions.ConversionError: Conversion failed for: 706423840-Statement-602048-45624011-12-Jan-2024.pdf with status: ConversionStatus.FAILURE. Errors: Page 1: basic_string; Page 2: basic_string; Page 3: basic_string; Page 4: basic_string

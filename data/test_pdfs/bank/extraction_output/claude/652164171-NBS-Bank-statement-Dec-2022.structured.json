@@ -1,0 +1,374 @@
+{
+    "metadata": {
+        "source_file": "nationwide_statement.pdf",
+        "statement_period": {
+            "start": "2022-12-01",
+            "end": "2022-12-31"
+        },
+        "bank_entity": {
+            "name": "Nationwide Building Society",
+            "correspondence_address": {
+                "line1": "Nationwide House, Pipers Way",
+                "city": "Swindon",
+                "state": "",
+                "zip": "SN38 1NW"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "",
+                    "city": "",
+                    "state": "",
+                    "zip": ""
+                },
+                "website": "nationwide.co.uk",
+                "phone_number": "03457 30 20 11",
+                "En Espanol": ""
+            }
+        },
+        "account": {
+            "name": "Mr. Klaidas Saviciunas",
+            "account_number": "782947362",
+            "account_type": "FlexAccount",
+            "address": {
+                "line1": "Stoke Ferry, 42 Buckenham Dr",
+                "city": "King's Lynn",
+                "state": "",
+                "zip": "PE33 9SG"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 35218.54,
+        "opening_balance_date": "2022-12-01",
+        "closing_balance": 31459.51,
+        "closing_balance_date": "2022-12-31",
+        "total_deposits_and_other_additions": 7200.78,
+        "total_withdrawals_and_other_subtractions": -10959.81,
+        "checks": 0,
+        "service_fees": 0,
+        "number_of_deposits": 4,
+        "number_of_withdrawals": 32
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2022-12-07",
+            "description_raw": "Transfer from 071660 60408617",
+            "description_normalized": null,
+            "amount": 1485.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2022-12-14",
+            "description_raw": "Transfer from 071660 60408617",
+            "description_normalized": null,
+            "amount": 1444.79,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2022-12-21",
+            "description_raw": "Transfer from 071660 60408617",
+            "description_normalized": null,
+            "amount": 1385.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2022-12-28",
+            "description_raw": "Transfer from 071660 60408617",
+            "description_normalized": null,
+            "amount": 1385.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2022-12-01",
+            "description_raw": "Contactless Payment GB Vaterstetten Ost Feldkirchen",
+            "description_normalized": null,
+            "amount": -34.72,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2022-12-01",
+            "description_raw": "1D AUTOROUTES 4779844 67ECK ATSWI",
+            "description_normalized": null,
+            "amount": -99.25,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2022-12-01",
+            "description_raw": "APPLE .COM/BILL APPLE.COM/BIL",
+            "description_normalized": null,
+            "amount": -42.11,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2022-12-03",
+            "description_raw": "Contactless Payment LOIRETAL SNC ESSIGNY LE GR",
+            "description_normalized": null,
+            "amount": -28.45,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2022-12-03",
+            "description_raw": "GOOGLE Google Play Apps London",
+            "description_normalized": null,
+            "amount": -12.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2022-12-03",
+            "description_raw": "Direct debit DVLA-DN09ZTG",
+            "description_normalized": null,
+            "amount": -30.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2022-12-06",
+            "description_raw": "Contactless Payment TESCO STORE 2544 FINCHLEY",
+            "description_normalized": null,
+            "amount": -27.18,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2022-12-07",
+            "description_raw": "ATM Cash withdrawal BARCLAYS",
+            "description_normalized": null,
+            "amount": -2000.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2022-12-10",
+            "description_raw": "Transfer to 070436 45929999",
+            "description_normalized": null,
+            "amount": -650.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2022-12-10",
+            "description_raw": "KETOCUSTOMPLAN.COM VANCOUVER",
+            "description_normalized": null,
+            "amount": -27.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2022-12-12",
+            "description_raw": "PAYPAL *UBER UK 33212269001",
+            "description_normalized": null,
+            "amount": -14.71,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w12",
+            "date": "2022-12-13",
+            "description_raw": "NETFLIX.COM 866-716-0414",
+            "description_normalized": null,
+            "amount": -11.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w13",
+            "date": "2022-12-14",
+            "description_raw": "ATM Cash withdrawal BARCLAYS",
+            "description_normalized": null,
+            "amount": -2000.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w14",
+            "date": "2022-12-16",
+            "description_raw": "Contactless Payment SAINSBURYS S/MKTS FINCHLEY REGE",
+            "description_normalized": null,
+            "amount": -42.77,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w15",
+            "date": "2022-12-16",
+            "description_raw": "Direct debit TALKTALK LIMITED",
+            "description_normalized": null,
+            "amount": -31.0,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w16",
+            "date": "2022-12-18",
+            "description_raw": "APPLE.COM/BILL APPLE.COM/BIL",
+            "description_normalized": null,
+            "amount": -7.99,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w17",
+            "date": "2022-12-24",
+            "description_raw": "Contactless Payment SAINSBURYS S/MKTS FINCHLEY REGE",
+            "description_normalized": null,
+            "amount": -78.21,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w18",
+            "date": "2022-12-24",
+            "description_raw": "ATM Cash withdrawal BARCLAYS",
+            "description_normalized": null,
+            "amount": -1000.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w19",
+            "date": "2022-12-24",
+            "description_raw": "APPLE .COM/BILL APPLE.COM/BIL",
+            "description_normalized": null,
+            "amount": -0.79,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w20",
+            "date": "2022-12-29",
+            "description_raw": "ATM Cash withdrawal BARCLAYS",
+            "description_normalized": null,
+            "amount": -1500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w21",
+            "date": "2022-12-29",
+            "description_raw": "1D AUTOROUTES 4779844 67ECK ATSWI",
+            "description_normalized": null,
+            "amount": -99.1,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w22",
+            "date": "2022-12-29",
+            "description_raw": "Transfer to 070436 45929999",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w23",
+            "date": "2022-12-30",
+            "description_raw": "AUCKLANDS PHARMACY LONDON",
+            "description_normalized": null,
+            "amount": -21.55,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w24",
+            "date": "2022-12-30",
+            "description_raw": "02 ONLINE ORDER 02.CO.UK",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w25",
+            "date": "2022-12-31",
+            "description_raw": "ATM Cash withdrawal BARCLAYS",
+            "description_normalized": null,
+            "amount": -500.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w26",
+            "date": "2022-12-31",
+            "description_raw": "Transfer to 070436 45929999",
+            "description_normalized": null,
+            "amount": -650.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 5700.78,
+        "bank_stated_total_withdrawals": -9459.81
+    },
+    "validation": {
+        "opening_plus_deposits": 42419.32,
+        "minus_withdrawals": 31459.51,
+        "matches_closing_balance": true,
+        "deposit_count_matches": true,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": false,
+        "withdrawal_total_matches": false,
+        "errors": [
+            "Computed deposit total (7200.78) does not match bank stated total (5700.78)",
+            "Computed withdrawal total (-10959.81) does not match bank stated total (-9459.81)",
+            "Withdrawal count mismatch: computed 26, expected 32"
+        ]
+    }
+}

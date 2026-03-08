@@ -1,0 +1,494 @@
+{
+    "metadata": {
+        "source_file": "US Bank Statement",
+        "statement_period": {
+            "start": "2017-03-22",
+            "end": "2017-04-21"
+        },
+        "bank_entity": {
+            "name": "U.S. Bank National Association",
+            "correspondence_address": {
+                "line1": "P.O. Box 1800",
+                "city": "Saint Paul",
+                "state": "Minnesota",
+                "zip": "55101-0800"
+            },
+            "customer_service_information": {
+                "customer_service_address": {
+                    "line1": "P.O. Box 1800",
+                    "city": "Saint Paul",
+                    "state": "Minnesota",
+                    "zip": "55101-0800"
+                },
+                "website": "usbank.com",
+                "phone_number": "1-800-US BANKS (1-800-872-2657)",
+                "En Espanol": "1-800-685-5065"
+            }
+        },
+        "account": {
+            "name": "RYAN R FANNING CELESTE WALKER",
+            "account_number": "1-575-1553-5134",
+            "account_type": "Easy Checking",
+            "address": {
+                "line1": "4154 UDALL ST APT 5",
+                "city": "SAN DIEGO",
+                "state": "CA",
+                "zip": "92107-1858"
+            }
+        }
+    },
+    "account_summary": {
+        "opening_balance": 50.0,
+        "opening_balance_date": "2017-03-22",
+        "closing_balance": 1263.46,
+        "closing_balance_date": "2017-04-21",
+        "total_deposits_and_other_additions": 4006.56,
+        "total_withdrawals_and_other_subtractions": -2843.1,
+        "checks": -50.0,
+        "service_fees": 0,
+        "number_of_deposits": 35,
+        "number_of_withdrawals": 10
+    },
+    "deposits": [
+        {
+            "id": "txn_001",
+            "date": "2017-03-23",
+            "description_raw": "Electronic Deposit REF=170820027395280N00 From Turo Verify 2204895317",
+            "description_normalized": null,
+            "amount": 0.01,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_002",
+            "date": "2017-03-24",
+            "description_raw": "Electronic Deposit REF=170830093531800N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 142.8,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_003",
+            "date": "2017-03-28",
+            "description_raw": "Electronic Deposit REF=170870078669710N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 66.3,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_004",
+            "date": "2017-03-29",
+            "description_raw": "Electronic Deposit REF=170880057323860N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 50.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_005",
+            "date": "2017-03-29",
+            "description_raw": "Electronic Deposit REF=170880057324240N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 100.3,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_006",
+            "date": "2017-03-29",
+            "description_raw": "Electronic Deposit REF=170880057324640N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 253.3,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_007",
+            "date": "2017-03-30",
+            "description_raw": "Electronic Deposit REF=170890060935840N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 275.4,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_008",
+            "date": "2017-03-31",
+            "description_raw": "Electronic Deposit REF=170890128499550N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 84.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_009",
+            "date": "2017-04-03",
+            "description_raw": "Electronic Deposit REF=170930026322970N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 33.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_010",
+            "date": "2017-04-04",
+            "description_raw": "Electronic Deposit REF=170940055199660N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 33.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_011",
+            "date": "2017-04-06",
+            "description_raw": "Electronic Deposit REF=170960040683670N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 403.75,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_012",
+            "date": "2017-04-07",
+            "description_raw": "Electronic Deposit REF=170970017295990N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 33.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_013",
+            "date": "2017-04-07",
+            "description_raw": "Electronic Deposit REF=170970017296130N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 134.3,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_014",
+            "date": "2017-04-10",
+            "description_raw": "Electronic Deposit REF=171000095077770N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 6.5,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_015",
+            "date": "2017-04-10",
+            "description_raw": "Electronic Deposit REF=171000095077830N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 33.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_016",
+            "date": "2017-04-11",
+            "description_raw": "Electronic Deposit REF=171010095091920N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 81.75,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_017",
+            "date": "2017-04-12",
+            "description_raw": "Electronic Deposit REF=171020068952280N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 10.0,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_018",
+            "date": "2017-04-12",
+            "description_raw": "Electronic Deposit REF=171020068952540N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 84.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_019",
+            "date": "2017-04-12",
+            "description_raw": "Electronic Deposit REF=171020068952640N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 91.8,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_020",
+            "date": "2017-04-12",
+            "description_raw": "Electronic Deposit REF=171020068952840N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 166.6,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_021",
+            "date": "2017-04-12",
+            "description_raw": "Electronic Deposit REF=171020068952980N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 249.9,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_022",
+            "date": "2017-04-13",
+            "description_raw": "Electronic Deposit REF=171030058773830N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 33.15,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_023",
+            "date": "2017-04-14",
+            "description_raw": "Electronic Deposit REF=171040022503600N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 146.25,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_024",
+            "date": "2017-04-18",
+            "description_raw": "Electronic Deposit REF=171080018243100N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 66.3,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_025",
+            "date": "2017-04-19",
+            "description_raw": "Electronic Deposit REF=171090097956580N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 91.8,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_026",
+            "date": "2017-04-19",
+            "description_raw": "Electronic Deposit REF=171090097956820N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 109.5,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_027",
+            "date": "2017-04-19",
+            "description_raw": "Electronic Deposit REF=171090097957120N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 166.6,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_028",
+            "date": "2017-04-19",
+            "description_raw": "Electronic Deposit REF=171090097957240N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 208.25,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_029",
+            "date": "2017-04-19",
+            "description_raw": "Electronic Deposit REF=171090097957440N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 483.75,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_030",
+            "date": "2017-04-20",
+            "description_raw": "Electronic Deposit REF=171100090850560N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 165.75,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_031",
+            "date": "2017-04-20",
+            "description_raw": "Electronic Deposit REF=171100090850620N00 From Turo Bill.com 1204895317",
+            "description_normalized": null,
+            "amount": 201.45,
+            "type": "ach_credit",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "withdrawals": [
+        {
+            "id": "txn_w01",
+            "date": "2017-04-06",
+            "description_raw": "Mobile Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w02",
+            "date": "2017-04-10",
+            "description_raw": "Mobile Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -120.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w03",
+            "date": "2017-04-10",
+            "description_raw": "Mobile Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -150.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w04",
+            "date": "2017-04-12",
+            "description_raw": "Mobile Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w05",
+            "date": "2017-04-13",
+            "description_raw": "Electronic Withdrawal REF=171020124467110N00 From TESLA FINANCE PBP 0412171463896777",
+            "description_normalized": null,
+            "amount": -1293.1,
+            "type": "ach_debit",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w06",
+            "date": "2017-04-17",
+            "description_raw": "ATM Withdrawal HOLIDAY STORE #1 FERGUS FALLS MN Serial No. 007629234124SHS4U257",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "atm_withdrawal",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w07",
+            "date": "2017-04-17",
+            "description_raw": "Internet Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -80.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w08",
+            "date": "2017-04-17",
+            "description_raw": "Mobile Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -100.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w09",
+            "date": "2017-04-17",
+            "description_raw": "Mobile Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -300.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w10",
+            "date": "2017-04-21",
+            "description_raw": "Mobile Banking Transfer To Account 104774239305",
+            "description_normalized": null,
+            "amount": -200.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        },
+        {
+            "id": "txn_w11",
+            "date": "2017-04-21",
+            "description_raw": "Check 1027 9250707281",
+            "description_normalized": null,
+            "amount": -50.0,
+            "type": "other",
+            "category": null,
+            "recurring": null
+        }
+    ],
+    "totals": {
+        "bank_stated_total_deposits": 4006.56,
+        "bank_stated_total_withdrawals": -2843.1
+    },
+    "validation": {
+        "opening_plus_deposits": 4056.56,
+        "minus_withdrawals": 1213.46,
+        "matches_closing_balance": false,
+        "deposit_count_matches": false,
+        "withdrawal_count_matches": false,
+        "deposit_total_matches": true,
+        "withdrawal_total_matches": true,
+        "errors": [
+            "Computed balance (1213.46) does not match closing balance (1263.46)",
+            "Deposit count mismatch: found 31 vs expected 35",
+            "Withdrawal count mismatch: found 11 vs expected 10"
+        ]
+    }
+}
