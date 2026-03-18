@@ -1,7 +1,11 @@
 # Bank statements and financial documents
 *.pdf
+!data/test_pdfs/**/*.pdf
 data/statements/
 data/docling_output.txt
+
+# Database
+data/jar.db*
 
 # Python
 __pycache__/
