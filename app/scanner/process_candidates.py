@@ -33,12 +33,12 @@ def process_confirmed_candidates(confirmed_paths: list[Path], output_dir: Path) 
 
         try:
             # Step 1: Docling conversion (PDF -> markdown + JSON)
-            from core.extraction_engine.run_preprocess import preprocess
-            md_path, json_path = preprocess(pdf_path, output_dir)
+            from core.extraction_engine.run_preprocess import preprocess_pdf
+            md_path, json_path = preprocess_pdf(pdf_path, output_dir)
 
             # Step 2: Post-process + structurize (bank detection + parsing)
             structured_path = postprocess_and_structurize(
-                md_path, json_path, output_dir, stem
+                md_path, json_path, output_dir, stem, auto_confirm=True
             )
             if structured_path:
                 result["status"] = "success"

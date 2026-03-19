@@ -30,23 +30,32 @@ class BofAPostProcessor(BankPostProcessor):
 
     @staticmethod
     def detect(md_text: str) -> float:
-        """Score confidence that this markdown is from Bank of America."""
-        lines = md_text.split("\n")
-        header_text = "\n".join(lines[:50]).lower()
+        """Score confidence that this markdown is from Bank of America.
+
+        Searches full text for all indicators. Resolves /uniXXXX escapes
+        first since raw Docling output may contain them (ISSUE-004).
+        """
+        # Resolve unicode escapes before matching — raw Docling output has
+        # /uni004F for 'O', /uni006F for 'o', etc.
+        cleaned = re.sub(
+            r"/uni([0-9A-Fa-f]{4})",
+            lambda m: chr(int(m.group(1), 16)),
+            md_text,
+        )
+        full_text_lower = cleaned.lower()
 
         score = 0.0
 
-        header_indicators = {
+        indicators = {
             "bank of america, n.a.": 0.5,
             "bankofamerica.com": 0.3,
             "bank of america": 0.4,
         }
 
-        for indicator, weight in header_indicators.items():
-            if indicator in header_text:
+        for indicator, weight in indicators.items():
+            if indicator in full_text_lower:
                 score += weight
 
-        full_text_lower = md_text.lower()
         if "bofa fin ctr" in full_text_lower:
             score += 0.1
 
@@ -281,7 +290,13 @@ def _parse_ach_fields(desc: str) -> dict | None:
 
 
 def _parse_table_rows(md_text: str, section_header: str) -> list[dict]:
-    """Extract rows from a markdown table following section_header."""
+    """Extract rows from a markdown table following section_header.
+
+    Scans all tables until a different section header is found. Skips:
+    - Docling artifacts like ``## -$6,352.71`` (ISSUE-002)
+    - "- continued" headers for the same section (ISSUE-006)
+    - "Total ..." summary headers for the same section (ISSUE-006)
+    """
     pattern = re.compile(
         r"^##\s+" + re.escape(section_header) + r"\s*$",
         re.MULTILINE,
@@ -292,31 +307,40 @@ def _parse_table_rows(md_text: str, section_header: str) -> list[dict]:
 
     remaining = md_text[match.end():]
     rows = []
-    in_table = False
 
+    header_lower = section_header.lower()
     for line in remaining.split("\n"):
         line = line.strip()
-        if not line:
-            if in_table:
-                break
-            continue
-        if line.startswith("|"):
-            if "---" in line or ("Date" in line and "Description" in line):
-                in_table = True
+        # Check if this is a ## header
+        hdr_m = re.match(r"^##\s+(.+)", line)
+        if hdr_m:
+            hdr_text = hdr_m.group(1).strip().lower()
+            # Skip continuation and total headers for the same section
+            if hdr_text.startswith(header_lower):
                 continue
-            if not in_table:
-                in_table = True
+            if hdr_text.startswith("total"):
                 continue
-            cells = [c.strip() for c in line.split("|")]
-            cells = [c for c in cells if c]
-            if len(cells) >= 3:
-                rows.append({
-                    "date_str": cells[0],
-                    "description": cells[1],
-                    "amount_str": cells[2],
-                })
-        elif in_table:
+            # Skip Docling artifacts (headers starting with non-letter)
+            if not hdr_text[0].isalpha():
+                continue
+            # Different section — stop
             break
+        if not line.startswith("|"):
+            continue
+        # Skip separator and header rows
+        if "---" in line or ("Date" in line and ("Description" in line or "Check" in line)):
+            continue
+        cells = [c.strip() for c in line.split("|")]
+        cells = [c for c in cells if c]
+        if len(cells) >= 3:
+            # Skip total/summary rows
+            if cells[0].lower().startswith("total"):
+                continue
+            rows.append({
+                "date_str": cells[0],
+                "description": cells[1],
+                "amount_str": cells[2],
+            })
 
     return rows
 
@@ -516,18 +540,23 @@ def _markdown_to_structured_json(
         _date_to_iso(opening_m.group(1).strip()) if opening_m else None
     )
 
-    closing_date_m = re.search(
+    # Try table format first: | Ending balance on DATE | $AMOUNT |
+    closing_tbl_m = re.search(
+        r"Ending balance on (.+?)\s*\|\s*\$?([\d,]+\.\d+)", md_text
+    )
+    # Fall back to standalone format: "Ending balance on DATE" then "$AMOUNT" on next line
+    closing_standalone_m = re.search(
         r"Ending balance on (.+?)$", md_text, re.MULTILINE
-    )
-    closing_date = (
-        _date_to_iso(closing_date_m.group(1).strip())
-        if closing_date_m
-        else None
-    )
+    ) if not closing_tbl_m else None
 
     closing_balance = 0.0
-    if closing_date_m:
-        after_closing = md_text[closing_date_m.end() :]
+    closing_date = None
+    if closing_tbl_m:
+        closing_date = _date_to_iso(closing_tbl_m.group(1).strip())
+        closing_balance = _parse_amount(closing_tbl_m.group(2))
+    elif closing_standalone_m:
+        closing_date = _date_to_iso(closing_standalone_m.group(1).strip())
+        after_closing = md_text[closing_standalone_m.end():]
         cb_m = re.search(r"^\$?([\d,]+\.\d+)", after_closing.strip())
         if cb_m:
             closing_balance = _parse_amount(cb_m.group(1))
@@ -558,6 +587,14 @@ def _markdown_to_structured_json(
     fee_m = re.search(r"Service fees\s*\|\s*-?\$?([\d,]+\.\d+)", md_text)
     if fee_m:
         summary_fees = _parse_amount("-" + fee_m.group(1))
+
+    # ISSUE-001: When Docling renders the closing balance as an image instead
+    # of text, compute it from the account summary values.
+    if closing_balance == 0.0 and opening_balance != 0.0:
+        closing_balance = round(
+            opening_balance + summary_deposits + summary_withdrawals
+            + summary_checks + summary_fees, 2
+        )
 
     # ---- Parse deposit rows ----
     dep_rows = None
@@ -647,6 +684,10 @@ def _markdown_to_structured_json(
 
     result["checks"] = checks
 
+    # Include checks in withdrawals so withdrawal counts/totals are complete
+    for check in checks:
+        withdrawals.append(check)
+
     # ---- account_summary (with counts) ----
     result["account_summary"] = {
         "opening_balance": opening_balance,
@@ -672,8 +713,11 @@ def _markdown_to_structured_json(
 
     # ---- validation ----
     computed_deposit_sum = round(sum(d["amount"] for d in deposits), 2)
-    computed_withdrawal_sum = round(sum(w["amount"] for w in withdrawals), 2)
     computed_check_sum = round(sum(c["amount"] for c in checks), 2)
+    # Non-check withdrawal sum for comparison against bank stated withdrawal total
+    computed_noncheck_withdrawal_sum = round(
+        sum(w["amount"] for w in withdrawals if w.get("type") != "check"), 2
+    )
 
     opening_plus_deposits = round(opening_balance + bank_total_deposits, 2)
     minus_withdrawals = round(
@@ -691,7 +735,7 @@ def _markdown_to_structured_json(
 
     dep_total_matches = abs(computed_deposit_sum - bank_total_deposits) < 0.01
     wdr_total_matches = (
-        abs(computed_withdrawal_sum - bank_total_withdrawals) < 0.01
+        abs(computed_noncheck_withdrawal_sum - bank_total_withdrawals) < 0.01
     )
     check_total_matches = abs(computed_check_sum - summary_checks) < 0.01
 
@@ -709,7 +753,7 @@ def _markdown_to_structured_json(
         )
     if not wdr_total_matches:
         errors.append(
-            f"Withdrawal total mismatch: computed {computed_withdrawal_sum}, "
+            f"Withdrawal total mismatch: computed {computed_noncheck_withdrawal_sum}, "
             f"bank stated {bank_total_withdrawals}"
         )
     if not check_total_matches:

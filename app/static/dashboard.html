@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jar — Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">Jar</div>
+        <div class="tabs">
+            <a class="tab active" href="/dashboard">Dashboard</a>
+            <a class="tab" href="/scan">Scan</a>
+            <a class="tab" href="/chat" id="nav-chat" style="display:none">Chat</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Privacy banner -->
+        <div class="privacy-banner">
+            All data stays on your machine. Nothing is sent to external servers.
+        </div>
+
+        <!-- Inline scanner (first-time users) -->
+        <div id="inline-scanner-wrap" style="display:none">
+            <div class="welcome-section">
+                <h1>Welcome to Jar</h1>
+                <p>Your private, local-first financial dashboard. Scan your computer to find bank statements and get started.</p>
+            </div>
+            <div id="inline-scanner"></div>
+        </div>
+
+        <!-- Dashboard content (hidden until data loaded) -->
+        <div id="dashboard-content" style="display:none">
+
+            <!-- Summary cards -->
+            <div class="dashboard-grid">
+                <div class="summary-card">
+                    <div class="label">Current Balance</div>
+                    <div class="value" id="card-balance">-</div>
+                    <div class="sub" id="card-balance-sub"></div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Avg Monthly Income</div>
+                    <div class="value" style="color:var(--green)" id="card-income">-</div>
+                    <div class="sub" id="card-income-sub"></div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Avg Monthly Spending</div>
+                    <div class="value" style="color:var(--red)" id="card-spending">-</div>
+                    <div class="sub" id="card-spending-sub"></div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Net Change</div>
+                    <div class="value" id="card-net">-</div>
+                    <div class="sub" id="card-net-sub"></div>
+                </div>
+            </div>
+
+            <!-- Uncategorized banner -->
+            <div id="uncat-banner" class="uncategorized-banner" style="display:none">
+                <div class="uncat-banner-text">
+                    <strong id="uncat-count">0</strong> uncategorized transactions need your attention
+                </div>
+                <button class="btn-primary" onclick="startReviewFlow()" style="padding:6px 16px;font-size:13px">Review Now</button>
+            </div>
+
+            <!-- Charts row 1 -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <h3>Balance Over Time</h3>
+                    <canvas id="chart-balance"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Spending by Category</h3>
+                    <canvas id="chart-categories"></canvas>
+                </div>
+            </div>
+
+            <!-- Charts row 2 -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <h3>Monthly Trends</h3>
+                    <canvas id="chart-monthly"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Top Merchants</h3>
+                    <ul class="merchant-list" id="merchant-list">
+                        <li style="color:var(--text-muted)">Loading...</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quick Insights -->
+            <h3 style="margin-bottom:12px;font-size:14px;font-weight:600">Quick Insights</h3>
+            <div class="insights-grid">
+                <div class="insight-card" id="insight-biggest">
+                    <h4>Biggest Expense</h4>
+                    <div class="insight-desc">Your largest single transaction</div>
+                    <div class="insight-result" id="insight-biggest-result"></div>
+                </div>
+                <div class="insight-card" id="insight-recurring">
+                    <h4>Recurring Bills</h4>
+                    <div class="insight-desc">Payments that repeat monthly</div>
+                    <div class="insight-result" id="insight-recurring-result"></div>
+                </div>
+                <div class="insight-card" id="insight-large">
+                    <h4>Large Transactions</h4>
+                    <div class="insight-desc">Withdrawals over $500</div>
+                    <div class="insight-result" id="insight-large-result"></div>
+                </div>
+                <div class="insight-card" id="insight-export">
+                    <h4>Export CSV</h4>
+                    <div class="insight-desc">Download all transactions</div>
+                    <div class="insight-result" id="insight-export-result"></div>
+                </div>
+            </div>
+
+            <!-- Transactions -->
+            <div class="card" style="margin-top:24px">
+                <h2>Transactions</h2>
+                <div class="filters">
+                    <input type="text" id="dash-filter-search" placeholder="Search transactions...">
+                    <input type="date" id="dash-filter-start">
+                    <input type="date" id="dash-filter-end">
+                    <select id="dash-filter-type">
+                        <option value="">All types</option>
+                    </select>
+                    <select id="dash-filter-direction">
+                        <option value="">All</option>
+                        <option value="1">Deposits</option>
+                        <option value="0">Withdrawals</option>
+                    </select>
+                </div>
+                <div class="txn-count" id="dash-txn-count"></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-sort="date">Date<span class="sort-arrow"></span></th>
+                                <th>Description</th>
+                                <th data-sort="amount">Amount<span class="sort-arrow"></span></th>
+                                <th>Category</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dash-txn-body"></tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button id="dash-prev" disabled>&laquo; Prev</button>
+                    <span id="dash-page-info"></span>
+                    <button id="dash-next">Next &raquo;</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tagging Modal -->
+        <div id="tag-modal-backdrop" class="modal-backdrop" style="display:none" onclick="closeTagModal()">
+            <div class="modal" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>Tag Transaction</h3>
+                    <div id="tag-review-progress" class="tag-review-progress" style="display:none">
+                        <div class="tag-progress-bar" id="tag-progress-bar"></div>
+                        <span id="tag-progress-text"></span>
+                    </div>
+                    <button class="modal-close" onclick="closeTagModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="tag-txn-details">
+                        <div class="tag-txn-date" id="tag-txn-date"></div>
+                        <div class="tag-txn-desc" id="tag-txn-desc"></div>
+                        <div class="tag-txn-amount" id="tag-txn-amount"></div>
+                    </div>
+
+                    <label class="tag-label">Category</label>
+                    <select id="tag-category" class="tag-select" onchange="onCategoryChange()">
+                        <option value="">Select category...</option>
+                    </select>
+
+                    <label class="tag-label">Subcategory</label>
+                    <select id="tag-subcategory" class="tag-select">
+                        <option value="">Select subcategory...</option>
+                    </select>
+
+                    <label class="tag-label">Household</label>
+                    <div class="chip-group" id="tag-household">
+                        <span class="chip" data-value="personal">Personal</span>
+                        <span class="chip" data-value="shared">Shared</span>
+                        <span class="chip" data-value="spouse">Spouse</span>
+                        <span class="chip" data-value="kids">Kids</span>
+                        <span class="chip" data-value="business">Business</span>
+                    </div>
+
+                    <label class="tag-label">Budget Type</label>
+                    <div class="chip-group" id="tag-budget">
+                        <span class="chip" data-value="fixed">Fixed</span>
+                        <span class="chip" data-value="variable">Variable</span>
+                        <span class="chip" data-value="one_time">One-time</span>
+                        <span class="chip" data-value="recurring">Recurring</span>
+                    </div>
+
+                    <label class="tag-label">Custom Tags</label>
+                    <input type="text" id="tag-custom" class="tag-input" placeholder="e.g. tax_deductible, vacation">
+
+                    <div class="tag-rule-section">
+                        <label class="tag-rule-toggle">
+                            <input type="checkbox" id="tag-create-rule" checked>
+                            Apply to similar transactions
+                        </label>
+                        <div class="tag-keyword-hint" id="tag-keyword-hint"></div>
+                        <input type="text" id="tag-keyword" class="tag-input" placeholder="Keyword to match">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="tag-skip-btn" onclick="skipTag()" style="display:none">Skip</button>
+                    <button class="btn-primary" onclick="saveTag()">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast notification -->
+        <div id="toast" class="toast" style="display:none"></div>
+    </main>
+
+    <script src="/static/common.js"></script>
+    <script src="/static/lib/chart.umd.min.js"></script>
+    <script src="/static/scanner-widget.js"></script>
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>

@@ -29,30 +29,31 @@ class TDBankPostProcessor(BankPostProcessor):
 
     @staticmethod
     def detect(md_text: str) -> float:
-        """Score confidence that this markdown is from TD Bank."""
-        lines = md_text.split("\n")
-        header_text = "\n".join(lines[:50]).lower()
+        """Score confidence that this markdown is from TD Bank.
+
+        Searches full text for all indicators (ISSUE-007).
+        """
+        full_text_lower = md_text.lower()
 
         score = 0.0
 
-        header_indicators = {
+        indicators = {
             "td personal checking": 0.5,
+            "td business": 0.5,
             "td bank": 0.3,
             "tdbank.com": 0.3,
             "td bank, n.a.": 0.3,
             "statement of account": 0.1,
+            "account summary": 0.1,
         }
 
-        for indicator, weight in header_indicators.items():
-            if indicator in header_text:
+        for indicator, weight in indicators.items():
+            if indicator in full_text_lower:
                 score += weight
 
-        # Lower-weight full-text signals
-        full_text_lower = md_text.lower()
         if "1-800-937-2000" in full_text_lower:
             score += 0.1
         if "account summyar" in full_text_lower:
-            # Consistent OCR artifact from TD Bank statements
             score += 0.2
 
         return min(score, 1.0)

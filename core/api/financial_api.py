@@ -281,6 +281,50 @@ class FinancialAPI:
 
     # -- Function 6 ----------------------------------------------------------
 
+    def get_balance_history(self) -> dict:
+        """Time-series of balance and cash flow by statement period."""
+        rows = self._conn.execute(
+            "SELECT period_end, closing_balance, total_deposits, total_withdrawals "
+            "FROM statements ORDER BY period_end"
+        ).fetchall()
+        return {
+            "function": "get_balance_history",
+            "history": [dict(r) for r in rows],
+        }
+
+    # -- Function 7 ----------------------------------------------------------
+
+    def get_top_merchants(self, limit: int = 10) -> dict:
+        """Top merchants by total spend."""
+        rows = self._conn.execute(
+            "SELECT COALESCE(ach_company_name, description_raw) as merchant, "
+            "COUNT(*) as count, ROUND(SUM(ABS(amount)), 2) as total_spent "
+            "FROM transactions WHERE is_deposit = 0 "
+            "GROUP BY merchant ORDER BY total_spent DESC LIMIT ?",
+            (limit,),
+        ).fetchall()
+        return {
+            "function": "get_top_merchants",
+            "merchants": [dict(r) for r in rows],
+        }
+
+    # -- Function 8 ----------------------------------------------------------
+
+    def get_monthly_trends(self) -> dict:
+        """Monthly income vs spending for bar chart."""
+        rows = self._conn.execute(
+            "SELECT strftime('%Y-%m', date) as month, "
+            "ROUND(SUM(CASE WHEN is_deposit = 1 THEN amount ELSE 0 END), 2) as income, "
+            "ROUND(SUM(CASE WHEN is_deposit = 0 THEN ABS(amount) ELSE 0 END), 2) as spending "
+            "FROM transactions GROUP BY month ORDER BY month"
+        ).fetchall()
+        return {
+            "function": "get_monthly_trends",
+            "months": [dict(r) for r in rows],
+        }
+
+    # -- Function 9 ----------------------------------------------------------
+
     def search_transactions(self, keyword: str, limit: int = 20) -> dict:
         """Free text search across description and ACH fields."""
         pattern = f"%{keyword}%"

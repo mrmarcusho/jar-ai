@@ -10,7 +10,7 @@ from typing import Callable, Optional
 
 from app.scanner.scanner_config import (
     get_default_scan_paths,
-    EXCLUDED_DIRS,
+    get_excluded_dirs,
     MAX_SCAN_DEPTH,
     MIN_PDF_SIZE,
     MAX_PDF_SIZE,
@@ -78,7 +78,7 @@ def scan_directory(
     for entry in entries:
         try:
             if entry.is_dir():
-                if entry.name in EXCLUDED_DIRS or entry.name.startswith("."):
+                if entry.name in get_excluded_dirs() or entry.name.startswith("."):
                     continue
                 sub_candidates = scan_directory(
                     entry,
@@ -112,19 +112,24 @@ def scan_directory(
 
 
 def scan_all_default_paths(
+    paths: Optional[list[Path]] = None,
     min_score: float = 0.3,
     progress_callback: Optional[Callable] = None,
 ) -> list[dict]:
     """Scan all default locations for bank statement PDFs.
 
     Args:
+        paths: Optional list of directories to scan. If None, uses defaults.
         min_score: Minimum score threshold.
         progress_callback: Optional callback for progress updates.
 
     Returns:
         Deduplicated list of candidates sorted by score descending.
     """
-    scan_paths = get_default_scan_paths()
+    if paths is not None:
+        scan_paths = [p for p in paths if p.is_dir()]
+    else:
+        scan_paths = get_default_scan_paths()
     progress = ScanProgress(callback=progress_callback)
 
     all_candidates = []

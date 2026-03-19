@@ -1,22 +1,20 @@
 #!/bin/bash
+# Jar — activate venv and start interactive shell
 
-PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+cd "$(dirname "$0")/.."
 
 # Check if the virtual environment folder exists
 if [ ! -d "venv" ]; then
-    echo "Creating virtual environment with Python 3.11..."
-    "$PYTHON" -m venv venv
-else
-    echo "Virtual environment already exists."
+    echo "Virtual environment not found. Run bin/install.sh first."
+    exit 1
 fi
 
 # Activate the virtual environment
 echo "Activating virtual environment..."
 source venv/bin/activate
 
-# Confirm activation by showing the Python interpreter path
+# Confirm activation
 echo "Using Python: $(python --version) at $(which python)"
 
 # Start a new interactive shell
 exec bash
-

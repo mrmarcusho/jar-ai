@@ -99,9 +99,10 @@ def load_one(conn: sqlite3.Connection, json_path: Path) -> dict:
 
     # Insert transactions
     txn_count = 0
+    # ISSUE-005: checks are already included in withdrawals (ISSUE-002 fix),
+    # so we no longer iterate over data["checks"] separately.
     for is_deposit, txn_list in [(True, data.get("deposits", [])),
-                                  (False, data.get("withdrawals", [])),
-                                  (False, data.get("checks", []))]:
+                                  (False, data.get("withdrawals", []))]:
         for txn in txn_list:
             txn_id = f"{statement_id}_{txn['id']}"
             parsed = txn.get("parsed_fields", {}) or {}
@@ -109,11 +110,11 @@ def load_one(conn: sqlite3.Connection, json_path: Path) -> dict:
                 """INSERT INTO transactions
                    (transaction_id, statement_id, account_id, date,
                     description_raw, description_normalized, amount,
-                    is_deposit, type, category, recurring,
+                    is_deposit, type, category, subcategory, recurring,
                     ach_company_name, ach_description, ach_individual_name,
                     ach_entry_class, ach_company_id, ach_trace_number,
                     ach_secondary_co_id, ach_originator)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     txn_id,
                     statement_id,
@@ -125,6 +126,7 @@ def load_one(conn: sqlite3.Connection, json_path: Path) -> dict:
                     int(is_deposit),
                     txn.get("type"),
                     txn.get("category"),
+                    txn.get("subcategory"),
                     int(txn["recurring"]) if txn.get("recurring") is not None else None,
                     parsed.get("ach_company_name"),
                     parsed.get("ach_description"),

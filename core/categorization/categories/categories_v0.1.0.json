@@ -1,0 +1,523 @@
+{
+    "schema": "jar_categories",
+    "version": "0.1.0",
+    "description": "JAR transaction category taxonomy with keyword-to-category mapping. Categories support multi-dimensional tagging — a transaction can belong to multiple categories across dimensions.",
+  
+    "dimensions": {
+      "spending_category": {
+        "description": "What the money was spent on. Auto-assigned by keyword mapping.",
+        "auto_assign": true
+      },
+      "household": {
+        "description": "Who the expense is for. User-assigned.",
+        "auto_assign": false,
+        "values": ["personal", "business", "spouse", "kids", "shared"]
+      },
+      "budget_type": {
+        "description": "How the expense behaves. Partially auto-assigned from recurrence detection.",
+        "auto_assign": "partial",
+        "values": ["fixed", "variable", "one_time", "recurring"]
+      },
+      "custom_tags": {
+        "description": "User-defined tags for any purpose.",
+        "auto_assign": false,
+        "examples": ["tax_deductible", "reimbursable", "vacation", "wedding", "home_renovation"]
+      }
+    },
+  
+    "categories": {
+      "housing": {
+        "label": "Housing",
+        "subcategories": {
+          "mortgage": { "label": "Mortgage" },
+          "rent": { "label": "Rent" },
+          "property_tax": { "label": "Property Tax" },
+          "home_insurance": { "label": "Home Insurance" },
+          "hoa": { "label": "HOA Fees" },
+          "maintenance": { "label": "Home Maintenance & Repair" }
+        }
+      },
+      "utilities": {
+        "label": "Utilities",
+        "subcategories": {
+          "electric": { "label": "Electric" },
+          "gas": { "label": "Gas" },
+          "water": { "label": "Water & Sewer" },
+          "internet": { "label": "Internet" },
+          "phone": { "label": "Phone" },
+          "cable": { "label": "Cable & Streaming" },
+          "trash": { "label": "Trash & Recycling" }
+        }
+      },
+      "groceries": {
+        "label": "Groceries",
+        "subcategories": {
+          "supermarket": { "label": "Supermarket" },
+          "specialty": { "label": "Specialty & Organic" },
+          "wholesale": { "label": "Wholesale Club" }
+        }
+      },
+      "dining": {
+        "label": "Dining & Restaurants",
+        "subcategories": {
+          "restaurants": { "label": "Restaurants" },
+          "fast_food": { "label": "Fast Food" },
+          "coffee": { "label": "Coffee Shops" },
+          "delivery": { "label": "Food Delivery" },
+          "bars": { "label": "Bars & Alcohol" }
+        }
+      },
+      "transportation": {
+        "label": "Transportation",
+        "subcategories": {
+          "gas_fuel": { "label": "Gas & Fuel" },
+          "car_payment": { "label": "Car Payment" },
+          "car_insurance": { "label": "Car Insurance" },
+          "parking": { "label": "Parking" },
+          "tolls": { "label": "Tolls" },
+          "public_transit": { "label": "Public Transit" },
+          "rideshare": { "label": "Rideshare (Uber/Lyft)" },
+          "car_maintenance": { "label": "Car Maintenance" }
+        }
+      },
+      "insurance": {
+        "label": "Insurance",
+        "subcategories": {
+          "health": { "label": "Health Insurance" },
+          "life": { "label": "Life Insurance" },
+          "dental": { "label": "Dental Insurance" },
+          "vision": { "label": "Vision Insurance" },
+          "umbrella": { "label": "Umbrella Policy" }
+        }
+      },
+      "medical": {
+        "label": "Medical & Health",
+        "subcategories": {
+          "doctor": { "label": "Doctor & Clinic" },
+          "pharmacy": { "label": "Pharmacy" },
+          "dental": { "label": "Dental" },
+          "vision": { "label": "Vision & Eye Care" },
+          "hospital": { "label": "Hospital" },
+          "mental_health": { "label": "Mental Health" }
+        }
+      },
+      "education": {
+        "label": "Education",
+        "subcategories": {
+          "tuition": { "label": "Tuition" },
+          "books": { "label": "Books & Supplies" },
+          "student_loans": { "label": "Student Loans" },
+          "courses": { "label": "Courses & Training" }
+        }
+      },
+      "shopping": {
+        "label": "Shopping",
+        "subcategories": {
+          "clothing": { "label": "Clothing & Apparel" },
+          "electronics": { "label": "Electronics" },
+          "home_goods": { "label": "Home Goods & Furnishing" },
+          "personal_care": { "label": "Personal Care" },
+          "gifts": { "label": "Gifts" },
+          "online": { "label": "Online Shopping" }
+        }
+      },
+      "entertainment": {
+        "label": "Entertainment",
+        "subcategories": {
+          "movies": { "label": "Movies & Theater" },
+          "music": { "label": "Music & Concerts" },
+          "sports": { "label": "Sports & Recreation" },
+          "hobbies": { "label": "Hobbies" },
+          "games": { "label": "Games & Gaming" },
+          "travel": { "label": "Travel & Vacation" }
+        }
+      },
+      "subscriptions": {
+        "label": "Subscriptions & Memberships",
+        "subcategories": {
+          "streaming": { "label": "Streaming Services" },
+          "gym": { "label": "Gym & Fitness" },
+          "software": { "label": "Software & Apps" },
+          "news": { "label": "News & Magazines" },
+          "clubs": { "label": "Clubs & Memberships" }
+        }
+      },
+      "financial": {
+        "label": "Financial",
+        "subcategories": {
+          "credit_card_payment": { "label": "Credit Card Payment" },
+          "loan_payment": { "label": "Loan Payment" },
+          "investment": { "label": "Investment" },
+          "savings_transfer": { "label": "Savings Transfer" },
+          "bank_fee": { "label": "Bank Fee" },
+          "atm_fee": { "label": "ATM Fee" },
+          "interest": { "label": "Interest Charge" },
+          "wire_fee": { "label": "Wire Transfer Fee" }
+        }
+      },
+      "income": {
+        "label": "Income",
+        "subcategories": {
+          "salary": { "label": "Salary & Wages" },
+          "direct_deposit": { "label": "Direct Deposit" },
+          "freelance": { "label": "Freelance & Contract" },
+          "investment_income": { "label": "Investment Income" },
+          "refund": { "label": "Refund" },
+          "reimbursement": { "label": "Reimbursement" },
+          "interest_earned": { "label": "Interest Earned" },
+          "transfer_in": { "label": "Transfer In" }
+        }
+      },
+      "taxes": {
+        "label": "Taxes",
+        "subcategories": {
+          "federal": { "label": "Federal Tax" },
+          "state": { "label": "State Tax" },
+          "local": { "label": "Local/City Tax" },
+          "property": { "label": "Property Tax" }
+        }
+      },
+      "charity": {
+        "label": "Charity & Donations",
+        "subcategories": {
+          "charitable": { "label": "Charitable Donation" },
+          "religious": { "label": "Religious Organization" },
+          "political": { "label": "Political Contribution" }
+        }
+      },
+      "childcare": {
+        "label": "Childcare & Kids",
+        "subcategories": {
+          "daycare": { "label": "Daycare" },
+          "babysitter": { "label": "Babysitter" },
+          "school": { "label": "School Expenses" },
+          "activities": { "label": "Kids Activities" },
+          "allowance": { "label": "Allowance" }
+        }
+      },
+      "pets": {
+        "label": "Pets",
+        "subcategories": {
+          "vet": { "label": "Veterinary" },
+          "food": { "label": "Pet Food & Supplies" },
+          "grooming": { "label": "Grooming" }
+        }
+      },
+      "transfers": {
+        "label": "Transfers",
+        "subcategories": {
+          "internal": { "label": "Internal Transfer" },
+          "zelle": { "label": "Zelle Transfer" },
+          "wire": { "label": "Wire Transfer" },
+          "venmo": { "label": "Venmo" },
+          "paypal": { "label": "PayPal" }
+        }
+      },
+      "uncategorized": {
+        "label": "Uncategorized",
+        "subcategories": {}
+      }
+    },
+  
+    "keyword_mapping": {
+      "_description": "Rules for auto-assigning spending_category from transaction descriptions. Rules are evaluated in order — first match wins. Keywords are matched case-insensitive against description_raw and parsed_fields.ach_company_name.",
+      "_match_types": {
+        "contains": "keyword appears anywhere in the description",
+        "starts_with": "description starts with keyword",
+        "exact": "entire description matches keyword",
+        "ach_company": "matches parsed_fields.ach_company_name"
+      },
+  
+      "rules": [
+        {
+          "_comment": "=== HOUSING ===",
+          "keywords": ["mortgage", "mr. cooper", "mr.cooper", "cooper", "NSM DBAMR"],
+          "match_type": "contains",
+          "category": "housing",
+          "subcategory": "mortgage"
+        },
+        {
+          "keywords": ["rent", "landlord", "property management"],
+          "match_type": "contains",
+          "category": "housing",
+          "subcategory": "rent"
+        },
+        {
+          "keywords": ["hoa", "homeowner assoc", "condo assoc"],
+          "match_type": "contains",
+          "category": "housing",
+          "subcategory": "hoa"
+        },
+        {
+          "keywords": ["deshe maintenance"],
+          "match_type": "contains",
+          "category": "housing",
+          "subcategory": "maintenance"
+        },
+  
+        {
+          "_comment": "=== UTILITIES ===",
+          "keywords": ["pseg", "public service", "electric", "power & light", "jcp&l", "jersey central", "con edison", "coned"],
+          "match_type": "contains",
+          "category": "utilities",
+          "subcategory": "electric"
+        },
+        {
+          "keywords": ["gas company", "natural gas", "national grid"],
+          "match_type": "contains",
+          "category": "utilities",
+          "subcategory": "gas"
+        },
+        {
+          "keywords": ["water", "sewer", "water authority"],
+          "match_type": "contains",
+          "category": "utilities",
+          "subcategory": "water"
+        },
+        {
+          "keywords": ["verizon", "t-mobile", "tmobile", "at&t", "att", "sprint", "mint mobile"],
+          "match_type": "contains",
+          "category": "utilities",
+          "subcategory": "phone"
+        },
+        {
+          "keywords": ["comcast", "xfinity", "spectrum", "optimum", "fios", "cox"],
+          "match_type": "contains",
+          "category": "utilities",
+          "subcategory": "internet"
+        },
+        {
+          "keywords": ["netflix", "hulu", "disney+", "hbo", "paramount", "peacock", "apple tv", "youtube premium", "spotify", "amazon prime"],
+          "match_type": "contains",
+          "category": "utilities",
+          "subcategory": "cable"
+        },
+  
+        {
+          "_comment": "=== GROCERIES ===",
+          "keywords": ["shoprite", "stop & shop", "stop and shop", "trader joe", "whole foods", "aldi", "lidl", "food lion", "publix", "kroger", "safeway", "wegmans", "h-e-b", "piggly wiggly"],
+          "match_type": "contains",
+          "category": "groceries",
+          "subcategory": "supermarket"
+        },
+        {
+          "keywords": ["costco", "sam's club", "bj's wholesale"],
+          "match_type": "contains",
+          "category": "groceries",
+          "subcategory": "wholesale"
+        },
+  
+        {
+          "_comment": "=== DINING ===",
+          "keywords": ["mcdonald", "burger king", "wendy", "taco bell", "chick-fil-a", "popeye", "subway", "chipotle", "panera", "five guys"],
+          "match_type": "contains",
+          "category": "dining",
+          "subcategory": "fast_food"
+        },
+        {
+          "keywords": ["starbucks", "dunkin", "peet's coffee", "tim horton"],
+          "match_type": "contains",
+          "category": "dining",
+          "subcategory": "coffee"
+        },
+        {
+          "keywords": ["doordash", "grubhub", "uber eats", "seamless", "postmates"],
+          "match_type": "contains",
+          "category": "dining",
+          "subcategory": "delivery"
+        },
+        {
+          "keywords": ["restaurant", "grill", "pizza", "sushi", "diner", "cafe", "bistro", "tavern"],
+          "match_type": "contains",
+          "category": "dining",
+          "subcategory": "restaurants"
+        },
+  
+        {
+          "_comment": "=== TRANSPORTATION ===",
+          "keywords": ["shell", "exxon", "mobil", "chevron", "bp ", "sunoco", "wawa gas", "speedway", "valero"],
+          "match_type": "contains",
+          "category": "transportation",
+          "subcategory": "gas_fuel"
+        },
+        {
+          "keywords": ["uber ", "lyft"],
+          "match_type": "contains",
+          "category": "transportation",
+          "subcategory": "rideshare"
+        },
+        {
+          "keywords": ["ez pass", "ezpass", "toll", "turnpike", "bridge authority"],
+          "match_type": "contains",
+          "category": "transportation",
+          "subcategory": "tolls"
+        },
+        {
+          "keywords": ["nj transit", "mta", "metro card", "metrocard", "path train", "amtrak"],
+          "match_type": "contains",
+          "category": "transportation",
+          "subcategory": "public_transit"
+        },
+  
+        {
+          "_comment": "=== INSURANCE ===",
+          "keywords": ["geico", "allstate", "state farm", "progressive", "liberty mutual", "farmers ins", "usaa ins"],
+          "match_type": "contains",
+          "category": "insurance",
+          "subcategory": "health"
+        },
+        {
+          "keywords": ["auto insurance", "car insurance", "vehicle ins"],
+          "match_type": "contains",
+          "category": "transportation",
+          "subcategory": "car_insurance"
+        },
+  
+        {
+          "_comment": "=== EDUCATION ===",
+          "keywords": ["wellesley", "university", "college", "tuition", "school district"],
+          "match_type": "contains",
+          "category": "education",
+          "subcategory": "tuition"
+        },
+        {
+          "keywords": ["student loan", "navient", "nelnet", "great lakes", "fedloan", "mohela"],
+          "match_type": "contains",
+          "category": "education",
+          "subcategory": "student_loans"
+        },
+  
+        {
+          "_comment": "=== SHOPPING ===",
+          "keywords": ["amazon", "amzn"],
+          "match_type": "contains",
+          "category": "shopping",
+          "subcategory": "online"
+        },
+        {
+          "keywords": ["target", "walmart", "kohl", "macy", "nordstrom", "tj maxx", "marshalls", "ross"],
+          "match_type": "contains",
+          "category": "shopping",
+          "subcategory": "clothing"
+        },
+        {
+          "keywords": ["home depot", "lowe's", "lowes", "menards", "ace hardware"],
+          "match_type": "contains",
+          "category": "shopping",
+          "subcategory": "home_goods"
+        },
+        {
+          "keywords": ["best buy", "apple store", "micro center"],
+          "match_type": "contains",
+          "category": "shopping",
+          "subcategory": "electronics"
+        },
+  
+        {
+          "_comment": "=== MEDICAL ===",
+          "keywords": ["cvs", "walgreens", "rite aid", "pharmacy"],
+          "match_type": "contains",
+          "category": "medical",
+          "subcategory": "pharmacy"
+        },
+        {
+          "keywords": ["doctor", "medical", "clinic", "hospital", "urgent care", "labcorp", "quest diagnostic"],
+          "match_type": "contains",
+          "category": "medical",
+          "subcategory": "doctor"
+        },
+        {
+          "keywords": ["dentist", "dental", "orthodont"],
+          "match_type": "contains",
+          "category": "medical",
+          "subcategory": "dental"
+        },
+  
+        {
+          "_comment": "=== FINANCIAL ===",
+          "keywords": ["chase credit card", "chase credit cards", "citi card", "amex", "american express", "discover card", "capital one card"],
+          "match_type": "contains",
+          "category": "financial",
+          "subcategory": "credit_card_payment"
+        },
+        {
+          "keywords": ["overdraft", "service fee", "monthly fee", "maintenance fee", "account fee"],
+          "match_type": "contains",
+          "category": "financial",
+          "subcategory": "bank_fee"
+        },
+        {
+          "keywords": ["atm fee", "non-network atm", "atm surcharge"],
+          "match_type": "contains",
+          "category": "financial",
+          "subcategory": "atm_fee"
+        },
+  
+        {
+          "_comment": "=== INCOME ===",
+          "keywords": ["direct dep", "payroll", "salary"],
+          "match_type": "contains",
+          "category": "income",
+          "subcategory": "salary"
+        },
+        {
+          "keywords": ["interest earned", "interest payment", "interest credit"],
+          "match_type": "contains",
+          "category": "income",
+          "subcategory": "interest_earned"
+        },
+        {
+          "keywords": ["refund", "return", "credit memo"],
+          "match_type": "contains",
+          "category": "income",
+          "subcategory": "refund"
+        },
+  
+        {
+          "_comment": "=== TRANSFERS ===",
+          "keywords": ["zelle"],
+          "match_type": "contains",
+          "category": "transfers",
+          "subcategory": "zelle"
+        },
+        {
+          "keywords": ["wire transfer", "wire sent", "wire received"],
+          "match_type": "contains",
+          "category": "transfers",
+          "subcategory": "wire"
+        },
+        {
+          "keywords": ["venmo"],
+          "match_type": "contains",
+          "category": "transfers",
+          "subcategory": "venmo"
+        },
+        {
+          "keywords": ["paypal"],
+          "match_type": "contains",
+          "category": "transfers",
+          "subcategory": "paypal"
+        },
+  
+        {
+          "_comment": "=== TAXES ===",
+          "keywords": ["irs", "internal revenue", "federal tax"],
+          "match_type": "contains",
+          "category": "taxes",
+          "subcategory": "federal"
+        },
+        {
+          "keywords": ["new jersey - ame", "state tax", "nj treasury"],
+          "match_type": "contains",
+          "category": "taxes",
+          "subcategory": "state"
+        },
+        {
+          "keywords": ["property tax"],
+          "match_type": "contains",
+          "category": "taxes",
+          "subcategory": "property"
+        }
+      ]
+    }
+  }

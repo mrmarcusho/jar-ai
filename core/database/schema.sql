@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     is_deposit              INTEGER NOT NULL,   -- 1 = deposit, 0 = withdrawal
     type                    TEXT,
     category                TEXT,
+    subcategory             TEXT,
     recurring               INTEGER,            -- nullable boolean
     ach_company_name        TEXT,
     ach_description         TEXT,
@@ -54,3 +55,31 @@ CREATE INDEX IF NOT EXISTS idx_transactions_type       ON transactions(type);
 CREATE INDEX IF NOT EXISTS idx_transactions_category   ON transactions(category);
 CREATE INDEX IF NOT EXISTS idx_transactions_amount     ON transactions(amount);
 CREATE INDEX IF NOT EXISTS idx_statements_account_id   ON statements(account_id);
+
+-- User-created categorization rules (learning loop)
+CREATE TABLE IF NOT EXISTS user_category_rules (
+    rule_id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    keyword             TEXT NOT NULL,
+    match_type          TEXT NOT NULL DEFAULT 'contains',
+    category            TEXT NOT NULL,
+    subcategory         TEXT,
+    source_description  TEXT,
+    source_transaction_id TEXT,
+    times_matched       INTEGER DEFAULT 0,
+    active              INTEGER DEFAULT 1,
+    created_at          TEXT DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_user_rules_keyword ON user_category_rules(keyword);
+
+-- Per-transaction user overrides
+CREATE TABLE IF NOT EXISTS user_category_overrides (
+    override_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    transaction_id  TEXT NOT NULL UNIQUE REFERENCES transactions(transaction_id),
+    category        TEXT NOT NULL,
+    subcategory     TEXT,
+    household_tag   TEXT,
+    budget_type     TEXT,
+    custom_tags     TEXT,
+    created_at      TEXT DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_overrides_txn ON user_category_overrides(transaction_id);

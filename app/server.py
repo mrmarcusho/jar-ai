@@ -7,16 +7,21 @@ Usage:
     # → Jar running at http://localhost:5000
 """
 
+import asyncio
+import csv
+import io
 import json
 import os
+import queue
 import sqlite3
 import sys
 import tempfile
+import time
 import traceback
 from pathlib import Path
 
-from fastapi import FastAPI, File, Query, UploadFile
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi import FastAPI, File, Query, Request, UploadFile
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 
@@ -53,9 +58,58 @@ def get_db() -> sqlite3.Connection:
 # Pages
 # ---------------------------------------------------------------------------
 
+def _has_data() -> bool:
+    """Check if any statements are loaded in the database."""
+    try:
+        conn = get_db()
+        count = conn.execute("SELECT COUNT(*) FROM statements").fetchone()[0]
+        conn.close()
+        return count > 0
+    except Exception:
+        return False
+
+
 @app.get("/")
 async def index():
+    return RedirectResponse("/dashboard")
+
+
+@app.get("/api/config")
+async def api_config():
+    """App config: data status + LLM availability."""
+    import urllib.request
+
+    ollama_running = False
+    try:
+        req = urllib.request.Request("http://localhost:11434/api/tags")
+        urllib.request.urlopen(req, timeout=2)
+        ollama_running = True
+    except Exception:
+        pass
+
+    anthropic_key_set = bool(os.environ.get("ANTHROPIC_API_KEY"))
+
+    return {
+        "has_data": _has_data(),
+        "llm_available": ollama_running or anthropic_key_set,
+        "ollama_running": ollama_running,
+        "anthropic_key_set": anthropic_key_set,
+    }
+
+
+@app.get("/chat")
+async def chat_page():
     return FileResponse(str(STATIC_DIR / "index.html"))
+
+
+@app.get("/scan")
+async def scan_page():
+    return FileResponse(str(STATIC_DIR / "scan.html"))
+
+
+@app.get("/dashboard")
+async def dashboard_page():
+    return FileResponse(str(STATIC_DIR / "dashboard.html"))
 
 
 # ---------------------------------------------------------------------------
@@ -85,6 +139,7 @@ async def import_pdf(file: UploadFile = File(...)):
         steps.append({"step": "extracting", "status": "running", "message": "Running Docling OCR extraction..."})
         from docling.document_converter import DocumentConverter
 
+        t0 = time.monotonic()
         converter = DocumentConverter()
         result = converter.convert(str(pdf_path))
 
@@ -96,12 +151,13 @@ async def import_pdf(file: UploadFile = File(...)):
         json_path = EXTRACTION_DIR / f"{stem}.json"
         json_path.write_text(json.dumps(doc_dict, indent=2, default=str), encoding="utf-8")
 
-        steps[-1] = {"step": "extracting", "status": "ok", "message": "Docling extraction complete"}
+        extract_secs = time.monotonic() - t0
+        steps[-1] = {"step": "extracting", "status": "ok", "message": f"Docling extraction complete ({extract_secs:.1f}s)"}
 
         # 3. Post-process + structurize (bank-agnostic pipeline)
         from core.extraction_engine.postprocess.run_postprocess import postprocess_and_structurize
 
-        structured_path = postprocess_and_structurize(md_path, json_path, EXTRACTION_DIR, stem)
+        structured_path = postprocess_and_structurize(md_path, json_path, EXTRACTION_DIR, stem, auto_confirm=True)
 
         if structured_path is None:
             steps.append({"step": "postprocess", "status": "error", "message": "Unknown bank format"})
@@ -167,6 +223,184 @@ async def import_pdf(file: UploadFile = File(...)):
 
 
 # ---------------------------------------------------------------------------
+# API: User Tagging & Rules
+# ---------------------------------------------------------------------------
+
+def _get_user_rules_store():
+    from core.categorization.user_rules import UserRulesStore
+    conn = get_db()
+    return conn, UserRulesStore(conn)
+
+
+@app.get("/api/transactions/uncategorized")
+async def get_uncategorized_transactions(limit: int = 200):
+    """Uncategorized transactions with suggested keywords."""
+    from core.categorization.user_rules import UserRulesStore
+
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT t.transaction_id, t.date, t.description_raw, t.amount, "
+        "t.is_deposit, t.type, t.category, t.subcategory, "
+        "t.ach_company_name, t.ach_description "
+        "FROM transactions t "
+        "WHERE t.category IS NULL OR t.category = 'uncategorized' "
+        "ORDER BY t.date DESC LIMIT ?",
+        (limit,),
+    ).fetchall()
+
+    count = conn.execute(
+        "SELECT COUNT(*) FROM transactions "
+        "WHERE category IS NULL OR category = 'uncategorized'"
+    ).fetchone()[0]
+    conn.close()
+
+    txns = []
+    for r in rows:
+        d = dict(r)
+        d["suggested_keyword"] = UserRulesStore.extract_keyword(
+            d.get("description_raw"), d.get("ach_company_name")
+        )
+        txns.append(d)
+
+    return {"transactions": txns, "count": count}
+
+
+@app.get("/api/categories")
+async def get_categories():
+    """Full taxonomy for dropdown (grouped by category)."""
+    from core.categorization.categorizer import CategoryStore
+    store = CategoryStore()
+    cats = store.categories
+    result = {}
+    for cat_key, cat_data in cats.items():
+        subs = {}
+        for sub_key, sub_data in cat_data.get("subcategories", {}).items():
+            subs[sub_key] = sub_data["label"]
+        result[cat_key] = {"label": cat_data["label"], "subcategories": subs}
+    return {"categories": result}
+
+
+@app.post("/api/transactions/{txn_id}/tag")
+async def tag_transaction(txn_id: str, body: dict):
+    """Save a user tag, optionally create a rule, and retroactively apply."""
+    from core.categorization.user_rules import UserRulesStore
+
+    category = body.get("category")
+    subcategory = body.get("subcategory")
+    if not category:
+        return JSONResponse({"error": "category is required"}, status_code=400)
+
+    household_tag = body.get("household_tag")
+    budget_type = body.get("budget_type")
+    custom_tags = body.get("custom_tags")
+    create_rule = body.get("create_rule", False)
+    keyword = body.get("keyword")
+
+    conn = get_db()
+    store = UserRulesStore(conn)
+
+    try:
+        # 1. Save override
+        store.add_override(txn_id, category, subcategory, household_tag, budget_type, custom_tags)
+
+        # 2. Update the transaction row itself
+        conn.execute(
+            "UPDATE transactions SET category = ?, subcategory = ? WHERE transaction_id = ?",
+            (category, subcategory, txn_id),
+        )
+        conn.commit()
+
+        rule_created = False
+        similar_updated = 0
+        rule_keyword = None
+
+        # 3. Optionally create a rule and apply retroactively
+        if create_rule and keyword:
+            rule_keyword = keyword
+            # Get source description for the rule
+            row = conn.execute(
+                "SELECT description_raw FROM transactions WHERE transaction_id = ?",
+                (txn_id,),
+            ).fetchone()
+            source_desc = row["description_raw"] if row else None
+
+            rule_id = store.add_rule(
+                keyword=keyword,
+                category=category,
+                subcategory=subcategory,
+                source_description=source_desc,
+                source_transaction_id=txn_id,
+            )
+            similar_updated = store.apply_rule_retroactively(rule_id)
+            rule_created = True
+
+        conn.close()
+        return {
+            "status": "ok",
+            "rule_created": rule_created,
+            "similar_updated": similar_updated,
+            "keyword": rule_keyword,
+        }
+    except Exception as e:
+        conn.close()
+        traceback.print_exc()
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/transactions/batch-tag")
+async def batch_tag_transactions(body: dict):
+    """Tag multiple transactions with the same category."""
+    from core.categorization.user_rules import UserRulesStore
+
+    txn_ids = body.get("transaction_ids", [])
+    category = body.get("category")
+    subcategory = body.get("subcategory")
+    if not txn_ids or not category:
+        return JSONResponse({"error": "transaction_ids and category required"}, status_code=400)
+
+    conn = get_db()
+    store = UserRulesStore(conn)
+
+    updated = 0
+    for txn_id in txn_ids:
+        store.add_override(txn_id, category, subcategory)
+        conn.execute(
+            "UPDATE transactions SET category = ?, subcategory = ? WHERE transaction_id = ?",
+            (category, subcategory, txn_id),
+        )
+        updated += 1
+    conn.commit()
+    conn.close()
+
+    return {"status": "ok", "updated": updated}
+
+
+@app.get("/api/category-rules/user")
+async def get_user_rules():
+    """List all user-created rules."""
+    conn, store = _get_user_rules_store()
+    rules = store.get_rules(active_only=False)
+    conn.close()
+    return {"rules": rules}
+
+
+@app.delete("/api/category-rules/user/{rule_id}")
+async def delete_user_rule(rule_id: int):
+    conn, store = _get_user_rules_store()
+    store.delete_rule(rule_id)
+    conn.close()
+    return {"status": "ok"}
+
+
+@app.put("/api/category-rules/user/{rule_id}")
+async def update_user_rule(rule_id: int, body: dict):
+    conn, store = _get_user_rules_store()
+    store.update_rule(rule_id, **body)
+    conn.close()
+    return {"status": "ok"}
+
+
+# ---------------------------------------------------------------------------
 # API: Transactions
 # ---------------------------------------------------------------------------
 
@@ -229,7 +463,7 @@ async def get_transactions(
 
     rows = conn.execute(
         f"SELECT t.transaction_id, t.date, t.description_raw, t.amount, "
-        f"t.is_deposit, t.type, t.category, t.ach_company_name, "
+        f"t.is_deposit, t.type, t.category, t.subcategory, t.ach_company_name, "
         f"t.ach_description, t.ach_individual_name, t.ach_entry_class, "
         f"t.ach_company_id, t.ach_secondary_co_id "
         f"FROM transactions t {where} "
@@ -427,6 +661,140 @@ async def set_backend(body: dict):
 
 
 # ---------------------------------------------------------------------------
+# API: Scanner
+# ---------------------------------------------------------------------------
+
+@app.get("/api/scan/paths")
+async def scan_paths():
+    """Return default scan directories."""
+    from app.scanner.scanner_config import get_default_scan_paths
+    paths = get_default_scan_paths()
+    return {"paths": [str(p) for p in paths]}
+
+
+@app.get("/api/scan/start")
+async def scan_start(paths: str = Query(None)):
+    """SSE stream of scan progress + final candidates."""
+    from app.scanner.drive_scanner import scan_all_default_paths
+
+    # Parse optional comma-separated directory paths
+    scan_dirs = None
+    if paths:
+        scan_dirs = []
+        for p in paths.split(","):
+            d = Path(p.strip())
+            if d.is_dir():
+                scan_dirs.append(d)
+
+    q: queue.Queue = queue.Queue()
+
+    def progress_cb(prog):
+        q.put({
+            "type": "progress",
+            "dirs_scanned": prog.dirs_scanned,
+            "pdfs_found": prog.pdfs_found,
+            "candidates_found": prog.candidates_found,
+            "current_dir": prog.current_dir,
+            "elapsed": round(prog.elapsed_seconds, 1),
+        })
+
+    async def event_stream():
+        loop = asyncio.get_event_loop()
+        task = loop.run_in_executor(None, lambda: scan_all_default_paths(paths=scan_dirs, progress_callback=progress_cb))
+
+        while not task.done():
+            try:
+                msg = q.get_nowait()
+                yield f"data: {json.dumps(msg)}\n\n"
+            except queue.Empty:
+                await asyncio.sleep(0.1)
+
+        # Drain remaining progress messages
+        while not q.empty():
+            msg = q.get_nowait()
+            yield f"data: {json.dumps(msg)}\n\n"
+
+        candidates = task.result()
+        result = []
+        for c in candidates:
+            result.append({
+                "filepath": str(c["filepath"]),
+                "filename": c["filename"],
+                "score": c["score"],
+                "detected_banks": c.get("detected_banks", []),
+                "signals": c.get("signals", []),
+            })
+
+        yield f"data: {json.dumps({'type': 'done', 'candidates': result})}\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+@app.get("/api/scan/banks")
+async def scan_banks():
+    """List supported bank parsers."""
+    from core.extraction_engine.postprocess.registry import list_supported_banks
+    return {"banks": list_supported_banks()}
+
+
+@app.post("/api/scan/process")
+async def scan_process(body: dict):
+    """Process confirmed PDF candidates through extraction pipeline and load to DB."""
+    paths = body.get("paths", [])
+    if not paths:
+        return JSONResponse({"error": "No paths provided"}, status_code=400)
+
+    from core.extraction_engine.run_preprocess import preprocess_pdf
+    from core.extraction_engine.postprocess.run_postprocess import postprocess_and_structurize
+    from core.database.load_statements import init_db, load_one
+
+    EXTRACTION_DIR.mkdir(parents=True, exist_ok=True)
+
+    results = []
+    for p in paths:
+        pdf_path = Path(p)
+        stem = pdf_path.stem
+        result = {"source": str(pdf_path), "stem": stem, "status": "pending", "error": None}
+
+        try:
+            # Step 1: Docling conversion
+            t0 = time.monotonic()
+            md_path, json_path = preprocess_pdf(pdf_path, EXTRACTION_DIR)
+            extract_secs = time.monotonic() - t0
+
+            # Step 2: Post-process + structurize
+            structured_path = postprocess_and_structurize(
+                md_path, json_path, EXTRACTION_DIR, stem, auto_confirm=True
+            )
+            if not structured_path:
+                result["status"] = "unknown_bank"
+                results.append(result)
+                continue
+
+            # Step 3: Load to DB
+            conn = get_db()
+            conn.execute("PRAGMA journal_mode=WAL")
+            init_db(conn)
+            load_result = load_one(conn, structured_path)
+            conn.close()
+
+            total_secs = time.monotonic() - t0
+            result["extract_time"] = round(extract_secs, 1)
+            result["total_time"] = round(total_secs, 1)
+            result["status"] = "success"
+            if load_result.get("skipped"):
+                result["status"] = "skipped"
+        except Exception as e:
+            result["status"] = "error"
+            result["error"] = str(e)
+            traceback.print_exc()
+
+        results.append(result)
+
+    return {"results": results}
+
+
+# ---------------------------------------------------------------------------
 # API: Recurring bills
 # ---------------------------------------------------------------------------
 
@@ -460,6 +828,130 @@ async def get_comparison(
     result = api.get_spending_comparison(period1_start, period1_end, period2_start, period2_end)
     api.close()
     return result
+
+
+# ---------------------------------------------------------------------------
+# API: Dashboard
+# ---------------------------------------------------------------------------
+
+@app.get("/api/dashboard/has-data")
+async def dashboard_has_data():
+    """Lightweight check: any statements in DB?"""
+    return {"has_data": _has_data()}
+
+
+@app.get("/api/dashboard/summary")
+async def dashboard_summary():
+    """Balance summary for dashboard cards."""
+    from core.api.financial_api import FinancialAPI
+    api = FinancialAPI(str(DB_PATH))
+    result = api.get_balance_summary()
+    api.close()
+    return result
+
+
+@app.get("/api/dashboard/balance-history")
+async def dashboard_balance_history():
+    """Time-series balance data for line chart."""
+    from core.api.financial_api import FinancialAPI
+    api = FinancialAPI(str(DB_PATH))
+    result = api.get_balance_history()
+    api.close()
+    return result
+
+
+@app.get("/api/dashboard/spending-by-category")
+async def dashboard_spending_by_category():
+    """Category breakdown for donut chart."""
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT COALESCE(t.category, 'uncategorized') as category, "
+        "COUNT(*) as count, ROUND(SUM(ABS(t.amount)), 2) as total "
+        "FROM transactions t WHERE t.is_deposit = 0 "
+        "GROUP BY category ORDER BY total DESC"
+    ).fetchall()
+    conn.close()
+    return {"categories": [dict(r) for r in rows]}
+
+
+@app.get("/api/dashboard/monthly-trends")
+async def dashboard_monthly_trends():
+    """Monthly income/spending for bar chart."""
+    from core.api.financial_api import FinancialAPI
+    api = FinancialAPI(str(DB_PATH))
+    result = api.get_monthly_trends()
+    api.close()
+    return result
+
+
+@app.get("/api/dashboard/top-merchants")
+async def dashboard_top_merchants():
+    """Ranked merchant list."""
+    from core.api.financial_api import FinancialAPI
+    api = FinancialAPI(str(DB_PATH))
+    result = api.get_top_merchants()
+    api.close()
+    return result
+
+
+@app.get("/api/export/csv")
+async def export_csv(
+    start_date: str = None,
+    end_date: str = None,
+    type: str = None,
+    is_deposit: bool = None,
+    search: str = None,
+):
+    """Export filtered transactions as CSV."""
+    conn = get_db()
+    clauses = []
+    params = []
+
+    if start_date:
+        clauses.append("t.date >= ?")
+        params.append(start_date)
+    if end_date:
+        clauses.append("t.date <= ?")
+        params.append(end_date)
+    if type:
+        clauses.append("t.type = ?")
+        params.append(type)
+    if is_deposit is not None:
+        clauses.append("t.is_deposit = ?")
+        params.append(int(is_deposit))
+    if search:
+        clauses.append(
+            "(t.description_raw LIKE ? COLLATE NOCASE "
+            "OR t.ach_company_name LIKE ? COLLATE NOCASE)"
+        )
+        pattern = f"%{search}%"
+        params.extend([pattern, pattern])
+
+    where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
+
+    rows = conn.execute(
+        f"SELECT t.date, t.description_raw, t.amount, t.is_deposit, "
+        f"t.type, t.category, t.ach_company_name "
+        f"FROM transactions t {where} ORDER BY t.date DESC",
+        params,
+    ).fetchall()
+    conn.close()
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["Date", "Description", "Amount", "Type", "Direction", "Category", "Merchant"])
+    for r in rows:
+        writer.writerow([
+            r["date"], r["description_raw"], r["amount"],
+            r["type"], "Deposit" if r["is_deposit"] else "Withdrawal",
+            r["category"], r["ach_company_name"] or "",
+        ])
+
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=jar_transactions.csv"},
+    )
 
 
 # ---------------------------------------------------------------------------

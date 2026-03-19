@@ -10,6 +10,18 @@ document.querySelectorAll('.tab').forEach(tab => {
     });
 });
 
+// Support ?page= query param to open a specific tab on load
+(function() {
+    var p = new URLSearchParams(window.location.search).get('page');
+    if (p && document.getElementById('page-' + p)) {
+        document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.page').forEach(function(pg) { pg.classList.remove('active'); });
+        var tab = document.querySelector('.tab[data-page="' + p + '"]');
+        if (tab) tab.classList.add('active');
+        document.getElementById('page-' + p).classList.add('active');
+    }
+})();
+
 // ── Helpers ───────────────────────────────────────────────────────
 function $(id) { return document.getElementById(id); }
 

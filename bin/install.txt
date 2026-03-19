@@ -1,0 +1,428 @@
+@echo off
+REM ============================================================
+REM  Jar Finance — Windows Installer (standalone bootstrapper)
+REM
+REM  Customer saves this single file anywhere and double-clicks.
+REM  It will: install Python if needed, download JAR, set up
+REM  everything, and create a desktop launcher.
+REM
+REM  Tested on: Windows 10 (1809+), Windows 11
+REM  Requirements: Internet connection for first install
+REM ============================================================
+
+setlocal EnableDelayedExpansion
+
+echo.
+echo ==============================
+echo   Jar Finance — Installation
+echo ==============================
+echo.
+echo All data stays on your machine. Nothing is sent anywhere. Ever.
+echo.
+
+REM ── Install location ───────────────────────────────────────────
+set JAR_HOME=%USERPROFILE%\JAR
+echo Install location: %JAR_HOME%
+echo.
+
+REM ── Check for download tools ───────────────────────────────────
+set DOWNLOAD_CMD=
+where curl >nul 2>&1
+if not errorlevel 1 (
+    set DOWNLOAD_CMD=curl
+) else (
+    REM Fall back to PowerShell Invoke-WebRequest (always available)
+    set DOWNLOAD_CMD=powershell
+)
+
+REM ── Find Python ────────────────────────────────────────────────
+set PYTHON_CMD=
+echo Checking for Python...
+
+REM Try python3 first
+where python3 >nul 2>&1
+if not errorlevel 1 (
+    set PYTHON_CMD=python3
+    goto :validate_python
+)
+
+REM Try python
+where python >nul 2>&1
+if not errorlevel 1 (
+    set PYTHON_CMD=python
+    goto :validate_python
+)
+
+REM Try py launcher
+where py >nul 2>&1
+if not errorlevel 1 (
+    set PYTHON_CMD=py
+    goto :validate_python
+)
+
+goto :install_python
+
+:validate_python
+REM Check if it's the Windows Store stub (opens Microsoft Store instead of running Python)
+%PYTHON_CMD% -c "import sys; print(sys.executable)" 2>nul | findstr /i "WindowsApps" >nul
+if not errorlevel 1 (
+    echo Found Windows Store Python stub — need real Python installation.
+    goto :install_python
+)
+
+REM Verify it's Python 3.9+
+%PYTHON_CMD% -c "import sys; exit(0 if sys.version_info >= (3,9) else 1)" 2>nul
+if errorlevel 1 (
+    echo Found Python but version is too old (need 3.9+^).
+    goto :install_python
+)
+
+REM Verify pip is available
+%PYTHON_CMD% -m pip --version >nul 2>&1
+if errorlevel 1 (
+    echo Found Python but pip is missing.
+    echo Attempting to install pip...
+    %PYTHON_CMD% -m ensurepip --default-pip 2>nul
+    %PYTHON_CMD% -m pip --version >nul 2>&1
+    if errorlevel 1 (
+        echo Could not install pip. Reinstalling Python...
+        goto :install_python
+    )
+)
+
+REM Verify venv module is available
+%PYTHON_CMD% -c "import venv" 2>nul
+if errorlevel 1 (
+    echo Found Python but venv module is missing.
+    echo Reinstalling Python with full components...
+    goto :install_python
+)
+
+goto :found_python
+
+:install_python
+echo.
+echo Python 3.9+ not found. Installing automatically...
+echo.
+
+REM Try winget first (available on Windows 10 1709+ and Windows 11)
+where winget >nul 2>&1
+if not errorlevel 1 (
+    echo Installing Python via winget...
+    winget install Python.Python.3.11 --accept-package-agreements --accept-source-agreements
+    if not errorlevel 1 (
+        echo.
+        echo Python installed via winget.
+        echo.
+        echo ============================================================
+        echo  IMPORTANT: Python was just installed. To pick up the new
+        echo  PATH settings, this installer needs to restart.
+        echo.
+        echo  Please close this window and double-click the installer
+        echo  again to continue.
+        echo ============================================================
+        echo.
+        pause
+        exit /b 0
+    )
+    echo winget install failed, trying direct download...
+    echo.
+)
+
+REM Fallback: download installer from python.org
+echo Downloading Python 3.11 installer...
+set INSTALLER=%TEMP%\python-3.11-installer.exe
+
+if "%DOWNLOAD_CMD%"=="curl" (
+    curl -Lo "%INSTALLER%" https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe
+) else (
+    powershell -Command "Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe' -OutFile '%INSTALLER%'"
+)
+
+if not exist "%INSTALLER%" (
+    echo.
+    echo Download failed. Please check your internet connection.
+    echo.
+    echo Or install Python manually:
+    echo   1. Go to https://www.python.org/downloads/
+    echo   2. Download Python 3.11
+    echo   3. IMPORTANT: Check "Add Python to PATH" during installation
+    echo   4. Run this installer again
+    echo.
+    pause
+    exit /b 1
+)
+
+echo.
+echo Installing Python 3.11...
+echo (If a setup window appears, make sure "Add Python to PATH" is checked)
+echo.
+
+REM Try silent install first
+"%INSTALLER%" /quiet InstallAllUsers=0 PrependPath=1 Include_pip=1 Include_launcher=1 Include_venv=1
+if errorlevel 1 (
+    echo Silent install failed. Opening interactive installer...
+    echo.
+    echo *** IMPORTANT: Check "Add Python to PATH" at the bottom! ***
+    echo.
+    "%INSTALLER%" PrependPath=1 Include_pip=1 Include_venv=1
+)
+
+del "%INSTALLER%" 2>nul
+
+echo.
+echo ============================================================
+echo  Python was just installed. To pick up the new PATH settings,
+echo  this installer needs to restart.
+echo.
+echo  Please close this window and double-click the installer
+echo  again to continue.
+echo ============================================================
+echo.
+pause
+exit /b 0
+
+:found_python
+echo Found Python:
+%PYTHON_CMD% --version
+echo.
+
+REM ── Download JAR ───────────────────────────────────────────────
+if exist "%JAR_HOME%\app\server.py" (
+    echo JAR already downloaded at %JAR_HOME%
+    echo Checking for updates...
+    
+    REM If git is available, try pulling updates
+    where git >nul 2>&1
+    if not errorlevel 1 (
+        cd /d "%JAR_HOME%"
+        git pull --quiet 2>nul
+        if not errorlevel 1 (
+            echo Updated to latest version.
+        ) else (
+            echo Could not update. Using existing installation.
+        )
+    ) else (
+        echo Git not available. Using existing installation.
+        echo To update manually, delete %JAR_HOME% and run this installer again.
+    )
+    echo.
+) else (
+    echo Downloading JAR...
+    set ZIP_FILE=%TEMP%\jar-ai.zip
+
+    if "%DOWNLOAD_CMD%"=="curl" (
+        curl -Lo "%ZIP_FILE%" https://github.com/dhodtong365/jar-ai/archive/refs/heads/main.zip
+    ) else (
+        powershell -Command "Invoke-WebRequest -Uri 'https://github.com/dhodtong365/jar-ai/archive/refs/heads/main.zip' -OutFile '%ZIP_FILE%'"
+    )
+
+    if not exist "%ZIP_FILE%" (
+        echo.
+        echo Download failed. Check your internet connection and try again.
+        pause
+        exit /b 1
+    )
+
+    echo Extracting...
+    powershell -Command "Expand-Archive -Path '%ZIP_FILE%' -DestinationPath '%TEMP%\jar-extract' -Force"
+    if errorlevel 1 (
+        echo Extraction failed.
+        del "%ZIP_FILE%" 2>nul
+        pause
+        exit /b 1
+    )
+
+    REM GitHub ZIP creates a jar-ai-main/ subfolder — move it to JAR_HOME
+    if exist "%JAR_HOME%" rmdir /s /q "%JAR_HOME%"
+    move "%TEMP%\jar-extract\jar-ai-main" "%JAR_HOME%" >nul
+    rmdir /s /q "%TEMP%\jar-extract" 2>nul
+    del "%ZIP_FILE%" 2>nul
+
+    if not exist "%JAR_HOME%\app\server.py" (
+        echo.
+        echo ERROR: Download succeeded but JAR files not found.
+        echo Expected: %JAR_HOME%\app\server.py
+        echo The repository structure may have changed.
+        pause
+        exit /b 1
+    )
+
+    echo JAR downloaded to %JAR_HOME%
+    echo.
+)
+
+cd /d "%JAR_HOME%"
+
+REM ── Create virtual environment ─────────────────────────────────
+if exist "venv\Scripts\activate.bat" (
+    echo Virtual environment already exists.
+) else (
+    echo Creating virtual environment...
+    %PYTHON_CMD% -m venv venv
+    
+    if not exist "venv\Scripts\activate.bat" (
+        echo.
+        echo ERROR: Virtual environment creation failed.
+        echo.
+        echo Try installing virtualenv manually:
+        echo   %PYTHON_CMD% -m pip install virtualenv
+        echo   %PYTHON_CMD% -m virtualenv venv
+        echo.
+        echo Then run this installer again.
+        pause
+        exit /b 1
+    )
+)
+
+call venv\Scripts\activate.bat
+
+REM ── Install dependencies ───────────────────────────────────────
+echo.
+echo Installing dependencies...
+echo (This may take 10-15 minutes on first install — Docling is a large package)
+echo.
+
+pip install --upgrade pip --quiet 2>nul
+
+if not exist "requirements.txt" (
+    echo.
+    echo WARNING: requirements.txt not found in %JAR_HOME%
+    echo Skipping dependency installation.
+    echo.
+) else (
+    pip install -r requirements.txt
+    if errorlevel 1 (
+        echo.
+        echo WARNING: Some dependencies failed to install.
+        echo JAR may not work correctly.
+        echo.
+        echo Common fixes:
+        echo   - Install Visual C++ Build Tools: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+        echo   - Retry: pip install -r requirements.txt
+        echo.
+    ) else (
+        echo.
+        echo Dependencies installed successfully.
+    )
+)
+
+REM ── Initialize database ────────────────────────────────────────
+echo.
+echo Initializing database...
+
+if not exist "data" mkdir data
+
+if not exist "core\database\schema.sql" (
+    echo WARNING: schema.sql not found. Skipping database initialization.
+    echo The database will be created on first run.
+) else (
+    python -c "import sqlite3; conn=sqlite3.connect('data/jar.db'); conn.executescript(open('core/database/schema.sql').read()); conn.close(); print('Database initialized.')"
+    if errorlevel 1 (
+        echo WARNING: Database initialization failed. Will retry on first run.
+    )
+)
+
+REM ── Create desktop launcher ────────────────────────────────────
+echo.
+set LAUNCHER=%USERPROFILE%\Desktop\Start-Jar.bat
+
+> "%LAUNCHER%" (
+    echo @echo off
+    echo title Jar Finance
+    echo cd /d "%JAR_HOME%"
+    echo call venv\Scripts\activate.bat
+    echo.
+    echo REM Check if port 5000 is already in use
+    echo netstat -an ^| findstr "5000.*LISTENING" ^>nul 2^>^&1
+    echo if not errorlevel 1 ^(
+    echo     echo.
+    echo     echo Jar is already running! Open http://localhost:5000 in your browser.
+    echo     echo.
+    echo     start http://localhost:5000
+    echo     timeout /t 5
+    echo     exit /b 0
+    echo ^)
+    echo.
+    echo echo.
+    echo echo ==============================
+    echo echo   Jar Finance
+    echo echo ==============================
+    echo echo.
+    echo echo Starting Jar at http://localhost:5000
+    echo echo Press Ctrl+C to stop.
+    echo echo.
+    echo echo All data stays on your machine. Nothing is sent anywhere. Ever.
+    echo echo.
+    echo.
+    echo REM Open browser after a short delay
+    echo start /b cmd /c "timeout /t 3 /nobreak >nul & start http://localhost:5000"
+    echo.
+    echo python app\server.py
+    echo.
+    echo echo.
+    echo echo Jar has stopped.
+    echo pause
+)
+
+echo Launcher created: %USERPROFILE%\Desktop\Start-Jar.bat
+echo.
+
+REM ── Create uninstaller ─────────────────────────────────────────
+set UNINSTALLER=%JAR_HOME%\Uninstall-Jar.bat
+
+> "%UNINSTALLER%" (
+    echo @echo off
+    echo echo.
+    echo echo ==============================
+    echo echo   Jar Finance — Uninstall
+    echo echo ==============================
+    echo echo.
+    echo echo This will remove Jar from your computer.
+    echo echo Your bank statement PDFs will NOT be deleted.
+    echo echo.
+    echo set /p CONFIRM="Are you sure? (Y/N): "
+    echo if /i not "%%CONFIRM%%"=="Y" exit /b 0
+    echo.
+    echo echo Removing desktop launcher...
+    echo del "%USERPROFILE%\Desktop\Start-Jar.bat" 2^>nul
+    echo.
+    echo echo Removing Jar installation...
+    echo cd /d "%USERPROFILE%"
+    echo rmdir /s /q "%JAR_HOME%"
+    echo.
+    echo echo.
+    echo echo Jar has been removed.
+    echo echo Python was NOT uninstalled — you can remove it separately if needed.
+    echo echo.
+    echo pause
+)
+
+echo Uninstaller created: %JAR_HOME%\Uninstall-Jar.bat
+echo.
+
+REM ── Done ───────────────────────────────────────────────────────
+echo.
+echo ==============================
+echo   Jar installed successfully!
+echo ==============================
+echo.
+echo   To start:  Double-click "Start-Jar" on your Desktop
+echo.
+echo   Location:  %JAR_HOME%
+echo.
+echo   Uninstall: Run %JAR_HOME%\Uninstall-Jar.bat
+echo.
+echo   All data stays on your machine. Nothing is sent anywhere. Ever.
+echo.
+
+REM Ask if user wants to start now
+set /p STARTNOW="Start Jar now? (Y/N): "
+if /i "%STARTNOW%"=="Y" (
+    echo.
+    echo Starting Jar...
+    call "%LAUNCHER%"
+)
+
+pause
+exit /b 0

@@ -10,16 +10,18 @@
     <nav>
         <div class="logo">Jar</div>
         <div class="tabs">
-            <button class="tab active" data-page="import">Import</button>
+            <a class="tab" href="/dashboard">Dashboard</a>
+            <a class="tab" href="/scan">Scan</a>
+            <button class="tab" data-page="import">Import</button>
             <button class="tab" data-page="transactions">Transactions</button>
-            <button class="tab" data-page="chat">Chat</button>
+            <button class="tab active" data-page="chat">Chat</button>
         </div>
         <div class="backend-badge" id="backend-badge">Loading...</div>
     </nav>
 
     <main>
         <!-- ── Import Page ─────────────────────────────────────── -->
-        <div class="page active" id="page-import">
+        <div class="page" id="page-import">
             <div class="card">
                 <h2>Import Statement</h2>
                 <div class="dropzone" id="dropzone">
@@ -74,7 +76,7 @@
         </div>
 
         <!-- ── Chat Page ───────────────────────────────────────── -->
-        <div class="page" id="page-chat">
+        <div class="page active" id="page-chat">
             <div class="card chat-container">
                 <div class="chat-toolbar">
                     <div class="chat-toolbar-left">

@@ -19,7 +19,7 @@ from core.extraction_engine.postprocess.registry import detect_bank, list_suppor
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "extraction_output"
 
 
-def postprocess_and_structurize(md_path, json_path, out_dir, stem):
+def postprocess_and_structurize(md_path, json_path, out_dir, stem, auto_confirm=False):
     """Post-process raw Docling output and generate structured JSON.
 
     This function is completely bank-agnostic. It:
@@ -45,8 +45,14 @@ def postprocess_and_structurize(md_path, json_path, out_dir, stem):
     md_text = md_path.read_text(encoding="utf-8")
     doc_dict = json.loads(json_path.read_text(encoding="utf-8"))
 
+    # Pre-decode unicode escapes for detection (Docling emits /uniXXXX sequences
+    # that prevent bank detectors from matching plain-text indicators like
+    # "bank of america"). The original md_text is kept for processing.
+    import re
+    detect_text = re.sub(r"/uni([0-9A-Fa-f]{4})", lambda m: chr(int(m.group(1), 16)), md_text)
+
     # Detect bank format
-    processor, confidence = detect_bank(md_text)
+    processor, confidence = detect_bank(detect_text)
 
     if processor is None:
         print(f"WARNING: Unknown bank format for {stem} (best score: {confidence:.2f})")
@@ -55,6 +61,8 @@ def postprocess_and_structurize(md_path, json_path, out_dir, stem):
 
     if confidence >= 0.7:
         print(f"Detected bank: {processor.bank_name} ({processor.country_code}) — confidence: {confidence:.2f}")
+    elif auto_confirm:
+        print(f"Auto-accepted: {processor.bank_name} ({processor.country_code}) — confidence: {confidence:.2f}")
     else:
         print(f"Best guess: {processor.bank_name} ({processor.country_code}) — confidence: {confidence:.2f}")
         response = input(f"  Is this a {processor.bank_name} statement? [Y/n]: ").strip().lower()
@@ -77,6 +85,18 @@ def postprocess_and_structurize(md_path, json_path, out_dir, stem):
 
     # Generate structured JSON — uses raw (pre-column-merge) doc_dict
     structured = processor.structurize(md_text, f"{stem}.pdf", doc_dict)
+
+    # Categorize transactions
+    from core.categorization.categorizer import CategoryStore, TransactionCategorizer
+    taxonomy_path = Path(__file__).resolve().parent.parent.parent / "categorization" / "categories" / "categories_v0.1.0.json"
+    store = CategoryStore(str(taxonomy_path))
+    categorizer = TransactionCategorizer(store)
+
+    for txn_list in [structured.get("deposits", []), structured.get("withdrawals", [])]:
+        for txn in txn_list:
+            result = categorizer.categorize(txn)
+            txn["category"] = result["category"]
+            txn["subcategory"] = result["subcategory"]
 
     # Run validation
     errors = processor.validate(structured)
