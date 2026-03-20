@@ -6,6 +6,7 @@ Usage:
     python app/server.py
     # → Jar running at http://localhost:5000
 """
+from __future__ import annotations
 
 import asyncio
 import csv
@@ -69,6 +70,15 @@ def _has_data() -> bool:
         return False
 
 
+def _get_extract_backend() -> str | None:
+    """Return the best available extraction backend, or None if no API key is set."""
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        return "claude"
+    if os.environ.get("GEMINI_API_KEY"):
+        return "gemini"
+    return None
+
+
 @app.get("/")
 async def index():
     return RedirectResponse("/dashboard")
@@ -88,12 +98,14 @@ async def api_config():
         pass
 
     anthropic_key_set = bool(os.environ.get("ANTHROPIC_API_KEY"))
+    gemini_key_set = bool(os.environ.get("GEMINI_API_KEY"))
 
     return {
         "has_data": _has_data(),
-        "llm_available": ollama_running or anthropic_key_set,
+        "llm_available": ollama_running or anthropic_key_set or gemini_key_set,
         "ollama_running": ollama_running,
         "anthropic_key_set": anthropic_key_set,
+        "gemini_key_set": gemini_key_set,
     }
 
 
@@ -196,6 +208,149 @@ async def import_pdf(file: UploadFile = File(...)):
 
         if load_result.get("skipped"):
             steps.append({"step": "database", "status": "ok", "message": f"Already in database (skipped)"})
+        else:
+            steps.append({"step": "database", "status": "ok", "message": f"Loaded {load_result['txn_count']} transactions to database"})
+
+        return {
+            "status": "ok",
+            "steps": steps,
+            "summary": {
+                "source_file": file.filename,
+                "period_start": period.get("start"),
+                "period_end": period.get("end"),
+                "opening_balance": summary.get("opening_balance"),
+                "closing_balance": summary.get("closing_balance"),
+                "num_deposits": len(deposits),
+                "num_withdrawals": len(withdrawals),
+                "total_deposits": summary.get("total_deposits_and_other_additions"),
+                "total_withdrawals": summary.get("total_withdrawals_and_other_subtractions"),
+                "validation_passed": all_valid,
+            },
+        }
+
+    except Exception as e:
+        steps.append({"step": "error", "status": "error", "message": str(e)})
+        traceback.print_exc()
+        return JSONResponse({"status": "error", "steps": steps, "error": str(e)}, status_code=500)
+
+
+# ---------------------------------------------------------------------------
+# API: Redact Preview (redact-only, no Claude call)
+# ---------------------------------------------------------------------------
+
+@app.post("/api/redact-preview")
+async def redact_preview(file: UploadFile = File(...)):
+    """Accept a PDF upload, redact PII, return the redacted PDF for inspection."""
+    if not file.filename.lower().endswith(".pdf"):
+        return JSONResponse({"error": "Only PDF files are accepted"}, status_code=400)
+
+    pii_profile_path = PROJECT_ROOT / "data" / "pii_profile.json"
+    if not pii_profile_path.exists():
+        return JSONResponse({"error": "PII profile not found at data/pii_profile.json"}, status_code=400)
+
+    from core.redaction.pii_profile import build_token_map, load_profile
+    from core.redaction.redact_pdf import redact_pdf
+
+    content = await file.read()
+
+    # Save to a temp file (PyMuPDF needs a file path)
+    tmp_path = Path(tempfile.mktemp(suffix=".pdf"))
+    tmp_path.write_bytes(content)
+
+    try:
+        profile = load_profile(pii_profile_path)
+        token_map = build_token_map(profile)
+        redacted_bytes = redact_pdf(tmp_path, token_map)
+    finally:
+        tmp_path.unlink(missing_ok=True)
+
+    redacted_filename = f"{Path(file.filename).stem}.redacted.pdf"
+    return StreamingResponse(
+        iter([redacted_bytes]),
+        media_type="application/pdf",
+        headers={"Content-Disposition": f"inline; filename={redacted_filename}"},
+    )
+
+
+# ---------------------------------------------------------------------------
+# API: Import via Claude (Path B — PII-redacted cloud extraction)
+# ---------------------------------------------------------------------------
+
+@app.post("/api/import-claude")
+async def import_claude_pdf(file: UploadFile = File(...)):
+    """Accept a PDF upload, run Path B (redact → Claude extract → restore), load to SQLite."""
+    if not file.filename.lower().endswith(".pdf"):
+        return JSONResponse({"error": "Only PDF files are accepted"}, status_code=400)
+
+    extract_backend = _get_extract_backend()
+    if extract_backend is None:
+        return JSONResponse({"error": "No LLM API key set. Set ANTHROPIC_API_KEY or GEMINI_API_KEY."}, status_code=400)
+
+    steps = []
+
+    try:
+        # 1. Save the PDF
+        STATEMENTS_DIR.mkdir(parents=True, exist_ok=True)
+        pdf_path = STATEMENTS_DIR / file.filename
+        content = await file.read()
+        pdf_path.write_bytes(content)
+        steps.append({"step": "upload", "status": "ok", "message": f"Saved {file.filename} ({len(content):,} bytes)"})
+
+        stem = pdf_path.stem
+        EXTRACTION_DIR.mkdir(parents=True, exist_ok=True)
+
+        # 2. Run Path B pipeline
+        backend_label = "Gemini" if extract_backend == "gemini" else "Claude"
+        steps.append({"step": "extracting", "status": "running", "message": f"Running PII-redacted {backend_label} extraction..."})
+
+        from core.redaction.pipeline import run_path_b
+
+        pii_profile_path = PROJECT_ROOT / "data" / "pii_profile.json"
+        if not pii_profile_path.exists():
+            steps.append({"step": "extracting", "status": "error", "message": "PII profile not found at data/pii_profile.json"})
+            return JSONResponse({"status": "error", "steps": steps, "error": "PII profile not found"}, status_code=400)
+
+        t0 = time.monotonic()
+        structured_path = run_path_b(pdf_path, pii_profile_path, EXTRACTION_DIR, stem, extract_backend=extract_backend)
+        extract_secs = time.monotonic() - t0
+
+        if structured_path is None:
+            steps.append({"step": "extracting", "status": "error", "message": "Claude extraction failed"})
+            return JSONResponse({"status": "error", "steps": steps, "error": "Claude extraction failed"}, status_code=500)
+
+        structured = json.loads(structured_path.read_text(encoding="utf-8"))
+        steps[-1] = {"step": "extracting", "status": "ok", "message": f"Claude extraction complete ({extract_secs:.1f}s)"}
+
+        # 3. Extract summary info
+        summary = structured.get("account_summary", {})
+        validation = structured.get("validation", {})
+        deposits = structured.get("deposits", [])
+        withdrawals = structured.get("withdrawals", [])
+        period = structured.get("metadata", {}).get("statement_period", {})
+
+        num_txns = len(deposits) + len(withdrawals)
+        steps.append({"step": "structurize", "status": "ok", "message": f"Parsed {num_txns} transactions"})
+
+        # 4. Validate
+        errors = validation.get("errors", [])
+        all_valid = all(v for k, v in validation.items() if isinstance(v, bool))
+
+        if all_valid:
+            steps.append({"step": "validate", "status": "ok", "message": "Validation passed"})
+        else:
+            steps.append({"step": "validate", "status": "warning", "message": f"Validation issues: {'; '.join(errors) if errors else 'check failed'}"})
+
+        # 5. Load to SQLite
+        from core.database.load_statements import init_db, load_one
+
+        conn = get_db()
+        conn.execute("PRAGMA journal_mode=WAL")
+        init_db(conn)
+        load_result = load_one(conn, structured_path)
+        conn.close()
+
+        if load_result.get("skipped"):
+            steps.append({"step": "database", "status": "ok", "message": "Already in database (skipped)"})
         else:
             steps.append({"step": "database", "status": "ok", "message": f"Loaded {load_result['txn_count']} transactions to database"})
 
@@ -530,6 +685,7 @@ _chat_backend = None  # e.g. "claude", "ollama:qwen2.5:7b", "ollama:qwen2.5:3b"
 MODELS = {
     "ollama:qwen3:8b": ("ollama", "qwen3:8b", "Qwen 3 — 8B"),
     "claude": ("claude", "claude-sonnet-4-20250514", "Claude Sonnet (API)"),
+    "gemini": ("gemini", "gemini-2.5-flash", "Gemini 2.5 Flash (API)"),
     "ollama:qwen2.5:7b": ("ollama", "qwen2.5:7b", "Qwen 2.5 — 7B"),
     "ollama:qwen2.5:3b": ("ollama", "qwen2.5:3b", "Qwen 2.5 — 3B"),
 }
@@ -543,8 +699,13 @@ def _get_chat(model_id: str = None):
 
     # Determine which model to use
     if model_id is None:
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        model_id = "claude" if api_key else DEFAULT_LOCAL_MODEL
+        api_key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("GEMINI_API_KEY")
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            model_id = "claude"
+        elif os.environ.get("GEMINI_API_KEY"):
+            model_id = "gemini"
+        else:
+            model_id = DEFAULT_LOCAL_MODEL
 
     if model_id not in MODELS:
         raise ValueError(f"Unknown model: {model_id}")
@@ -557,9 +718,16 @@ def _get_chat(model_id: str = None):
         _chat_engine = None
 
     if _chat_engine is None:
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if backend == "claude" and not api_key:
-            raise ValueError("ANTHROPIC_API_KEY not set. Switch to a local model or set the env var.")
+        if backend == "claude":
+            api_key = os.environ.get("ANTHROPIC_API_KEY")
+            if not api_key:
+                raise ValueError("ANTHROPIC_API_KEY not set. Switch to a local model or set the env var.")
+        elif backend == "gemini":
+            api_key = os.environ.get("GEMINI_API_KEY")
+            if not api_key:
+                raise ValueError("GEMINI_API_KEY not set. Switch to a local model or set the env var.")
+        else:
+            api_key = None
         _chat_engine = JarChat(str(DB_PATH), backend=backend, model=model_name, api_key=api_key)
         _chat_engine.debug = True
         _chat_backend = model_id
@@ -571,12 +739,22 @@ def _get_chat(model_id: str = None):
 @app.get("/api/chat/status")
 async def chat_status():
     """Return the current model and available models."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    current = _chat_backend or ("claude" if api_key else DEFAULT_LOCAL_MODEL)
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY")
+    gemini_key = os.environ.get("GEMINI_API_KEY")
+    if _chat_backend:
+        current = _chat_backend
+    elif anthropic_key:
+        current = "claude"
+    elif gemini_key:
+        current = "gemini"
+    else:
+        current = DEFAULT_LOCAL_MODEL
     models = []
     for mid, (backend, model_name, display) in MODELS.items():
         available = True
-        if backend == "claude" and not api_key:
+        if backend == "claude" and not anthropic_key:
+            available = False
+        if backend == "gemini" and not gemini_key:
             available = False
         models.append({"id": mid, "name": display, "available": available})
     return {"current": current, "models": models}
@@ -642,6 +820,8 @@ async def set_backend(body: dict):
 
     if backend == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
         return JSONResponse({"error": "ANTHROPIC_API_KEY not set"}, status_code=400)
+    if backend == "gemini" and not os.environ.get("GEMINI_API_KEY"):
+        return JSONResponse({"error": "GEMINI_API_KEY not set"}, status_code=400)
 
     # Close existing engine
     if _chat_engine:
@@ -739,13 +919,20 @@ async def scan_banks():
 
 @app.post("/api/scan/process")
 async def scan_process(body: dict):
-    """Process confirmed PDF candidates through extraction pipeline and load to DB."""
+    """Process confirmed PDF candidates: redact PII → Claude extract → restore → load to DB."""
     paths = body.get("paths", [])
     if not paths:
         return JSONResponse({"error": "No paths provided"}, status_code=400)
 
-    from core.extraction_engine.run_preprocess import preprocess_pdf
-    from core.extraction_engine.postprocess.run_postprocess import postprocess_and_structurize
+    extract_backend = _get_extract_backend()
+    if extract_backend is None:
+        return JSONResponse({"error": "No LLM API key set. Set ANTHROPIC_API_KEY or GEMINI_API_KEY."}, status_code=400)
+
+    pii_profile_path = PROJECT_ROOT / "data" / "pii_profile.json"
+    if not pii_profile_path.exists():
+        return JSONResponse({"error": "PII profile not found at data/pii_profile.json"}, status_code=400)
+
+    from core.redaction.pipeline import run_path_b
     from core.database.load_statements import init_db, load_one
 
     EXTRACTION_DIR.mkdir(parents=True, exist_ok=True)
@@ -757,30 +944,22 @@ async def scan_process(body: dict):
         result = {"source": str(pdf_path), "stem": stem, "status": "pending", "error": None}
 
         try:
-            # Step 1: Docling conversion
             t0 = time.monotonic()
-            md_path, json_path = preprocess_pdf(pdf_path, EXTRACTION_DIR)
-            extract_secs = time.monotonic() - t0
+            structured_path = run_path_b(pdf_path, pii_profile_path, EXTRACTION_DIR, stem, extract_backend=extract_backend)
 
-            # Step 2: Post-process + structurize
-            structured_path = postprocess_and_structurize(
-                md_path, json_path, EXTRACTION_DIR, stem, auto_confirm=True
-            )
             if not structured_path:
-                result["status"] = "unknown_bank"
+                result["status"] = "extraction_failed"
                 results.append(result)
                 continue
 
-            # Step 3: Load to DB
+            # Load to DB
             conn = get_db()
             conn.execute("PRAGMA journal_mode=WAL")
             init_db(conn)
             load_result = load_one(conn, structured_path)
             conn.close()
 
-            total_secs = time.monotonic() - t0
-            result["extract_time"] = round(extract_secs, 1)
-            result["total_time"] = round(total_secs, 1)
+            result["total_time"] = round(time.monotonic() - t0, 1)
             result["status"] = "success"
             if load_result.get("skipped"):
                 result["status"] = "skipped"
@@ -961,10 +1140,15 @@ async def export_csv(
 if __name__ == "__main__":
     print(f"Database: {DB_PATH}")
     print(f"Statements: {STATEMENTS_DIR}")
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    default = "claude" if api_key else DEFAULT_LOCAL_MODEL
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        default = "claude"
+    elif os.environ.get("GEMINI_API_KEY"):
+        default = "gemini"
+    else:
+        default = DEFAULT_LOCAL_MODEL
     _, _, display = MODELS[default]
     print(f"Default model: {display}")
     print(f"Available models: {', '.join(d for _, _, d in MODELS.values())}")
     print()
-    uvicorn.run(app, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("JAR_PORT", 5001))
+    uvicorn.run(app, host="0.0.0.0", port=port)

@@ -7,3 +7,5 @@ fastapi>=0.133.0,<1
 uvicorn>=0.41.0,<1
 python-multipart>=0.0.22,<1
 openai>=2.24.0,<3
+pymupdf>=1.25.0,<2
+google-genai>=1.0.0,<2

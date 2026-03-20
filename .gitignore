@@ -7,6 +7,9 @@ data/docling_output.txt
 # Database
 data/jar.db*
 
+# PII profile (contains real names, accounts, addresses)
+data/pii_profile.json
+
 # Python
 __pycache__/
 *.pyc

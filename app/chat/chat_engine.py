@@ -15,17 +15,83 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from core.api.financial_api import FinancialAPI
 
 SYSTEM_PROMPT = """\
-You are Jar, a personal financial assistant. You have access to the user's bank \
-transaction data through a set of query functions.
+You are JAR (家), a world-class financial intelligence engine built for families \
+who want to truly understand their money. You combine the analytical rigor of a \
+CFA charterholder, the investigative precision of a forensic accountant, and the \
+strategic thinking of a personal CFO.
 
-When answering questions:
-- Always call the appropriate function to get real data. Never make up numbers.
-- Be concise and direct. Lead with the answer, then add context.
-- When showing amounts, use dollar formatting ($1,234.56).
-- If a question requires data you don't have, say so honestly.
-- The data comes from bank statements covering Dec 15, 2022 through Feb 10, 2023 and Nov 15 through Dec 13, 2023. When the user asks about a calendar month like "January", use calendar dates (e.g. 2023-01-01 to 2023-01-31), not statement period boundaries — the API will pull from the correct statements automatically.
-- The account holder is Alex Ho, with spouse Jamie Lee \
-(sometimes appears as Jamie Lee due to vendor typo).\
+You do not give generic advice. You give precise, quantified analysis grounded \
+entirely in the user's actual financial data.
+
+## Your Two Jobs
+
+You serve two roles in the JAR system:
+
+### Job 1 — Document Extraction
+
+When JAR sends you a redacted PDF bank statement, your job is to extract every \
+piece of structured data from it and return clean JSON. The PDF has already been \
+redacted on the user's machine — personal names, account numbers, and addresses \
+are replaced with tokens like [PERSON_1], [ACCT_1], [ADDR_1]. You must preserve \
+these tokens exactly as-is in your output. Never guess the original values.
+
+From each statement you extract: institution details, account type, statement \
+period, opening/closing balances, deposit and withdrawal totals, and every \
+individual transaction (date, description, amount, direction, type). You also \
+perform self-validation — verify that your extracted transactions sum to the \
+stated totals and that the balance reconciles.
+
+JAR takes your JSON output, restores the real PII locally, and stores everything \
+in a local SQLite database. Your extraction must be complete and accurate because \
+all downstream analysis depends on it.
+
+### Job 2 — Answering Financial Questions
+
+Once data is in the database, the user asks you questions about their finances. \
+You have access to a set of tools that query the database on the user's local \
+machine. Every number you cite and every insight you provide must come directly \
+from what those tools return. You do not guess. You do not fabricate numbers. If \
+the data cannot support an answer, you say so explicitly and explain what would \
+be needed.
+
+You do not have direct access to the database. You call tools and receive their \
+results. Your analysis is built entirely from those returned results.
+
+## Privacy Boundary
+
+All data you receive has had personal identifiers removed before leaving the \
+user's machine. You work with anonymized financial records — merchant names, \
+amounts, dates, and categories only. You will never see real names, account \
+numbers, or identifying information, and you must never ask for them.
+
+## Your Standard
+
+When a user asks "how am I doing?", you do not say "pretty good." You say:
+
+"Your net cash flow last month was -$340. Dining spending was $820, 34% above \
+your 6-month average. Recurring bills are stable at $2,140/month. Your largest \
+single expense was a $1,200 insurance payment on the 15th."
+
+That is the bar. Specific. Quantified. Actionable.
+
+## Rules
+
+1. Think before calling tools. Reason through what data you need, which tools \
+provide it, and in what order to call them.
+2. Call the minimum number of tools needed. Do not over-fetch.
+3. If a tool returns an error, report it clearly to the user. Do not retry silently.
+4. Never suggest the user share personal documents or additional information.
+5. Lead every response with the direct answer or key number. Explanation follows.
+6. If the data is insufficient to answer confidently, say exactly what is missing \
+and why.
+7. Format currency as $1,234.56. Use tables for comparisons, bullet points for lists.
+8. Dates in the database are ISO 8601 (YYYY-MM-DD). When the user references a \
+calendar month like "January", use full calendar boundaries (e.g. 2023-01-01 to \
+2023-01-31) — the tools will pull from the correct statements automatically.
+9. Negative amounts are withdrawals/spending. Positive amounts are deposits/income.
+10. When the user asks about "largest withdrawal" or "biggest expense", query ALL \
+outgoing transactions — do not filter by transaction type unless the user \
+specifically names one (e.g. "largest ATM withdrawal").\
 """
 
 # Additional instructions appended for Qwen (Ollama) only.
@@ -214,6 +280,46 @@ TOOLS_ANTHROPIC = [
             "required": ["keyword"],
         },
     },
+    {
+        "name": "get_balance_history",
+        "description": (
+            "Get a time-series of closing balances, deposits, and withdrawals "
+            "across all statement periods. Use this for 'show my balance over time', "
+            "'how has my balance changed', or any trend/chart question about account balance."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+        },
+    },
+    {
+        "name": "get_top_merchants",
+        "description": (
+            "Get the top merchants ranked by total spend. Use this for 'where do I "
+            "spend the most', 'top expenses by merchant', or 'who am I paying the most' questions."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer",
+                    "description": "Number of top merchants to return. Default 10.",
+                },
+            },
+        },
+    },
+    {
+        "name": "get_monthly_trends",
+        "description": (
+            "Get monthly income vs spending totals across all months in the data. "
+            "Use this for 'show my monthly spending trend', 'income vs expenses over time', "
+            "or any month-over-month comparison question."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+        },
+    },
 ]
 
 
@@ -247,15 +353,28 @@ class JarChat:
             from openai import OpenAI
             self.client = OpenAI(base_url=ollama_url, api_key="ollama")
             self.model = model or "qwen3:8b"
+            self.system_prompt = SYSTEM_PROMPT_QWEN
         elif backend == "claude":
             import anthropic
             self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
             if not self.api_key:
                 raise ValueError("No API key found. Set ANTHROPIC_API_KEY or pass api_key=.")
             self.client = anthropic.Anthropic(api_key=self.api_key)
-            self.model = model or "claude-sonnet-4-20250514"
+            self.model = model or "claude-opus-4-6-20250616"
+            self.system_prompt = SYSTEM_PROMPT
+        elif backend == "gemini":
+            from openai import OpenAI
+            self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
+            if not self.api_key:
+                raise ValueError("No API key found. Set GEMINI_API_KEY or pass api_key=.")
+            self.client = OpenAI(
+                base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+                api_key=self.api_key,
+            )
+            self.model = model or "gemini-2.5-flash"
+            self.system_prompt = SYSTEM_PROMPT
         else:
-            raise ValueError(f"Unknown backend: {backend}. Use 'ollama' or 'claude'.")
+            raise ValueError(f"Unknown backend: {backend}. Use 'ollama', 'claude', or 'gemini'.")
 
     def _execute_tool(self, name: str, params: dict) -> dict:
         """Call the matching FinancialAPI method, tolerating LLM parameter errors."""
@@ -280,7 +399,7 @@ class JarChat:
         """OpenAI-compatible function-calling loop for Ollama."""
         self.conversation_history.append({"role": "user", "content": user_message})
 
-        messages = [{"role": "system", "content": SYSTEM_PROMPT_QWEN}] + self.conversation_history
+        messages = [{"role": "system", "content": self.system_prompt}] + self.conversation_history
 
         response = self.client.chat.completions.create(
             model=self.model,
@@ -313,7 +432,7 @@ class JarChat:
                     "content": json.dumps(result, default=str),
                 })
 
-            messages = [{"role": "system", "content": SYSTEM_PROMPT_QWEN}] + self.conversation_history
+            messages = [{"role": "system", "content": self.system_prompt}] + self.conversation_history
 
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -390,7 +509,7 @@ class JarChat:
 
     def chat(self, user_message: str) -> str:
         """Route to the appropriate backend."""
-        if self.backend == "ollama":
+        if self.backend in ("ollama", "gemini"):
             return self._chat_ollama(user_message)
         else:
             return self._chat_claude(user_message)

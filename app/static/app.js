@@ -79,7 +79,40 @@ fileInput.addEventListener('change', () => {
     if (fileInput.files.length) uploadFile(fileInput.files[0]);
 });
 
+// Redact Preview — upload PDF, get back redacted version
+const btnRedactPreview = $('btn-redact-preview');
+var _lastSelectedFile = null;
+
+btnRedactPreview.addEventListener('click', async () => {
+    if (!_lastSelectedFile) return;
+    btnRedactPreview.textContent = 'Redacting...';
+    btnRedactPreview.disabled = true;
+
+    const form = new FormData();
+    form.append('file', _lastSelectedFile);
+
+    try {
+        const res = await fetch('/api/redact-preview', { method: 'POST', body: form });
+        if (!res.ok) {
+            const err = await res.json();
+            alert('Redaction failed: ' + (err.error || res.statusText));
+            return;
+        }
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+    } catch (e) {
+        alert('Redaction failed: ' + e.message);
+    } finally {
+        btnRedactPreview.textContent = 'Redact Preview \u2014 download redacted PDF';
+        btnRedactPreview.disabled = false;
+    }
+});
+
 async function uploadFile(file) {
+    _lastSelectedFile = file;
+    btnRedactPreview.style.display = '';
+
     const progress = $('import-progress');
     const summaryCard = $('import-summary');
 
@@ -93,7 +126,7 @@ async function uploadFile(file) {
         progress.innerHTML = step('upload', 'ok', 'Uploaded ' + file.name) +
             step('pipeline', 'running', 'Running extraction pipeline... (this may take a minute)');
 
-        const res = await fetch('/api/import', { method: 'POST', body: form });
+        const res = await fetch('/api/import-claude', { method: 'POST', body: form });
         const data = await res.json();
 
         // Show steps
