@@ -37,18 +37,17 @@ def extract_with_gemini(redacted_pdf_bytes: bytes, model: str = MODEL) -> dict:
         ],
         config=types.GenerateContentConfig(
             temperature=0,
-            max_output_tokens=8192,
+            max_output_tokens=65536,
+            response_mime_type="application/json",
         ),
     )
 
-    # Extract text from response
-    text = response.text.strip()
+    text = response.text
 
-    # Strip markdown fencing if present
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1]  # remove first ``` line
-        if text.endswith("```"):
-            text = text[:-3]
-        text = text.strip()
+    # Debug: save raw response for inspection
+    from pathlib import Path
+    debug_path = Path(__file__).resolve().parent.parent.parent / "data" / "extraction_output" / "gemini_debug_raw.txt"
+    debug_path.write_text(text, encoding="utf-8")
+    print(f"  Raw Gemini response saved to {debug_path}")
 
     return json.loads(text)

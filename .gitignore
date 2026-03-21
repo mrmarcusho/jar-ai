@@ -10,6 +10,9 @@ data/jar.db*
 # PII profile (contains real names, accounts, addresses)
 data/pii_profile.json
 
+# Environment / secrets
+.env
+
 # Python
 __pycache__/
 *.pyc
