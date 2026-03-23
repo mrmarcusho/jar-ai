@@ -83,31 +83,62 @@ async function uploadFile(file) {
     const progress = $('import-progress');
     const summaryCard = $('import-summary');
 
-    progress.innerHTML = step('upload', 'running', 'Uploading ' + file.name + '...');
+    progress.innerHTML = step('upload', 'running', 'Uploading ' + file.name + '...') +
+        '<div class="extraction-logs" id="import-logs"></div>';
     summaryCard.style.display = 'none';
 
     const form = new FormData();
     form.append('file', file);
 
     try {
-        progress.innerHTML = step('upload', 'ok', 'Uploaded ' + file.name) +
-            step('pipeline', 'running', 'Running extraction pipeline... (this may take a minute)');
-
         const res = await fetch('/api/import', { method: 'POST', body: form });
-        const data = await res.json();
+        const logs = $('import-logs');
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let finalData = null;
+
+        while (true) {
+            const chunk = await reader.read();
+            if (chunk.done) break;
+
+            buffer += decoder.decode(chunk.value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+
+            for (const line of lines) {
+                if (line.indexOf('data: ') !== 0) continue;
+                const msg = JSON.parse(line.substring(6));
+
+                if (msg.type === 'log') {
+                    const entry = document.createElement('div');
+                    entry.className = 'log-line';
+                    entry.textContent = '[' + msg.time.toFixed(2) + 's]  ' + msg.step + ' \u2014 ' + msg.details;
+                    logs.appendChild(entry);
+                    logs.scrollTop = logs.scrollHeight;
+                } else if (msg.type === 'done') {
+                    finalData = msg;
+                }
+            }
+        }
+
+        if (!finalData) {
+            progress.innerHTML = step('error', 'error', 'No response from server');
+            return;
+        }
 
         // Show steps
         let html = '';
-        if (data.steps) {
-            data.steps.forEach(s => {
+        if (finalData.steps) {
+            finalData.steps.forEach(s => {
                 html += step(s.step, s.status, s.message);
             });
         }
         progress.innerHTML = html;
 
         // Show summary
-        if (data.summary) {
-            const s = data.summary;
+        if (finalData.summary) {
+            const s = finalData.summary;
             summaryCard.style.display = '';
             $('summary-grid').innerHTML =
                 summaryItem('Period', (s.period_start || '?') + ' to ' + (s.period_end || '?')) +

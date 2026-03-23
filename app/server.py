@@ -11,16 +11,22 @@ import asyncio
 import csv
 import io
 import json
+import logging
 import os
 import queue
 import sqlite3
 import sys
-import tempfile
-import time
 import traceback
 from pathlib import Path
 
-from fastapi import FastAPI, File, Query, Request, UploadFile
+from fastapi import FastAPI, File, Query, UploadFile
+
+# Configure extraction logger
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s  %(name)s  %(message)s",
+    datefmt="%H:%M:%S",
+)
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
@@ -34,7 +40,6 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 DB_PATH = PROJECT_ROOT / "data" / "jar.db"
 STATEMENTS_DIR = PROJECT_ROOT / "data" / "statements"
-EXTRACTION_DIR = PROJECT_ROOT / "data" / "extraction_output"
 
 # ---------------------------------------------------------------------------
 # App
@@ -77,22 +82,11 @@ async def index():
 @app.get("/api/config")
 async def api_config():
     """App config: data status + LLM availability."""
-    import urllib.request
-
-    ollama_running = False
-    try:
-        req = urllib.request.Request("http://localhost:11434/api/tags")
-        urllib.request.urlopen(req, timeout=2)
-        ollama_running = True
-    except Exception:
-        pass
-
     anthropic_key_set = bool(os.environ.get("ANTHROPIC_API_KEY"))
 
     return {
         "has_data": _has_data(),
-        "llm_available": ollama_running or anthropic_key_set,
-        "ollama_running": ollama_running,
+        "llm_available": anthropic_key_set,
         "anthropic_key_set": anthropic_key_set,
     }
 
@@ -118,108 +112,115 @@ async def dashboard_page():
 
 @app.post("/api/import")
 async def import_pdf(file: UploadFile = File(...)):
-    """Accept a PDF upload, run the full extraction pipeline, load to SQLite."""
+    """Accept a PDF upload, extract via cloud LLM, stream progress via SSE."""
     if not file.filename.lower().endswith(".pdf"):
         return JSONResponse({"error": "Only PDF files are accepted"}, status_code=400)
 
-    steps = []
+    STATEMENTS_DIR.mkdir(parents=True, exist_ok=True)
+    pdf_path = STATEMENTS_DIR / file.filename
+    content = await file.read()
+    pdf_path.write_bytes(content)
 
-    try:
-        # 1. Save the PDF
-        STATEMENTS_DIR.mkdir(parents=True, exist_ok=True)
-        pdf_path = STATEMENTS_DIR / file.filename
-        content = await file.read()
-        pdf_path.write_bytes(content)
-        steps.append({"step": "upload", "status": "ok", "message": f"Saved {file.filename} ({len(content):,} bytes)"})
+    progress_queue: queue.Queue = queue.Queue()
 
-        stem = pdf_path.stem
-        EXTRACTION_DIR.mkdir(parents=True, exist_ok=True)
+    def on_progress(step_name, elapsed, details):
+        progress_queue.put(json.dumps({
+            "type": "log", "step": step_name,
+            "time": round(elapsed, 2), "details": details,
+        }))
 
-        # 2. Docling preprocessing
-        steps.append({"step": "extracting", "status": "running", "message": "Running Docling OCR extraction..."})
-        from docling.document_converter import DocumentConverter
+    async def event_stream():
+        from core.extraction_engine.extract import extract_statement
 
-        t0 = time.monotonic()
-        converter = DocumentConverter()
-        result = converter.convert(str(pdf_path))
+        progress_queue.put(json.dumps({
+            "type": "log", "step": "Upload",
+            "time": 0.0, "details": f"Saved {file.filename} ({len(content):,} bytes)",
+        }))
 
-        md_text = result.document.export_to_markdown()
-        md_path = EXTRACTION_DIR / f"{stem}.md"
-        md_path.write_text(md_text, encoding="utf-8")
+        loop = asyncio.get_event_loop()
+        task = loop.run_in_executor(
+            None, lambda: extract_statement(pdf_path, DB_PATH, progress_callback=on_progress)
+        )
 
-        doc_dict = result.document.export_to_dict()
-        json_path = EXTRACTION_DIR / f"{stem}.json"
-        json_path.write_text(json.dumps(doc_dict, indent=2, default=str), encoding="utf-8")
+        while not task.done():
+            try:
+                msg = progress_queue.get_nowait()
+                yield f"data: {msg}\n\n"
+            except queue.Empty:
+                await asyncio.sleep(0.1)
 
-        extract_secs = time.monotonic() - t0
-        steps[-1] = {"step": "extracting", "status": "ok", "message": f"Docling extraction complete ({extract_secs:.1f}s)"}
+        # Drain remaining messages
+        while not progress_queue.empty():
+            msg = progress_queue.get_nowait()
+            yield f"data: {msg}\n\n"
 
-        # 3. Post-process + structurize (bank-agnostic pipeline)
-        from core.extraction_engine.postprocess.run_postprocess import postprocess_and_structurize
+        result = task.result()
 
-        structured_path = postprocess_and_structurize(md_path, json_path, EXTRACTION_DIR, stem, auto_confirm=True)
+        # Build final result payload
+        steps = [{"step": "upload", "status": "ok", "message": f"Saved {file.filename} ({len(content):,} bytes)"}]
 
-        if structured_path is None:
-            steps.append({"step": "postprocess", "status": "error", "message": "Unknown bank format"})
-            return JSONResponse({"status": "error", "steps": steps, "error": "Unknown bank format"}, status_code=400)
+        if result.status == "skipped":
+            steps.append({"step": "extract", "status": "skipped", "message": result.error})
+            yield f"data: {json.dumps({'type': 'done', 'status': 'ok', 'steps': steps})}\n\n"
+            return
 
-        structured = json.loads(structured_path.read_text(encoding="utf-8"))
-        steps.append({"step": "postprocess", "status": "ok", "message": "Post-processing complete"})
+        if result.status == "error":
+            steps.append({"step": "extract", "status": "error", "message": result.error})
+            yield f"data: {json.dumps({'type': 'done', 'status': 'error', 'steps': steps, 'error': result.error})}\n\n"
+            return
 
-        # Extract summary info
-        summary = structured.get("account_summary", {})
-        validation = structured.get("validation", {})
-        deposits = structured.get("deposits", [])
-        withdrawals = structured.get("withdrawals", [])
-        period = structured.get("metadata", {}).get("statement_period", {})
+        # Success
+        steps.append({"step": "extract", "status": "ok", "message": f"Extracted {result.txn_count} transactions"})
+        steps.append({"step": "categorize", "status": "ok", "message": f"Categorized {result.categorized_count}/{result.txn_count} transactions"})
+        vfy_msg = "Balance verification passed" if result.validation_passed else "Balance verification failed"
+        steps.append({"step": "verify", "status": "ok" if result.validation_passed else "warning", "message": vfy_msg})
 
-        num_txns = len(deposits) + len(withdrawals)
-        steps.append({"step": "structurize", "status": "ok", "message": f"Parsed {num_txns} transactions"})
-
-        # 5. Validate
-        errors = validation.get("errors", [])
-        all_valid = all(v for k, v in validation.items() if isinstance(v, bool))
-
-        if all_valid:
-            steps.append({"step": "validate", "status": "ok", "message": "Validation passed"})
-        else:
-            steps.append({"step": "validate", "status": "warning", "message": f"Validation issues: {'; '.join(errors) if errors else 'check failed'}"})
-
-        # 6. Load to SQLite
-        from core.database.load_statements import init_db, load_one
-
-        conn = get_db()
-        conn.execute("PRAGMA journal_mode=WAL")
-        init_db(conn)
-        load_result = load_one(conn, structured_path)
-        conn.close()
-
-        if load_result.get("skipped"):
-            steps.append({"step": "database", "status": "ok", "message": f"Already in database (skipped)"})
-        else:
-            steps.append({"step": "database", "status": "ok", "message": f"Loaded {load_result['txn_count']} transactions to database"})
-
-        return {
-            "status": "ok",
-            "steps": steps,
-            "summary": {
-                "source_file": file.filename,
-                "period_start": period.get("start"),
-                "period_end": period.get("end"),
-                "opening_balance": summary.get("opening_balance"),
-                "closing_balance": summary.get("closing_balance"),
-                "num_deposits": len(deposits),
-                "num_withdrawals": len(withdrawals),
-                "total_deposits": summary.get("total_deposits_and_other_additions"),
-                "total_withdrawals": summary.get("total_withdrawals_and_other_subtractions"),
-                "validation_passed": all_valid,
-            },
+        # Query statement details for the UI summary
+        summary = {
+            "statement_id": result.statement_id,
+            "txn_count": result.txn_count,
+            "categorized_count": result.categorized_count,
+            "validation_passed": result.validation_passed,
+            "total_time": round(result.total_time, 1),
+            "warnings": result.warnings,
         }
+        if result.statement_id:
+            conn = get_db()
+            row = conn.execute(
+                "SELECT period_start, period_end, opening_balance, closing_balance, "
+                "total_deposits, total_withdrawals, num_deposits, num_withdrawals "
+                "FROM statements WHERE statement_id = ?",
+                (result.statement_id,),
+            ).fetchone()
+            if row:
+                summary["period_start"] = row[0]
+                summary["period_end"] = row[1]
+                summary["opening_balance"] = row[2]
+                summary["closing_balance"] = row[3]
+                summary["total_deposits"] = row[4]
+                summary["total_withdrawals"] = row[5]
+                summary["num_deposits"] = row[6]
+                summary["num_withdrawals"] = row[7]
 
-    except Exception as e:
-        steps.append({"step": "error", "status": "error", "message": str(e)})
-        traceback.print_exc()
-        return JSONResponse({"status": "error", "steps": steps, "error": str(e)}, status_code=500)
+        # Include HSM findings in the response
+        findings = []
+        if result.findings:
+            findings = result.findings
+            steps.append({
+                "step": "analyze",
+                "status": "ok",
+                "message": f"Found {len(findings)} financial insight(s)",
+            })
+        else:
+            steps.append({
+                "step": "analyze",
+                "status": "ok",
+                "message": "No new findings detected",
+            })
+
+        yield f"data: {json.dumps({'type': 'done', 'status': 'ok', 'steps': steps, 'summary': summary, 'findings': findings})}\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 
 # ---------------------------------------------------------------------------
@@ -524,62 +525,28 @@ async def get_summary():
 
 # Keep a single chat session alive across requests
 _chat_engine = None
-_chat_backend = None  # e.g. "claude", "ollama:qwen2.5:7b", "ollama:qwen2.5:3b"
-
-# Model definitions: id -> (backend, model, display_name)
-MODELS = {
-    "ollama:qwen3:8b": ("ollama", "qwen3:8b", "Qwen 3 — 8B"),
-    "claude": ("claude", "claude-sonnet-4-20250514", "Claude Sonnet (API)"),
-    "ollama:qwen2.5:7b": ("ollama", "qwen2.5:7b", "Qwen 2.5 — 7B"),
-    "ollama:qwen2.5:3b": ("ollama", "qwen2.5:3b", "Qwen 2.5 — 3B"),
-}
-
-DEFAULT_LOCAL_MODEL = "ollama:qwen3:8b"
 
 
-def _get_chat(model_id: str = None):
-    global _chat_engine, _chat_backend
+def _get_chat():
+    global _chat_engine
     from app.chat.chat_engine import JarChat
 
-    # Determine which model to use
-    if model_id is None:
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        model_id = "claude" if api_key else DEFAULT_LOCAL_MODEL
-
-    if model_id not in MODELS:
-        raise ValueError(f"Unknown model: {model_id}")
-
-    backend, model_name, display = MODELS[model_id]
-
-    # Recreate engine if model changed
-    if _chat_engine is not None and model_id != _chat_backend:
-        _chat_engine.close()
-        _chat_engine = None
-
     if _chat_engine is None:
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if backend == "claude" and not api_key:
-            raise ValueError("ANTHROPIC_API_KEY not set. Switch to a local model or set the env var.")
-        _chat_engine = JarChat(str(DB_PATH), backend=backend, model=model_name, api_key=api_key)
+        _chat_engine = JarChat(str(DB_PATH))
         _chat_engine.debug = True
-        _chat_backend = model_id
-        print(f"  Chat engine: {display} ({model_name})")
+        print(f"  Chat engine: Claude ({_chat_engine.model})")
 
     return _chat_engine
 
 
 @app.get("/api/chat/status")
 async def chat_status():
-    """Return the current model and available models."""
+    """Return the current model."""
     api_key = os.environ.get("ANTHROPIC_API_KEY")
-    current = _chat_backend or ("claude" if api_key else DEFAULT_LOCAL_MODEL)
-    models = []
-    for mid, (backend, model_name, display) in MODELS.items():
-        available = True
-        if backend == "claude" and not api_key:
-            available = False
-        models.append({"id": mid, "name": display, "available": available})
-    return {"current": current, "models": models}
+    return {
+        "current": "claude",
+        "models": [{"id": "claude", "name": "Claude Sonnet (API)", "available": bool(api_key)}],
+    }
 
 
 @app.post("/api/chat")
@@ -590,7 +557,7 @@ async def chat(body: dict):
         return JSONResponse({"error": "Empty message"}, status_code=400)
 
     try:
-        engine = _get_chat(_chat_backend)
+        engine = _get_chat()
         response = engine.chat(message)
 
         # Capture debug info from conversation history
@@ -606,58 +573,21 @@ async def chat(body: dict):
                                 "params": block.input,
                             })
 
-        return {"response": response, "debug": debug_info, "model": _chat_backend}
+        return {"response": response, "debug": debug_info, "model": "claude"}
 
     except Exception as e:
-        error_msg = str(e)
-        # Detect Ollama model-not-found errors
-        if "model" in error_msg.lower() and "not found" in error_msg.lower():
-            model_name = MODELS.get(_chat_backend, (None, _chat_backend, None))[1]
-            error_msg = f"Model {model_name} not found. Run `ollama pull {model_name}` to install it."
         traceback.print_exc()
-        return JSONResponse({"error": error_msg}, status_code=500)
+        return JSONResponse({"error": str(e)}, status_code=500)
 
 
 @app.post("/api/chat/reset")
 async def chat_reset():
     """Reset the chat conversation history."""
-    global _chat_engine, _chat_backend
+    global _chat_engine
     if _chat_engine:
         _chat_engine.close()
         _chat_engine = None
-        _chat_backend = None
     return {"status": "ok"}
-
-
-@app.post("/api/chat/backend")
-async def set_backend(body: dict):
-    """Switch the chat model. Resets conversation."""
-    global _chat_engine, _chat_backend
-    model_id = body.get("model", body.get("backend", "")).strip()
-
-    if model_id not in MODELS:
-        return JSONResponse({"error": f"Unknown model: {model_id}. Options: {list(MODELS.keys())}"}, status_code=400)
-
-    backend, model_name, display = MODELS[model_id]
-
-    if backend == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
-        return JSONResponse({"error": "ANTHROPIC_API_KEY not set"}, status_code=400)
-
-    # Close existing engine
-    if _chat_engine:
-        _chat_engine.close()
-        _chat_engine = None
-        _chat_backend = None
-
-    # Create new engine to verify it works
-    try:
-        _get_chat(model_id)
-        return {"status": "ok", "model": model_id, "name": display}
-    except Exception as e:
-        error_msg = str(e)
-        if "model" in error_msg.lower() and "not found" in error_msg.lower():
-            error_msg = f"Model {model_name} not found. Run `ollama pull {model_name}` to install it."
-        return JSONResponse({"error": error_msg}, status_code=500)
 
 
 # ---------------------------------------------------------------------------
@@ -732,66 +662,67 @@ async def scan_start(paths: str = Query(None)):
 
 @app.get("/api/scan/banks")
 async def scan_banks():
-    """List supported bank parsers."""
-    from core.extraction_engine.postprocess.registry import list_supported_banks
-    return {"banks": list_supported_banks()}
+    """List supported banks. Cloud LLM handles all bank formats."""
+    return {"banks": ["Bank of America", "TD Bank"]}
 
 
 @app.post("/api/scan/process")
 async def scan_process(body: dict):
-    """Process confirmed PDF candidates through extraction pipeline and load to DB."""
+    """Process confirmed PDF candidates through cloud extraction."""
     paths = body.get("paths", [])
     if not paths:
         return JSONResponse({"error": "No paths provided"}, status_code=400)
 
-    from core.extraction_engine.run_preprocess import preprocess_pdf
-    from core.extraction_engine.postprocess.run_postprocess import postprocess_and_structurize
-    from core.database.load_statements import init_db, load_one
+    from core.extraction_engine.extract import extract_statement
 
-    EXTRACTION_DIR.mkdir(parents=True, exist_ok=True)
+    progress_queue: queue.Queue = queue.Queue()
 
-    results = []
-    for p in paths:
-        pdf_path = Path(p)
-        stem = pdf_path.stem
-        result = {"source": str(pdf_path), "stem": stem, "status": "pending", "error": None}
+    def on_progress(step_name, elapsed, details):
+        progress_queue.put(json.dumps({
+            "type": "log", "step": step_name,
+            "time": round(elapsed, 2), "details": details,
+        }))
 
-        try:
-            # Step 1: Docling conversion
-            t0 = time.monotonic()
-            md_path, json_path = preprocess_pdf(pdf_path, EXTRACTION_DIR)
-            extract_secs = time.monotonic() - t0
+    async def event_stream():
+        loop = asyncio.get_event_loop()
+        results = []
 
-            # Step 2: Post-process + structurize
-            structured_path = postprocess_and_structurize(
-                md_path, json_path, EXTRACTION_DIR, stem, auto_confirm=True
+        for i, p in enumerate(paths):
+            pdf_path = Path(p)
+            progress_queue.put(json.dumps({
+                "type": "file_start", "file": pdf_path.name,
+                "index": i, "total": len(paths),
+            }))
+
+            task = loop.run_in_executor(
+                None, lambda pp=pdf_path: extract_statement(pp, DB_PATH, progress_callback=on_progress)
             )
-            if not structured_path:
-                result["status"] = "unknown_bank"
-                results.append(result)
-                continue
 
-            # Step 3: Load to DB
-            conn = get_db()
-            conn.execute("PRAGMA journal_mode=WAL")
-            init_db(conn)
-            load_result = load_one(conn, structured_path)
-            conn.close()
+            while not task.done():
+                try:
+                    msg = progress_queue.get_nowait()
+                    yield f"data: {msg}\n\n"
+                except queue.Empty:
+                    await asyncio.sleep(0.1)
 
-            total_secs = time.monotonic() - t0
-            result["extract_time"] = round(extract_secs, 1)
-            result["total_time"] = round(total_secs, 1)
-            result["status"] = "success"
-            if load_result.get("skipped"):
-                result["status"] = "skipped"
-        except Exception as e:
-            result["status"] = "error"
-            result["error"] = str(e)
-            traceback.print_exc()
+            # Drain remaining
+            while not progress_queue.empty():
+                msg = progress_queue.get_nowait()
+                yield f"data: {msg}\n\n"
 
-        results.append(result)
+            r = task.result()
+            results.append({
+                "source": str(pdf_path),
+                "stem": pdf_path.stem,
+                "status": r.status,
+                "txn_count": r.txn_count,
+                "total_time": round(r.total_time, 1),
+                "error": r.error,
+            })
 
-    return {"results": results}
+        yield f"data: {json.dumps({'type': 'done', 'results': results})}\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 
 # ---------------------------------------------------------------------------
@@ -894,6 +825,51 @@ async def dashboard_top_merchants():
     return result
 
 
+# ---------------------------------------------------------------------------
+# API: Findings (HSM)
+# ---------------------------------------------------------------------------
+
+@app.get("/api/findings")
+async def get_findings(dismissed: bool = False):
+    """Return HSM findings, newest first."""
+    conn = get_db()
+    try:
+        # Check if the findings table exists
+        table_check = conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='findings'"
+        ).fetchone()
+        if not table_check:
+            return {"findings": [], "count": 0}
+
+        rows = conn.execute(
+            "SELECT finding_id, statement_id, hsm_id, domain, title, "
+            "description, amount_impact, severity, merchant, dismissed, created_at "
+            "FROM findings WHERE dismissed = ? "
+            "ORDER BY created_at DESC",
+            (int(dismissed),),
+        ).fetchall()
+
+        findings = [dict(r) for r in rows]
+        return {"findings": findings, "count": len(findings)}
+    finally:
+        conn.close()
+
+
+@app.post("/api/findings/{finding_id}/dismiss")
+async def dismiss_finding(finding_id: str):
+    """Mark a finding as dismissed."""
+    conn = get_db()
+    try:
+        conn.execute(
+            "UPDATE findings SET dismissed = 1 WHERE finding_id = ?",
+            (finding_id,),
+        )
+        conn.commit()
+        return {"status": "ok"}
+    finally:
+        conn.close()
+
+
 @app.get("/api/export/csv")
 async def export_csv(
     start_date: str = None,
@@ -961,10 +937,7 @@ async def export_csv(
 if __name__ == "__main__":
     print(f"Database: {DB_PATH}")
     print(f"Statements: {STATEMENTS_DIR}")
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    default = "claude" if api_key else DEFAULT_LOCAL_MODEL
-    _, _, display = MODELS[default]
-    print(f"Default model: {display}")
-    print(f"Available models: {', '.join(d for _, _, d in MODELS.values())}")
+    print(f"API key: {'set' if os.environ.get('ANTHROPIC_API_KEY') else 'NOT SET'}")
     print()
-    uvicorn.run(app, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("JAR_PORT", 5050))
+    uvicorn.run(app, host="127.0.0.1", port=port)

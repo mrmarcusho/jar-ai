@@ -2,8 +2,7 @@
 """Interactive REPL for the Jar financial assistant.
 
 Usage:
-    python run_chat.py              # Ollama + qwen2.5:3b (default)
-    python run_chat.py --claude     # Claude Sonnet via API
+    python run_chat.py
 """
 
 import os
@@ -17,24 +16,10 @@ DB_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "jar.db"
 
 
 def main():
-    use_claude = "--claude" in sys.argv
-
-    if use_claude:
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if not api_key:
-            api_key = input("Enter your Anthropic API key: ").strip()
-            if not api_key:
-                print("No API key provided. Exiting.")
-                sys.exit(1)
-        jar = JarChat(str(DB_PATH), backend="claude", api_key=api_key)
-        backend_label = f"Claude ({jar.model})"
-    else:
-        jar = JarChat(str(DB_PATH), backend="ollama")
-        backend_label = f"Ollama ({jar.model})"
-
+    jar = JarChat(str(DB_PATH))
     jar.debug = True
 
-    print(f"\nJar Financial Assistant — {backend_label}")
+    print(f"\nJar Financial Assistant — Claude ({jar.model})")
     print("Commands: 'debug on' / 'debug off' / 'quit'")
     print(f"Data: {DB_PATH}\n")
 

@@ -71,6 +71,23 @@ CREATE TABLE IF NOT EXISTS user_category_rules (
 );
 CREATE INDEX IF NOT EXISTS idx_user_rules_keyword ON user_category_rules(keyword);
 
+-- HSM (Holy Shit Moment) findings detected after extraction
+CREATE TABLE IF NOT EXISTS findings (
+    finding_id      TEXT PRIMARY KEY,
+    statement_id    TEXT NOT NULL REFERENCES statements(statement_id),
+    hsm_id          TEXT NOT NULL,       -- e.g. "A03", "C02"
+    domain          TEXT NOT NULL,       -- e.g. "subscriptions", "banking"
+    title           TEXT NOT NULL,
+    description     TEXT NOT NULL,
+    amount_impact   REAL,                -- estimated annual/total dollar impact
+    severity        TEXT NOT NULL DEFAULT 'warning',  -- critical, warning, info
+    merchant        TEXT,
+    dismissed       INTEGER NOT NULL DEFAULT 0,
+    created_at      TEXT DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_findings_statement ON findings(statement_id);
+CREATE INDEX IF NOT EXISTS idx_findings_dismissed ON findings(dismissed);
+
 -- Per-transaction user overrides
 CREATE TABLE IF NOT EXISTS user_category_overrides (
     override_id     INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -145,13 +145,5 @@ else
     echo "  To start: ./launch_jar.sh"
 fi
 echo ""
-echo "  Optional: install Ollama for local AI chat"
-if [ "$PLATFORM" = "macos" ]; then
-    echo "    brew install --cask ollama"
-else
-    echo "    curl -fsSL https://ollama.com/install.sh | sh"
-fi
-echo "    ollama pull qwen3:8b"
-echo ""
-echo "  All data stays on your machine. Nothing is sent anywhere. Ever."
+echo "  Set ANTHROPIC_API_KEY in .env for Claude-powered chat and extraction."
 echo ""

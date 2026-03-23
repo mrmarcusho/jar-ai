@@ -1,20 +1,19 @@
 """Layer 3: LLM function-calling interface over the financial API.
 
-Supports two backends:
-  - "ollama"  : local Qwen 2.5 3B via Ollama (default)
-  - "claude"  : Anthropic Claude Sonnet via API
+Uses Anthropic Claude via API.
 """
 
 import json
 import os
-import re
 import sys
 from pathlib import Path
+
+import anthropic
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from core.api.financial_api import FinancialAPI
 
-SYSTEM_PROMPT = """\
+_SYSTEM_PROMPT_TEMPLATE = """\
 You are Jar, a personal financial assistant. You have access to the user's bank \
 transaction data through a set of query functions.
 
@@ -23,48 +22,33 @@ When answering questions:
 - Be concise and direct. Lead with the answer, then add context.
 - When showing amounts, use dollar formatting ($1,234.56).
 - If a question requires data you don't have, say so honestly.
-- The data comes from bank statements covering Dec 15, 2022 through Feb 10, 2023 and Nov 15 through Dec 13, 2023. When the user asks about a calendar month like "January", use calendar dates (e.g. 2023-01-01 to 2023-01-31), not statement period boundaries — the API will pull from the correct statements automatically.
+- {date_range_info}When the user asks about a calendar month like "January", \
+use calendar dates (e.g. 2023-01-01 to 2023-01-31), not statement period \
+boundaries — the API will pull from the correct statements automatically.
 - The account holder is Alex Ho, with spouse Jamie Lee \
 (sometimes appears as Jamie Lee due to vendor typo).\
 """
 
-# Additional instructions appended for Qwen (Ollama) only.
-# Small models don't naturally retry or verify — they need explicit procedural guidance.
-QWEN_INSTRUCTIONS = """\
 
-IMPORTANT — How to answer questions step by step:
+def _build_system_prompt(db_path: str) -> str:
+    """Build system prompt with actual date ranges from the database."""
+    import sqlite3
+    try:
+        conn = sqlite3.connect(db_path)
+        rows = conn.execute(
+            "SELECT period_start, period_end FROM statements ORDER BY period_start"
+        ).fetchall()
+        conn.close()
+        if rows:
+            ranges = [f"{r[0]} to {r[1]}" for r in rows]
+            info = f"The data comes from bank statements covering: {', '.join(ranges)}. "
+        else:
+            info = "No bank statements have been loaded yet. "
+    except Exception:
+        info = ""
+    return _SYSTEM_PROMPT_TEMPLATE.format(date_range_info=info)
 
-1. THINK before calling a function. Ask yourself: what exactly is the user asking for?
-   - "largest withdrawal" = the single biggest outgoing transaction of ANY type (ACH, wire, bill pay, ATM, check, Zelle — all of them). Do NOT filter by type unless the user specifically says "ATM withdrawal" or "wire transfer" etc.
-   - "spending" = all outgoing transactions, not just one category.
-   - When in doubt, use is_deposit=false with NO type filter to get all outgoing transactions.
-
-2. CHECK your results before answering.
-   - If you got 0 results: try again with broader filters. Remove type filters, widen the date range, or try search_transactions with a different keyword.
-   - If you got results but the question asks for "largest" or "smallest": scan ALL the amounts and pick the correct one. Do not just return the first result.
-   - If the count is low (1-2 results) but you expected more: your filters may be too narrow. Try again without the type filter.
-
-3. VERIFY when the stakes are high.
-   - For "largest", "smallest", "total", or "how much" questions: if your first call used any filters beyond date range and is_deposit, make a second call WITHOUT those extra filters to make sure you didn't miss anything.
-   - It is BETTER to make 2-3 function calls and give the right answer than to make 1 call and give the wrong answer.
-
-4. Common mistakes to avoid:
-   - Do NOT set type="atm_withdrawal" when the user says "withdrawal" — that excludes wires, ACH debits, bill payments, and checks.
-   - Do NOT set limit=1 unless you are sure the results are sorted correctly.
-   - Do NOT summarize all transactions when the user asked a specific question. Answer the specific question first.
-
-5. PRESENT all the data you collected.
-   - If you made multiple function calls, use the results from ALL of them in your response, not just the last one.
-   - For summary or overview questions: structure your response with clear sections covering each part of what the user asked for.
-   - For "financial summary" questions: always include cash flow (income vs spending), biggest expenses (top 3-5), and any notable or unusual transactions.
-   - Do NOT throw away useful data. If you retrieved it, the user probably wants to see it.
-   - Use dollar formatting ($1,234.56) and keep it organized but concise.\
-"""
-
-SYSTEM_PROMPT_QWEN = SYSTEM_PROMPT + "\n\n" + QWEN_INSTRUCTIONS
-
-# Tool definitions in Anthropic format (used by Claude backend)
-TOOLS_ANTHROPIC = [
+TOOLS = [
     {
         "name": "get_transactions",
         "description": (
@@ -214,48 +198,60 @@ TOOLS_ANTHROPIC = [
             "required": ["keyword"],
         },
     },
+    {
+        "name": "get_balance_history",
+        "description": (
+            "Get time-series balance and cash flow data by statement period. "
+            "Use this for balance trend questions or 'how has my balance "
+            "changed over time'."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+        },
+    },
+    {
+        "name": "get_top_merchants",
+        "description": (
+            "Get the top merchants ranked by total spending. Use this for "
+            "'where do I spend the most' or 'who are my biggest payees' questions."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer",
+                    "description": "Number of merchants to return, default 10",
+                },
+            },
+        },
+    },
+    {
+        "name": "get_monthly_trends",
+        "description": (
+            "Get monthly income vs spending totals. Use this for 'how does my "
+            "spending change month to month' or 'income vs expenses by month'."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+        },
+    },
 ]
 
 
-def _anthropic_to_openai_tools(tools):
-    """Convert Anthropic tool format to OpenAI function-calling format."""
-    return [
-        {
-            "type": "function",
-            "function": {
-                "name": t["name"],
-                "description": t["description"],
-                "parameters": t["input_schema"],
-            },
-        }
-        for t in tools
-    ]
-
-
-TOOLS_OPENAI = _anthropic_to_openai_tools(TOOLS_ANTHROPIC)
-
-
 class JarChat:
-    def __init__(self, db_path: str, backend: str = "ollama", api_key: str = None,
-                 model: str = None, ollama_url: str = "http://localhost:11434/v1"):
+    def __init__(self, db_path: str, api_key: str = None, model: str = None):
+        self.db_path = db_path
         self.api = FinancialAPI(db_path)
-        self.backend = backend
+        self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+        if not self.api_key:
+            raise ValueError("No API key found. Set ANTHROPIC_API_KEY or pass api_key=.")
+        self.client = anthropic.Anthropic(api_key=self.api_key)
+        self.model = model or "claude-sonnet-4-20250514"
+        self.system_prompt = _build_system_prompt(db_path)
         self.conversation_history: list[dict] = []
         self.debug = False
-
-        if backend == "ollama":
-            from openai import OpenAI
-            self.client = OpenAI(base_url=ollama_url, api_key="ollama")
-            self.model = model or "qwen3:8b"
-        elif backend == "claude":
-            import anthropic
-            self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
-            if not self.api_key:
-                raise ValueError("No API key found. Set ANTHROPIC_API_KEY or pass api_key=.")
-            self.client = anthropic.Anthropic(api_key=self.api_key)
-            self.model = model or "claude-sonnet-4-20250514"
-        else:
-            raise ValueError(f"Unknown backend: {backend}. Use 'ollama' or 'claude'.")
 
     def _execute_tool(self, name: str, params: dict) -> dict:
         """Call the matching FinancialAPI method, tolerating LLM parameter errors."""
@@ -276,76 +272,15 @@ class JarChat:
 
         return fn(**cleaned)
 
-    def _chat_ollama(self, user_message: str) -> str:
-        """OpenAI-compatible function-calling loop for Ollama."""
-        self.conversation_history.append({"role": "user", "content": user_message})
-
-        messages = [{"role": "system", "content": SYSTEM_PROMPT_QWEN}] + self.conversation_history
-
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-            tools=TOOLS_OPENAI,
-            temperature=0.1,
-        )
-
-        msg = response.choices[0].message
-
-        # Loop for tool calls
-        while msg.tool_calls:
-            self.conversation_history.append(msg.model_dump(exclude_none=True))
-
-            for tc in msg.tool_calls:
-                fn_name = tc.function.name
-                fn_args = json.loads(tc.function.arguments)
-
-                if self.debug:
-                    print(f"  [DEBUG] tool_call: {fn_name}({json.dumps(fn_args, indent=2)})")
-
-                result = self._execute_tool(fn_name, fn_args)
-
-                if self.debug:
-                    print(f"  [DEBUG] result: {json.dumps(result, indent=2, default=str)}")
-
-                self.conversation_history.append({
-                    "role": "tool",
-                    "tool_call_id": tc.id,
-                    "content": json.dumps(result, default=str),
-                })
-
-            messages = [{"role": "system", "content": SYSTEM_PROMPT_QWEN}] + self.conversation_history
-
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=messages,
-                tools=TOOLS_OPENAI,
-                temperature=0.1,
-            )
-            msg = response.choices[0].message
-
-        final_text = msg.content or ""
-        final_text = self._strip_thinking(final_text)
-        self.conversation_history.append({"role": "assistant", "content": final_text})
-        return final_text
-
-    @staticmethod
-    def _strip_thinking(text: str) -> str:
-        """Remove Qwen3 <think>...</think> blocks, log them for debugging."""
-        think_pattern = re.compile(r'<think>(.*?)</think>', re.DOTALL)
-        thoughts = think_pattern.findall(text)
-        for thought in thoughts:
-            print(f"  [THINK] {thought.strip()}")
-        return think_pattern.sub('', text).strip()
-
-    def _chat_claude(self, user_message: str) -> str:
-        """Anthropic function-calling loop for Claude."""
+    def chat(self, user_message: str) -> str:
+        """Send a message and get a response via Claude function-calling loop."""
         self.conversation_history.append({"role": "user", "content": user_message})
 
         response = self.client.messages.create(
             model=self.model,
             max_tokens=1024,
-            system=SYSTEM_PROMPT,
-            tools=TOOLS_ANTHROPIC,
+            system=self.system_prompt,
+            tools=TOOLS,
             messages=self.conversation_history,
         )
 
@@ -375,8 +310,8 @@ class JarChat:
             response = self.client.messages.create(
                 model=self.model,
                 max_tokens=1024,
-                system=SYSTEM_PROMPT,
-                tools=TOOLS_ANTHROPIC,
+                system=self.system_prompt,
+                tools=TOOLS,
                 messages=self.conversation_history,
             )
 
@@ -387,13 +322,6 @@ class JarChat:
 
         self.conversation_history.append({"role": "assistant", "content": response.content})
         return final_text
-
-    def chat(self, user_message: str) -> str:
-        """Route to the appropriate backend."""
-        if self.backend == "ollama":
-            return self._chat_ollama(user_message)
-        else:
-            return self._chat_claude(user_message)
 
     def close(self):
         self.api.close()

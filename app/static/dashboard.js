@@ -84,14 +84,17 @@ async function showDashboardContent() {
     $('dashboard-content').style.display = '';
 
     // Parallel fetch all dashboard data
-    const [summary, balanceHistory, categories, monthly, merchants, uncatData] = await Promise.all([
+    const [summary, balanceHistory, categories, monthly, merchants, uncatData, findingsData] = await Promise.all([
         fetchJSON('/api/dashboard/summary').catch(() => null),
         fetchJSON('/api/dashboard/balance-history').catch(() => null),
         fetchJSON('/api/dashboard/spending-by-category').catch(() => null),
         fetchJSON('/api/dashboard/monthly-trends').catch(() => null),
         fetchJSON('/api/dashboard/top-merchants').catch(() => null),
         fetchJSON('/api/transactions/uncategorized?limit=1').catch(() => null),
+        fetchJSON('/api/findings').catch(() => null),
     ]);
+
+    if (findingsData) renderFindings(findingsData.findings || []);
 
     if (summary) renderSummaryCards(summary);
     if (balanceHistory) renderBalanceChart(balanceHistory);
@@ -122,6 +125,78 @@ async function refreshUncatBanner() {
     try {
         var data = await fetchJSON('/api/transactions/uncategorized?limit=1');
         renderUncatBanner(data.count);
+    } catch (e) { /* ignore */ }
+}
+
+// ── JAR's Findings (HSM) ────────────────────────────────────────
+
+function renderFindings(findings) {
+    var section = $('findings-section');
+    var list = $('findings-list');
+    var countBadge = $('findings-count');
+
+    if (!findings || findings.length === 0) {
+        section.style.display = 'none';
+        return;
+    }
+
+    section.style.display = '';
+    countBadge.textContent = findings.length + ' finding' + (findings.length !== 1 ? 's' : '');
+
+    list.innerHTML = findings.map(function(f) {
+        var severityClass = 'finding-' + (f.severity || 'warning');
+        var icon = f.severity === 'critical' ? '!!' : f.severity === 'info' ? 'i' : '!';
+        var impactHtml = '';
+        if (f.amount_impact != null && f.amount_impact > 0) {
+            impactHtml = '<span class="finding-impact">' + fmt(f.amount_impact) + '/yr</span>';
+        }
+
+        return '<div class="finding-card ' + severityClass + '">' +
+            '<div class="finding-icon">' + esc(icon) + '</div>' +
+            '<div class="finding-body">' +
+                '<div class="finding-title">' + esc(f.title) + impactHtml + '</div>' +
+                '<div class="finding-desc">' + esc(f.description) + '</div>' +
+                '<div class="finding-meta">' +
+                    '<span class="finding-hsm-id">' + esc(f.hsm_id) + '</span>' +
+                    (f.merchant ? ' <span class="finding-merchant">' + esc(f.merchant) + '</span>' : '') +
+                '</div>' +
+            '</div>' +
+            '<button class="finding-dismiss" onclick="dismissFinding(\'' + esc(f.finding_id) + '\', this)" title="Dismiss">&times;</button>' +
+        '</div>';
+    }).join('');
+}
+
+async function dismissFinding(findingId, btn) {
+    try {
+        await fetchJSON('/api/findings/' + encodeURIComponent(findingId) + '/dismiss', {
+            method: 'POST',
+        });
+        var card = btn.closest('.finding-card');
+        card.style.transition = 'opacity 0.3s, max-height 0.3s';
+        card.style.opacity = '0';
+        card.style.maxHeight = '0';
+        card.style.overflow = 'hidden';
+        card.style.marginBottom = '0';
+        card.style.padding = '0';
+        setTimeout(function() {
+            card.remove();
+            // Hide section if no findings left
+            var remaining = document.querySelectorAll('.finding-card');
+            if (remaining.length === 0) {
+                $('findings-section').style.display = 'none';
+            } else {
+                $('findings-count').textContent = remaining.length + ' finding' + (remaining.length !== 1 ? 's' : '');
+            }
+        }, 300);
+    } catch (e) {
+        showToast('Error dismissing finding');
+    }
+}
+
+async function refreshFindings() {
+    try {
+        var data = await fetchJSON('/api/findings');
+        renderFindings(data.findings || []);
     } catch (e) { /* ignore */ }
 }
 

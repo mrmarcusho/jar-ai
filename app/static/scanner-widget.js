@@ -259,19 +259,51 @@ function initScanner(containerId, options) {
         el('step-processing').style.display = '';
 
         var progress = el('process-progress');
-        progress.innerHTML = selected.map(function(p, i) {
-            var name = p.substring(p.lastIndexOf('/') + 1);
-            return step('file-' + i, 'running', 'Processing ' + name + '...');
-        }).join('');
+        progress.innerHTML =
+            '<div class="extraction-logs" id="' + prefix + 'extraction-logs"></div>';
+
+        var logs = el('extraction-logs');
 
         try {
-            var data = await fetchJSON('/api/scan/process', {
+            var response = await fetch('/api/scan/process', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ paths: selected }),
             });
 
-            showResults(data.results || []);
+            var reader = response.body.getReader();
+            var decoder = new TextDecoder();
+            var buffer = '';
+
+            while (true) {
+                var chunk = await reader.read();
+                if (chunk.done) break;
+
+                buffer += decoder.decode(chunk.value, { stream: true });
+                var lines = buffer.split('\n');
+                buffer = lines.pop();
+
+                for (var k = 0; k < lines.length; k++) {
+                    var line = lines[k];
+                    if (line.indexOf('data: ') !== 0) continue;
+                    var msg = JSON.parse(line.substring(6));
+
+                    if (msg.type === 'file_start') {
+                        var header = document.createElement('div');
+                        header.className = 'log-header';
+                        header.textContent = 'Processing ' + msg.file + ' (' + (msg.index + 1) + '/' + msg.total + ')';
+                        logs.appendChild(header);
+                    } else if (msg.type === 'log') {
+                        var entry = document.createElement('div');
+                        entry.className = 'log-line';
+                        entry.textContent = '[' + msg.time.toFixed(2) + 's]  ' + msg.step + ' \u2014 ' + msg.details;
+                        logs.appendChild(entry);
+                    } else if (msg.type === 'done') {
+                        showResults(msg.results || []);
+                    }
+                    logs.scrollTop = logs.scrollHeight;
+                }
+            }
         } catch (e) {
             progress.innerHTML += step('error', 'error', 'Error: ' + e.message);
         }

@@ -18,18 +18,17 @@ QUESTIONS = [
     "What was my biggest expense?",
     "How much did I deposit in total?",
     "Did my mortgage payment change between January and December?",
+    # New: exercise get_balance_history, get_top_merchants, get_monthly_trends
+    "How has my balance changed over time?",
+    "Where do I spend the most money?",
+    "Show me my monthly income vs spending",
 ]
 
 
 def main():
-    backend = "claude" if "--claude" in sys.argv else "ollama"
-    api_key = None
-    if backend == "claude":
-        import os
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-    jar = JarChat(str(DB_PATH), backend=backend, api_key=api_key)
+    jar = JarChat(str(DB_PATH))
     jar.debug = True
-    print(f"Backend: {backend} ({jar.model})\n")
+    print(f"Model: {jar.model}\n")
 
     for i, q in enumerate(QUESTIONS, 1):
         print("=" * 70)
