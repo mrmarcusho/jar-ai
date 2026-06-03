@@ -100,3 +100,13 @@ CREATE TABLE IF NOT EXISTS user_category_overrides (
     created_at      TEXT DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS idx_overrides_txn ON user_category_overrides(transaction_id);
+
+-- Household profile — user identity for Pass 1 PII redaction
+-- Loaded once per extraction session; never sent to the cloud.
+CREATE TABLE IF NOT EXISTS household_profile (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    field_type  TEXT NOT NULL,   -- 'holder_first' | 'holder_last' | 'holder_alias'
+                                 -- | 'partner_first' | 'partner_last' | 'street' | 'city'
+    value       TEXT NOT NULL,
+    created_at  TEXT DEFAULT (datetime('now'))
+);

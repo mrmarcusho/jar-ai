@@ -86,10 +86,9 @@
                     </div>
                     <div class="chat-toolbar-right">
                         <select id="model-select">
-                            <option value="ollama:qwen3:8b">Qwen 3 — 8B (Recommended)</option>
+                            <option value="gemma4:e4b">Gemma 4 — E4B (local)</option>
+                            <option value="gemma4:e2b">Gemma 4 — E2B (local)</option>
                             <option value="claude">Claude Sonnet (API)</option>
-                            <option value="ollama:qwen2.5:7b">Qwen 2.5 — 7B</option>
-                            <option value="ollama:qwen2.5:3b">Qwen 2.5 — 3B</option>
                         </select>
                         <button id="chat-reset">Reset</button>
                     </div>
@@ -106,6 +105,81 @@
             </div>
         </div>
     </main>
+
+    <!-- ── Privacy Profile Modal ─────────────────────────────── -->
+    <div id="profile-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:#1a1a2e;border:1px solid #333;border-radius:12px;padding:32px;max-width:480px;width:90%;color:#e0e0e0;">
+            <h2 style="margin:0 0 8px;font-size:1.2rem;">Privacy Setup</h2>
+            <p style="margin:0 0 20px;font-size:.85rem;color:#aaa;">
+                Your name and address are redacted from documents before they are sent to the cloud.
+                Only you see the real values — locally stored, never uploaded.
+            </p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                <div>
+                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">First name *</label>
+                    <input id="prof-first" type="text" placeholder="Marcus" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+                </div>
+                <div>
+                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Last name *</label>
+                    <input id="prof-last" type="text" placeholder="Ho" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+                </div>
+                <div>
+                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Partner first name</label>
+                    <input id="prof-partner-first" type="text" placeholder="Optional" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+                </div>
+                <div>
+                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Partner last name</label>
+                    <input id="prof-partner-last" type="text" placeholder="Optional" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+                </div>
+            </div>
+            <div style="margin-bottom:12px;">
+                <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Street address</label>
+                <input id="prof-street" type="text" placeholder="123 Main St" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+            </div>
+            <div style="margin-bottom:20px;">
+                <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">City</label>
+                <input id="prof-city" type="text" placeholder="Boston" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;">
+                <button id="prof-skip" style="background:transparent;border:1px solid #555;border-radius:6px;padding:8px 18px;color:#aaa;cursor:pointer;font-size:.9rem;">Skip for now</button>
+                <button id="prof-save" style="background:#6c63ff;border:none;border-radius:6px;padding:8px 18px;color:#fff;cursor:pointer;font-size:.9rem;font-weight:600;">Save Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Profile modal logic
+    (async () => {
+        try {
+            const st = await fetch('/api/profile/status').then(r => r.json());
+            if (!st.configured) {
+                const modal = document.getElementById('profile-modal');
+                modal.style.display = 'flex';
+            }
+        } catch (_) {}
+
+        document.getElementById('prof-save').addEventListener('click', async () => {
+            const body = {
+                first_name: document.getElementById('prof-first').value.trim(),
+                last_name: document.getElementById('prof-last').value.trim(),
+                partner_first: document.getElementById('prof-partner-first').value.trim(),
+                partner_last: document.getElementById('prof-partner-last').value.trim(),
+                street: document.getElementById('prof-street').value.trim(),
+                city: document.getElementById('prof-city').value.trim(),
+            };
+            if (!body.first_name && !body.last_name) {
+                alert('Please enter at least a first or last name.');
+                return;
+            }
+            await fetch('/api/profile', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+            document.getElementById('profile-modal').style.display = 'none';
+        });
+
+        document.getElementById('prof-skip').addEventListener('click', () => {
+            document.getElementById('profile-modal').style.display = 'none';
+        });
+    })();
+    </script>
 
     <script src="/static/app.js"></script>
 </body>

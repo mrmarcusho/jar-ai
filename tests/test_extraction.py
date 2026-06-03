@@ -184,8 +184,9 @@ def test_categorize_transactions(test_db):
 # extract_statement (full flow with mocked API)
 # ---------------------------------------------------------------------------
 
+@patch("core.extraction_engine.extract._ocr_pdf", return_value="FAKE STATEMENT TEXT\nACCOUNT 000123456789\nBALANCE 950.00")
 @patch("core.extraction_engine.extract.anthropic")
-def test_extract_statement_success(mock_anthropic_mod, test_db, test_pdf):
+def test_extract_statement_success(mock_anthropic_mod, mock_ocr, test_db, test_pdf):
     """Full extraction flow with mocked Claude API."""
     mock_client = MagicMock()
     mock_anthropic_mod.Anthropic.return_value = mock_client
@@ -207,8 +208,9 @@ def test_extract_statement_success(mock_anthropic_mod, test_db, test_pdf):
     conn.close()
 
 
+@patch("core.extraction_engine.extract._ocr_pdf", return_value="FAKE STATEMENT TEXT\nACCOUNT 000123456789\nBALANCE 950.00")
 @patch("core.extraction_engine.extract.anthropic")
-def test_extract_statement_duplicate(mock_anthropic_mod, test_db, test_pdf):
+def test_extract_statement_duplicate(mock_anthropic_mod, mock_ocr, test_db, test_pdf):
     """Duplicate import should return 'skipped' without calling API."""
     mock_client = MagicMock()
     mock_anthropic_mod.Anthropic.return_value = mock_client
@@ -239,8 +241,9 @@ def test_extract_statement_pdf_not_found(test_db, tmp_path):
     assert "not found" in result.error
 
 
+@patch("core.extraction_engine.extract._ocr_pdf", return_value="FAKE STATEMENT TEXT\nACCOUNT 000123456789\nBALANCE 950.00")
 @patch("core.extraction_engine.extract.anthropic")
-def test_extract_statement_malformed_sql_retries(mock_anthropic_mod, test_db, test_pdf):
+def test_extract_statement_malformed_sql_retries(mock_anthropic_mod, mock_ocr, test_db, test_pdf):
     """When first attempt returns garbage, should retry and succeed."""
     mock_client = MagicMock()
     mock_anthropic_mod.Anthropic.return_value = mock_client

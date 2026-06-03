@@ -31,6 +31,8 @@ from core.extraction_engine.sql_validator import (
     to_parameterized,
     validate_sql,
 )
+from core.privacy.profile import HouseholdProfile
+from core.privacy.redactor import RedactionEngine
 
 DB_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "jar.db"
 SCHEMA_PATH = Path(__file__).resolve().parent.parent / "database" / "schema.sql"
@@ -104,6 +106,35 @@ def extract_text_with_pymupdf(pdf_path: Path) -> tuple[str, bool]:
     return full_text, is_scanned
 
 
+def _ocr_pdf(pdf_path: Path) -> str | None:
+    """Run Tesseract OCR locally on a scanned PDF. Returns extracted text or None.
+
+    Requires Tesseract to be installed (brew install tesseract on macOS).
+    Used as a privacy-safe alternative to sending raw PDF bytes to the cloud.
+    """
+    try:
+        import pytesseract
+        from PIL import Image
+    except ImportError:
+        logger.warning("pytesseract/Pillow not installed — cannot OCR scanned PDF")
+        return None
+
+    try:
+        doc = fitz.open(str(pdf_path))
+        pages = []
+        for page in doc:
+            img = page.get_pixmap(dpi=300)
+            mode = "RGBA" if img.alpha else "RGB"
+            pil_image = Image.frombytes(mode, [img.width, img.height], img.samples)
+            pages.append(pytesseract.image_to_string(pil_image))
+        doc.close()
+        full_text = "\n\n--- PAGE BREAK ---\n\n".join(pages)
+        return full_text if len(full_text.strip()) > 100 else None
+    except Exception as exc:
+        logger.warning("OCR failed for %s: %s", pdf_path.name, exc)
+        return None
+
+
 def extract_statement(
     pdf_path: Path,
     db_path: Path = None,
@@ -166,20 +197,32 @@ def extract_statement(
             result.total_time = time.time() - start
             return result
 
-        # 4. Extract text from PDF with PyMuPDF
+        # 4. Extract text from PDF with PyMuPDF (or local OCR for scanned PDFs)
         t0 = time.time()
         pdf_text, is_scanned = extract_text_with_pymupdf(pdf_path)
         _report("PyMuPDF extraction", time.time() - t0,
-                f"{'scanned fallback' if is_scanned else f'{len(pdf_text)} chars'}")
+                f"{'scanned — attempting local OCR' if is_scanned else f'{len(pdf_text)} chars'}")
 
-        # Prepare raw PDF fallback data (only used if scanned)
-        pdf_b64 = None
         if is_scanned:
-            logger.warning("Scanned PDF detected, falling back to raw PDF upload: %s", pdf_path)
             t0 = time.time()
-            pdf_bytes = pdf_path.read_bytes()
-            pdf_b64 = base64.standard_b64encode(pdf_bytes).decode("ascii")
-            _report("PDF read + encode (fallback)", time.time() - t0, f"{len(pdf_bytes):,} bytes")
+            ocr_text = _ocr_pdf(pdf_path)
+            if not ocr_text:
+                result.error = (
+                    "Scanned PDF: local OCR could not extract text. "
+                    "Install Tesseract (brew install tesseract) and retry."
+                )
+                result.total_time = time.time() - start
+                return result
+            pdf_text = ocr_text
+            _report("Local OCR", time.time() - t0, f"{len(pdf_text)} chars (scanned)")
+
+        # 4a. Redact PII from PDF text before sending to cloud
+        t0 = time.time()
+        profile = HouseholdProfile.load(conn)
+        engine = RedactionEngine(profile)
+        redacted_text = engine.redact(pdf_text)
+        _report("PII redaction", time.time() - t0,
+                f"{'profile set' if profile.is_configured() else 'no profile — NER only'}")
 
         # 5. Build prompt
         t0 = time.time()
@@ -187,15 +230,11 @@ def extract_statement(
         system_prompt = build_extraction_prompt(schema_sql, source_file)
         _report("Prompt built", time.time() - t0, "ready")
 
-        # 6. Call Claude for extraction
+        # 6. Call Claude for extraction — cloud only ever sees redacted text
         t0 = time.time()
         client = anthropic.Anthropic(api_key=key)
-        if is_scanned:
-            raw_sql = _call_claude_raw_pdf(client, model, system_prompt, pdf_b64)
-            _report("Claude API call", time.time() - t0, f"extraction via raw PDF fallback (model={model})")
-        else:
-            raw_sql = _call_claude_text(client, model, system_prompt, pdf_text)
-            _report("Claude API call", time.time() - t0, f"extraction via pre-extracted text (model={model})")
+        raw_sql = _call_claude_text(client, model, system_prompt, redacted_text)
+        _report("Claude API call", time.time() - t0, f"extraction (model={model})")
 
         # 7. Validate SQL
         t0 = time.time()
@@ -211,12 +250,9 @@ def extract_statement(
                 f"{len(validation.valid_statements)} valid statement(s). Using partial result."
             )
         elif not validation.is_fully_valid and not validation.valid_statements:
-            # Total failure — retry
+            # Total failure — retry (send same redacted_text so tokens stay consistent)
             t0 = time.time()
-            if is_scanned:
-                retry_sql = _retry_claude_raw_pdf(client, model, system_prompt, pdf_b64, raw_sql, validation)
-            else:
-                retry_sql = _retry_claude_text(client, model, system_prompt, pdf_text, raw_sql, validation)
+            retry_sql = _retry_claude_text(client, model, system_prompt, redacted_text, raw_sql, validation)
             validation = validate_sql(retry_sql, schema_meta)
             _report("Claude API retry", time.time() - t0, "re-extraction after validation failure")
             if not validation.valid_statements:
@@ -226,6 +262,13 @@ def extract_statement(
                 result.total_time = time.time() - start
                 return result
             result.warnings.append("Succeeded on retry after initial failure.")
+            raw_sql = retry_sql
+
+        # Detokenize: swap redaction tokens back to real values before local execution.
+        # Tokens are string literals in SQL VALUES; detokenizing doesn't affect syntax
+        # so re-validation always succeeds for statements that were already valid.
+        raw_sql = engine.detokenize(raw_sql)
+        validation = validate_sql(raw_sql, schema_meta)
 
         if not validation.valid_statements:
             result.error = f"No valid SQL statements extracted. Errors: {validation.errors[:3]}"
@@ -259,7 +302,7 @@ def extract_statement(
         if stmt_id:
             try:
                 t0 = time.time()
-                findings = _analyze_hsm(conn, stmt_id, client, model)
+                findings = _analyze_hsm(conn, stmt_id, client, model, engine)
                 _report("HSM analysis", time.time() - t0, f"{len(findings)} findings")
             except Exception as e:
                 result.warnings.append(f"HSM analysis failed: {e}")
@@ -786,6 +829,7 @@ def _analyze_hsm(
     statement_id: str,
     client: "anthropic.Anthropic",
     model: str,
+    engine: "RedactionEngine",
 ) -> list[dict]:
     """Run Phase I HSM analysis on extracted data.
 
@@ -798,8 +842,9 @@ def _analyze_hsm(
 
     _ensure_findings_table(conn)
 
-    # Build context from DB
+    # Build context from DB and redact before sending to cloud
     ctx = _query_hsm_context(conn, statement_id)
+    ctx = engine.redact_dict(ctx)
 
     system_prompt = build_hsm_analysis_prompt()
     data_context = build_data_context(
@@ -843,6 +888,9 @@ def _analyze_hsm(
     findings_list = _json.loads(raw_text)
     if not isinstance(findings_list, list):
         return []
+
+    # Restore real values in findings (Claude saw redacted context; undo tokens)
+    findings_list = engine.detokenize_dict(findings_list)
 
     # Store findings in DB
     stored = []

@@ -79,7 +79,31 @@ echo "Installing dependencies..."
 pip install --upgrade pip --quiet
 pip install -r requirements.txt --quiet
 
+# spaCy NER model for PII redaction (~12 MB)
+echo "Downloading spaCy language model..."
+python -m spacy download en_core_web_sm --quiet
+
 echo "Dependencies installed."
+
+# ── Tesseract OCR (for scanned PDFs) ─────────────────────────────
+if [ "$PLATFORM" = "macos" ]; then
+    if ! command -v tesseract &> /dev/null; then
+        echo ""
+        echo "Installing Tesseract OCR (required for scanned PDF support)..."
+        if command -v brew &> /dev/null; then
+            brew install tesseract
+        else
+            echo "Homebrew not found. Install Tesseract manually: https://github.com/tesseract-ocr/tesseract"
+        fi
+    fi
+elif [ "$PLATFORM" = "linux" ]; then
+    if ! command -v tesseract &> /dev/null; then
+        echo "Installing Tesseract OCR..."
+        sudo apt-get install -y tesseract-ocr 2>/dev/null || \
+        sudo dnf install -y tesseract 2>/dev/null || \
+        echo "Could not auto-install Tesseract. Install manually: sudo apt install tesseract-ocr"
+    fi
+fi
 
 # ── Initialize database ─────────────────────────────────────────
 echo ""

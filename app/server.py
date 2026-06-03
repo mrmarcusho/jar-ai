@@ -27,6 +27,7 @@ logging.basicConfig(
     format="%(asctime)s  %(name)s  %(message)s",
     datefmt="%H:%M:%S",
 )
+import requests
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
@@ -221,6 +222,63 @@ async def import_pdf(file: UploadFile = File(...)):
         yield f"data: {json.dumps({'type': 'done', 'status': 'ok', 'steps': steps, 'summary': summary, 'findings': findings})}\n\n"
 
     return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+# ---------------------------------------------------------------------------
+# API: Household Profile (PII redaction seed)
+# ---------------------------------------------------------------------------
+
+@app.get("/api/profile/status")
+async def profile_status():
+    """Return whether the household profile has been configured."""
+    from core.privacy.profile import HouseholdProfile
+    conn = get_db()
+    profile = HouseholdProfile.load(conn)
+    conn.close()
+    return {"configured": profile.is_configured()}
+
+
+@app.get("/api/profile")
+async def get_profile():
+    """Return the current household profile."""
+    from core.privacy.profile import HouseholdProfile
+    conn = get_db()
+    profile = HouseholdProfile.load(conn)
+    conn.close()
+    return profile.to_dict()
+
+
+@app.post("/api/profile")
+async def save_profile(body: dict):
+    """Save household profile. Replaces all existing fields."""
+    from core.privacy.profile import HouseholdProfile
+    aliases_raw = body.get("aliases", [])
+    if isinstance(aliases_raw, str):
+        aliases_raw = [a.strip() for a in aliases_raw.split(",") if a.strip()]
+    profile = HouseholdProfile(
+        first_name=body.get("first_name", "").strip(),
+        last_name=body.get("last_name", "").strip(),
+        aliases=aliases_raw,
+        partner_first=body.get("partner_first", "").strip(),
+        partner_last=body.get("partner_last", "").strip(),
+        street=body.get("street", "").strip(),
+        city=body.get("city", "").strip(),
+    )
+    conn = get_db()
+    try:
+        # Ensure table exists (safe on existing DBs)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS household_profile (
+                id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                field_type  TEXT NOT NULL,
+                value       TEXT NOT NULL,
+                created_at  TEXT DEFAULT (datetime('now'))
+            )
+        """)
+        profile.save(conn)
+    finally:
+        conn.close()
+    return {"status": "ok", "configured": profile.is_configured()}
 
 
 # ---------------------------------------------------------------------------
@@ -523,30 +581,90 @@ async def get_summary():
 # API: Chat
 # ---------------------------------------------------------------------------
 
-# Keep a single chat session alive across requests
+# Model registry: id → display name, engine type
+CHAT_MODELS = {
+    "gemma4:e4b": {"name": "Gemma 4 — E4B (local)", "type": "ollama"},
+    "gemma4:e2b": {"name": "Gemma 4 — E2B (local)", "type": "ollama"},
+    "claude":     {"name": "Claude Sonnet (API)",     "type": "claude"},
+}
+
 _chat_engine = None
+_current_model_id = "gemma4:e2b"
+
+
+def _ollama_available(model_id: str) -> bool:
+    """Check if an Ollama model is pulled and the server is running."""
+    try:
+        resp = requests.get("http://localhost:11434/api/tags", timeout=3)
+        names = [m["name"] for m in resp.json().get("models", [])]
+        # Ollama tags may include `:latest` suffix
+        return any(model_id in n for n in names)
+    except Exception:
+        return False
+
+
+def _build_chat_engine(model_id: str):
+    """Instantiate the right chat engine for a model id."""
+    info = CHAT_MODELS[model_id]
+
+    if info["type"] == "claude":
+        from app.chat.chat_engine import JarChat
+        engine = JarChat(str(DB_PATH))
+    else:
+        from app.chat.local_chat_engine import JarLocalChat
+        engine = JarLocalChat(str(DB_PATH), model=model_id)
+
+    engine.debug = True
+    print(f"  Chat engine: {info['name']} ({model_id})")
+    return engine
 
 
 def _get_chat():
     global _chat_engine
-    from app.chat.chat_engine import JarChat
-
     if _chat_engine is None:
-        _chat_engine = JarChat(str(DB_PATH))
-        _chat_engine.debug = True
-        print(f"  Chat engine: Claude ({_chat_engine.model})")
-
+        _chat_engine = _build_chat_engine(_current_model_id)
     return _chat_engine
 
 
 @app.get("/api/chat/status")
 async def chat_status():
-    """Return the current model."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    return {
-        "current": "claude",
-        "models": [{"id": "claude", "name": "Claude Sonnet (API)", "available": bool(api_key)}],
-    }
+    """Return current model and full model list with availability."""
+    api_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
+    models = []
+    for mid, info in CHAT_MODELS.items():
+        if info["type"] == "claude":
+            available = api_key
+        else:
+            available = _ollama_available(mid)
+        models.append({"id": mid, "name": info["name"], "available": available})
+
+    return {"current": _current_model_id, "models": models}
+
+
+@app.post("/api/chat/backend")
+async def chat_backend(body: dict):
+    """Switch the active chat model."""
+    global _chat_engine, _current_model_id
+
+    model_id = body.get("model", "")
+    if model_id not in CHAT_MODELS:
+        return JSONResponse({"error": f"Unknown model: {model_id}"}, status_code=400)
+
+    info = CHAT_MODELS[model_id]
+
+    # Check availability
+    if info["type"] == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
+        return JSONResponse({"error": "ANTHROPIC_API_KEY not set"}, status_code=400)
+    if info["type"] == "ollama" and not _ollama_available(model_id):
+        return JSONResponse({"error": f"{model_id} not available — is Ollama running with the model pulled?"}, status_code=400)
+
+    # Tear down old engine, switch
+    if _chat_engine:
+        _chat_engine.close()
+        _chat_engine = None
+
+    _current_model_id = model_id
+    return {"status": "ok", "model": model_id, "name": info["name"]}
 
 
 @app.post("/api/chat")
@@ -563,7 +681,14 @@ async def chat(body: dict):
         # Capture debug info from conversation history
         debug_info = []
         for msg in engine.conversation_history:
-            if isinstance(msg, dict) and msg.get("role") == "assistant":
+            if isinstance(msg, dict):
+                # Ollama format: tool_calls in message dict
+                for tc in msg.get("tool_calls", []):
+                    debug_info.append({
+                        "function": tc["function"]["name"],
+                        "params": tc["function"].get("arguments", {}),
+                    })
+                # Anthropic format: content is a list of blocks
                 content = msg.get("content", [])
                 if isinstance(content, list):
                     for block in content:
@@ -573,7 +698,7 @@ async def chat(body: dict):
                                 "params": block.input,
                             })
 
-        return {"response": response, "debug": debug_info, "model": "claude"}
+        return {"response": response, "debug": debug_info, "model": _current_model_id}
 
     except Exception as e:
         traceback.print_exc()
