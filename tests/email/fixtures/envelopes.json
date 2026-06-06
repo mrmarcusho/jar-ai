@@ -1,0 +1,37 @@
+[
+  {
+    "_imap_id": "101",
+    "from": "Chase Alerts <alerts@chase.com>",
+    "subject": "Transaction alert: card ending 1234",
+    "date": "Wed, 14 Jan 2026 09:15:00 -0500",
+    "message_id": "<chase-101@chase.com>"
+  },
+  {
+    "_imap_id": "102",
+    "from": "Netflix <info@netflix.com>",
+    "subject": "Your receipt from Netflix",
+    "date": "Thu, 15 Jan 2026 02:00:00 -0500",
+    "message_id": "<netflix-102@netflix.com>"
+  },
+  {
+    "_imap_id": "103",
+    "from": "City Health Clinic <appointments@cityhealth.example>",
+    "subject": "Your appointment is confirmed",
+    "date": "Fri, 16 Jan 2026 11:30:00 -0500",
+    "message_id": "<appt-103@cityhealth.example>"
+  },
+  {
+    "_imap_id": "104",
+    "from": "IRS <noreply@irs.gov>",
+    "subject": "Important tax notice CP2000",
+    "date": "Mon, 19 Jan 2026 08:00:00 -0500",
+    "message_id": "<irs-104@irs.gov>"
+  },
+  {
+    "_imap_id": "105",
+    "from": "Marketing <deals@shopnow.example>",
+    "subject": "50% off flash sale - don't miss out!",
+    "date": "Tue, 20 Jan 2026 06:00:00 -0500",
+    "message_id": "<promo-105@shopnow.example>"
+  }
+]

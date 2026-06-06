@@ -16,3 +16,8 @@ spacy>=3.7.0,<4
 # Scanned PDF OCR
 pytesseract>=0.3.10
 Pillow>=10.0.0
+
+# Google Drive integration
+google-auth>=2.0.0,<3
+google-auth-oauthlib>=1.0.0,<2
+google-api-python-client>=2.100.0,<3

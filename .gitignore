@@ -7,6 +7,21 @@ data/docling_output.txt
 # Database
 data/jar.db*
 
+# Google Drive OAuth token
+data/google_token.json
+
+# IMAP account credentials
+data/imap_account.json
+
+# Redacted text previews (derived from statements)
+data/redacted_preview/
+
+# Secrets
+.env
+
+# macOS junk
+.DS_Store
+
 # Python
 __pycache__/
 *.pyc

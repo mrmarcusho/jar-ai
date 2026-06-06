@@ -73,8 +73,8 @@ NEGATIVE_INDICATORS = {
 }
 
 
-def score_filename(filepath: Path) -> float:
-    """Score a PDF filename for likelihood of being a bank statement.
+def score_stem(stem: str) -> float:
+    """Score a filename stem (no extension) for bank-statement likelihood.
 
     Returns:
         Score from 0.0 to 1.0.
@@ -82,7 +82,7 @@ def score_filename(filepath: Path) -> float:
         >= 0.5: Likely a bank statement
         >= 0.7: Almost certainly a bank statement
     """
-    filename = filepath.stem.lower().replace("_", " ").replace("-", " ")
+    filename = stem.lower().replace("_", " ").replace("-", " ")
     score = 0.0
 
     for neg in NEGATIVE_INDICATORS:
@@ -98,36 +98,60 @@ def score_filename(filepath: Path) -> float:
             score += weight
 
     # Run date patterns on original stem (lowered) to preserve - and _ separators
-    original_stem = filepath.stem.lower()
+    original_stem = stem.lower()
     for pattern in DATE_PATTERNS:
         if re.search(pattern, original_stem):
             score += 0.15
             break
 
-    if len(filepath.stem) < 30:
+    if len(stem) < 30:
         score += 0.05
 
     return min(score, 1.0)
 
 
+def score_filename(filepath: Path) -> float:
+    """Score a PDF file path for bank-statement likelihood (see score_stem)."""
+    return score_stem(filepath.stem)
+
+
+def detect_banks(stem: str) -> list[str]:
+    """Return bank names recognized in a filename stem."""
+    filename_lower = stem.lower().replace("_", " ").replace("-", " ")
+    return [bank for bank in BANK_NAMES if bank in filename_lower]
+
+
+def classify_name(name: str, size: int, file_id: str) -> dict:
+    """Classify a remote (e.g. Google Drive) PDF by filename only.
+
+    Args:
+        name: Full filename including extension.
+        size: File size in bytes.
+        file_id: Remote identifier (e.g. Drive file id).
+
+    Returns:
+        Dict with file_id, filename, score, detected_banks, file_size.
+    """
+    stem = name[:-4] if name.lower().endswith(".pdf") else name
+    return {
+        "file_id": file_id,
+        "filename": name,
+        "score": score_stem(stem),
+        "detected_banks": detect_banks(stem),
+        "file_size": size,
+    }
+
+
 def classify_pdf(filepath: Path) -> dict:
-    """Classify a single PDF file.
+    """Classify a single local PDF file.
 
     Returns:
         Dict with filepath, filename, score, detected_banks, file_size.
     """
-    score = score_filename(filepath)
-    filename_lower = filepath.stem.lower().replace("_", " ").replace("-", " ")
-
-    detected_banks = [
-        bank for bank in BANK_NAMES
-        if bank in filename_lower
-    ]
-
     return {
         "filepath": filepath,
         "filename": filepath.name,
-        "score": score,
-        "detected_banks": detected_banks,
+        "score": score_stem(filepath.stem),
+        "detected_banks": detect_banks(filepath.stem),
         "file_size": filepath.stat().st_size,
     }

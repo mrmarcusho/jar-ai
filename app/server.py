@@ -60,6 +60,18 @@ def get_db() -> sqlite3.Connection:
     return conn
 
 
+@app.on_event("startup")
+def _apply_schema() -> None:
+    """Ensure the DB schema (incl. email tables + transactions migration) exists."""
+    from core.database.migrate import ensure_schema
+
+    conn = sqlite3.connect(str(DB_PATH))
+    try:
+        ensure_schema(conn)
+    finally:
+        conn.close()
+
+
 # ---------------------------------------------------------------------------
 # Pages
 # ---------------------------------------------------------------------------
@@ -848,6 +860,381 @@ async def scan_process(body: dict):
         yield f"data: {json.dumps({'type': 'done', 'results': results})}\n\n"
 
     return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+# ---------------------------------------------------------------------------
+# API: Google Drive
+# ---------------------------------------------------------------------------
+
+# OAuth state for the in-flight authorization (single-user local app).
+_drive_oauth_state: dict = {}
+
+
+def _drive_redirect_uri() -> str:
+    port = int(os.environ.get("JAR_PORT", 5050))
+    return f"http://127.0.0.1:{port}/api/drive/callback"
+
+
+@app.get("/api/drive/status")
+async def drive_status():
+    """Whether Google Drive is connected, plus the linked account email."""
+    from app.scanner import drive_client
+
+    creds = drive_client.load_credentials()
+    if creds is None:
+        return {"connected": False}
+    return {"connected": True, "email": drive_client.get_account_email(creds)}
+
+
+@app.get("/api/drive/auth")
+async def drive_auth():
+    """Start the OAuth flow by redirecting to Google's consent screen."""
+    from app.scanner import drive_client
+
+    try:
+        flow = drive_client.build_flow(_drive_redirect_uri())
+    except drive_client.DriveConfigError as e:
+        return JSONResponse({"error": str(e)}, status_code=400)
+
+    auth_url, state = flow.authorization_url(
+        access_type="offline",
+        include_granted_scopes="true",
+        prompt="consent",
+    )
+    # Persist state + PKCE verifier so the callback (a fresh Flow) can complete
+    # the token exchange.
+    _drive_oauth_state["state"] = state
+    _drive_oauth_state["code_verifier"] = flow.code_verifier
+    return RedirectResponse(auth_url)
+
+
+@app.get("/api/drive/callback")
+async def drive_callback(code: str = Query(None), state: str = Query(None), error: str = Query(None)):
+    """OAuth redirect target: exchange the code for tokens and persist them."""
+    from app.scanner import drive_client
+
+    if error or not code:
+        logging.error("Drive OAuth callback error param: %s", error)
+        return RedirectResponse("/scan?drive=error")
+
+    try:
+        # Google may return granted scopes in a different order/superset; don't
+        # treat that as a fatal mismatch.
+        os.environ.setdefault("OAUTHLIB_RELAX_TOKEN_SCOPE", "1")
+        flow = drive_client.build_flow(_drive_redirect_uri(), state=state or _drive_oauth_state.get("state"))
+        flow.code_verifier = _drive_oauth_state.get("code_verifier")
+        flow.fetch_token(code=code)
+        drive_client.save_credentials(flow.credentials)
+    except Exception:
+        logging.exception("Drive OAuth token exchange failed")
+        return RedirectResponse("/scan?drive=error")
+    finally:
+        _drive_oauth_state.pop("state", None)
+        _drive_oauth_state.pop("code_verifier", None)
+
+    return RedirectResponse("/scan?drive=connected")
+
+
+@app.post("/api/drive/disconnect")
+async def drive_disconnect():
+    """Forget the stored Google Drive token."""
+    from app.scanner import drive_client
+
+    drive_client.disconnect()
+    return {"connected": False}
+
+
+@app.get("/api/drive/folders")
+async def drive_folders():
+    """List the user's Drive folders for the folder picker."""
+    from app.scanner import drive_client
+
+    creds = drive_client.load_credentials()
+    if creds is None:
+        return JSONResponse({"error": "Not connected"}, status_code=401)
+    return {"folders": drive_client.list_folders(creds)}
+
+
+@app.get("/api/drive/scan")
+async def drive_scan(folder_id: str = Query(None)):
+    """SSE stream of Drive scan progress + final candidates."""
+    from app.scanner import drive_client
+    from app.scanner.filename_classifier import classify_name
+
+    creds = drive_client.load_credentials()
+    if creds is None:
+        return JSONResponse({"error": "Not connected"}, status_code=401)
+
+    q: queue.Queue = queue.Queue()
+
+    def progress_cb(count):
+        q.put({"type": "progress", "pdfs_found": count})
+
+    def run_scan():
+        files = drive_client.list_pdf_files(creds, folder_id=folder_id, progress_cb=progress_cb)
+        candidates = []
+        for f in files:
+            c = classify_name(f["name"], f["size"], f["file_id"])
+            if c["score"] >= 0.3:
+                candidates.append(c)
+        candidates.sort(key=lambda c: (-c["score"], c["filename"]))
+        return candidates
+
+    async def event_stream():
+        loop = asyncio.get_event_loop()
+        task = loop.run_in_executor(None, run_scan)
+
+        while not task.done():
+            try:
+                msg = q.get_nowait()
+                yield f"data: {json.dumps(msg)}\n\n"
+            except queue.Empty:
+                await asyncio.sleep(0.1)
+
+        while not q.empty():
+            msg = q.get_nowait()
+            yield f"data: {json.dumps(msg)}\n\n"
+
+        candidates = task.result()
+        result = [{
+            "file_id": c["file_id"],
+            "filename": c["filename"],
+            "score": c["score"],
+            "detected_banks": c.get("detected_banks", []),
+        } for c in candidates]
+
+        yield f"data: {json.dumps({'type': 'done', 'candidates': result})}\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+@app.post("/api/drive/process")
+async def drive_process(body: dict):
+    """Download selected Drive files, then run them through cloud extraction."""
+    from app.scanner import drive_client
+    from core.extraction_engine.extract import extract_statement
+
+    creds = drive_client.load_credentials()
+    if creds is None:
+        return JSONResponse({"error": "Not connected"}, status_code=401)
+
+    files = body.get("files", [])
+    if not files:
+        return JSONResponse({"error": "No files provided"}, status_code=400)
+
+    progress_queue: queue.Queue = queue.Queue()
+
+    def on_progress(step_name, elapsed, details):
+        progress_queue.put(json.dumps({
+            "type": "log", "step": step_name,
+            "time": round(elapsed, 2), "details": details,
+        }))
+
+    def download_and_extract(file_id, name):
+        dest = STATEMENTS_DIR / name
+        if dest.exists():
+            dest = STATEMENTS_DIR / f"{file_id[:8]}_{name}"
+        drive_client.download_file(creds, file_id, dest)
+        return extract_statement(dest, DB_PATH, progress_callback=on_progress)
+
+    async def event_stream():
+        loop = asyncio.get_event_loop()
+        results = []
+
+        for i, f in enumerate(files):
+            file_id = f.get("file_id")
+            name = f.get("filename") or f"{file_id}.pdf"
+            progress_queue.put(json.dumps({
+                "type": "file_start", "file": name,
+                "index": i, "total": len(files),
+            }))
+
+            task = loop.run_in_executor(
+                None, lambda fid=file_id, nm=name: download_and_extract(fid, nm)
+            )
+
+            while not task.done():
+                try:
+                    msg = progress_queue.get_nowait()
+                    yield f"data: {msg}\n\n"
+                except queue.Empty:
+                    await asyncio.sleep(0.1)
+
+            while not progress_queue.empty():
+                msg = progress_queue.get_nowait()
+                yield f"data: {msg}\n\n"
+
+            try:
+                r = task.result()
+                results.append({
+                    "source": name,
+                    "stem": Path(name).stem,
+                    "status": r.status,
+                    "txn_count": r.txn_count,
+                    "total_time": round(r.total_time, 1),
+                    "error": r.error,
+                })
+            except Exception as e:
+                results.append({
+                    "source": name, "stem": Path(name).stem,
+                    "status": "error", "txn_count": 0,
+                    "total_time": 0, "error": str(e),
+                })
+
+        yield f"data: {json.dumps({'type': 'done', 'results': results})}\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+# ---------------------------------------------------------------------------
+# API: Email ingestion
+# ---------------------------------------------------------------------------
+
+@app.get("/api/email/status")
+async def email_status():
+    """Whether an IMAP account is linked, plus last-sync and email-event counts."""
+    from core.email import imap_client
+
+    account = imap_client.load_account()
+    if account is None:
+        return {"connected": False}
+
+    conn = get_db()
+    try:
+        total_events = conn.execute(
+            "SELECT COUNT(*) FROM transactions WHERE source = 'email'"
+        ).fetchone()[0]
+        total_documents = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
+        row = conn.execute(
+            "SELECT last_sync_at FROM email_sync_state WHERE username = ?",
+            (account["username"],),
+        ).fetchone()
+    finally:
+        conn.close()
+
+    return {
+        "connected": True,
+        "username": account["username"],
+        "last_sync": row[0] if row else None,
+        "total_events": total_events,
+        "total_documents": total_documents,
+    }
+
+
+@app.post("/api/email/connect")
+async def email_connect(body: dict):
+    """Validate IMAP credentials, save them to the gitignored token file."""
+    from core.email import imap_client
+
+    username = (body.get("username") or "").strip()
+    password = body.get("password") or ""
+    host = body.get("host")
+    port = body.get("port")
+    if not username or not password:
+        return JSONResponse({"error": "username and password required"}, status_code=400)
+
+    try:
+        resolved_host, resolved_port = imap_client.resolve_server(username, host, port)
+    except imap_client.IMAPConfigError as e:
+        return JSONResponse({"error": str(e)}, status_code=400)
+
+    try:
+        conn = imap_client.connect(username, password, resolved_host, resolved_port)
+    except Exception as e:
+        return JSONResponse(
+            {"error": f"Could not log in: {e}"}, status_code=401
+        )
+
+    try:
+        typ, data = conn.uid("SEARCH", None, "ALL")
+        email_count = len(data[0].split()) if typ == "OK" and data and data[0] else 0
+    finally:
+        try:
+            conn.logout()
+        except Exception:
+            pass
+
+    imap_client.save_account(username, password, resolved_host, resolved_port)
+    return {"success": True, "email_count": email_count}
+
+
+@app.get("/api/email/scan")
+async def email_scan(days_back: int = Query(None)):
+    """SSE stream of a full mailbox scan: stage progress, then a final summary."""
+    from core.email import imap_client, pipeline
+
+    if imap_client.load_account() is None:
+        return JSONResponse({"error": "Not connected"}, status_code=401)
+
+    q: queue.Queue = queue.Queue()
+
+    def progress_cb(update: dict):
+        q.put({"type": "progress", **update})
+
+    def run():
+        kwargs = {"progress_cb": progress_cb}
+        if days_back:
+            kwargs["days_back"] = days_back
+        return pipeline.run_full_scan(**kwargs)
+
+    async def event_stream():
+        loop = asyncio.get_event_loop()
+        task = loop.run_in_executor(None, run)
+
+        while not task.done():
+            try:
+                yield f"data: {json.dumps(q.get_nowait())}\n\n"
+            except queue.Empty:
+                await asyncio.sleep(0.1)
+
+        while not q.empty():
+            yield f"data: {json.dumps(q.get_nowait())}\n\n"
+
+        try:
+            summary = task.result()
+            yield f"data: {json.dumps({'type': 'done', 'summary': summary})}\n\n"
+        except Exception as e:
+            logging.exception("Email scan failed")
+            yield f"data: {json.dumps({'type': 'error', 'error': str(e)})}\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+@app.post("/api/email/sync")
+async def email_sync():
+    """Incremental sync: scan only messages newer than the last run."""
+    from core.email import imap_client, sync
+
+    if imap_client.load_account() is None:
+        return JSONResponse({"error": "Not connected"}, status_code=401)
+
+    loop = asyncio.get_event_loop()
+    summary = await loop.run_in_executor(None, sync.incremental_sync)
+    return {
+        "new_events": summary.get("new_events", 0),
+        "new_documents": summary.get("new_documents", 0),
+        "summary": summary,
+    }
+
+
+@app.delete("/api/email/disconnect")
+async def email_disconnect():
+    """Forget the stored IMAP account and its sync state (keeps extracted data)."""
+    from core.email import imap_client
+
+    account = imap_client.load_account()
+    imap_client.clear_account()
+    if account is not None:
+        conn = get_db()
+        try:
+            conn.execute(
+                "DELETE FROM email_sync_state WHERE username = ?",
+                (account["username"],),
+            )
+            conn.commit()
+        finally:
+            conn.close()
+    return {"connected": False}
 
 
 # ---------------------------------------------------------------------------

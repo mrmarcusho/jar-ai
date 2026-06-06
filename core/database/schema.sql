@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS statements (
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
-    transaction_id          TEXT PRIMARY KEY,   -- "{statement_id}_{txn.id}"
-    statement_id            TEXT NOT NULL REFERENCES statements(statement_id),
+    transaction_id          TEXT PRIMARY KEY,   -- "{statement_id}_{txn.id}" or "email_{hash}"
+    statement_id            TEXT REFERENCES statements(statement_id),  -- NULL for email-sourced rows
     account_id              TEXT NOT NULL REFERENCES accounts(account_id),
     date                    TEXT NOT NULL,
     description_raw         TEXT,
@@ -38,6 +38,8 @@ CREATE TABLE IF NOT EXISTS transactions (
     category                TEXT,
     subcategory             TEXT,
     recurring               INTEGER,            -- nullable boolean
+    source                  TEXT NOT NULL DEFAULT 'bank_statement',  -- 'bank_statement' | 'email'
+    dedupe_hash             TEXT,               -- cross-sync dedup key (email rows)
     ach_company_name        TEXT,
     ach_description         TEXT,
     ach_individual_name     TEXT,
@@ -54,6 +56,7 @@ CREATE INDEX IF NOT EXISTS idx_transactions_account_id ON transactions(account_i
 CREATE INDEX IF NOT EXISTS idx_transactions_type       ON transactions(type);
 CREATE INDEX IF NOT EXISTS idx_transactions_category   ON transactions(category);
 CREATE INDEX IF NOT EXISTS idx_transactions_amount     ON transactions(amount);
+CREATE INDEX IF NOT EXISTS idx_transactions_dedupe     ON transactions(dedupe_hash);
 CREATE INDEX IF NOT EXISTS idx_statements_account_id   ON statements(account_id);
 
 -- User-created categorization rules (learning loop)
@@ -109,4 +112,35 @@ CREATE TABLE IF NOT EXISTS household_profile (
                                  -- | 'partner_first' | 'partner_last' | 'street' | 'city'
     value       TEXT NOT NULL,
     created_at  TEXT DEFAULT (datetime('now'))
+);
+
+-- Email-sourced prose / non-ledger items: legal, insurance, tax, medical,
+-- housing, employment, government notices, and appointments. Financial line
+-- items from email go into transactions (source='email') instead.
+CREATE TABLE IF NOT EXISTS documents (
+    document_id     TEXT PRIMARY KEY,         -- "email_" + dedupe_hash
+    source          TEXT NOT NULL,            -- 'email'
+    source_id       TEXT,                     -- sha256(Message-ID); never the raw IMAP id
+    category        TEXT,                     -- legal|insurance|tax|medical|housing|
+                                              -- employment|government|appointment|other
+    event_date      TEXT,                     -- ISO 8601
+    sender_domain   TEXT,
+    summary         TEXT NOT NULL,            -- AI-generated one-sentence summary
+    action_required INTEGER NOT NULL DEFAULT 0,
+    deadline        TEXT,
+    amount          REAL,
+    body_redacted   TEXT,                     -- Presidio-cleaned body; local only
+    metadata        TEXT,                     -- JSON overflow (appt time, provider_type, ...)
+    dedupe_hash     TEXT,
+    created_at      TEXT DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_documents_date   ON documents(event_date);
+CREATE INDEX IF NOT EXISTS idx_documents_action ON documents(action_required);
+CREATE INDEX IF NOT EXISTS idx_documents_dedupe ON documents(dedupe_hash);
+
+-- Incremental email sync bookkeeping: where each account's last scan stopped.
+CREATE TABLE IF NOT EXISTS email_sync_state (
+    username        TEXT PRIMARY KEY,
+    last_sync_at    TEXT,
+    last_imap_date  TEXT   -- most recent email date seen (RFC 2822 / IMAP date)
 );

@@ -115,6 +115,25 @@ pytest tests/
 
 Requires `ANTHROPIC_API_KEY` in `.env` for chat and extraction.
 
+## Google Drive scanning (optional)
+
+The scan page (`/scan`) can connect a Google Drive and scan the entire Drive or a
+chosen folder for bank-statement PDFs. Selected files are downloaded to
+`data/statements/` and then run through the same extraction pipeline as local
+files (`app/scanner/drive_client.py`, `/api/drive/*` endpoints).
+
+Setup (one-time):
+1. In Google Cloud Console, create a project and enable the **Google Drive API**.
+2. Create an **OAuth 2.0 Client ID** of type **Web application** with authorized
+   redirect URI `http://127.0.0.1:5050/api/drive/callback` (match `JAR_PORT` if
+   you change the port).
+3. On the OAuth consent screen, keep publishing status **Testing** and add the
+   household's Google accounts as **test users** (the `drive.readonly` scope is
+   restricted; Testing mode avoids Google verification for up to 100 users).
+4. Put `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in `.env`.
+
+The OAuth token is stored at `data/google_token.json` (gitignored).
+
 ## Team
 
 - **Marcus** — product, AI/ML, pipeline dev (CS student at Tufts)
