@@ -6,6 +6,7 @@ data/docling_output.txt
 
 # Database
 data/jar.db*
+data/lancedb/
 
 # Google Drive OAuth token
 data/google_token.json
