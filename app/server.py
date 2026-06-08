@@ -21,7 +21,7 @@ from pathlib import Path
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
-from fastapi import FastAPI, File, Query, UploadFile
+from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 
 # Configure extraction logger
 logging.basicConfig(
@@ -76,19 +76,36 @@ async def _on_startup() -> None:
         conn.close()
 
     async def _nightly_sync() -> None:
-        from core.email import imap_client, sync as email_sync
-        if imap_client.load_account() is None:
-            return
+        loop = asyncio.get_event_loop()
+        # Email and message syncs are isolated: one failing never blocks the other.
         try:
-            loop = asyncio.get_event_loop()
-            result = await loop.run_in_executor(None, email_sync.incremental_sync)
-            _scheduler_logger.info("Nightly email sync completed: %s", result)
+            from core.email import imap_client, sync as email_sync
+            if imap_client.load_account() is not None:
+                result = await loop.run_in_executor(None, email_sync.incremental_sync)
+                _scheduler_logger.info("Nightly email sync completed: %s", result)
         except Exception:
             _scheduler_logger.exception("Nightly email sync failed")
 
+        try:
+            from core.messages import sync as msg_sync
+            result = await loop.run_in_executor(None, msg_sync.incremental_sync)
+            _scheduler_logger.info("Nightly message sync completed: %s", result)
+        except Exception:
+            _scheduler_logger.exception("Nightly message sync failed")
+
     _scheduler.add_job(_nightly_sync, CronTrigger(hour=2, minute=0))
     _scheduler.start()
-    _scheduler_logger.info("Scheduler started — nightly email sync at 02:00")
+    _scheduler_logger.info("Scheduler started — nightly email + message sync at 02:00")
+
+    # Warm Presidio so the first chat query doesn't pay the ~1-2s spaCy load, and so
+    # degraded redaction (Presidio unavailable) is logged at boot rather than silently.
+    try:
+        from core.privacy.redactor import _get_shared_presidio
+        analyzer, _ = _get_shared_presidio()
+        if analyzer is None:
+            _scheduler_logger.warning("Presidio unavailable — chat redaction is NER-degraded.")
+    except Exception:
+        _scheduler_logger.exception("Presidio warm-up failed")
 
 
 @app.on_event("shutdown")
@@ -1233,6 +1250,32 @@ async def email_sync():
         "new_emails": summary.get("new_emails", 0),
         "summary": summary,
     }
+
+
+@app.post("/api/messages/scan")
+async def messages_scan():
+    """Full scan of the local Messages database into the vector store."""
+    from core.messages import pipeline
+    from core.messages.chat_db import MessagesAccessError
+
+    loop = asyncio.get_event_loop()
+    try:
+        return await loop.run_in_executor(None, pipeline.run_full_scan)
+    except MessagesAccessError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.post("/api/messages/sync")
+async def messages_sync():
+    """Incremental message sync: ingest only messages newer than the last run."""
+    from core.messages import sync as msg_sync
+    from core.messages.chat_db import MessagesAccessError
+
+    loop = asyncio.get_event_loop()
+    try:
+        return await loop.run_in_executor(None, msg_sync.incremental_sync)
+    except MessagesAccessError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
 
 
 @app.delete("/api/email/disconnect")
