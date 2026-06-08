@@ -100,3 +100,11 @@ def test_fingerprint_changes_on_vacuum_like_renumber(tmp_path):
 def test_missing_db_raises(tmp_path):
     with pytest.raises(chat_db.MessagesAccessError):
         list(chat_db.iter_messages(tmp_path / "nope.db"))
+
+
+def test_iter_messages_since_apple_ns(tmp_path):
+    db = tmp_path / "chat.db"
+    _make_chat_db(db)
+    ns = (1704067200 - 978307200) * 1_000_000_000  # all fixture rows at this date
+    assert len(list(chat_db.iter_messages(db, since_apple_ns=ns - 1))) == 2  # included
+    assert len(list(chat_db.iter_messages(db, since_apple_ns=ns + 1))) == 0  # excluded

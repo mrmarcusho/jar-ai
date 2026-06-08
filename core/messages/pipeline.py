@@ -17,12 +17,21 @@ EMBED_BATCH = 200  # messages per embed+upsert batch
 
 def run_full_scan(chat_db_path: Path = chat_db.DEFAULT_CHAT_DB,
                   since_rowid: Optional[int] = None,
+                  days_back: Optional[int] = None,
                   progress_cb: Optional[Callable] = None,
                   db_dir: Optional[Path] = None) -> dict:
     """Read messages, embed, and upsert into LanceDB. Returns a sync summary.
 
-    Raises chat_db.MessagesAccessError if the DB is missing/unreadable.
+    `days_back` bounds a full scan to recent messages (keeps a first trial fast);
+    None scans the whole history. Raises chat_db.MessagesAccessError if the DB is
+    missing/unreadable.
     """
+    since_apple_ns: Optional[int] = None
+    if days_back:
+        from datetime import datetime, timezone
+        cutoff_unix = datetime.now(timezone.utc).timestamp() - days_back * 86400
+        since_apple_ns = int((cutoff_unix - chat_db.APPLE_EPOCH) * 1_000_000_000)
+
     contact_map = contacts.build_contact_map()
     stored = 0
     last_rowid: Optional[int] = since_rowid
@@ -42,7 +51,8 @@ def run_full_scan(chat_db_path: Path = chat_db.DEFAULT_CHAT_DB,
             progress_cb({"stored": stored})
         batch.clear()
 
-    for msg in chat_db.iter_messages(chat_db_path, since_rowid=since_rowid):
+    for msg in chat_db.iter_messages(chat_db_path, since_rowid=since_rowid,
+                                     since_apple_ns=since_apple_ns):
         batch.append({
             "guid": msg["guid"],
             "text": msg["text"],

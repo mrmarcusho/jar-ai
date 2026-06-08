@@ -89,12 +89,24 @@ def open_readonly(db_path: Path) -> sqlite3.Connection:
 
 
 def iter_messages(db_path: Path = DEFAULT_CHAT_DB,
-                  since_rowid: Optional[int] = None) -> Iterator[dict]:
-    """Yield message dicts ordered by ROWID. Skips rows with no body (tapbacks etc.)."""
+                  since_rowid: Optional[int] = None,
+                  since_apple_ns: Optional[int] = None) -> Iterator[dict]:
+    """Yield message dicts ordered by ROWID. Skips rows with no body (tapbacks etc.).
+
+    `since_rowid` filters by the incremental cursor; `since_apple_ns` filters by date
+    (Apple-epoch nanoseconds) for a bounded full scan (e.g. "last 90 days").
+    """
     conn = open_readonly(db_path)
     conn.row_factory = sqlite3.Row
-    where = "WHERE m.ROWID > ?" if since_rowid is not None else ""
-    params = (since_rowid,) if since_rowid is not None else ()
+    clauses: list = []
+    params: list = []
+    if since_rowid is not None:
+        clauses.append("m.ROWID > ?")
+        params.append(since_rowid)
+    if since_apple_ns is not None:
+        clauses.append("m.date > ?")
+        params.append(since_apple_ns)
+    where = ("WHERE " + " AND ".join(clauses)) if clauses else ""
     skipped = 0
     try:
         for r in conn.execute(_QUERY.format(where=where), params):

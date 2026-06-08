@@ -3,6 +3,7 @@
 initScanner('scanner-root', { inline: false });
 initDriveWidget('drive-root');
 initEmailWidget('email-root');
+initMessagesWidget('messages-root');
 
 fetchJSON('/api/config').then(function(c) {
     if (c.llm_available && document.getElementById('nav-chat')) {

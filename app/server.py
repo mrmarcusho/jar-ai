@@ -8,6 +8,7 @@ Usage:
 """
 
 import asyncio
+import functools
 import csv
 import io
 import json
@@ -1252,15 +1253,42 @@ async def email_sync():
     }
 
 
+@app.get("/api/messages/status")
+async def messages_status():
+    """How many messages are embedded, and when the last sync ran."""
+    from core.messages import vector_store
+
+    conn = get_db()
+    try:
+        row = conn.execute(
+            "SELECT last_sync_at FROM message_sync_state WHERE id = 1"
+        ).fetchone()
+    except sqlite3.OperationalError:
+        row = None
+    finally:
+        conn.close()
+
+    return {
+        "total_messages": vector_store.count(),
+        "last_sync": row[0] if row else None,
+    }
+
+
 @app.post("/api/messages/scan")
-async def messages_scan():
-    """Full scan of the local Messages database into the vector store."""
+async def messages_scan(days_back: int = Query(None)):
+    """Full scan of the local Messages database into the vector store.
+
+    `days_back` bounds the scan to recent messages (keeps a first trial fast);
+    omit it to scan the whole history.
+    """
     from core.messages import pipeline
     from core.messages.chat_db import MessagesAccessError
 
     loop = asyncio.get_event_loop()
     try:
-        return await loop.run_in_executor(None, pipeline.run_full_scan)
+        return await loop.run_in_executor(
+            None, functools.partial(pipeline.run_full_scan, days_back=days_back)
+        )
     except MessagesAccessError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
 
