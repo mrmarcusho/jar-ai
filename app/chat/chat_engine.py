@@ -4,7 +4,10 @@ Uses Anthropic Claude via API.
 """
 
 import json
+import logging
 import os
+import re
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -23,11 +26,16 @@ appointments, travel, notices, anything). Use search_emails for any question abo
 the user's emails, and the financial functions for questions about their bank
 transactions.
 
+You can also search the user's text messages (iMessage/SMS) with the search_messages
+function: semantic search over their synced messages. Use it for questions about
+texts — appointments, order confirmations, plans, or anything someone texted them.
+
 When answering questions:
-- Always call the appropriate function to get real data. Never make up numbers or
-  email contents.
-- For email questions, call search_emails; if the first results aren't relevant,
-  rephrase the query and search again before giving up.
+- Always call the appropriate function to get real data. Never make up numbers,
+  email contents, or message contents.
+- For email questions, call search_emails; for text-message questions, call
+  search_messages. If the first results aren't relevant, rephrase the query and
+  search again before giving up.
 - Be concise and direct. Lead with the answer, then add context.
 - When showing amounts, use dollar formatting ($1,234.56).
 - If a question requires data you don't have, say so honestly.
@@ -269,6 +277,29 @@ TOOLS = [
             "required": ["query"],
         },
     },
+    {
+        "name": "search_messages",
+        "description": (
+            "Semantic search over the user's synced text messages (iMessage/SMS). "
+            "Use this for ANY question about texts — appointments, orders, "
+            "confirmations, people, plans, or anything mentioned in a message. "
+            "Returns the most relevant messages (contact name, direction, date, text)."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "What to look for, in natural language.",
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Max messages to return, default 5 (capped at 5).",
+                },
+            },
+            "required": ["query"],
+        },
+    },
 ]
 
 
@@ -284,6 +315,23 @@ class JarChat:
         self.system_prompt = _build_system_prompt(db_path)
         self.conversation_history: list[dict] = []
         self.debug = False
+
+        # Session-scoped redaction engine. Tool results (excerpts) are redacted before
+        # they reach the cloud; the final answer is detokenized before display. The
+        # store must live for the whole session so tokens stay consistent across turns.
+        from core.privacy.profile import HouseholdProfile
+        from core.privacy.redactor import RedactionEngine
+        _conn = sqlite3.connect(self.db_path)
+        try:
+            _profile = HouseholdProfile.load(_conn)
+        finally:
+            _conn.close()
+        # lowercase_for_ner=False: chat excerpts keep natural casing for spaCy NER.
+        self.redaction = RedactionEngine(_profile, lowercase_for_ner=False)
+        if not _profile.is_configured():
+            logging.getLogger("jar.chat").warning(
+                "Household profile not configured — redaction relies on NER only."
+            )
 
     # Keep tool-result payloads small: this JSON is re-sent to the API on every
     # subsequent turn (it lives in conversation_history), so large bodies or many
@@ -337,7 +385,45 @@ class JarChat:
             "date": r.get("date", ""),
             "body": (r.get("body") or "")[:self.MAX_EMAIL_BODY_CHARS],
         } for r in rows]
+        # Redact excerpts before they cross to the cloud. Email rows store sender
+        # domain-only (no display name), so there are no seed names — body/subject
+        # redaction relies on profile + NER + the deterministic sweep.
+        from core.privacy import cloud_boundary
+        emails = cloud_boundary.redact_rows(
+            self.redaction, emails, text_fields=["body", "subject"], seed_names=None,
+        )
         return {"count": len(emails), "emails": emails}
+
+    MAX_MESSAGE_RESULTS = 5
+    MAX_MESSAGE_BODY_CHARS = 600
+
+    def _search_messages(self, query: str, limit: int = 5) -> dict:
+        """Semantic search over the synced message vector store, redacted for cloud."""
+        from core import embeddings
+        from core.messages import vector_store
+        from core.privacy import cloud_boundary
+
+        query = (query or "").strip()
+        if not query:
+            return {"error": "empty query"}
+        limit = min(limit or self.MAX_MESSAGE_RESULTS, self.MAX_MESSAGE_RESULTS)
+        try:
+            vector = embeddings.embed_texts([query])[0]
+            rows = vector_store.search(vector, limit=limit)
+        except Exception as exc:
+            return {"error": f"message search failed: {exc}"}
+
+        trimmed = [{
+            "contact_name": r.get("contact_name", ""),
+            "direction": "me" if r.get("is_from_me") else "them",
+            "date": r.get("date", ""),
+            "text": (r.get("text") or "")[:self.MAX_MESSAGE_BODY_CHARS],
+        } for r in rows]
+        seeds = [r.get("contact_name", "") for r in rows]
+        redacted = cloud_boundary.redact_rows(
+            self.redaction, trimmed, text_fields=["text", "contact_name"], seed_names=seeds,
+        )
+        return {"count": len(redacted), "messages": redacted}
 
     def _execute_tool(self, name: str, params: dict) -> dict:
         """Call the matching FinancialAPI method, tolerating LLM parameter errors."""
@@ -345,6 +431,9 @@ class JarChat:
 
         if name == "search_emails":
             return self._search_emails(params.get("query", ""), params.get("limit", 8))
+
+        if name == "search_messages":
+            return self._search_messages(params.get("query", ""), params.get("limit", 5))
 
         fn = getattr(self.api, name, None)
         if fn is None:
@@ -411,6 +500,12 @@ class JarChat:
                 final_text += block.text
 
         self.conversation_history.append({"role": "assistant", "content": response.content})
+        # Reverse redaction tokens so the user sees real names; the cloud never did.
+        final_text = self.redaction.detokenize(final_text)
+        if re.search(r"\[[A-Z_]+(?:_\d+)?\]", final_text):
+            logging.getLogger("jar.chat").warning(
+                "Undetokenized redaction token survived in the answer."
+            )
         return final_text
 
     def close(self):
