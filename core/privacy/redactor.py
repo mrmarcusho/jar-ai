@@ -93,8 +93,11 @@ class RedactionEngine:
     different statements.
     """
 
-    def __init__(self, profile: HouseholdProfile) -> None:
+    def __init__(self, profile: HouseholdProfile, lowercase_for_ner: bool = True) -> None:
         self._profile = profile
+        # Bank statements are ALL-CAPS (NER needs lowercasing); conversational chat
+        # excerpts keep their natural casing so spaCy NER retains capitalization cues.
+        self._lowercase_for_ner = lowercase_for_ner
         self._store = TokenStore()
         self._analyzer = None    # lazy — expensive to load
         self._anonymizer = None  # lazy
@@ -132,6 +135,17 @@ class RedactionEngine:
         text = self._pass2_presidio(text)
         text = self._pass3_sweep(text)
         return text
+
+    def register_person(self, name: str) -> str:
+        """Pre-register a known person name so it tokenizes deterministically.
+
+        Used by the cloud-boundary helper to seed resolved contact names before
+        redacting excerpts, so we don't rely on NER to catch them. Returns the token.
+        """
+        name = (name or "").strip()
+        if not name:
+            return ""
+        return self._store.get_or_create("PERSON", name)
 
     def detokenize(self, text: str) -> str:
         """Replace all [TOKEN] placeholders back with their original values."""
@@ -229,12 +243,13 @@ class RedactionEngine:
 
         # Lowercase so spaCy NER works on bank-statement ALL-CAPS text.
         # lower() preserves character positions (1-to-1 map), so spans are
-        # directly usable on the original text.
-        lowered = text.lower()
+        # directly usable on the original text. For conversational text (chat
+        # excerpts), keep the original casing — capitalization is a NER signal.
+        analyzed_text = text.lower() if self._lowercase_for_ner else text
 
         try:
             results = self._analyzer.analyze(
-                text=lowered,
+                text=analyzed_text,
                 language="en",
                 entities=_PRESIDIO_ENTITIES,
                 score_threshold=0.45,
