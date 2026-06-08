@@ -17,8 +17,17 @@ _SYSTEM_PROMPT_TEMPLATE = """\
 You are Jar, a personal financial assistant. You have access to the user's bank \
 transaction data through a set of query functions.
 
+You can also search the user's email inbox with the search_emails function: it does
+semantic search over every message the user has synced (receipts, bills, orders,
+appointments, travel, notices, anything). Use search_emails for any question about
+the user's emails, and the financial functions for questions about their bank
+transactions.
+
 When answering questions:
-- Always call the appropriate function to get real data. Never make up numbers.
+- Always call the appropriate function to get real data. Never make up numbers or
+  email contents.
+- For email questions, call search_emails; if the first results aren't relevant,
+  rephrase the query and search again before giving up.
 - Be concise and direct. Lead with the answer, then add context.
 - When showing amounts, use dollar formatting ($1,234.56).
 - If a question requires data you don't have, say so honestly.
@@ -237,6 +246,29 @@ TOOLS = [
             "properties": {},
         },
     },
+    {
+        "name": "search_emails",
+        "description": (
+            "Semantic search over the user's synced email inbox. Use this for ANY "
+            "question about the user's emails — receipts, bills, appointments, orders, "
+            "travel, people, or anything mentioned in a message. Returns the most "
+            "relevant emails (sender domain, subject, date, body text)."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "What to look for, in natural language.",
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Max emails to return, default 5 (capped at 5).",
+                },
+            },
+            "required": ["query"],
+        },
+    },
 ]
 
 
@@ -253,9 +285,66 @@ class JarChat:
         self.conversation_history: list[dict] = []
         self.debug = False
 
+    # Keep tool-result payloads small: this JSON is re-sent to the API on every
+    # subsequent turn (it lives in conversation_history), so large bodies or many
+    # rows compound across the chat and quickly blow the per-minute token limit.
+    MAX_EMAIL_RESULTS = 5
+    MAX_EMAIL_BODY_CHARS = 600
+
+    # Cap how much prior conversation we replay to the API each turn. Without this
+    # the history (including every past tool result) grows unbounded and re-sending
+    # it eventually trips the per-minute input-token rate limit.
+    MAX_HISTORY_MESSAGES = 12
+
+    def _trim_history(self) -> None:
+        """Drop oldest turns, keeping the tail short and API-valid.
+
+        We only ever cut at a user *question* (string content), never inside a
+        tool_use/tool_result pair, so the trimmed history can't start with an
+        orphaned tool_result or end on a dangling tool_use.
+        """
+        msgs = self.conversation_history
+        if len(msgs) <= self.MAX_HISTORY_MESSAGES:
+            return
+        cut_points = [
+            i for i, m in enumerate(msgs)
+            if m["role"] == "user" and isinstance(m["content"], str)
+        ]
+        for idx in cut_points:
+            if len(msgs) - idx <= self.MAX_HISTORY_MESSAGES:
+                self.conversation_history = msgs[idx:]
+                return
+        if cut_points:
+            self.conversation_history = msgs[cut_points[-1]:]
+
+    def _search_emails(self, query: str, limit: int = 5) -> dict:
+        """Semantic search over the synced email vector store (LanceDB)."""
+        from core.email import embedder, vector_store
+
+        query = (query or "").strip()
+        if not query:
+            return {"error": "empty query"}
+        limit = min(limit or self.MAX_EMAIL_RESULTS, self.MAX_EMAIL_RESULTS)
+        try:
+            vector = embedder.embed_texts([query])[0]
+            rows = vector_store.search(vector, limit=limit)
+        except Exception as exc:
+            return {"error": f"email search failed: {exc}"}
+
+        emails = [{
+            "sender": r.get("sender", ""),
+            "subject": r.get("subject", ""),
+            "date": r.get("date", ""),
+            "body": (r.get("body") or "")[:self.MAX_EMAIL_BODY_CHARS],
+        } for r in rows]
+        return {"count": len(emails), "emails": emails}
+
     def _execute_tool(self, name: str, params: dict) -> dict:
         """Call the matching FinancialAPI method, tolerating LLM parameter errors."""
         import inspect
+
+        if name == "search_emails":
+            return self._search_emails(params.get("query", ""), params.get("limit", 8))
 
         fn = getattr(self.api, name, None)
         if fn is None:
@@ -275,6 +364,7 @@ class JarChat:
     def chat(self, user_message: str) -> str:
         """Send a message and get a response via Claude function-calling loop."""
         self.conversation_history.append({"role": "user", "content": user_message})
+        self._trim_history()
 
         response = self.client.messages.create(
             model=self.model,

@@ -21,3 +21,13 @@ Pillow>=10.0.0
 google-auth>=2.0.0,<3
 google-auth-oauthlib>=1.0.0,<2
 google-api-python-client>=2.100.0,<3
+
+# Email vector store (local embeddings + LanceDB; nothing leaves the device)
+lancedb>=0.27.0,<1
+sentence-transformers>=5.0.0,<6
+
+# Credential storage (IMAP password → OS keychain)
+keyring>=25.0.0,<26
+
+# Background scheduler (nightly email sync)
+apscheduler>=3.10.0,<4

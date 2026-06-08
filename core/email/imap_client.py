@@ -4,9 +4,8 @@ Uses the Python stdlib (`imaplib` + `email`) so no extra dependency is needed.
 Credentials are stored in a gitignored token file under data/ (mirroring the
 Drive scanner's data/google_token.json), not in SQLite and not in the Keychain.
 
-Privacy: this module is the only place raw IMAP ids and raw bodies exist. The
-raw IMAP uid (`_imap_id`) is internal and is never sent to the cloud or written
-to the database — db_writer stores a hash of the Message-ID instead.
+The raw IMAP uid (`_imap_id`) is internal bookkeeping; the vector store keys
+rows on the Message-ID instead.
 """
 from __future__ import annotations
 
@@ -26,6 +25,8 @@ logger = logging.getLogger("jar.email.imap")
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 TOKEN_PATH = PROJECT_ROOT / "data" / "imap_account.json"
+
+KEYCHAIN_SERVICE = "jar-imap"
 
 ENVELOPE_BATCH = 200
 BODY_BATCH = 50
@@ -81,23 +82,41 @@ def resolve_server(
 # ---------------------------------------------------------------------------
 
 def save_account(username: str, password: str, host: str, port: int) -> None:
+    import keyring
     TOKEN_PATH.parent.mkdir(parents=True, exist_ok=True)
-    TOKEN_PATH.write_text(json.dumps({
-        "username": username, "password": password, "host": host, "port": port,
-    }))
+    # Store only non-sensitive fields on disk; password goes into the OS keychain.
+    TOKEN_PATH.write_text(json.dumps({"username": username, "host": host, "port": port}))
+    keyring.set_password(KEYCHAIN_SERVICE, username, password)
 
 
 def load_account() -> Optional[dict]:
+    import keyring
     if not TOKEN_PATH.exists():
         return None
     try:
-        return json.loads(TOKEN_PATH.read_text())
+        data = json.loads(TOKEN_PATH.read_text())
     except (ValueError, OSError):
         return None
+    username = data.get("username")
+    if not username:
+        return None
+    password = keyring.get_password(KEYCHAIN_SERVICE, username)
+    if password is None:
+        logger.warning("No keychain entry for %s; reconnect to re-save credentials", username)
+        return None
+    return {**data, "password": password}
 
 
 def clear_account() -> None:
+    import keyring
     if TOKEN_PATH.exists():
+        try:
+            data = json.loads(TOKEN_PATH.read_text())
+            username = data.get("username")
+            if username:
+                keyring.delete_password(KEYCHAIN_SERVICE, username)
+        except Exception:
+            pass
         TOKEN_PATH.unlink()
 
 
@@ -166,9 +185,24 @@ def _iter_fetch(data: list):
         yield m.group(1), raw
 
 
-def _search_uids(conn: imaplib.IMAP4_SSL, since: Optional[str]) -> list[bytes]:
-    """Return all matching message UIDs. `since` is an IMAP date (DD-Mon-YYYY)."""
-    criteria = ["SINCE", since] if since else ["ALL"]
+def get_uidvalidity(conn: imaplib.IMAP4_SSL) -> Optional[str]:
+    """Return the UIDVALIDITY of the currently selected mailbox, or None."""
+    vals = conn.untagged_responses.get("UIDVALIDITY")
+    if vals:
+        v = vals[-1]
+        return v.decode() if isinstance(v, bytes) else str(v)
+    return None
+
+
+def _search_uids(conn: imaplib.IMAP4_SSL, since: Optional[str] = None,
+                 last_uid: Optional[int] = None) -> list[bytes]:
+    """Return matching UIDs. Prefers UID range over date when last_uid is set."""
+    if last_uid is not None:
+        criteria = ["UID", f"{last_uid + 1}:*"]
+    elif since:
+        criteria = ["SINCE", since]
+    else:
+        criteria = ["ALL"]
     typ, data = conn.uid("SEARCH", None, *criteria)
     if typ != "OK" or not data or data[0] is None:
         return []
@@ -182,6 +216,7 @@ def _search_uids(conn: imaplib.IMAP4_SSL, since: Optional[str]) -> list[bytes]:
 def fetch_envelopes(
     conn: imaplib.IMAP4_SSL,
     since: Optional[str] = None,
+    last_uid: Optional[int] = None,
     progress_cb: Optional[Callable[[int, int], None]] = None,
 ) -> list[dict]:
     """Fetch lightweight envelopes (From/Subject/Date/Message-ID) for all messages.
@@ -189,7 +224,7 @@ def fetch_envelopes(
     Headers only — never RFC822 — so this stays cheap over large mailboxes.
     Returns dicts: {_imap_id, from, subject, date, message_id}.
     """
-    uids = _search_uids(conn, since)
+    uids = _search_uids(conn, since=since, last_uid=last_uid)
     total = len(uids)
     envelopes: list[dict] = []
     fetch_spec = "(UID BODY.PEEK[HEADER.FIELDS (FROM SUBJECT DATE MESSAGE-ID)])"

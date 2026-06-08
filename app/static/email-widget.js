@@ -1,9 +1,9 @@
 // ── Email Inbox Widget ──────────────────────────────────────────
 // Separate card on the scan page. Connects a mailbox over IMAP (Gmail
-// needs an App Password, not the account password), then scans it for
-// financial emails. Settled money events land in the transactions
-// ledger; appointments / notices / obligations land in documents.
-// Cloud (Claude) only ever sees PII-redacted text.
+// needs an App Password, not the account password), then fetches every
+// message, embeds it locally with bge-m3, and stores it in a local
+// vector database for semantic search. Nothing leaves the machine — the
+// embeddings run on-device, so no redaction is needed.
 //
 //   initEmailWidget(containerId)
 
@@ -91,8 +91,7 @@ function initEmailWidget(containerId) {
                 '<a href="#" id="' + prefix + 'link-disconnect" style="color:var(--text-muted)">Disconnect</a>' +
             '</p>' +
             '<div class="scan-stats" style="margin-bottom:16px">' +
-                '<div class="scan-stat"><span>' + (data.total_events || 0) + '</span> financial events</div>' +
-                '<div class="scan-stat"><span>' + (data.total_documents || 0) + '</span> documents</div>' +
+                '<div class="scan-stat"><span>' + (data.total_emails || 0) + '</span> emails embedded</div>' +
                 '<div class="scan-stat" style="font-size:13px;color:var(--text-muted)">Last sync: ' + esc(last) + '</div>' +
             '</div>' +
             '<div style="margin-bottom:14px">' +
@@ -200,10 +199,9 @@ function initEmailWidget(containerId) {
         var labels = {
             connect: 'Connecting to mailbox...',
             envelopes: 'Fetching message headers...',
-            triage: 'Triaging messages...',
             bodies: 'Fetching message bodies...',
-            extract: 'Extracting financial data...',
-            write: 'Saving...',
+            embed: 'Embedding emails (on-device)...',
+            store: 'Writing to vector database...',
         };
         return labels[stage] || (stage || 'Working...');
     }
@@ -226,10 +224,7 @@ function initEmailWidget(containerId) {
 
         fetchJSON('/api/email/sync', { method: 'POST' }).then(function(data) {
             el('scan-bar').style.opacity = '1';
-            showResults(data.summary || {
-                events_written: data.new_events,
-                documents_written: data.new_documents,
-            });
+            showResults(data.summary || { stored: data.new_emails });
         }).catch(function(e) {
             el('scan-bar').style.opacity = '1';
             showScanError(e.message);
@@ -241,27 +236,22 @@ function initEmailWidget(containerId) {
         el('step-scanning').style.display = 'none';
         el('step-results').style.display = '';
 
-        var events = s.events_written || 0;
-        var docs = s.documents_written || 0;
-        var attachments = s.attachments_routed || 0;
+        var stored = s.stored || 0;
+        var embedded = s.embedded || 0;
         var dupes = s.duplicates || 0;
-        var skipped = s.skipped || 0;
         var errors = s.errors || 0;
 
         var html = '<div class="results-stats">';
-        html += step('events', events > 0 ? 'ok' : 'warning',
-            events + ' financial event' + (events !== 1 ? 's' : '') + ' added to your ledger');
-        html += step('docs', 'ok',
-            docs + ' document' + (docs !== 1 ? 's' : '') + ' (bills, appointments, notices)');
-        if (attachments > 0) html += step('att', 'ok', attachments + ' PDF attachment' + (attachments !== 1 ? 's' : '') + ' extracted');
-        if (dupes > 0) html += step('dup', 'warning', dupes + ' already imported (skipped)');
-        if (skipped > 0) html += step('skip', 'warning', skipped + ' non-financial email' + (skipped !== 1 ? 's' : '') + ' ignored');
+        html += step('stored', stored > 0 ? 'ok' : 'warning',
+            stored + ' new email' + (stored !== 1 ? 's' : '') + ' embedded and stored');
+        if (dupes > 0) html += step('dup', 'ok', dupes + ' already stored (updated)');
         if (errors > 0) html += step('err', 'error', errors + ' error' + (errors !== 1 ? 's' : '') + ' during scan');
         html += '</div>';
 
-        if (typeof s.envelopes_fetched === 'number') {
+        if (typeof s.emails_fetched === 'number') {
             html += '<p style="margin-top:14px;color:var(--text-muted);font-size:13px">' +
-                'Scanned ' + s.envelopes_fetched + ' message' + (s.envelopes_fetched !== 1 ? 's' : '') +
+                'Fetched ' + s.emails_fetched + ' message' + (s.emails_fetched !== 1 ? 's' : '') +
+                ', embedded ' + embedded +
                 (s.duration_seconds ? ' in ' + s.duration_seconds + 's' : '') + '.' +
                 '</p>';
         }

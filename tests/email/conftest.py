@@ -1,10 +1,10 @@
 """Shared fixtures for the email pipeline tests.
 
-Everything here is offline: a fake Anthropic client (no network) and a real
-RedactionEngine over a synthetic household profile. No IMAP connections.
+Everything here is offline: no IMAP connections, no model downloads. The bge-m3
+embedder is replaced with a tiny deterministic stub so tests run instantly, and
+LanceDB writes go to a tmp directory.
 """
 import json
-import sqlite3
 import sys
 from pathlib import Path
 
@@ -12,84 +12,36 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
-from core.database.migrate import ensure_schema
-from core.privacy.profile import HouseholdProfile
-from core.privacy.redactor import RedactionEngine
+from core.email import embedder
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
 
 # ---------------------------------------------------------------------------
-# Fake Anthropic client (no network)
+# Fake embedder (no model download) + tmp LanceDB
 # ---------------------------------------------------------------------------
 
-class _FakeContent:
-    def __init__(self, text):
-        self.text = text
-
-
-class _FakeResp:
-    def __init__(self, text):
-        self.content = [_FakeContent(text)]
-
-
-class _FakeMessages:
-    def __init__(self, responder):
-        self._responder = responder
-        self.calls = []
-
-    def create(self, **kwargs):
-        self.calls.append(kwargs)
-        return _FakeResp(self._responder(kwargs))
-
-
-class FakeClient:
-    """Stand-in for anthropic.Anthropic. `responder(kwargs) -> str`."""
-
-    def __init__(self, responder):
-        self.messages = _FakeMessages(responder)
-
-
-def keep_responder(kwargs) -> str:
-    """Triage responder: KEEP for every email in the batch."""
-    import re
-
-    user = kwargs["messages"][0]["content"]
-    n = len(re.findall(r"(?m)^\d+\. FROM:", user))
-    return json.dumps({"labels": ["KEEP"] * n})
+def _fake_vector(text: str) -> list[float]:
+    """Deterministic 1024-dim vector seeded from the text (no model needed)."""
+    h = sum(ord(c) for c in text) or 1
+    base = (h % 97) / 97.0
+    return [base + (i % 7) * 0.01 for i in range(embedder.EMBED_DIM)]
 
 
 @pytest.fixture
-def fake_keep_client():
-    return FakeClient(keep_responder)
+def fake_embedder(monkeypatch):
+    """Patch embedder.embed_texts to a deterministic offline stub."""
+    def _embed(texts, batch_size=16):
+        return [_fake_vector(t) for t in texts]
 
-
-# ---------------------------------------------------------------------------
-# Redactor + DB
-# ---------------------------------------------------------------------------
-
-@pytest.fixture
-def profile():
-    return HouseholdProfile(
-        first_name="Marcus", last_name="Ho",
-        partner_first="Sarah", partner_last="Ho", city="Boston",
-    )
+    monkeypatch.setattr(embedder, "embed_texts", _embed)
+    return _embed
 
 
 @pytest.fixture
-def redactor(profile):
-    return RedactionEngine(profile)
-
-
-@pytest.fixture
-def db(tmp_path):
-    """A migrated jar.db. Yields (conn, db_path)."""
-    db_path = tmp_path / "jar.db"
-    conn = sqlite3.connect(str(db_path))
-    conn.execute("PRAGMA foreign_keys=ON")
-    ensure_schema(conn)
-    yield conn, str(db_path)
-    conn.close()
+def lance_dir(tmp_path):
+    """A fresh, empty LanceDB directory for one test."""
+    return tmp_path / "lancedb"
 
 
 # ---------------------------------------------------------------------------

@@ -142,5 +142,7 @@ CREATE INDEX IF NOT EXISTS idx_documents_dedupe ON documents(dedupe_hash);
 CREATE TABLE IF NOT EXISTS email_sync_state (
     username        TEXT PRIMARY KEY,
     last_sync_at    TEXT,
-    last_imap_date  TEXT   -- most recent email date seen (RFC 2822 / IMAP date)
+    last_imap_date  TEXT,     -- most recent email date seen (RFC 2822 / IMAP date)
+    last_uid        INTEGER,  -- highest IMAP UID seen; used as the sync cursor
+    uidvalidity     TEXT      -- IMAP UIDVALIDITY; mismatch triggers full rescan
 );

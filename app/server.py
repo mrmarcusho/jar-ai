@@ -19,6 +19,8 @@ import sys
 import traceback
 from pathlib import Path
 
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.cron import CronTrigger
 from fastapi import FastAPI, File, Query, UploadFile
 
 # Configure extraction logger
@@ -47,6 +49,8 @@ STATEMENTS_DIR = PROJECT_ROOT / "data" / "statements"
 # ---------------------------------------------------------------------------
 
 app = FastAPI(title="Jar", version="0.1.0")
+_scheduler = AsyncIOScheduler()
+_scheduler_logger = logging.getLogger("jar.scheduler")
 
 # Serve static files
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -61,8 +65,8 @@ def get_db() -> sqlite3.Connection:
 
 
 @app.on_event("startup")
-def _apply_schema() -> None:
-    """Ensure the DB schema (incl. email tables + transactions migration) exists."""
+async def _on_startup() -> None:
+    """Apply DB schema migrations and start the nightly email sync scheduler."""
     from core.database.migrate import ensure_schema
 
     conn = sqlite3.connect(str(DB_PATH))
@@ -70,6 +74,26 @@ def _apply_schema() -> None:
         ensure_schema(conn)
     finally:
         conn.close()
+
+    async def _nightly_sync() -> None:
+        from core.email import imap_client, sync as email_sync
+        if imap_client.load_account() is None:
+            return
+        try:
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(None, email_sync.incremental_sync)
+            _scheduler_logger.info("Nightly email sync completed: %s", result)
+        except Exception:
+            _scheduler_logger.exception("Nightly email sync failed")
+
+    _scheduler.add_job(_nightly_sync, CronTrigger(hour=2, minute=0))
+    _scheduler.start()
+    _scheduler_logger.info("Scheduler started — nightly email sync at 02:00")
+
+
+@app.on_event("shutdown")
+async def _on_shutdown() -> None:
+    _scheduler.shutdown(wait=True)
 
 
 # ---------------------------------------------------------------------------
@@ -1092,8 +1116,8 @@ async def drive_process(body: dict):
 
 @app.get("/api/email/status")
 async def email_status():
-    """Whether an IMAP account is linked, plus last-sync and email-event counts."""
-    from core.email import imap_client
+    """Whether an IMAP account is linked, plus last-sync and embedded-email count."""
+    from core.email import imap_client, vector_store
 
     account = imap_client.load_account()
     if account is None:
@@ -1101,10 +1125,6 @@ async def email_status():
 
     conn = get_db()
     try:
-        total_events = conn.execute(
-            "SELECT COUNT(*) FROM transactions WHERE source = 'email'"
-        ).fetchone()[0]
-        total_documents = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
         row = conn.execute(
             "SELECT last_sync_at FROM email_sync_state WHERE username = ?",
             (account["username"],),
@@ -1116,8 +1136,7 @@ async def email_status():
         "connected": True,
         "username": account["username"],
         "last_sync": row[0] if row else None,
-        "total_events": total_events,
-        "total_documents": total_documents,
+        "total_emails": vector_store.count(),
     }
 
 
@@ -1211,8 +1230,7 @@ async def email_sync():
     loop = asyncio.get_event_loop()
     summary = await loop.run_in_executor(None, sync.incremental_sync)
     return {
-        "new_events": summary.get("new_events", 0),
-        "new_documents": summary.get("new_documents", 0),
+        "new_emails": summary.get("new_emails", 0),
         "summary": summary,
     }
 

@@ -1,6 +1,7 @@
 """JAR email ingestion pipeline.
 
-Six-stage IMAP → triage → extract → store pipeline that turns a mailbox into
-financial events (transactions) and prose documents, reusing JAR's existing
-PII redaction and PDF extraction engines. See pipeline.py for the orchestrator.
+A simple IMAP → embed → LanceDB flow: fetch every message, embed subject+body
+locally with bge-m3, and upsert into a local vector store for semantic search.
+Everything runs on-device, so no redaction is needed. See pipeline.py for the
+orchestrator and vector_store.py for the LanceDB layer.
 """

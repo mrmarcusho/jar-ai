@@ -107,12 +107,23 @@ def _ensure_email_account(conn: sqlite3.Connection) -> None:
     )
 
 
+def _ensure_email_sync_columns(conn: sqlite3.Connection) -> None:
+    """Add last_uid / uidvalidity to email_sync_state on existing DBs."""
+    cols = _table_columns(conn, "email_sync_state")
+    if "last_uid" not in cols:
+        conn.execute("ALTER TABLE email_sync_state ADD COLUMN last_uid INTEGER")
+    if "uidvalidity" not in cols:
+        conn.execute("ALTER TABLE email_sync_state ADD COLUMN uidvalidity TEXT")
+    conn.commit()
+
+
 def ensure_schema(conn: sqlite3.Connection) -> None:
     """Bring `conn`'s database up to the current schema. Idempotent."""
     if _transactions_needs_rebuild(conn):
         _rebuild_transactions(conn)
 
     conn.executescript(SCHEMA_PATH.read_text())
+    _ensure_email_sync_columns(conn)  # must run after executescript so table exists
     _ensure_email_account(conn)
     conn.commit()
 
