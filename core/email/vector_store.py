@@ -16,7 +16,7 @@ from typing import Optional
 import lancedb
 from lancedb.pydantic import LanceModel, Vector
 
-from core.email.embedder import EMBED_DIM
+from core.embeddings import EMBED_DIM
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 LANCEDB_DIR = PROJECT_ROOT / "data" / "lancedb"
