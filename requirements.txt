@@ -29,5 +29,9 @@ sentence-transformers>=5.0.0,<6
 # Credential storage (IMAP password → OS keychain)
 keyring>=25.0.0,<26
 
-# Background scheduler (nightly email sync)
+# Background scheduler (nightly email + message sync)
 apscheduler>=3.10.0,<4
+
+# Text-message ingestion (macOS chat.db). The attributedBody (NSAttributedString)
+# decoder is a built-in pure-Python heuristic — no extra runtime dependency required.
+# Reuses the email pipeline's lancedb + sentence-transformers + presidio stack.

@@ -134,6 +134,24 @@ Setup (one-time):
 
 The OAuth token is stored at `data/google_token.json` (gitignored).
 
+## Text-message scanning (macOS, optional)
+
+The message pipeline (`core/messages/`) ingests iMessage/SMS from the local macOS
+Messages database (`~/Library/Messages/chat.db`), embeds them on-device into LanceDB,
+and exposes a `search_messages` chat tool. It mirrors the email pipeline and shares
+its embedder (`core/embeddings.py`).
+
+- **Requires Full Disk Access** (System Settings → Privacy & Security) for the app/
+  terminal — covers both `chat.db` and the AddressBook contacts DB. Without it the
+  reader raises `MessagesAccessError`; the `/api/messages/*` endpoints surface a clear
+  "Grant Full Disk Access" message.
+- Endpoints: `POST /api/messages/scan` (full scan), `POST /api/messages/sync`
+  (incremental). The nightly 02:00 job runs both email and message sync.
+- **Redaction:** retrieved excerpts are scrubbed via `core/privacy/cloud_boundary.py`
+  before being sent to the cloud LLM, and the answer is detokenized before display.
+  This same step is now applied to `search_emails`. See
+  `doc/message-pipeline-architecture.md`.
+
 ## Team
 
 - **Marcus** — product, AI/ML, pipeline dev (CS student at Tufts)
