@@ -146,3 +146,11 @@ CREATE TABLE IF NOT EXISTS email_sync_state (
     last_uid        INTEGER,  -- highest IMAP UID seen; used as the sync cursor
     uidvalidity     TEXT      -- IMAP UIDVALIDITY; mismatch triggers full rescan
 );
+
+CREATE TABLE IF NOT EXISTS message_sync_state (
+    id              INTEGER PRIMARY KEY CHECK (id = 1), -- single-row table
+    last_rowid      INTEGER,  -- highest message.ROWID ingested; the sync cursor
+    last_guid       TEXT,     -- guid of the message at last_rowid (cursor anchor)
+    db_fingerprint  TEXT,     -- detects chat.db replacement / VACUUM (ROWID renumber)
+    last_sync_at    TEXT
+);
