@@ -42,32 +42,56 @@ small set of **redacted** excerpts sent to the cloud LLM at answer time.
 
 ### 3.1 Messages database
 - Path: `~/Library/Messages/chat.db` (SQLite).
-- **Read-only via a temp copy.** Copy `chat.db` (and its `-wal`/`-shm` sidecars if
-  present) to a temp file and read from the copy. Never open the live DB — avoids
-  locking the user's Messages app.
+- **Read-only, torn-write-safe open.** Do **not** do a naive `shutil.copy` of the
+  live DB — if Messages is mid-write, a byte copy can capture a torn/partial DB.
+  Instead open the original through SQLite in read-only immutable mode:
+  `sqlite3.connect("file:<path>?mode=ro&immutable=1", uri=True)`. This never takes a
+  write lock and never blocks Messages. (If a future macOS locks even `mode=ro`,
+  fall back to the SQLite **online backup API** — `source.backup(dest)` — which
+  produces a consistent snapshot; still never a raw byte copy.)
 - Core query joins `message` ↔ `chat_message_join` ↔ `chat` and `message.handle_id`
   ↔ `handle.ROWID` to get text, timestamp, direction, and the other party's handle.
 
-### 3.2 Two decoding quirks (must handle)
-- **`attributedBody`**: on modern macOS `message.text` is often NULL and the body
-  lives in `message.attributedBody`, a serialized `NSAttributedString` (typed-stream
-  / binary blob). The reader must decode it to recover the message text. Falling
-  back to `text` only would silently drop most recent messages.
-- **Apple epoch**: `message.date` is nanoseconds since `2001-01-01 00:00:00 UTC`
-  (older rows may be seconds). Convert to ISO 8601 before storage.
+### 3.2 Decoding quirks (must handle)
+- **`attributedBody`** — on modern macOS `message.text` is often NULL and the body
+  lives in `message.attributedBody`, a serialized `NSAttributedString` (Apple
+  "typedstream" / `streamtyped` binary blob). The reader must decode it to recover
+  the text; falling back to `text` only would silently drop most recent messages.
+  - **New dependency required** — no typedstream decoder is currently installed.
+    Add a **pure-Python** typedstream decoder to `requirements.txt` (candidate:
+    `pytypedstream` / `typedstream`; the exact PyPI distribution is confirmed in the
+    plan step, and must be pure-Python — no compiled/Foundation dependency so it runs
+    cross-platform in tests). Implement a **heuristic fallback** (extract the longest
+    printable-UTF8 run between the known `NSString` markers) for blobs the decoder
+    can't parse, so a single odd row never crashes the scan.
+- **Apple epoch** — `message.date` is nanoseconds since `2001-01-01 00:00:00 UTC`.
+  Older rows store **seconds** instead; detect by magnitude (ns values are ~10^18)
+  and convert both to ISO 8601 before storage.
+- **NULL text AND NULL attributedBody** — reactions/tapbacks, attachment-only
+  messages, and stickers carry no body. **Skip** these (don't store empty rows);
+  they are not useful for search. Log a per-scan count of skipped rows.
 
 ### 3.3 Contact resolution
 - macOS AddressBook DB: `~/Library/Application Support/AddressBook/Sources/*/AddressBook-v22.abcddb`.
 - Build a `handle → contact_name` map. Normalize phone numbers to **E.164** on both
   sides (handles and AddressBook numbers) so matching is reliable.
 - Unresolved handles fall back to the raw handle string (phone/Apple ID).
+- **Group chats**: a single message still has exactly one sender — `message.handle_id`
+  — so sender resolution is identical to 1:1 (one handle → one name). The `is_group`
+  flag is **contextual metadata only**; we do **not** resolve the full participant
+  roster in this phase. (Outgoing messages have `is_from_me=1` and `handle_id=0`;
+  store `contact_name="Me"` / direction `me`.)
 
-### 3.4 Permission (TCC)
+### 3.4 Permission (TCC) and error flow
 - Both `chat.db` and the AddressBook DB are protected. A **single Full Disk Access**
   grant (System Settings → Privacy & Security → Full Disk Access) covers both.
-- The reader must **fail loudly**: on `PermissionError` / "operation not permitted",
-  return a clear, actionable error ("grant Full Disk Access to …") — never return an
-  empty result that looks like "no messages".
+- **Typed, propagated error.** `chat_db.py` raises a dedicated
+  `MessagesAccessError` on `sqlite3.OperationalError`/`PermissionError`/"unable to
+  open database file" (the symptom of missing Full Disk Access) and on a missing
+  `chat.db`. `pipeline.py` lets it propagate; the API layer (`app/server.py`)
+  catches it and returns a clear, actionable message ("Grant Full Disk Access to …",
+  or "No Messages database found"). **Never** swallow it into an empty result that
+  looks like "no messages". The nightly job catches it, logs it, and moves on.
 
 ## 4. Components (`core/messages/`, mirroring `core/email/`)
 
@@ -82,7 +106,7 @@ small set of **redacted** excerpts sent to the cloud LLM at answer time.
 ### 4.1 Shared modules (lifted out so both pipelines use them)
 | File | Role |
 |---|---|
-| `core/embeddings.py` | The bge-m3 embedder, **lifted from `core/email/embedder.py`** (`get_model`, `embed_texts`, `EMBED_DIM=1024`). `core/email/embedder.py` becomes a thin re-export to avoid churn; `core/messages` imports the shared module. Both pipelines share one model load and one vector space. |
+| `core/embeddings.py` | The bge-m3 embedder, **lifted from `core/email/embedder.py`** (`get_model`, `embed_texts`, `EMBED_DIM=1024`). `core/email/embedder.py` becomes a thin re-export (`from core.embeddings import *`) to avoid churn; `core/messages` imports the shared module. **Import-update checklist**: `core/email/vector_store.py:19` (`from core.email.embedder import EMBED_DIM`) and `app/chat/chat_engine.py:322` (`from core.email import embedder`) keep working via the re-export, but should be migrated to `core.embeddings` in the same change. Both pipelines share one model load and one vector space. |
 | `core/privacy/cloud_boundary.py` | The redact-at-answer-boundary helper used by **both** `search_messages` and `search_emails` (see §7). |
 
 ## 5. Storage
@@ -97,12 +121,20 @@ small set of **redacted** excerpts sent to the cloud LLM at answer time.
 CREATE TABLE IF NOT EXISTS message_sync_state (
     id              INTEGER PRIMARY KEY CHECK (id = 1), -- single-row table
     last_rowid      INTEGER,  -- highest message.ROWID ingested; the sync cursor
-    db_fingerprint  TEXT,     -- detects chat.db replacement (device migration)
+    last_guid       TEXT,     -- guid of the message at last_rowid (cursor anchor)
+    db_fingerprint  TEXT,     -- detects chat.db replacement / VACUUM (see §6.2)
     last_sync_at    TEXT
 );
 ```
-Added via `core/database/schema.sql` (`CREATE TABLE IF NOT EXISTS`) and, if needed
-for existing DBs, a guarded `ALTER`/create in `core/database/migrate.py`.
+- **Added in two places** (both required): the `CREATE TABLE IF NOT EXISTS` block in
+  `core/database/schema.sql`, **and** a guarded create in `migrate.py`'s
+  `ensure_schema()` so existing production DBs get the table. (`ensure_schema()` runs
+  `schema.sql` via `executescript`, so the `IF NOT EXISTS` block covers existing DBs
+  too; add an explicit step only if a future column needs a guarded `ALTER`, mirroring
+  the existing `last_uid`/`uidvalidity` migration pattern.)
+- **No manual row init needed.** Writes use upsert:
+  `INSERT INTO message_sync_state (id, …) VALUES (1, …) ON CONFLICT(id) DO UPDATE SET …`.
+  The first sync creates row `id=1`; the `CHECK (id = 1)` guarantees a single row.
 
 ## 6. Data Flow
 
@@ -115,12 +147,25 @@ for existing DBs, a guarded `ALTER`/create in `core/database/migrate.py`.
 5. Record the highest `ROWID` seen and a `db_fingerprint` in `message_sync_state`.
 
 ### 6.2 Incremental sync (nightly, 02:00)
-1. Load `last_rowid` + `db_fingerprint` from `message_sync_state`.
-2. If the fingerprint changed (new `chat.db` after device migration), force a full
-   date-based rescan; otherwise query `WHERE message.ROWID > last_rowid`.
-3. Embed + upsert only the new rows; persist the new `last_rowid` + fingerprint.
-4. Extends the **existing APScheduler nightly job** in `app/server.py` (which already
-   runs email `incremental_sync` at 02:00) to also run message sync.
+1. Load `last_rowid`, `last_guid`, `db_fingerprint` from `message_sync_state`.
+   **First run / no row / any NULL field → treat the cursor as invalid and run a full
+   scan** (`run_full_scan`). No NULL-deref: the absence of a row short-circuits before
+   the anchor recheck.
+2. **Validate the cursor** before trusting it (ROWIDs are only monotonic within one
+   stable DB; a device migration *or* a `VACUUM` of `chat.db` can renumber them):
+   - `db_fingerprint` = a cheap hash that changes when the DB is replaced or
+     compacted — concretely `sha1(f"{total_message_count}:{min_rowid}:{max_rowid}")`.
+     A `VACUUM` renumbers ROWIDs so `min/max_rowid` shift → fingerprint changes →
+     detected.
+   - **Anchor recheck**: confirm the row currently at `ROWID = last_rowid` still has
+     `guid = last_guid`. If the fingerprint changed OR the anchor guid no longer
+     matches, the cursor is stale → **force a full rescan** (guid is the LanceDB dedup
+     key, so a rescan re-upserts without duplicating).
+3. Otherwise query `WHERE message.ROWID > last_rowid`; embed + upsert only new rows.
+4. Persist the new `last_rowid`, its `last_guid`, and the recomputed `db_fingerprint`.
+5. Extends the **existing APScheduler nightly job** in `app/server.py` (which already
+   runs email `incremental_sync` at 02:00) to also run message sync — see §9 for the
+   error-isolation requirement.
 
 ### 6.3 Query (chat)
 1. User asks a question; Claude calls `search_messages(query=…)`.
@@ -151,33 +196,67 @@ extraction engine already redacts immediately before the cloud call.
 ### 7.3 Shared helper: `core/privacy/cloud_boundary.py`
 A pipeline-agnostic step wired into **both** `search_messages` and `search_emails`:
 - Input: a `RedactionEngine`, the retrieved rows, the names of the text fields to
-  scrub (`body`/`text`), and the known **seed names** in those rows (contact names
-  for messages; sender display info for email if available).
-- Behavior: **pre-seed** the engine's `TokenStore` with the known contact names
-  (deterministic, high-confidence tokenization — we know who these messages are
-  from, so we don't gamble on NER), then `redact()` the configured text fields.
+  scrub (`body`/`text`), and an optional list of known **seed names** for those rows.
+- Behavior: **pre-seed** the engine's `TokenStore` with any known names
+  (deterministic, high-confidence tokenization), then `redact()` the configured text
+  fields.
 - Output: rows with redacted text fields, ready to serialize as the tool result.
+
+**Asymmetry between the two pipelines (important):**
+- **Messages** carry a resolved `contact_name` per row → these are passed as seed
+  names, so the sender *and* any in-body mention of that contact tokenize
+  deterministically. This is the strong case.
+- **Email rows have no person name to seed.** `core/email/pipeline.py` stores
+  `sender` as **domain-only** (`imap_client.sender_domain(...)`) — the display name
+  was dropped at ingest. So for email there are **no seed names**; body redaction
+  relies entirely on the household profile (Pass 1) + Presidio NER (Pass 2) + the
+  deterministic sweep (Pass 3). The retrofit still meaningfully reduces leakage
+  (emails, phone numbers, SSNs, profile names) but **cannot** guarantee third-party
+  sender names are caught the way messages can. Documented, not a blocker.
+- The `sender`/`subject`/`date` and `contact_name` fields are short labels; redact
+  the **body/text** field and the **`contact_name`/sender label**; leave `date`
+  untouched (the DOB recognizer could otherwise mangle an ISO date).
 
 ### 7.4 RedactionEngine changes
 - **Add `lowercase_for_ner: bool = True`** to `RedactionEngine.__init__`. Default
   preserves today's bank-statement behavior (ALL-CAPS → lowercase for spaCy). Pass
   `False` for chat excerpts so Presidio/spaCy keep the capitalization cues that
   conversational text provides (lowercasing would make NER *miss* names).
-- **Add a public method to register a known name** (e.g.
-  `register_person(name: str)`), used by `cloud_boundary` to pre-seed contact names
-  via the existing `TokenStore.get_or_create("PERSON", name)` path.
+- **Add a public method `register_person(name: str)`** on `RedactionEngine` that
+  delegates to its private `self._store.get_or_create("PERSON", name)` (the same
+  `TokenStore` method `_pass1_payment_apps` already uses). `cloud_boundary` calls this
+  wrapper rather than reaching into the private `_store`, keeping the encapsulation
+  boundary clean. (`TokenStore` exposes `get_or_create`, `reserve`, `all_tokens`.)
 - **Warm Presidio at server startup** (call the shared loader once on boot) so the
   first query doesn't pay a ~1–2s model-load stall.
 
-### 7.5 Engine lifetime (per chat session)
-- The `RedactionEngine` lives on the **`JarChat` instance** (created in `__init__`
-  from the household profile), **not per turn**. Tool results are stored in
-  `conversation_history` and replayed every turn; a session-scoped store keeps
-  tokens consistent so any token Claude echoes from an earlier turn can still be
-  detokenized.
-- `JarChat.chat()` detokenizes `final_text` via the engine before returning.
+### 7.5 Engine lifetime + construction (per chat session)
+- The `RedactionEngine` lives on the **`JarChat` instance** (created in `__init__`),
+  **not per turn**. Tool results are stored in `conversation_history` and replayed
+  every turn; a session-scoped store keeps tokens consistent so any token Claude
+  echoes from an earlier turn can still be detokenized. (`conversation_history` is
+  in-memory per instance, so there is no stale cross-session token risk.)
+- **Construction**: `profile = HouseholdProfile.load(conn)` (already exists in
+  `core/privacy/profile.py`; returns an empty profile safely if the table/rows are
+  absent), then `RedactionEngine(profile, lowercase_for_ner=False)`.
+- `JarChat.chat()` detokenizes `final_text` via the engine before returning. The
+  detokenizer is substring-based; add a final safety net that logs (does not crash)
+  if any `[A-Z_]+(_\d+)?`-shaped token survives detokenization, so leaked
+  *placeholders* (not PII) are observable rather than silent.
 
-### 7.6 Scope decision (explicit)
+### 7.6 Degraded-redaction handling (must not be silent)
+Redaction can quietly weaken in two ways; both must surface:
+- **Profile not configured** (`profile.is_configured()` is `False`): Pass 1 name
+  matching is a no-op, so the user's *own* name relies on NER. Log a one-time warning
+  at chat init.
+- **Presidio/spaCy unavailable**: `RedactionEngine` already falls back to Pass 1 +
+  Pass 3 only (profile + deterministic sweep) and logs a warning. For messages this
+  means body person-names rely solely on contact-name seeding. Surface this as a
+  startup log warning (Presidio is warmed on boot per §7.4, which is also where this
+  is detected). Neither condition blocks chat — redaction is **best-effort by
+  design**, and this trade-off is stated in §7 rather than hidden.
+
+### 7.7 Scope decision (explicit)
 - **Excerpts only.** The user's typed question is sent to the cloud **unredacted**.
   Redaction covers the retrieved message/email *content* (the bulk private data —
   years of texts), which is the high-value target. Redacting the user's own question
@@ -205,10 +284,23 @@ A pipeline-agnostic step wired into **both** `search_messages` and `search_email
 ## 9. Server / API (`app/server.py`)
 
 - Endpoints parallel to the email ones: a full-scan trigger and an incremental-sync
-  trigger for messages (run in an executor, like email).
-- Extend the nightly `_nightly_sync` job to run message `incremental_sync` after the
-  email sync.
-- Warm Presidio on startup (§7.4).
+  trigger for messages (run in an executor via `run_in_executor`, awaited, like the
+  email endpoints).
+- Extend the nightly `_nightly_sync` job to run message `incremental_sync`. **Isolate
+  the two syncs** — wrap email sync and message sync in **separate** try/except
+  blocks so a failure (or missing config) in one never prevents the other from
+  running. Each logs its own success/failure.
+- **Concurrency**: guard the message sync with a module-level
+  `asyncio.Lock`/boolean so a manual sync endpoint and the nightly job can't run
+  message ingestion concurrently against the same LanceDB table (mirror this for the
+  email path if it lacks it). A second concurrent request returns "sync already
+  running" rather than racing.
+- Warm Presidio on startup (§7.4), and detect/log the degraded conditions in §7.6.
+
+### 9.1 Dependency
+Add the pure-Python typedstream decoder (§3.2) to `requirements.txt` under a new
+"Text-message ingestion" group. No keychain/credential dependency is needed (local
+file read). `install.sh` requires no change beyond `pip install -r requirements.txt`.
 
 ## 10. Error Handling
 
@@ -236,6 +328,14 @@ A pipeline-agnostic step wired into **both** `search_messages` and `search_email
   + a phone number → assert names/numbers are tokenized → `detokenize` restores the
   originals exactly.
 - **`lowercase_for_ner=False`** path: a normally-capitalized name is tokenized.
+- **NULL-both rows** (reaction/tapback/attachment-only) are skipped, not stored as
+  empty.
+- **Cursor validation**: fingerprint change OR anchor-guid mismatch forces a full
+  rescan; a clean run advances `last_rowid`/`last_guid` and re-upserts without dupes.
+- **`MessagesAccessError`**: simulate an unreadable DB → assert the typed error
+  propagates and the API returns the actionable message (not an empty result).
+- Decoder is **pure-Python** so these run on the test box's Python (3.9 locally per
+  project memory) with no macOS/Foundation dependency.
 - Mirror existing `tests/` patterns and fixtures.
 
 ## 12. Defaults (applied; flag to change)
@@ -251,3 +351,27 @@ A pipeline-agnostic step wired into **both** `search_messages` and `search_email
 - Possible later: redact the user's question too (conversation-scoped store) and/or
   route sensitive queries to `local_chat_engine.py` to skip the cloud entirely.
 - Attachment filenames as searchable metadata.
+
+## 14. Robustness review — resolved findings (2026-06-08)
+
+A production-readiness review against the real code resolved these into the spec:
+- **`attributedBody` decoder** is a new, required pure-Python dependency (none
+  installed) + heuristic fallback + NULL-both skip — §3.2, §9.1, §11.
+- **Torn-copy risk** → read-only `immutable=1` open / backup API, not byte copy — §3.1.
+- **ROWID invalidation** (VACUUM/migration) → `db_fingerprint` definition +
+  `last_guid` anchor recheck forcing full rescan — §5.1, §6.2.
+- **Email has no display name to seed** (domain-only at ingest) → seeding asymmetry
+  documented; email body redaction relies on profile + NER + sweep — §7.3.
+- **Silent redaction degradation** (empty profile / Presidio down) → surfaced via
+  logs, `HouseholdProfile.load` + `is_configured()` path specified — §7.5, §7.6.
+- **`message_sync_state`** → upsert (no manual init), added to both `schema.sql` and
+  `migrate.py` — §5.1.
+- **FDA permission** → typed `MessagesAccessError` propagated to a user-facing API
+  message — §3.4, §10.
+- **Group-chat sender** → per-message single handle; `is_group` is metadata only — §3.3.
+- **Scheduler** → email/message syncs isolated in separate try/except; concurrency
+  lock on message ingestion — §9.
+- **Embedder lift** → import-update checklist for the two existing import sites — §4.1.
+- Deferred as non-blocking: detokenizer uses substring replace (a mangled token would
+  leak a *placeholder*, never PII or cloud data) — mitigated with a logging safety
+  net in §7.5.
