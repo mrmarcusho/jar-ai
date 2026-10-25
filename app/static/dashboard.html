@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jar — Dashboard</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v=9">
 </head>
 <body>
     <nav>
@@ -34,37 +34,43 @@
         <!-- Dashboard content (hidden until data loaded) -->
         <div id="dashboard-content" style="display:none">
 
-            <!-- JAR's Findings (HSM alerts) -->
-            <div id="findings-section" style="display:none">
-                <div class="findings-header">
-                    <h3>JAR's Findings</h3>
-                    <span class="findings-count" id="findings-count"></span>
-                </div>
-                <div class="findings-list" id="findings-list"></div>
+            <div class="page-header">
+                <h1 id="dash-greeting">Welcome back</h1>
+                <p>Here's where your household's money stands.</p>
             </div>
 
             <!-- Summary cards -->
             <div class="dashboard-grid">
                 <div class="summary-card">
                     <div class="label">Current Balance</div>
-                    <div class="value" id="card-balance">-</div>
+                    <div class="value" id="card-balance"><span class="skeleton"></span></div>
                     <div class="sub" id="card-balance-sub"></div>
                 </div>
                 <div class="summary-card">
                     <div class="label">Avg Monthly Income</div>
-                    <div class="value" style="color:var(--green)" id="card-income">-</div>
+                    <div class="value" style="color:var(--green)" id="card-income"><span class="skeleton"></span></div>
                     <div class="sub" id="card-income-sub"></div>
                 </div>
                 <div class="summary-card">
                     <div class="label">Avg Monthly Spending</div>
-                    <div class="value" style="color:var(--red)" id="card-spending">-</div>
+                    <div class="value" id="card-spending"><span class="skeleton"></span></div>
                     <div class="sub" id="card-spending-sub"></div>
                 </div>
                 <div class="summary-card">
                     <div class="label">Net Change</div>
-                    <div class="value" id="card-net">-</div>
+                    <div class="value" id="card-net"><span class="skeleton"></span></div>
                     <div class="sub" id="card-net-sub"></div>
                 </div>
+            </div>
+
+            <!-- JAR's Findings (HSM alerts) -->
+            <div id="findings-section" style="display:none">
+                <div class="findings-header">
+                    <h3>Jar noticed</h3>
+                    <span class="findings-count" id="findings-count"></span>
+                </div>
+                <div class="findings-list" id="findings-list"></div>
+                <button class="findings-toggle" id="findings-toggle" style="display:none" onclick="toggleFindings()"></button>
             </div>
 
             <!-- Uncategorized banner -->
@@ -72,7 +78,7 @@
                 <div class="uncat-banner-text">
                     <strong id="uncat-count">0</strong> uncategorized transactions need your attention
                 </div>
-                <button class="btn-primary" onclick="startReviewFlow()" style="padding:6px 16px;font-size:13px">Review Now</button>
+                <button class="btn-primary" onclick="startReviewFlow()">Review now</button>
             </div>
 
             <!-- Charts row 1 -->
@@ -96,13 +102,13 @@
                 <div class="chart-card">
                     <h3>Top Merchants</h3>
                     <ul class="merchant-list" id="merchant-list">
-                        <li style="color:var(--text-muted)">Loading...</li>
+                        <li><span class="skeleton"></span></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Quick Insights -->
-            <h3 style="margin-bottom:12px;font-size:14px;font-weight:600">Quick Insights</h3>
+            <h3 class="section-title">Quick insights</h3>
             <div class="insights-grid">
                 <div class="insight-card" id="insight-biggest">
                     <h4>Biggest Expense</h4>
@@ -234,8 +240,9 @@
     </main>
 
     <script src="/static/common.js"></script>
+    <script src="/static/motion.js?v=2"></script>
     <script src="/static/lib/chart.umd.min.js"></script>
     <script src="/static/scanner-widget.js"></script>
-    <script src="/static/dashboard.js"></script>
+    <script src="/static/dashboard.js?v=8"></script>
 </body>
 </html>

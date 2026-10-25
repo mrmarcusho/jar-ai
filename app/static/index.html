@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jar</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v=9">
 </head>
 <body>
     <nav>
@@ -27,7 +27,7 @@
                 <div class="dropzone" id="dropzone">
                     <div class="dropzone-icon">&#128196;</div>
                     <div class="dropzone-text">
-                        <strong>Drop a PDF here</strong> or click to select<br>
+                        <strong>Drop a PDF here</strong> or click to choose one<br>
                         Bank of America checking statement
                     </div>
                     <input type="file" id="file-input" accept=".pdf">
@@ -107,55 +107,57 @@
     </main>
 
     <!-- ── Privacy Profile Modal ─────────────────────────────── -->
-    <div id="profile-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;">
-        <div style="background:#1a1a2e;border:1px solid #333;border-radius:12px;padding:32px;max-width:480px;width:90%;color:#e0e0e0;">
-            <h2 style="margin:0 0 8px;font-size:1.2rem;">Privacy Setup</h2>
-            <p style="margin:0 0 20px;font-size:.85rem;color:#aaa;">
-                Your name and address are redacted from documents before they are sent to the cloud.
-                Only you see the real values — locally stored, never uploaded.
-            </p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
-                <div>
-                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">First name *</label>
-                    <input id="prof-first" type="text" placeholder="Marcus" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+    <div id="profile-modal" class="modal-backdrop profile-modal" style="display:none">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Privacy setup</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Your name and address are redacted from documents before they are sent to the cloud.
+                    Only you see the real values — locally stored, never uploaded.
+                </p>
+                <div class="profile-grid">
+                    <div class="profile-field">
+                        <label for="prof-first">First name *</label>
+                        <input id="prof-first" class="tag-input" type="text" placeholder="Marcus">
+                    </div>
+                    <div class="profile-field">
+                        <label for="prof-last">Last name *</label>
+                        <input id="prof-last" class="tag-input" type="text" placeholder="Ho">
+                    </div>
+                    <div class="profile-field">
+                        <label for="prof-partner-first">Partner first name</label>
+                        <input id="prof-partner-first" class="tag-input" type="text" placeholder="Optional">
+                    </div>
+                    <div class="profile-field">
+                        <label for="prof-partner-last">Partner last name</label>
+                        <input id="prof-partner-last" class="tag-input" type="text" placeholder="Optional">
+                    </div>
                 </div>
-                <div>
-                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Last name *</label>
-                    <input id="prof-last" type="text" placeholder="Ho" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+                <div class="profile-field">
+                    <label for="prof-street">Street address</label>
+                    <input id="prof-street" class="tag-input" type="text" placeholder="123 Main St">
                 </div>
-                <div>
-                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Partner first name</label>
-                    <input id="prof-partner-first" type="text" placeholder="Optional" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
-                </div>
-                <div>
-                    <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Partner last name</label>
-                    <input id="prof-partner-last" type="text" placeholder="Optional" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
+                <div class="profile-field">
+                    <label for="prof-city">City</label>
+                    <input id="prof-city" class="tag-input" type="text" placeholder="Boston">
                 </div>
             </div>
-            <div style="margin-bottom:12px;">
-                <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">Street address</label>
-                <input id="prof-street" type="text" placeholder="123 Main St" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
-            </div>
-            <div style="margin-bottom:20px;">
-                <label style="font-size:.8rem;color:#aaa;display:block;margin-bottom:4px;">City</label>
-                <input id="prof-city" type="text" placeholder="Boston" style="width:100%;box-sizing:border-box;background:#0d0d1a;border:1px solid #444;border-radius:6px;padding:8px 10px;color:#e0e0e0;font-size:.9rem;">
-            </div>
-            <div style="display:flex;gap:10px;justify-content:flex-end;">
-                <button id="prof-skip" style="background:transparent;border:1px solid #555;border-radius:6px;padding:8px 18px;color:#aaa;cursor:pointer;font-size:.9rem;">Skip for now</button>
-                <button id="prof-save" style="background:#6c63ff;border:none;border-radius:6px;padding:8px 18px;color:#fff;cursor:pointer;font-size:.9rem;font-weight:600;">Save Profile</button>
+            <div class="modal-footer">
+                <button id="prof-skip" class="btn-secondary">Skip for now</button>
+                <button id="prof-save" class="btn-primary">Save profile</button>
             </div>
         </div>
     </div>
 
+    <script src="/static/motion.js?v=2"></script>
     <script>
     // Profile modal logic
     (async () => {
         try {
             const st = await fetch('/api/profile/status').then(r => r.json());
-            if (!st.configured) {
-                const modal = document.getElementById('profile-modal');
-                modal.style.display = 'flex';
-            }
+            if (!st.configured) openModal(document.getElementById('profile-modal'));
         } catch (_) {}
 
         document.getElementById('prof-save').addEventListener('click', async () => {
@@ -168,19 +170,21 @@
                 city: document.getElementById('prof-city').value.trim(),
             };
             if (!body.first_name && !body.last_name) {
-                alert('Please enter at least a first or last name.');
+                const first = document.getElementById('prof-first');
+                shake(first.closest('.profile-grid'));
+                first.focus();
                 return;
             }
             await fetch('/api/profile', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
-            document.getElementById('profile-modal').style.display = 'none';
+            closeModal(document.getElementById('profile-modal'));
         });
 
         document.getElementById('prof-skip').addEventListener('click', () => {
-            document.getElementById('profile-modal').style.display = 'none';
+            closeModal(document.getElementById('profile-modal'));
         });
     })();
     </script>
 
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=6"></script>
 </body>
 </html>

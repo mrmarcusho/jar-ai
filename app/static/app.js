@@ -317,13 +317,13 @@ modelSelect.addEventListener('change', async () => {
         });
         const data = await res.json();
         if (data.error) {
-            chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Cannot switch: ' + esc(data.error) + '</div>';
+            chatMessages.insertAdjacentHTML('beforeend', '<div class="message assistant" style="color:var(--red)">Cannot switch: ' + esc(data.error) + '</div>');
             loadChatStatus(); // revert select
         } else {
-            chatMessages.innerHTML += '<div class="message assistant">Switched to <strong>' + esc(data.name) + '</strong>. Conversation reset.</div>';
+            chatMessages.insertAdjacentHTML('beforeend', '<div class="message assistant">Switched to <strong>' + esc(data.name) + '</strong>. Conversation reset.</div>');
         }
     } catch (e) {
-        chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Error switching model</div>';
+        chatMessages.insertAdjacentHTML('beforeend', '<div class="message assistant" style="color:var(--red)">Error switching model</div>');
         loadChatStatus();
     }
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -344,14 +344,14 @@ async function sendChat() {
     if (!text) return;
 
     // Add user message
-    chatMessages.innerHTML += '<div class="message user">' + esc(text) + '</div>';
+    chatMessages.insertAdjacentHTML('beforeend', '<div class="message user">' + esc(text) + '</div>');
     chatInput.value = '';
     chatInput.disabled = true;
     chatSend.disabled = true;
 
     // Add thinking indicator
     const thinkingId = 'thinking-' + Date.now();
-    chatMessages.innerHTML += '<div class="message assistant" id="' + thinkingId + '"><div class="spinner"></div> Thinking...</div>';
+    chatMessages.insertAdjacentHTML('beforeend', '<div class="message assistant thinking" id="' + thinkingId + '" aria-label="Thinking"><span></span><span></span><span></span></div>');
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
@@ -367,7 +367,7 @@ async function sendChat() {
         if (thinking) thinking.remove();
 
         if (data.error) {
-            chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Error: ' + esc(data.error) + '</div>';
+            chatMessages.insertAdjacentHTML('beforeend', '<div class="message assistant" style="color:var(--red)">Error: ' + esc(data.error) + '</div>');
         } else {
             let html = formatResponse(data.response || '');
 
@@ -380,12 +380,12 @@ async function sendChat() {
                 html += '</div>';
             }
 
-            chatMessages.innerHTML += '<div class="message assistant">' + html + '</div>';
+            chatMessages.insertAdjacentHTML('beforeend', '<div class="message assistant">' + html + '</div>');
         }
     } catch (e) {
         const thinking = document.getElementById(thinkingId);
         if (thinking) thinking.remove();
-        chatMessages.innerHTML += '<div class="message assistant" style="color:var(--red)">Connection error: ' + esc(e.message) + '</div>';
+        chatMessages.insertAdjacentHTML('beforeend', '<div class="message assistant" style="color:var(--red)">Connection error: ' + esc(e.message) + '</div>');
     }
 
     chatInput.disabled = false;

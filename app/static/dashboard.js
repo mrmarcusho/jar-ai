@@ -80,8 +80,17 @@ function transitionToDashboard() {
 
 // ── Load & render dashboard data ────────────────────────────────
 
+function greeting() {
+    const h = new Date().getHours();
+    if (h < 5) return 'Up late';
+    if (h < 12) return 'Good morning';
+    if (h < 18) return 'Good afternoon';
+    return 'Good evening';
+}
+
 async function showDashboardContent() {
     $('dashboard-content').style.display = '';
+    $('dash-greeting').textContent = greeting();
 
     // Parallel fetch all dashboard data
     const [summary, balanceHistory, categories, monthly, merchants, uncatData, findingsData] = await Promise.all([
@@ -164,6 +173,31 @@ function renderFindings(findings) {
             '<button class="finding-dismiss" onclick="dismissFinding(\'' + esc(f.finding_id) + '\', this)" title="Dismiss">&times;</button>' +
         '</div>';
     }).join('');
+
+    list.classList.add('is-collapsed');
+    updateFindingsToggle();
+}
+
+// Show the top few findings; the rest unfold on demand
+const FINDINGS_PREVIEW = 3;
+
+function updateFindingsToggle() {
+    var list = $('findings-list');
+    var toggle = $('findings-toggle');
+    var total = list.querySelectorAll('.finding-card').length;
+    if (total <= FINDINGS_PREVIEW) {
+        toggle.style.display = 'none';
+        return;
+    }
+    toggle.style.display = '';
+    toggle.textContent = list.classList.contains('is-collapsed')
+        ? 'Show all ' + total + ' findings'
+        : 'Show fewer';
+}
+
+function toggleFindings() {
+    $('findings-list').classList.toggle('is-collapsed');
+    updateFindingsToggle();
 }
 
 async function dismissFinding(findingId, btn) {
@@ -171,23 +205,16 @@ async function dismissFinding(findingId, btn) {
         await fetchJSON('/api/findings/' + encodeURIComponent(findingId) + '/dismiss', {
             method: 'POST',
         });
-        var card = btn.closest('.finding-card');
-        card.style.transition = 'opacity 0.3s, max-height 0.3s';
-        card.style.opacity = '0';
-        card.style.maxHeight = '0';
-        card.style.overflow = 'hidden';
-        card.style.marginBottom = '0';
-        card.style.padding = '0';
-        setTimeout(function() {
-            card.remove();
-            // Hide section if no findings left
-            var remaining = document.querySelectorAll('.finding-card');
-            if (remaining.length === 0) {
-                $('findings-section').style.display = 'none';
-            } else {
-                $('findings-count').textContent = remaining.length + ' finding' + (remaining.length !== 1 ? 's' : '');
-            }
-        }, 300);
+        await collapseOut(btn.closest('.finding-card'));
+        // Hide section if no findings left
+        var remaining = document.querySelectorAll('.finding-card');
+        if (remaining.length === 0) {
+            $('findings-section').style.display = 'none';
+        } else {
+            $('findings-count').textContent = remaining.length + ' finding' + (remaining.length !== 1 ? 's' : '');
+            replayAnimation($('findings-count'), 'bump');
+            updateFindingsToggle();
+        }
     } catch (e) {
         showToast('Error dismissing finding');
     }
@@ -295,11 +322,16 @@ async function openTagModal(txn) {
         $('tag-review-progress').style.display = 'none';
     }
 
-    $('tag-modal-backdrop').style.display = '';
+    // Already open (review mode advancing): slide the next transaction in
+    var backdrop = $('tag-modal-backdrop');
+    if (backdrop.style.display !== 'none' && !backdrop.classList.contains('is-closing')) {
+        replayAnimation(document.querySelector('.tag-txn-details'), 'slide-in');
+    }
+    openModal(backdrop);
 }
 
 function closeTagModal() {
-    $('tag-modal-backdrop').style.display = 'none';
+    closeModal($('tag-modal-backdrop'));
     reviewMode = false;
 }
 
@@ -320,6 +352,7 @@ async function saveTag() {
     var category = $('tag-category').value;
     var subcategory = $('tag-subcategory').value;
     if (!category) {
+        shake($('tag-category'));
         showToast('Please select a category');
         return;
     }
@@ -384,13 +417,7 @@ async function saveTag() {
 // ── Toast ───────────────────────────────────────────────────────
 
 function showToast(msg) {
-    var toast = $('toast');
-    toast.textContent = msg;
-    toast.style.display = '';
-    clearTimeout(toast._timer);
-    toast._timer = setTimeout(function() {
-        toast.style.display = 'none';
-    }, 3000);
+    popToast($('toast'), msg, /^(error|please|no |transaction not found)/i.test(msg));
 }
 
 // ── Summary Cards ───────────────────────────────────────────────
@@ -399,56 +426,100 @@ function renderSummaryCards(data) {
     const stmts = data.statements_in_range || [];
     const numStmts = stmts.length;
 
-    $('card-balance').textContent = data.closing_balance != null ? fmt(data.closing_balance) : '-';
+    if (data.closing_balance != null) countUp($('card-balance'), data.closing_balance, fmt);
+    else $('card-balance').textContent = '-';
     $('card-balance-sub').textContent = numStmts + ' statement' + (numStmts !== 1 ? 's' : '') + ' loaded';
 
     const avgIncome = numStmts > 0 ? data.total_income / numStmts : 0;
     const avgSpending = numStmts > 0 ? Math.abs(data.total_spending) / numStmts : 0;
 
-    $('card-income').textContent = fmt(avgIncome);
+    countUp($('card-income'), avgIncome, fmt);
     $('card-income-sub').textContent = 'Total: ' + fmt(data.total_income);
 
-    $('card-spending').textContent = fmt(avgSpending);
+    countUp($('card-spending'), avgSpending, fmt);
     $('card-spending-sub').textContent = 'Total: ' + fmt(Math.abs(data.total_spending));
 
     const net = data.net_change || 0;
-    $('card-net').textContent = fmt(net);
+    countUp($('card-net'), net, fmt);
     $('card-net').style.color = net >= 0 ? 'var(--green)' : 'var(--red)';
     $('card-net-sub').textContent = net >= 0 ? 'Positive cash flow' : 'Negative cash flow';
 }
 
 // ── Charts ──────────────────────────────────────────────────────
 
+// Muted, warm palette that sits with the oat neutrals
 const CHART_COLORS = [
-    '#2563eb', '#dc2626', '#16a34a', '#ca8a04', '#9333ea',
-    '#0891b2', '#e11d48', '#65a30d', '#c2410c', '#6366f1',
+    '#7fb4f0', '#f4a77c', '#9ad3ae', '#e99ad0', '#b3a5f0',
+    '#d8e24f', '#7cc7c0', '#e7c06a', '#1b1a18', '#a8c5e0',
 ];
+const UNCATEGORIZED_COLOR = '#dcd8cf';
+
+const INK = '#1b1a18';
+const MUTED = '#7b7974';
+const GRID = 'rgba(27, 26, 24, 0.06)';
+
+if (window.Chart) {
+    Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+    Chart.defaults.font.size = 11.5;
+    Chart.defaults.color = MUTED;
+    Chart.defaults.borderColor = GRID;
+    Chart.defaults.animation.duration = 900;
+    Chart.defaults.animation.easing = 'easeOutQuart';
+    Chart.defaults.plugins.legend.labels.usePointStyle = true;
+    Chart.defaults.plugins.legend.labels.pointStyle = 'circle';
+    Chart.defaults.plugins.legend.labels.boxWidth = 7;
+    Chart.defaults.plugins.legend.labels.boxHeight = 7;
+    Chart.defaults.plugins.legend.labels.padding = 14;
+    Object.assign(Chart.defaults.plugins.tooltip, {
+        backgroundColor: INK,
+        titleColor: '#fefdfb',
+        bodyColor: '#e9e6df',
+        padding: 10,
+        cornerRadius: 10,
+        displayColors: false,
+        titleFont: { weight: '600' },
+        caretSize: 5,
+    });
+}
+
+const moneyTick = v => '$' + Number(v).toLocaleString();
+const moneyTooltip = ctx => fmt(ctx.parsed.y != null ? ctx.parsed.y : ctx.parsed);
 
 function renderBalanceChart(data) {
     const history = data.history || [];
     if (history.length === 0) return;
 
-    new Chart($('chart-balance'), {
+    const canvas = $('chart-balance');
+    const gradient = canvas.getContext('2d').createLinearGradient(0, 0, 0, 260);
+    gradient.addColorStop(0, 'rgba(127, 180, 240, 0.35)');
+    gradient.addColorStop(1, 'rgba(127, 180, 240, 0)');
+
+    new Chart(canvas, {
         type: 'line',
         data: {
-            labels: history.map(h => h.period_end),
+            labels: history.map(h => fmtDate(h.period_end)),
             datasets: [{
                 label: 'Closing Balance',
                 data: history.map(h => h.closing_balance),
-                borderColor: '#2563eb',
-                backgroundColor: 'rgba(37,99,235,0.1)',
+                borderColor: INK,
+                borderWidth: 2,
+                backgroundColor: gradient,
                 fill: true,
-                tension: 0.3,
-                pointRadius: 4,
+                tension: 0.35,
+                pointRadius: 0,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: INK,
+                pointHoverBorderColor: '#fefdfb',
+                pointHoverBorderWidth: 2,
             }],
         },
         options: {
             responsive: true,
-            plugins: { legend: { display: false } },
+            interaction: { mode: 'index', intersect: false },
+            plugins: { legend: { display: false }, tooltip: { callbacks: { label: moneyTooltip } } },
             scales: {
-                y: {
-                    ticks: { callback: v => '$' + v.toLocaleString() },
-                },
+                x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 6 } },
+                y: { border: { display: false }, ticks: { callback: moneyTick, maxTicksLimit: 5 } },
             },
         },
     });
@@ -464,13 +535,25 @@ function renderCategoryChart(data) {
             labels: cats.map(c => (c.category || 'other').replace(/_/g, ' ')),
             datasets: [{
                 data: cats.map(c => c.total),
-                backgroundColor: CHART_COLORS.slice(0, cats.length),
+                backgroundColor: (() => {
+                    let next = 0;
+                    return cats.map(c => (!c.category || c.category === 'uncategorized')
+                        ? UNCATEGORIZED_COLOR
+                        : CHART_COLORS[next++ % CHART_COLORS.length]);
+                })(),
+                borderColor: '#fefdfb',
+                borderWidth: 2,
+                borderRadius: 4,
+                hoverOffset: 8,
             }],
         },
         options: {
             responsive: true,
+            cutout: '66%',
+            animation: { animateRotate: true, animateScale: true },
             plugins: {
-                legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } },
+                legend: { position: 'right', labels: { font: { size: 11.5 } } },
+                tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + fmt(ctx.parsed) } },
             },
         },
     });
@@ -488,22 +571,33 @@ function renderMonthlyChart(data) {
                 {
                     label: 'Income',
                     data: months.map(m => m.income),
-                    backgroundColor: 'rgba(22,163,74,0.7)',
+                    backgroundColor: '#9ad3ae',
+                    hoverBackgroundColor: '#7cc596',
+                    borderRadius: 6,
+                    borderSkipped: false,
+                    maxBarThickness: 22,
                 },
                 {
                     label: 'Spending',
                     data: months.map(m => m.spending),
-                    backgroundColor: 'rgba(220,38,38,0.7)',
+                    backgroundColor: INK,
+                    hoverBackgroundColor: '#3a3833',
+                    borderRadius: 6,
+                    borderSkipped: false,
+                    maxBarThickness: 22,
                 },
             ],
         },
         options: {
             responsive: true,
-            plugins: { legend: { labels: { boxWidth: 12 } } },
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { align: 'end' },
+                tooltip: { displayColors: true, boxPadding: 4, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmt(ctx.parsed.y) } },
+            },
             scales: {
-                y: {
-                    ticks: { callback: v => '$' + v.toLocaleString() },
-                },
+                x: { grid: { display: false }, border: { display: false } },
+                y: { border: { display: false }, ticks: { callback: moneyTick, maxTicksLimit: 5 } },
             },
         },
     });
@@ -562,7 +656,7 @@ async function loadInsights() {
     $('insight-export').addEventListener('click', () => {
         window.location.href = '/api/export/csv';
     });
-    $('insight-export-result').innerHTML = '<span style="color:var(--blue);cursor:pointer">Click to download</span>';
+    $('insight-export-result').innerHTML = '<span class="insight-link">Download</span>';
 }
 
 // ── Transactions Table ──────────────────────────────────────────
