@@ -220,7 +220,7 @@ function initScanner(containerId, options) {
             var dir = c.filepath.substring(0, c.filepath.lastIndexOf('/'));
 
             return '<tr>' +
-                '<td><input type="checkbox" class="' + prefix + 'candidate-cb" data-idx="' + i + '"' + (score >= 0.5 ? ' checked' : '') + '></td>' +
+                '<td><input type="checkbox" class="' + prefix + 'candidate-cb" data-idx="' + i + '"' + (i === 0 ? ' checked' : '') + '></td>' +
                 '<td>' + esc(c.filename) + '</td>' +
                 '<td class="scan-location">' + esc(dir) + '</td>' +
                 '<td><span class="confidence-badge ' + badgeClass + '">' + score.toFixed(2) + '</span></td>' +

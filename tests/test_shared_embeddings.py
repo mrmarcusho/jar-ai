@@ -6,8 +6,11 @@ def test_shared_embeddings_exports():
 
 
 def test_email_embedder_reexports_shared():
-    # Back-compat: existing imports must keep working.
+    # Back-compat: existing imports must keep working. Assert functional equivalence
+    # rather than object identity — the `from ... import` alias can be rebound if a
+    # different test monkeypatches core.embeddings during embedder's first import.
     from core.email import embedder
     from core import embeddings
-    assert embedder.EMBED_DIM is embeddings.EMBED_DIM
-    assert embedder.embed_texts is embeddings.embed_texts
+    assert embedder.EMBED_DIM == embeddings.EMBED_DIM == 1024
+    assert callable(embedder.embed_texts) and callable(embedder.get_model)
+    assert embedder.embed_texts([]) == []

@@ -45,18 +45,55 @@ function initMessagesWidget(containerId) {
         var last = status && status.last_sync
             ? new Date(status.last_sync).toLocaleString() : 'never';
         var total = (status && status.total_messages) || 0;
-        el('main-body').innerHTML =
+        var hasAccess = !status || status.full_disk_access;  // assume ok if unknown
+
+        var intro =
             (errorMsg ? '<div style="color:var(--red);margin-bottom:12px">' + esc(errorMsg) + '</div>' : '') +
             '<p style="color:var(--text-muted);margin-bottom:16px">' +
                 'Jar reads your Mac\'s Messages history (iMessage &amp; SMS) so you can ask ' +
                 'about appointments, orders, and plans buried in your texts. Everything is ' +
                 'embedded on-device; only redacted excerpts ever reach the cloud.' +
-            '</p>' +
-            '<div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:16px;font-size:13px;color:var(--text-muted)">' +
-                '<strong>One-time setup:</strong> grant <strong>Full Disk Access</strong> to this app ' +
-                'in System Settings &rarr; Privacy &amp; Security &rarr; Full Disk Access, then restart it. ' +
-                'Without it the scan can\'t read your messages.' +
-            '</div>' +
+            '</p>';
+
+        el('main-body').innerHTML = intro +
+            (hasAccess ? accessGrantedHtml(status, last, total) : accessNeededHtml(status));
+
+        if (hasAccess) {
+            el('btn-scan').addEventListener('click', startScan);
+            if (el('btn-sync')) el('btn-sync').addEventListener('click', runSync);
+        } else {
+            el('btn-open-settings').addEventListener('click', openSettings);
+            el('btn-recheck').addEventListener('click', loadStatus);
+        }
+    }
+
+    // Full Disk Access NOT granted — guide the user to enable it.
+    function accessNeededHtml(status) {
+        var exe = (status && status.runtime_executable) || '';
+        return '' +
+            '<div style="background:rgba(255,90,90,0.08);border:1px solid var(--red);border-radius:6px;padding:14px;margin-bottom:16px">' +
+                '<div style="font-weight:600;margin-bottom:8px">Full Disk Access needed</div>' +
+                '<p style="color:var(--text-muted);font-size:13px;margin-bottom:10px">' +
+                    'macOS protects your messages, so Jar can\'t read them until you grant ' +
+                    '<strong>Full Disk Access</strong>. Jar can\'t flip this switch for you ' +
+                    '(macOS requires you to do it), but the button below opens the right settings pane.' +
+                '</p>' +
+                '<ol style="color:var(--text-muted);font-size:13px;margin:0 0 12px 18px;padding:0">' +
+                    '<li>Click <strong>Open Full Disk Access Settings</strong> below.</li>' +
+                    '<li>Turn on the toggle for the app running Jar' +
+                        (exe ? ' (this build runs as <code style="font-size:12px">' + esc(exe) + '</code> — for a terminal, enable <strong>Terminal</strong> or <strong>iTerm</strong>)' : '') +
+                        '. Use the <strong>+</strong> button to add it if it isn\'t listed.</li>' +
+                    '<li><strong>Quit and reopen</strong> the app — macOS only applies the change on the next launch.</li>' +
+                    '<li>Come back and click <strong>Re-check</strong>.</li>' +
+                '</ol>' +
+                '<button id="' + prefix + 'btn-open-settings" class="btn-primary">Open Full Disk Access Settings</button>' +
+                '<button id="' + prefix + 'btn-recheck" class="btn-secondary" style="margin-left:8px">Re-check</button>' +
+            '</div>';
+    }
+
+    // Full Disk Access granted — show the scan controls.
+    function accessGrantedHtml(status, last, total) {
+        return '' +
             '<div class="scan-stats" style="margin-bottom:16px">' +
                 '<div class="scan-stat"><span>' + total + '</span> messages embedded</div>' +
                 '<div class="scan-stat" style="font-size:13px;color:var(--text-muted)">Last sync: ' + esc(last) + '</div>' +
@@ -75,9 +112,21 @@ function initMessagesWidget(containerId) {
             (status && status.last_sync
                 ? '<button id="' + prefix + 'btn-sync" class="btn-secondary" style="margin-left:8px">Sync New</button>'
                 : '');
+    }
 
-        el('btn-scan').addEventListener('click', startScan);
-        if (el('btn-sync')) el('btn-sync').addEventListener('click', runSync);
+    function openSettings() {
+        var btn = el('btn-open-settings');
+        btn.disabled = true;
+        var orig = btn.textContent;
+        btn.textContent = 'Opening...';
+        fetchJSON('/api/messages/open-settings', { method: 'POST' })
+            .catch(function(e) {
+                renderMain(null, 'Could not open System Settings: ' + e.message +
+                    '. Open it manually: System Settings > Privacy & Security > Full Disk Access.');
+            })
+            .then(function() {
+                if (btn) { btn.disabled = false; btn.textContent = orig; }
+            });
     }
 
     function loadStatus() {

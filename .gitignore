@@ -28,3 +28,6 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# disposable env for OpenAI Privacy Filter experiment
+.venv-pf/

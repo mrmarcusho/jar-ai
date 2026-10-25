@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "jar",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "source venv/bin/activate && set -a && source .env && set +a && python3 app/server.py"],
+      "port": 5050
+    }
+  ]
+}

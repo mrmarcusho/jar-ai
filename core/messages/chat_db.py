@@ -24,6 +24,13 @@ class MessagesAccessError(Exception):
     """Raised when chat.db is missing or unreadable (usually no Full Disk Access)."""
 
 
+def _access_hint(db_path: Path, exc: Exception) -> str:
+    return (
+        f"Cannot read {db_path}: {exc}. Grant Full Disk Access in "
+        f"System Settings > Privacy & Security > Full Disk Access, then restart the app."
+    )
+
+
 def apple_time_to_iso(raw: Optional[int]) -> Optional[str]:
     """Convert a Messages `date` value (Apple epoch, ns or legacy s) to ISO 8601."""
     if raw is None:
@@ -81,11 +88,11 @@ def open_readonly(db_path: Path) -> sqlite3.Connection:
     uri = f"file:{db_path}?mode=ro&immutable=1"
     try:
         return sqlite3.connect(uri, uri=True)
-    except sqlite3.OperationalError as exc:  # locked / permission
-        raise MessagesAccessError(
-            f"Cannot open {db_path}: {exc}. Grant Full Disk Access in "
-            f"System Settings > Privacy & Security."
-        ) from exc
+    except sqlite3.Error as exc:
+        # Missing Full Disk Access denies the open here as a DatabaseError
+        # ("authorization denied"); a locked DB raises OperationalError. Both are
+        # sqlite3.Error subclasses, so catch the base and surface the FDA hint.
+        raise MessagesAccessError(_access_hint(db_path, exc)) from exc
 
 
 def iter_messages(db_path: Path = DEFAULT_CHAT_DB,
@@ -109,7 +116,13 @@ def iter_messages(db_path: Path = DEFAULT_CHAT_DB,
     where = ("WHERE " + " AND ".join(clauses)) if clauses else ""
     skipped = 0
     try:
-        for r in conn.execute(_QUERY.format(where=where), params):
+        # The Full Disk Access denial surfaces here as a sqlite3 error
+        # ("authorization denied" → DatabaseError), not at connect time.
+        try:
+            cursor = conn.execute(_QUERY.format(where=where), params)
+        except sqlite3.Error as exc:
+            raise MessagesAccessError(_access_hint(db_path, exc)) from exc
+        for r in cursor:
             text = r["text"] or decode_attributed_body(r["abody"])
             if not text or not text.strip():
                 skipped += 1
@@ -129,13 +142,40 @@ def iter_messages(db_path: Path = DEFAULT_CHAT_DB,
         logger.debug("Skipped %d body-less messages", skipped)
 
 
+def has_access(db_path: Path = DEFAULT_CHAT_DB) -> bool:
+    """True if chat.db exists and is actually readable (i.e. Full Disk Access granted).
+
+    macOS denies the read until the user grants Full Disk Access; the denial surfaces
+    either at connect or on the first query, so we probe with a trivial SELECT.
+    """
+    try:
+        conn = open_readonly(db_path)
+    except MessagesAccessError:
+        return False
+    try:
+        conn.execute("SELECT 1 FROM message LIMIT 1")
+        return True
+    except sqlite3.Error:
+        # macOS FDA denial raises DatabaseError ("authorization denied"); other
+        # sqlite errors also mean we can't read it. Either way: no usable access.
+        return False
+    finally:
+        try:
+            conn.close()
+        except Exception:  # pragma: no cover - defensive
+            pass
+
+
 def fingerprint(db_path: Path = DEFAULT_CHAT_DB) -> str:
     """Cheap hash that changes on DB replacement or VACUUM (ROWID renumber)."""
     conn = open_readonly(db_path)
     try:
-        cnt, lo, hi = conn.execute(
-            "SELECT COUNT(*), MIN(ROWID), MAX(ROWID) FROM message"
-        ).fetchone()
+        try:
+            cnt, lo, hi = conn.execute(
+                "SELECT COUNT(*), MIN(ROWID), MAX(ROWID) FROM message"
+            ).fetchone()
+        except sqlite3.Error as exc:
+            raise MessagesAccessError(_access_hint(db_path, exc)) from exc
     finally:
         conn.close()
     return hashlib.sha1(f"{cnt}:{lo}:{hi}".encode()).hexdigest()

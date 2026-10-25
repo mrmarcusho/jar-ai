@@ -637,13 +637,14 @@ async def get_summary():
 
 # Model registry: id → display name, engine type
 CHAT_MODELS = {
+    "gpt-oss:20b": {"name": "gpt-oss 20B (local)",   "type": "ollama"},
     "gemma4:e4b": {"name": "Gemma 4 — E4B (local)", "type": "ollama"},
     "gemma4:e2b": {"name": "Gemma 4 — E2B (local)", "type": "ollama"},
     "claude":     {"name": "Claude Sonnet (API)",     "type": "claude"},
 }
 
 _chat_engine = None
-_current_model_id = "gemma4:e2b"
+_current_model_id = "gpt-oss:20b"
 
 
 def _ollama_available(model_id: str) -> bool:
@@ -1255,8 +1256,10 @@ async def email_sync():
 
 @app.get("/api/messages/status")
 async def messages_status():
-    """How many messages are embedded, and when the last sync ran."""
-    from core.messages import vector_store
+    """Embedded-message count, last sync, and whether Full Disk Access is granted."""
+    import sys
+
+    from core.messages import chat_db, vector_store
 
     conn = get_db()
     try:
@@ -1271,7 +1274,29 @@ async def messages_status():
     return {
         "total_messages": vector_store.count(),
         "last_sync": row[0] if row else None,
+        "full_disk_access": chat_db.has_access(),
+        "is_macos": sys.platform == "darwin",
+        # The binary that actually needs Full Disk Access in this dev setup — shown
+        # to the user so they know what to add (for a packaged app it's the .app).
+        "runtime_executable": sys.executable,
     }
+
+
+@app.post("/api/messages/open-settings")
+async def messages_open_settings():
+    """Open the macOS Full Disk Access pane in System Settings (cannot auto-grant)."""
+    import subprocess
+    import sys
+
+    if sys.platform != "darwin":
+        raise HTTPException(status_code=400, detail="Full Disk Access is macOS-only.")
+    # Fixed, non-user-controlled URL → Apple's deep link to the Full Disk Access list.
+    url = "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles"
+    try:
+        subprocess.run(["open", url], check=True)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Could not open System Settings: {exc}")
+    return {"opened": True}
 
 
 @app.post("/api/messages/scan")

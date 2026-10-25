@@ -367,14 +367,15 @@ class JarChat:
 
     def _search_emails(self, query: str, limit: int = 5) -> dict:
         """Semantic search over the synced email vector store (LanceDB)."""
-        from core.email import embedder, vector_store
+        from core import embeddings
+        from core.email import vector_store
 
         query = (query or "").strip()
         if not query:
             return {"error": "empty query"}
         limit = min(limit or self.MAX_EMAIL_RESULTS, self.MAX_EMAIL_RESULTS)
         try:
-            vector = embedder.embed_texts([query])[0]
+            vector = embeddings.embed_texts([query])[0]
             rows = vector_store.search(vector, limit=limit)
         except Exception as exc:
             return {"error": f"email search failed: {exc}"}

@@ -74,6 +74,7 @@ def _build_local_system_prompt(db_path: str) -> str:
 
 OLLAMA_BASE = "http://localhost:11434"
 OLLAMA_TIMEOUT = 300  # 5 min — first request loads model into RAM, can be slow on 8GB
+OLLAMA_NUM_CTX = 16384  # Ollama defaults to 4096, too small for tool results + history
 
 
 def _anthropic_tools_to_ollama(tools: list[dict]) -> list[dict]:
@@ -131,6 +132,7 @@ class JarLocalChat:
             ],
             "tools": OLLAMA_TOOLS,
             "stream": False,
+            "options": {"num_ctx": OLLAMA_NUM_CTX},
         }
 
         resp = requests.post(f"{OLLAMA_BASE}/api/chat", json=payload, timeout=OLLAMA_TIMEOUT)

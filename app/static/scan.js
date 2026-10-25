@@ -3,7 +3,9 @@
 initScanner('scanner-root', { inline: false });
 initDriveWidget('drive-root');
 initEmailWidget('email-root');
-initMessagesWidget('messages-root');
+// Text-message scan hidden for demo — flip to true to restore.
+var SHOW_MESSAGES_SCAN = false;
+if (SHOW_MESSAGES_SCAN) initMessagesWidget('messages-root');
 
 fetchJSON('/api/config').then(function(c) {
     if (c.llm_available && document.getElementById('nav-chat')) {

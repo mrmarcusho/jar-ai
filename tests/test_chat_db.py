@@ -108,3 +108,30 @@ def test_iter_messages_since_apple_ns(tmp_path):
     ns = (1704067200 - 978307200) * 1_000_000_000  # all fixture rows at this date
     assert len(list(chat_db.iter_messages(db, since_apple_ns=ns - 1))) == 2  # included
     assert len(list(chat_db.iter_messages(db, since_apple_ns=ns + 1))) == 0  # excluded
+
+
+def test_has_access_true_on_readable_db(tmp_path):
+    db = tmp_path / "chat.db"
+    _make_chat_db(db)
+    assert chat_db.has_access(db) is True
+
+
+def test_has_access_false_on_missing_db(tmp_path):
+    assert chat_db.has_access(tmp_path / "nope.db") is False
+
+
+class _DeniedConn:
+    """Mimics a chat.db handle that opens but denies reads (macOS FDA denial)."""
+    def execute(self, *a, **k):
+        raise sqlite3.DatabaseError("authorization denied")
+
+    def close(self):
+        pass
+
+
+def test_authorization_denied_is_handled(monkeypatch):
+    # macOS raises DatabaseError (not OperationalError) when FDA is missing.
+    monkeypatch.setattr(chat_db, "open_readonly", lambda p: _DeniedConn())
+    assert chat_db.has_access("/fake") is False
+    with pytest.raises(chat_db.MessagesAccessError):
+        list(chat_db.iter_messages("/fake"))
